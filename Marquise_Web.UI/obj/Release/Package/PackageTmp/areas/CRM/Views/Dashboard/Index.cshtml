@@ -1,0 +1,121 @@
+﻿@model Marquise_Web.Model.CRM.CostumerCRMModel
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h3>Customer Information</h3>
+    <table class="table">
+        <tr>
+            <th>UserId</th>
+            <td>@Model.UserId</td>
+        </tr>
+        <tr>
+            <th>AccountId</th>
+            <td>@Model.AccountId</td>
+        </tr>
+        <tr>
+            <th>DepartmentID</th>
+            <td>@Model.DepartmentID</td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td>@Model.FirstName</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>@Model.LastName</td>
+        </tr>
+        <tr>
+            <th>UserType</th>
+            <td>@Model.UserType</td>
+        </tr>
+        <tr>
+            <th>Tel</th>
+            <td>@Model.Tel</td>
+        </tr>
+        <tr>
+            <th>Tel Extension</th>
+            <td>@Model.TelExt</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>@Model.Address</td>
+        </tr>
+        <tr>
+            <th>Mobile Phone</th>
+            <td>@Model.MobilePhone</td>
+        </tr>
+        <tr>
+            <th>Is Active Directory</th>
+            <td>@Model.IsActiveDirectory</td>
+        </tr>
+        <tr>
+            <th>Create Date</th>
+            <td>@Model.CreateDate</td>
+        </tr>
+        <tr>
+            <th>Modifier User</th>
+            <td>@Model.ModifierUser</td>
+        </tr>
+        <tr>
+            <th>IP Address</th>
+            <td>@Model.IPAddress</td>
+        </tr>
+        <tr>
+            <th>Enable Notification</th>
+            <td>@Model.EnableNotification</td>
+        </tr>
+        <tr>
+            <th>Personal Code</th>
+            <td>@Model.PersonalCode</td>
+        </tr>
+        <tr>
+            <th>Enable VoIP</th>
+            <td>@Model.EnableVoip</td>
+        </tr>
+        <tr>
+            <th>Display Feedback</th>
+            <td>@Model.DisplayFeedBack</td>
+        </tr>
+        <tr>
+            <th>DomainId</th>
+            <td>@Model.DomainId</td>
+        </tr>
+        <tr>
+            <th>PositionId</th>
+            <td>@Model.PositionId</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>@Model.Status</td>
+        </tr>
+        <tr>
+            <th>Is Removed</th>
+            <td>@Model.IsRemoved</td>
+        </tr>
+        <tr>
+            <th>Send Invitation Email</th>
+            <td>@Model.SendInvitationEmail</td>
+        </tr>
+        <tr>
+            <th>Is Approved</th>
+            <td>@Model.IsApproved</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <th>Is Locked Out</th>
+            <td>@Model.IsLockedOut</td>
+        </tr>
+        <tr>
+            <th>User Name</th>
+            <td>@Model.UserName</td>
+        </tr>
+    </table>
+</div>

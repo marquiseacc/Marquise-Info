@@ -1,0 +1,96 @@
+﻿<section class="pad-tb why-choos-lg">
+    <div class="container-fluid px-lg-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-12">
+                <div class="row dir-rtl">
+                    <div class="col-lg-3 d-none d-lg-block">
+                        <div class="contact-details p-relative zindex10 contact-box mt-3 position-fixed">
+                            <div class="info-wrapr">
+                                <ul class="nav nav-tabs d-flex flex-column dir-rtl" id="myTab1" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active hover-border pt-3" href="#category1">
+                                            <div class="d-flex flex-row align-items-center justify-content-start">
+                                                <div class="img-ab- base ml20" data-tilt data-tilt-max="20" data-tilt-speed="1000">
+                                                    <img src="~/Content/Icons/blog-logo.png" alt="icon" class="layer h40">
+                                                </div>
+                                                <h6>مفاهیم و اصول پایه طلا</h6>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link hover-border pt-3" href="#category2">
+                                            <div class="d-flex flex-row align-items-center justify-content-start">
+                                                <div class="img-ab- base ml20" data-tilt data-tilt-max="20" data-tilt-speed="1000">
+                                                    <img src="~/Content/Icons/blog-logo.png" alt="icon" class="layer h40">
+                                                </div>
+                                                <h6>بازار طلا و قیمت گذاری</h6>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link hover-border pt-3" href="#category3">
+                                            <div class="d-flex flex-row align-items-center justify-content-start">
+                                                <div class="img-ab- base ml20" data-tilt data-tilt-max="20" data-tilt-speed="1000">
+                                                    <img src="~/Content/Icons/blog-logo.png" alt="icon" class="layer h40">
+                                                </div>
+                                                <h6>کاربردها و فرآیندهای طلا</h6>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link hover-border pt-3" href="#category4">
+                                            <div class="d-flex flex-row align-items-center justify-content-start">
+                                                <div class="img-ab- base ml20" data-tilt data-tilt-max="20" data-tilt-speed="1000">
+                                                    <img src="~/Content/Icons/blog-logo.png" alt="icon" class="layer h40">
+                                                </div>
+                                                <h6>سکه ها و سرمایه گذاری</h6>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link hover-border pt-3" href="#category5">
+                                            <div class="d-flex flex-row align-items-center justify-content-start">
+                                                <div class="img-ab- base ml20" data-tilt data-tilt-max="20" data-tilt-speed="1000">
+                                                    <img src="~/Content/Icons/blog-logo.png" alt="icon" class="layer h40">
+                                                </div>
+                                                <h6>امنیت، نگهداری و ایمنی</h6>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-block d-lg-none">
+                        <div class="col-12 d-block d-lg-none">
+                            <div class="dropdown text-center position-relative">
+                                <button class="btn-main bg-btn5 lnk white-color mx-3 dropdown-toggle w-25 mt50" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    دسته‌بندی<span class="circle"></span>
+                                </button>
+                                <ul class="dropdown-menu text-center justify-content-center w-auto drop-set " aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item text-center" href="#category1">مفاهیم و اصول پایه طلا</a></li>
+                                    <li><a class="dropdown-item text-center" href="#category2">بازار طلا و قیمت گذاری</a></li>
+                                    <li><a class="dropdown-item text-center" href="#category3">کاربردها و فرآیندهای طلا</a></li>
+                                    <li><a class="dropdown-item text-center" href="#category4">سکه ها و مسائل مرتبط با سرمایه گذاری</a></li>
+                                    <li><a class="dropdown-item text-center" href="#category5">امنیت، نگهداری و ایمنی</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 p-md-5">
+                        @Html.Partial("Category1")
+                        @Html.Partial("Category2")
+                        @Html.Partial("Category3")
+                        @Html.Partial("Category4")
+                        @Html.Partial("Category5")
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/Scripts/Views/AddBlog.js"></script>
+}

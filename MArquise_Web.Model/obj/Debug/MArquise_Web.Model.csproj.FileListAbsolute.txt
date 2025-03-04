@@ -1,0 +1,6 @@
+C:\Users\10\source\repos\Marquise_Web\MArquise_Web.Model\bin\Debug\MArquise_Web.Model.dll
+C:\Users\10\source\repos\Marquise_Web\MArquise_Web.Model\bin\Debug\MArquise_Web.Model.pdb
+C:\Users\10\source\repos\Marquise_Web\MArquise_Web.Model\obj\Debug\Marquise_Web.Model.csproj.AssemblyReference.cache
+C:\Users\10\source\repos\Marquise_Web\MArquise_Web.Model\obj\Debug\Marquise_Web.Model.csproj.CoreCompileInputs.cache
+C:\Users\10\source\repos\Marquise_Web\MArquise_Web.Model\obj\Debug\MArquise_Web.Model.dll
+C:\Users\10\source\repos\Marquise_Web\MArquise_Web.Model\obj\Debug\MArquise_Web.Model.pdb

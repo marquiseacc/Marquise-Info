@@ -1,0 +1,17 @@
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\App.config
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\Marquise_Web.Data.dll.config
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\Marquise_Web.Data.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\Marquise_Web.Data.pdb
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\EntityFramework.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\System.Data.SqlClient.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\EntityFramework.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\bin\Debug\System.Data.SqlClient.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\obj\Debug\Marquise_Web.Data.csproj.AssemblyReference.cache
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\obj\Debug\Marquise_Web.Data.Migrations.UpdateSiteDataEntities.resources
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\obj\Debug\Marquise_Web.Data.csproj.GenerateResource.cache
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\obj\Debug\Marquise_Web.Data.csproj.CoreCompileInputs.cache
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\obj\Debug\Marquise.62A4E289.Up2Date
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\obj\Debug\Marquise_Web.Data.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Data\obj\Debug\Marquise_Web.Data.pdb

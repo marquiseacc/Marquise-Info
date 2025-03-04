@@ -1,0 +1,82 @@
+﻿<!--Start Enquire Form-->
+<section class="contact-page pad-tb dir-rtl service-section">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 v-center">
+                <div class="common-heading text-l">
+                    <h2 class="mt0 mb0">لطفا پیام خود را ارسال کنید.</h2>
+                    <p class="mb60 mt20">در اولین فرصت پاسخ برای شما ارسال می‌شود.</p>
+                </div>
+                <div class="form-block pt30 zindex10">
+                    <form id="contact-form" class="shake" onsubmit="return handleContactFormSubmit(event);" novalidate>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <input type="text" id="name" name="نام" placeholder="نام" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input id="phone" name="شماره تماس" placeholder="شماره تماس" required>
+                                <div id="phone-error" class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <input type="email" id="email" name="ایمیل" placeholder="ایمیل" required>
+                                <div id="email-error" class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="5" name="پیام" placeholder="لطفا پیام خود را وارد کنید" required></textarea>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="d-flex justify-content-end col-lg-12 col-sm-12">
+                            <button type="submit" class="btn-main bg-btn5 lnk white-color mx-3">
+                                ارسال<i class="fas fa-chevron-left fa-icon pr-10"></i><span class="circle"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex justify-content-center v-center pt-5 dir-rtl">
+                <div class="contact-details p-relative zindex10 contact-box contact-detail-box">
+                    <div class="info-wrapr">
+                        <h3 class="mb-4">ارتباط با ما</h3>
+                        <div class="dbox d-flex align-items-start">
+                            <div class="icon d-flex align-items-center justify-content-center col-3">
+                                <img src="~/Content/Icons/Contact/location.png" />
+                            </div>
+                            <div class="text pl-4 col-9 pt-2">
+                                <p><span>آدرس دفتر مرکزی:</span>خیابان انقلاب، مترو دروازه دولت، بهار جنوبی، برج بهار، طبقه دوم تجاری واحد 418</p>
+                            </div>
+                        </div>
+                        <div class="dbox d-flex align-items-start">
+                            <div class="icon d-flex align-items-center justify-content-center col-3">
+                                <img src="~/Content/Icons/Contact/phone.png" />
+                            </div>
+                            <div class="text pl-4 col-9 pt-2">
+                                <p><span>تماس با ما:</span></p>
+                                <p>شنبه تا چهارشنبه 8:30 الی 17:30 </p>
+                                <p> پنج شنبه 8:30 الی 14:00 </p>
+                                <a href="tel:+989033130093">0903-3130093 </a><br />
+                                <a href="tel:+982191307643">021-91307643</a>
+                            </div>
+                        </div>
+                        <div class="dbox d-flex align-items-start">
+                            <div class="icon d-flex align-items-center justify-content-center col-3">
+                                <img src="~/Content/Icons/Contact/mail.png" />
+                            </div>
+                            <div class="text pl-4 col-9 pt-2">
+                                <p><span>کد پستی:</span>1561635971</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Enquire Form-->
+
+@section Scripts {
+    <script src="~/Scripts/Views/ContactUs.js"></script>
+}

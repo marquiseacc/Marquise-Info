@@ -1,0 +1,103 @@
+﻿@model Marquise_Web.UI.areas.CRM.Models.Result
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
+    ViewData["IsLoginPage"] = true;
+}
+
+<h2>جزئیات حساب</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>فیلد</th>
+            <th>مقدار</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>AccountId</td>
+            <td>@Model.AccountId</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td>ITStaffID</td>
+            <td>@Model.ITStaffID</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>@Model.Type</td>
+        </tr>
+        <tr>
+            <td>WebSiteUrl</td>
+            <td>@Model.WebSiteUrl</td>
+        </tr>
+        <tr>
+            <td>Telephone</td>
+            <td>@Model.Telephone</td>
+        </tr>
+        <tr>
+            <td>Fax</td>
+            <td>@Model.Fax</td>
+        </tr>
+        <tr>
+            <td>IndustryCode</td>
+            <td>@Model.IndustryCode</td>
+        </tr>
+        <tr>
+            <td>PersonnelCount</td>
+            <td>@Model.PersonnelCount</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>@Model.Description</td>
+        </tr>
+        <tr>
+            <td>EconomicCode</td>
+            <td>@Model.EconomicCode</td>
+        </tr>
+        <tr>
+            <td>NationalCode</td>
+            <td>@Model.NationalCode</td>
+        </tr>
+        <tr>
+            <td>ParentID</td>
+            <td>@Model.ParentID</td>
+        </tr>
+        <tr>
+            <td>LogoPath</td>
+            <td>@Model.LogoPath</td>
+        </tr>
+        <tr>
+            <td>ShippingAddress</td>
+            <td>@Model.ShippingAddress</td>
+        </tr>
+        <tr>
+            <td>BillAddress</td>
+            <td>@Model.BillAddress</td>
+        </tr>
+        <tr>
+            <td>TemplateAttributeId</td>
+            <td>@Model.TemplateAttributeId</td>
+        </tr>
+        <tr>
+            <td>CreateBy</td>
+            <td>@Model.CreateBy</td>
+        </tr>
+        <tr>
+            <td>CreateDate</td>
+            <td>@Model.CreateDate</td>
+        </tr>
+        <tr>
+            <td>ModifyBy</td>
+            <td>@Model.ModifyBy</td>
+        </tr>
+        <tr>
+            <td>ModifyDate</td>
+            <td>@Model.ModifyDate</td>
+        </tr>
+    </tbody>
+</table>

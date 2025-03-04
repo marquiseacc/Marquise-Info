@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <title>نرم افزار حسابداری طلا و جواهر مارکیز</title>
+    <meta name="description" content="Creative Agency, Marketing Agency Template">
+    <meta name="keywords" content="Creative Agency, Marketing Agency">
+    <meta name="author" content="rajesh-doot">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#D68631">
+    <link rel="icon" type="image/webp" href="~/Content/Images/Logo.webp">
+    <!--plugin-css-->
+    <link href="https://fonts.cdnfonts.com/css/iranyekan" rel="stylesheet">
+    <link href="~/Content/bootstrap/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/Content/theme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/theme/css/plugin.min.css" rel="stylesheet">
+    <link href="~/Content/theme/css/swiper.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- template-style-->
+    <link href="~/Content/theme/css/style.css" rel="stylesheet">
+    <link href="~/Content/theme/css/responsive.css" rel="stylesheet">
+    <link href="~/Content/theme/css/darkmode.css" rel="stylesheet">
+    <link href="~/Content/theme/css/gdpr-cookie.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="~/Content/theme/css/custom.css" rel="stylesheet">
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+
+    @Html.Partial("Header")
+
+    <div id="myDiv">
+
+        @RenderBody()
+    </div>
+
+    @Html.Partial("Footer")
+    
+    <!-- for theme -->
+    <script src="~/Scripts/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/plugin.min.js"></script>
+    <!--common script file-->
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/swiper.min.js"></script>
+    @*<script src="~/theme/js/preloader.js"></script>*@
+    @*<script src="~/theme/js/tweenmax.min.js"></script>*@
+    <script src="~/Scripts/gdprcookies.js"></script>
+    <!--common script file-->
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/Views/custom.js"></script>
+</body>
+</html>

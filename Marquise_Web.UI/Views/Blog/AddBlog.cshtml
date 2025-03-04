@@ -1,0 +1,70 @@
+﻿<section class="pad-tb why-choos-lg ">
+    <div class="container-fluid content-software px-lg-5">
+        <div class="row d-flex justify-content-center min-vh-100">
+            <div class="col-md-12 col-lg-12">
+                <div class="row dir-rtl">
+                    <div class="col-lg-4">
+                        <div class="contact-details p-relative zindex10 contact-box mt-3 position-fixed">
+                            <div class="changes-section">
+                                <div class="menu">
+                                    <button class="btn-main bg-btn4 lnk" onclick="articleEditor.addTitle()">افزودن عنوان</button>
+                                    <button class="btn-main bg-btn4 lnk" onclick="articleEditor.addImage()">افزودن تصویر</button>
+                                    <button class="btn-main bg-btn4 lnk" onclick="articleEditor.addDescription()">افزودن توضیحات</button>
+                                </div>
+
+                                <div class="changes-list pt-5 pb-2">
+                                    <h3>بخش‌های مقاله:</h3>
+                                    <form id="articleForm" class="pt-3">
+                                        <div id="articleSections">
+                                            <!-- بخش‌های مقاله به صورت داینامیک اضافه می‌شود -->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-block mt-3">
+                            <form onsubmit="return handleAddBlogFormSubmit(event);" class="shake" novalidate>
+                                <div class="row">
+                                    <div class="form-group col-sm-6 pb-4">
+                                        <input type="text" id="articleTitle" placeholder="عنوان مقاله" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group col-sm-6 pb-4">
+                                        <select type="text" id="articleCategory" required>
+                                            <option selected>گروه بندی مقالات</option>
+                                            <option>مفاهیم و اصول پایه طلا</option>
+                                            <option>بازار طلا و قیمت گذاری</option>
+                                            <option>کاربردها و فرآیندهای طلا</option>
+                                            <option>امنیت، نگهداری و ایمنی</option>
+                                            <option>سکه ها و مسائل مرتبط با سرمایه گذاری</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6 pb-4">
+                                        <input type="text" id="articleAuthor" placeholder="نام نویسنده" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group col-sm-6 pb-4">
+                                        <button type="submit" class="btn-main bg-btn5 lnk white-color mx-3">
+                                            ارسال<i class="fas fa-chevron-left fa-icon mr15"></i><span class="circle"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="preview-section">
+                                    <h2 class="title-line-b pb-3">پیش‌نمایش:</h2>
+                                    <div id="previewContent" class="preview">
+                                        <!-- پیش‌نمایش اضافه می‌شود -->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

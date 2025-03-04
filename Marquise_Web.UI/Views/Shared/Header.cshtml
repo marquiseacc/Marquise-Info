@@ -1,0 +1,112 @@
+﻿<!--Start White Header -->
+<header class="nav-bg-w main-header navfix fixed-top nav-line nav-color">
+    <div class="container-fluid px-10">
+        <div class="menu-header first-nav1 p-2">
+            <div class="custom-nav full-width">
+                <ul class="nav-list dir-center d-flex justify-content-start full-width">
+                    <li class="col-12 dir-center justify-content-center d-none d-md-flex">
+                        <div class="title-theme align-items-center">
+                            نرم‌افزار حسابداری طلا و جواهر <span class="text-second text-bold font-24">مارکیز</span>
+                        </div>
+                    </li>
+                    <li class="col-12 dir-center justify-content-end d-flex d-md-none">
+                        <div class="title-theme align-items-center">
+                            <a class="navbar-brand" href="@Url.RouteUrl("Index")"> <img class="nav-logo" src="~/Content/Images/Logo.webp" alt="Logo"/></a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav-list right-end-btn">
+                    <li class="navm- hidedesktop"> <a class="toggle" href="#"><span></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="menu-header d-flex justify-content-center second-nav">
+            <div class="custom-nav" role="navigation">
+                <ul class="nav-list dir-rtl">
+                    <li class="sbmenu bd-hor-base px-3">
+                        <a href="@Url.RouteUrl("Index")" class="menu-links">خانه</a>
+                    </li>
+                    <li class="sbmenu rpdropdown px-3">
+                        <a href="#" class="menu-links">مارکیز</a>
+                        <div class="nx-dropdown menu-dorpdown">
+                            <div class="sub-menu-section">
+                                <div class="sub-menu-center-block">
+                                    <div class="sub-menu-column smfull">
+                                        <ul>
+                                            <li><a href="@Url.RouteUrl("Contact")">ارتباط با ما</a> </li>
+                                            <li><a href="@Url.RouteUrl("Features")">ویژگی مارکیز</a> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="sbmenu rpdropdown px-3">
+                        <a href="#" class="menu-links">نرم‌افزار</a>
+                        <div class="nx-dropdown menu-dorpdown">
+                            <div class="sub-menu-section">
+                                <div class="sub-menu-center-block">
+                                    <div class="sub-menu-column smfull">
+                                        <ul>
+                                            <li><a href="@Url.RouteUrl("Softwares")">نرم‌افزارها</a></li>
+                                            <li><a href="@Url.RouteUrl("OtherSoftwares")">نرم‌افزارهای جانبی</a></li>
+                                            <li><a href="@Url.RouteUrl("Plugins")">مکمل‌ها</a> </li>
+                                            <li><a href="@Url.RouteUrl("Support")">پشتیبانی</a> </li>
+                                            <li><a href="@Url.RouteUrl("Questions")">سوالات متداول</a> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="sbmenu px-3">
+                        <a href="@Url.RouteUrl("Blog")" class="menu-links">وبلاگ</a>
+                    </li>
+                    <li class="sbmenu px-3">
+                        <a href="@Url.RouteUrl("Videos")" class="menu-links">ویدیو آموزشی</a>
+                    </li>
+                    <li class="sbmenu px-3">
+                        <a href="@Url.RouteUrl("Opportunity")" class="menu-links">فرصت‌های شغلی</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--Mobile Menu-->
+        <nav id="main-nav">
+            <ul class="first-nav">
+                <li>
+                    <a href="@Url.RouteUrl("Index")">خانه</a>
+                </li>
+                <li>
+                    <a class="dir-rtl pt-3" href="#">مارکیز</a>
+                    <ul>
+                        <li><a href="@Url.RouteUrl("Contact")">ارتباط با ما</a></li>
+                        <li><a href="@Url.RouteUrl("Features")">ویژگی‌های مارکیز</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">نرم افزار</a>
+                    <ul>
+                        <li><a href="@Url.RouteUrl("Softwares")">نرم‌افزارها</a></li>
+                        <li><a href="@Url.RouteUrl("OtherSoftwares")">نرم‌افزارهای جانبی</a></li>
+                        <li><a href="@Url.RouteUrl("Plugins")">مکمل‌ها</a> </li>
+                        <li><a href="@Url.RouteUrl("Support")">پشتیبانی</a> </li>
+                        <li><a href="@Url.RouteUrl("Questions")">سوالات متداول</a> </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="@Url.RouteUrl("Blog")">وبلاگ</a>
+                </li>
+                <li>
+                    <a href="@Url.RouteUrl("Videos")">ویدئوهای آموزشی</a>
+                </li>
+                <li>
+                    <a href="@Url.RouteUrl("Opportunity")">فرصت‌های شغلی</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!--End Header -->

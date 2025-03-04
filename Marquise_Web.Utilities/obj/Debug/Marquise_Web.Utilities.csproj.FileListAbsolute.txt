@@ -1,0 +1,17 @@
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\App.config
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\Marquise_Web.Utilities.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\Marquise_Web.Utilities.pdb
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\AutoMapper.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\Marquise_Web.Data.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\MArquise_Web.Model.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\EntityFramework.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\Marquise_Web.Data.pdb
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\Marquise_Web.Data.dll.config
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\MArquise_Web.Model.pdb
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\AutoMapper.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Debug\EntityFramework.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\obj\Debug\Marquise_Web.Utilities.csproj.AssemblyReference.cache
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\obj\Debug\Marquise_Web.Utilities.csproj.CoreCompileInputs.cache
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\obj\Debug\Marquise.0F75461D.Up2Date
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\obj\Debug\Marquise_Web.Utilities.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\obj\Debug\Marquise_Web.Utilities.pdb
