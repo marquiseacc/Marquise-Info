@@ -1,9 +1,7 @@
 ﻿using Marquise_Web.Data;
 using System;
-using Utilities.Convert;
 using AutoMapper;
-using Marquise_Web.Model.SiteModel;
-using MArquise_Web.Model.CRM;
+using Marquise_Web.Model.DTOs.SiteModel;
 
 namespace Utilities.Map
 {
@@ -11,30 +9,42 @@ namespace Utilities.Map
     {
         public AutoMapperConfiguration()
         {
-            CreateMap<MessageModel, Message>()
-                .ForMember(dest => dest.Phonenumber, opt => opt.MapFrom(src => src.PhoneNumber))
-                .ForMember(dest => dest.MessageText, opt => opt.MapFrom(src => src.Message))
+            CreateMap<MessageDTO, Message>()
                 .ForMember(dest => dest.RegisterDate, opt => opt.MapFrom(src => DateTime.Now));
 
-            CreateMap<MessageContactModel, Message>()
+            CreateMap<MessageContactDTO, Message>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Address, opt => opt.Ignore())
                 .ForMember(dest => dest.RegisterDate, opt => opt.MapFrom(src => DateTime.Now))
                 .ForMember(dest => dest.Birthday, opt => opt.Ignore())
                 .ForMember(dest => dest.FilePath, opt => opt.Ignore());
 
-            CreateMap<Message, MessageContactModel>();
-            CreateMap<Message, MessageModel>()
-                .ForMember(dest => dest.Message, opt => opt.MapFrom(src => src.MessageText));
-
-            CreateMap<User, UserModel>()
-            .ForMember(dest => dest.CRMId, opt => opt.MapFrom(src => src.CRMId ?? Guid.Empty)); 
-
-        
-            CreateMap<UserModel, User>()
-                .ForMember(dest => dest.CRMId, opt => opt.MapFrom(src => src.CRMId));
+            CreateMap<Message, MessageContactDTO>()
+                .ForMember(dest => dest.EmailBody, opt => opt.Ignore())
+                .ForMember(dest => dest.EmailAddress, opt => opt.Ignore())
+                .ForMember(dest => dest.EmailSubject, opt => opt.Ignore());
+            CreateMap<Message, MessageDTO>()
+                 .ForMember(dest => dest.EmailBody, opt => opt.Ignore())
+                .ForMember(dest => dest.EmailAddress, opt => opt.Ignore())
+                .ForMember(dest => dest.EmailSubject, opt => opt.Ignore());
 
         }
-
     }
+    public static class DataMapper
+    {
+        public static IMapper Mapper { get; private set; }
+
+        static DataMapper()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+
+                cfg.AddProfile<AutoMapperConfiguration>();
+            });
+
+
+            Mapper = config.CreateMapper();
+        }
+    }
+
 }

@@ -40,6 +40,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.4\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -56,103 +62,79 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CRM.Context.tt</DependentUpon>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
-    <Compile Include="CRM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CRM.tt</DependentUpon>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
-    <Compile Include="CRM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CRM.edmx</DependentUpon>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
-    <Compile Include="IRepository\ICRMAccountRepository.cs" />
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>Marquise.tt</DependentUpon>
+    </Compile>
     <Compile Include="IRepository\IMessageRepository.cs" />
+    <Compile Include="IRepository\IRepository.cs" />
+    <Compile Include="IRepository\IUnitOfWorkRepository.cs" />
+    <Compile Include="IRepository\IUserRepository.cs" />
+    <Compile Include="Marquise.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Marquise.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Marquise.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Marquise.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Marquise.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Marquise.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Message.cs">
-      <DependentUpon>SiteData.tt</DependentUpon>
+      <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202501180819026_UpdateSiteDataEntities.cs" />
-    <Compile Include="Migrations\202501180819026_UpdateSiteDataEntities.Designer.cs">
-      <DependentUpon>202501180819026_UpdateSiteDataEntities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\CRMAccountRepository.cs" />
     <Compile Include="Repository\MessageRepository.cs" />
-    <Compile Include="SiteData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SiteData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SiteData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SiteData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SiteData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SiteData.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>CRM.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\UnitOfWorkRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <EntityDeploy Include="CRM.edmx">
+    <None Include="Marquise.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CRM.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="CRM.edmx.diagram">
-      <DependentUpon>CRM.edmx</DependentUpon>
+      <LastGenOutput>Marquise.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Marquise.edmx.diagram">
+      <DependentUpon>Marquise.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <EntityDeploy Include="SiteData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SiteData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="SiteData.edmx.diagram">
-      <DependentUpon>SiteData.edmx</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202501180819026_UpdateSiteDataEntities.resx">
-      <DependentUpon>202501180819026_UpdateSiteDataEntities.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="Marquise.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Marquise.edmx</DependentUpon>
+      <LastGenOutput>Marquise.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Marquise.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Marquise.edmx</DependentUpon>
+      <LastGenOutput>Marquise.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CRM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CRM.edmx</DependentUpon>
-      <LastGenOutput>CRM.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="CRM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CRM.edmx</DependentUpon>
-      <LastGenOutput>CRM.cs</LastGenOutput>
-    </Content>
-    <Content Include="SiteData.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SiteData.edmx</DependentUpon>
-      <LastGenOutput>SiteData.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="SiteData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SiteData.edmx</DependentUpon>
-      <LastGenOutput>SiteData.cs</LastGenOutput>
-    </Content>
+    <ProjectReference Include="..\MArquise_Web.Model\Marquise_Web.Model.csproj">
+      <Project>{95f6edad-c086-4d9f-a0fc-bc85699cb802}</Project>
+      <Name>Marquise_Web.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

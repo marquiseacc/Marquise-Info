@@ -9,9 +9,9 @@ namespace Marquise_Web.Data.Repository
 {
     public class MessageRepository : IMessageRepository
     {
-        private readonly SiteDataEntities context;
+        private readonly Marquise_WebEntities context;
 
-        public MessageRepository(SiteDataEntities context)
+        public MessageRepository(Marquise_WebEntities context)
         {
             this.context = context;
         }

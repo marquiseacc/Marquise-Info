@@ -64,6 +64,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.4\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.3.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.2.3.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
     </Reference>
@@ -312,12 +318,10 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="areas\CRM\ApiController\AccountApiController.cs" />
-    <Compile Include="areas\CRM\Controllers\AccountController.cs" />
-    <Compile Include="areas\CRM\Controllers\DashboardController.cs" />
+    <Compile Include="areas\CRM\Controllers\AuthController.cs" />
     <Compile Include="areas\CRM\CRMAreaRegistration.cs" />
     <Compile Include="areas\CRM\CRMUtilities\CRMAutoMapperConfiguration.cs" />
-    <Compile Include="areas\CRM\Models\AccountViewModel.cs" />
-    <Compile Include="areas\CRM\Models\CRMModel.cs" />
+    <Compile Include="areas\CRM\Models\AuthVM.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\FeaturesController.cs" />
@@ -336,7 +340,7 @@
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\MessageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiteUtilities\SiteAutoMapperConfiguration.cs" />
+    <Compile Include="SiteUtilities\UIAutoMapperConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="areas\CRM\Scripts\CRM\Cookies.js" />

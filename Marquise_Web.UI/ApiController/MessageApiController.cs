@@ -1,6 +1,4 @@
-﻿
-using AutoMapper;
-using Marquise_Web.Model.SiteModel;
+﻿using Marquise_Web.Model.SiteModel;
 using Marquise_Web.Service.IService;
 using Marquise_Web.UI.Models;
 using System;
@@ -8,6 +6,7 @@ using System.IO;
 using System.Web;
 using System.Web.Http;
 using Utilities.Convert;
+using Utilities.Map;
 
 namespace Marquise_Web.UI.APIController
 {
@@ -15,14 +14,12 @@ namespace Marquise_Web.UI.APIController
     public class MessageApiController : ApiController
     {
         private readonly SmtpSettings smtpSettings;
-        private readonly IEmailService emailService;
-        private readonly IMapper mapper;
+        private readonly IUnitOfWorkService unitOfWork;
 
-        public MessageApiController(SmtpSettings smtpSettings, IEmailService emailService, IMapper mapper)
+        public MessageApiController(SmtpSettings smtpSettings, IUnitOfWorkService unitOfWork)
         {
             this.smtpSettings = smtpSettings;
-            this.emailService = emailService;
-            this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
         }
 
 
@@ -55,16 +52,16 @@ namespace Marquise_Web.UI.APIController
                     smtpClient.EnableSsl = true;
                 }
 
-                MessageContactModel messageContactDto = new MessageContactModel()
+                MessageContactDTO messageContactDto = new MessageContactDTO()
                 {
                     Name = contactModel.Name,
-                    Phonenumber = contactModel.PhoneNumber,
+                    PhoneNumber = contactModel.PhoneNumber,
                     Email = contactModel.Email,
                     MessageText = contactModel.Message,
                     Section ="ContactUs"
                 };
-                var check = emailService;
-                emailService.ContactEmailService(smtpSettings, messageContactDto, email, body, subject);
+                
+                unitOfWork.MessageService.ContactEmailService(smtpSettings, messageContactDto, email, body, subject);
                 
                 return Json(new { success = true });
             }
@@ -102,10 +99,10 @@ namespace Marquise_Web.UI.APIController
                 var filePath = HttpContext.Current.Server.MapPath($"~/Content/Resume/{fileName}");
                 File.WriteAllBytes(filePath, fileBytes);
 
-                var messageModel = mapper.Map<MessageModel>(messageViewModel);
+                var messageModel = UIDataMapper.Mapper.Map<MessageDTO>(messageViewModel);
                 messageModel.FilePath = filePath;
                 // ارسال فایل به لایه سرویس
-                emailService.OpportunityEmailService(
+                unitOfWork.MessageService.OpportunityEmailService(
                     smtpSettings,
                     messageModel,
                     email,

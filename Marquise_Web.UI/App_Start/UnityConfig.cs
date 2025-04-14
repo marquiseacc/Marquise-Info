@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Marquise_Web.Data.IRepository;
+﻿using Marquise_Web.Data.IRepository;
 using Marquise_Web.Data.Repository;
 using Marquise_Web.Model.SiteModel;
 using Marquise_Web.Service.IService;
@@ -11,36 +10,23 @@ using System.Web.Mvc;
 using Unity;
 using Unity.Lifetime;
 using Unity.WebApi;
-using Utilities.Map;
 
 namespace Marquise_Web.UI
 {
     public static class UnityConfig
     {
-        
-
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
 
+            container.RegisterType<IUnitOfWorkRepository, UnitOfWorkRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IMessageRepository, MessageRepository>(new HierarchicalLifetimeManager());
-            container.RegisterType<ICRMAccountRepository, CRMAccountRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IUserRepository,UserRepository>(new HierarchicalLifetimeManager());
 
+            container.RegisterType<IUnitOfWorkService, UnitOfWorkService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IMessageService, MessageService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAuthService,  AuthService>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IEmailService, EmailService>(new HierarchicalLifetimeManager());
-            container.RegisterType<ICRMAccountService, CRMAccountService>(new HierarchicalLifetimeManager());
-
-
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new AutoMapperConfiguration());
-                cfg.AddProfile(new CRMAutoMapperConfiguration());
-                cfg.AddProfile(new SiteAutoMapperConfiguration());
-            });
-
-            config.CompileMappings(); 
-            config.AssertConfigurationIsValid(); 
-            container.RegisterInstance(config.CreateMapper());
 
             container.RegisterFactory<SmtpSettings>(c => new SmtpSettings
             {
