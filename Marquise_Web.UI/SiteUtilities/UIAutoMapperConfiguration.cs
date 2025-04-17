@@ -1,11 +1,7 @@
-﻿using Marquise_Web.Data;
-using System;
-using Utilities.Convert;
+﻿using Utilities.Convert;
 using AutoMapper;
-using Marquise_Web.Model.SiteModel;
-using MArquise_Web.Model.CRM;
-using Marquise_Web.UI.areas.CRM.Models;
 using Marquise_Web.UI.Models;
+using Marquise_Web.Model.DTOs.SiteModel;
 
 namespace Utilities.Map
 {

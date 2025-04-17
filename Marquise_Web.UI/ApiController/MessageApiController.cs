@@ -1,4 +1,4 @@
-﻿using Marquise_Web.Model.SiteModel;
+﻿using Marquise_Web.Model.DTOs.SiteModel;
 using Marquise_Web.Service.IService;
 using Marquise_Web.UI.Models;
 using System;

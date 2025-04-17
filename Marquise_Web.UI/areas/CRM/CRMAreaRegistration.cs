@@ -20,7 +20,6 @@ namespace Marquise_Web.UI.Areas.CRM
                 new {action = "Index", id = UrlParameter.Optional }
             );
 
-            
         }
     }
 }

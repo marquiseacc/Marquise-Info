@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace Marquise_Web.Data.Repository
 {
     public class UserRepository : Repository<ApplicationUser>, IUserRepository
+
     {
         private new readonly Marquise_WebEntities context;
 

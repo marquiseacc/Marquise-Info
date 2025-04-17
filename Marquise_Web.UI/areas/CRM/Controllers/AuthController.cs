@@ -1,7 +1,5 @@
 ﻿using Marquise_Web.Service.IService;
-using Marquise_Web.Service.Service;
 using Marquise_Web.UI.areas.CRM.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 

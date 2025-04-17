@@ -13,6 +13,17 @@
         <AssociationConnector Association="Marquise_WebModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="Marquise_WebModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="Marquise_WebModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="Marquise_WebModel.AspNetRoleClaim" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Marquise_WebModel.AspNetRole1" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="Marquise_WebModel.AspNetUserClaim1" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="Marquise_WebModel.AspNetUserLogin1" Width="1.5" PointX="5.25" PointY="10" />
+        <EntityTypeShape EntityType="Marquise_WebModel.AspNetUser1" Width="1.5" PointX="3" PointY="8.625" />
+        <EntityTypeShape EntityType="Marquise_WebModel.AspNetUserToken" Width="1.5" PointX="5.25" PointY="12.875" />
+        <AssociationConnector Association="Marquise_WebModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId1" />
+        <AssociationConnector Association="Marquise_WebModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId1" />
+        <AssociationConnector Association="Marquise_WebModel.FK_AspNetUserTokens_AspNetUsers_UserId" />
+        <AssociationConnector Association="Marquise_WebModel.AspNetUserRoles1" />
+        <AssociationConnector Association="Marquise_WebModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

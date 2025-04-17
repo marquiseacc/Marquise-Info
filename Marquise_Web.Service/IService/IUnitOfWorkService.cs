@@ -6,7 +6,7 @@ namespace Marquise_Web.Service.IService
     {
         IMessageService MessageService { get; }
         IAuthService AuthService { get; }
-
         Task CompleteAsync();
     }
+
 }

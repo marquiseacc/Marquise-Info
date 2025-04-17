@@ -5,12 +5,38 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Marquise_WebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FilePath" Type="varchar" MaxLength="100" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="Section" Type="varchar" MaxLength="20" />
+          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+          <Property Name="MessageText" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoleClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="NormalizedName" Type="nvarchar" MaxLength="256" />
+          <Property Name="ConcurrencyStamp" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="AspNetUserClaims">
           <Key>
@@ -30,6 +56,7 @@
           <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderDisplayName" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="AspNetUserRoles">
           <Key>
@@ -59,21 +86,45 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="Message">
+        <EntityType Name="AspNetUserTokens">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="FilePath" Type="varchar" MaxLength="100" />
-          <Property Name="Birthday" Type="datetime" />
-          <Property Name="Address" Type="varchar" MaxLength="150" />
-          <Property Name="Section" Type="varchar" MaxLength="20" />
-          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
-          <Property Name="MessageText" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK_AspNetRoleClaims_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetRoleClaims" Type="Self.AspNetRoleClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetRoleClaims">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserTokens_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserTokens" Type="Self.AspNetUserTokens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserTokens">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -131,12 +182,22 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Marquise_WebModelStoreContainer">
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Message" EntityType="Self.Message" Schema="SiteData" store:Type="Tables" />
+          <EntitySet Name="AspNetRoleClaims" EntityType="Self.AspNetRoleClaims" Schema="User" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="User" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="User" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="User" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="User" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="User" store:Type="Tables" />
+          <EntitySet Name="AspNetUserTokens" EntityType="Self.AspNetUserTokens" Schema="User" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetRoleClaims_AspNetRoles_RoleId" Association="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetRoleClaims" EntitySet="AspNetRoleClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserTokens_AspNetUsers_UserId" Association="Self.FK_AspNetUserTokens_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserTokens" EntitySet="AspNetUserTokens" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -190,6 +251,32 @@
           <AssociationSet Name="AspNetUserRoles" Association="Marquise_WebModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="AspNetRoleClaims" EntityType="Marquise_WebModel.AspNetRoleClaim" />
+          <EntitySet Name="AspNetRole1" EntityType="Marquise_WebModel.AspNetRole1" />
+          <EntitySet Name="AspNetUserClaim1" EntityType="Marquise_WebModel.AspNetUserClaim1" />
+          <EntitySet Name="AspNetUserLogin1" EntityType="Marquise_WebModel.AspNetUserLogin1" />
+          <EntitySet Name="AspNetUser1" EntityType="Marquise_WebModel.AspNetUser1" />
+          <EntitySet Name="AspNetUserTokens" EntityType="Marquise_WebModel.AspNetUserToken" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId1" Association="Marquise_WebModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId1">
+            <End Role="AspNetUser1" EntitySet="AspNetUser1" />
+            <End Role="AspNetUserClaim1" EntitySet="AspNetUserClaim1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId1" Association="Marquise_WebModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId1">
+            <End Role="AspNetUser1" EntitySet="AspNetUser1" />
+            <End Role="AspNetUserLogin1" EntitySet="AspNetUserLogin1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserTokens_AspNetUsers_UserId" Association="Marquise_WebModel.FK_AspNetUserTokens_AspNetUsers_UserId">
+            <End Role="AspNetUser1" EntitySet="AspNetUser1" />
+            <End Role="AspNetUserToken" EntitySet="AspNetUserTokens" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles1" Association="Marquise_WebModel.AspNetUserRoles1">
+            <End Role="AspNetRole1" EntitySet="AspNetRole1" />
+            <End Role="AspNetUser1" EntitySet="AspNetUser1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetRoleClaims_AspNetRoles_RoleId" Association="Marquise_WebModel.FK_AspNetRoleClaims_AspNetRoles_RoleId">
+            <End Role="AspNetRole1" EntitySet="AspNetRole1" />
+            <End Role="AspNetRoleClaim" EntitySet="AspNetRoleClaims" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
@@ -276,6 +363,145 @@
           <End Type="Marquise_WebModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="Marquise_WebModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="AspNetRoleClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRole" Relationship="Marquise_WebModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRoleClaim" ToRole="AspNetRole1" />
+        </EntityType>
+        <EntityType Name="AspNetRole1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ConcurrencyStamp" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Marquise_WebModel.AspNetUserRoles1" FromRole="AspNetRole1" ToRole="AspNetUser1" />
+          <NavigationProperty Name="AspNetRoleClaims" Relationship="Marquise_WebModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRole1" ToRole="AspNetRoleClaim" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Marquise_WebModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId1" FromRole="AspNetUserClaim1" ToRole="AspNetUser1" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin1">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderDisplayName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Marquise_WebModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId1" FromRole="AspNetUserLogin1" ToRole="AspNetUser1" />
+        </EntityType>
+        <EntityType Name="AspNetUser1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OtpCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OtpExpiration" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Marquise_WebModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId1" FromRole="AspNetUser1" ToRole="AspNetUserClaim1" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Marquise_WebModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId1" FromRole="AspNetUser1" ToRole="AspNetUserLogin1" />
+          <NavigationProperty Name="AspNetUserTokens" Relationship="Marquise_WebModel.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUser1" ToRole="AspNetUserToken" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Marquise_WebModel.AspNetUserRoles1" FromRole="AspNetUser1" ToRole="AspNetRole1" />
+        </EntityType>
+        <EntityType Name="AspNetUserToken">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Marquise_WebModel.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUserToken" ToRole="AspNetUser1" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId1">
+          <End Type="Marquise_WebModel.AspNetUser1" Role="AspNetUser1" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Marquise_WebModel.AspNetUserClaim1" Role="AspNetUserClaim1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim1">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId1">
+          <End Type="Marquise_WebModel.AspNetUser1" Role="AspNetUser1" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Marquise_WebModel.AspNetUserLogin1" Role="AspNetUserLogin1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin1">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserTokens_AspNetUsers_UserId">
+          <End Type="Marquise_WebModel.AspNetUser1" Role="AspNetUser1" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Marquise_WebModel.AspNetUserToken" Role="AspNetUserToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserToken">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles1">
+          <End Type="Marquise_WebModel.AspNetRole1" Role="AspNetRole1" Multiplicity="*" />
+          <End Type="Marquise_WebModel.AspNetUser1" Role="AspNetUser1" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_AspNetRoleClaims_AspNetRoles_RoleId">
+          <End Type="Marquise_WebModel.AspNetRole1" Role="AspNetRole1" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Marquise_WebModel.AspNetRoleClaim" Role="AspNetRoleClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetRoleClaim">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -298,16 +524,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetRole">
+          <EntitySetMapping Name="AspNetRoleClaims">
+            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetRoleClaim">
+              <MappingFragment StoreEntitySet="AspNetRoleClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRole1">
+            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetRole1">
               <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+                <ScalarProperty Name="NormalizedName" ColumnName="NormalizedName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetUserClaim">
+          <EntitySetMapping Name="AspNetUserClaim1">
+            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetUserClaim1">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
                 <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
@@ -316,17 +554,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetUserLogin">
+          <EntitySetMapping Name="AspNetUserLogin1">
+            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetUserLogin1">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="ProviderDisplayName" ColumnName="ProviderDisplayName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetUser">
+          <EntitySetMapping Name="AspNetUser1">
+            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetUser1">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
@@ -346,15 +585,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Marquise_WebModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
+          <EntitySetMapping Name="AspNetUserTokens">
+            <EntityTypeMapping TypeName="Marquise_WebModel.AspNetUserToken">
+              <MappingFragment StoreEntitySet="AspNetUserTokens">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles1" TypeName="Marquise_WebModel.AspNetUserRoles1" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser1">
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
-            <EndProperty Name="AspNetRole">
+            <EndProperty Name="AspNetRole1">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -12,23 +12,27 @@ namespace Marquise_Web.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class Marquise_WebEntities : DbContext
     {
         public Marquise_WebEntities()
             : base("name=Marquise_WebEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            // اگر کد فرست استفاده نمی‌کنی، نیازی به این خط نیست
+            base.OnModelCreating(modelBuilder);
         }
-    
+
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
+        public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
     }
+
 }

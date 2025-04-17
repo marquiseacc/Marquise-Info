@@ -2420,6 +2420,24 @@ footer.ftshap:before {
         transform: translateX(2%);
     }
 
+.header-social-media-icons a {
+    color: #170748;
+    font-size: 26px;
+    border-radius: 4px;
+    margin: 0 20px;
+    width: 35px;
+    height: 35px;
+    display: inline;
+    text-align: center;
+    line-height: 34px;
+    transition: transform 0.5s ease-in-out;
+}
+
+    .header-social-media-icons a:hover {
+        color: #EC437C;
+        transform: translateX(2%);
+    }
+
 .copyright {
     text-align: center;
     color: #fff;

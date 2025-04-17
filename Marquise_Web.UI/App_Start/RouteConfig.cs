@@ -15,7 +15,7 @@ namespace Marquise_Web.UI
             routes.MapRoute(
             name: "CRM",
             url: "CRM/{controller}/{action}/{id}",
-            defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional }
+            defaults: new { controller = "Auth", action = "SendOtp", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
