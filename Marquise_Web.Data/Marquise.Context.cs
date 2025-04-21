@@ -9,30 +9,50 @@
 
 namespace Marquise_Web.Data
 {
+    using Marquise_Web.Model.Entities;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class Marquise_WebEntities : DbContext
     {
         public Marquise_WebEntities()
             : base("name=Marquise_WebEntities")
         {
         }
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
+        public virtual DbSet<Message> Messages { get; set; }
+    }
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext()
+            : base("Marquise_WebEntities") // بدون 'name=' کافیه
+        {
+        }
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // اگر کد فرست استفاده نمی‌کنی، نیازی به این خط نیست
+            // اگر جدول‌ها از قبل تو دیتابیس هستن و نمی‌خوای تغییر کنن، جدول‌ها رو به‌صورت دستی مپ کن
+            modelBuilder.Entity<ApplicationUser>().ToTable("AspNetUsers");
+            modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("AspNetUserRoles");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("AspNetUserLogins");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
+
             base.OnModelCreating(modelBuilder);
         }
-
-        public virtual DbSet<Message> Messages { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
-        public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
     }
 
 }

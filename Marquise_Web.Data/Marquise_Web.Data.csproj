@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -35,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -98,31 +98,16 @@
     <Compile Include="AspNetRole.cs">
       <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetRole1.cs">
-      <DependentUpon>Marquise.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetRoleClaim.cs">
-      <DependentUpon>Marquise.tt</DependentUpon>
-    </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>Marquise.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUser1.cs">
       <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
       <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetUserClaim1.cs">
-      <DependentUpon>Marquise.tt</DependentUpon>
-    </Compile>
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetUserLogin1.cs">
-      <DependentUpon>Marquise.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserToken.cs">
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
     <Compile Include="IRepository\IMessageRepository.cs" />
@@ -147,6 +132,23 @@
     <Compile Include="Message.cs">
       <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504190815150_InitialCreate.cs" />
+    <Compile Include="Migrations\202504190815150_InitialCreate.Designer.cs">
+      <DependentUpon>202504190815150_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504200608302_AddCRMIdToApplicationUser.cs" />
+    <Compile Include="Migrations\202504200608302_AddCRMIdToApplicationUser.Designer.cs">
+      <DependentUpon>202504200608302_AddCRMIdToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504200754273_AddGenderToApplicationUser.cs" />
+    <Compile Include="Migrations\202504200754273_AddGenderToApplicationUser.Designer.cs">
+      <DependentUpon>202504200754273_AddGenderToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504200945081_AddCRMIdAndGender.cs" />
+    <Compile Include="Migrations\202504200945081_AddCRMIdAndGender.Designer.cs">
+      <DependentUpon>202504200945081_AddCRMIdAndGender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\MessageRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
@@ -187,13 +189,27 @@
       <Name>Marquise_Web.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202504190815150_InitialCreate.resx">
+      <DependentUpon>202504190815150_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504200608302_AddCRMIdToApplicationUser.resx">
+      <DependentUpon>202504200608302_AddCRMIdToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504200754273_AddGenderToApplicationUser.resx">
+      <DependentUpon>202504200754273_AddGenderToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504200945081_AddCRMIdAndGender.resx">
+      <DependentUpon>202504200945081_AddCRMIdAndGender.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

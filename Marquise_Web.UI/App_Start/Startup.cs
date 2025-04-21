@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Marquise_Web.Data;
+using Marquise_Web.Service.Service;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -17,10 +19,13 @@ namespace Marquise_Web.UI
             app.UseCookieAuthentication(new Microsoft.Owin.Security.Cookies.CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/CRM/Auth/SendOtp"),
                 ExpireTimeSpan = TimeSpan.FromMinutes(30),
                 SlidingExpiration = true
             });
+            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
             // Identity config — اگه داری
         }

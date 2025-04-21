@@ -3,7 +3,6 @@ using Marquise_Web.Service.IService;
 using Marquise_Web.Utilities.Messaging;
 using System;
 using System.Threading.Tasks;
-using Marquise_Web.Model.Entities;
 using Marquise_Web.Model.DTOs.CRM;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
@@ -45,6 +44,7 @@ namespace Marquise_Web.Service.Service
         // ارسال کد OTP
         public async Task<bool> SendOtpAsync(string phoneNumber)
         {
+
             var user = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
             if (user == null)
                 return false;
@@ -77,7 +77,8 @@ namespace Marquise_Web.Service.Service
             return new AuthUserDto
             {
                 Id = user.Id,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber,
+                CRMId = user.CRMId
             };
         }
 

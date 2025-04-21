@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Content/SCSS/vertical-layout-light/style.css",
+    "inputFile": "Content/SCSS/vertical-layout-light/style.scss"
+  },
+  {
+    "outputFile": "Content/SCSS/common/light/common.css",
+    "inputFile": "Content/SCSS/common/light/common.scss"
+  }
+]

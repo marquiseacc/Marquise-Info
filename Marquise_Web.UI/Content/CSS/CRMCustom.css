@@ -1,0 +1,101 @@
+﻿.login-form-div {
+    max-width: 460px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.login-page {
+    background: url(/Content/Images/bg-rectangles-.png), #f5f1fe;
+    display: flex;
+    height: 100vh;
+}
+
+.white-color {
+    color: #ffffff !important;
+}
+
+.end-footer- {
+    border-top: 1px solid #2222;
+    margin-top: 10px;
+    padding: 20px 0;
+}
+
+.dir-rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.dir-ltr {
+    direction: ltr;
+    text-align: left;
+}
+
+.dir-ltr-right {
+    direction: ltr;
+    text-align: right;
+}
+
+.dir-rtl-0 {
+    direction: rtl;
+}
+
+.dir-center {
+    direction: rtl;
+    text-align: center;
+}
+
+.dir-center-ltr {
+    direction: ltr;
+    text-align: center;
+}
+
+.text-color {
+    color: #fff
+}
+
+.outline-btn {
+    display: inline-block;
+    padding: 0px 32px;
+    font-family: 'IRANYekan', sans-serif;
+    font-size: 14px;
+    background: #f5f1fe;
+    line-height: 50px;
+    -webkit-border-radius: 100px;
+    border-color: #f5f1fe;
+    border-radius: 100px;
+    border-color: #c3bef0
+}
+
+    .outline-btn:hover {
+        background-color: #a1dd70 !important;
+        border-color: #dce775;
+    }
+
+.font-12 {
+    font-size: 12px !important
+}
+
+.font-13 {
+    font-size: 13px !important
+}
+
+.font-14 {
+    font-size: 14px !important
+}
+
+
+.font-16 {
+    font-size: 16px !important
+}
+
+
+.font-24 {
+    font-size: 24px !important
+}
+
+.top-0 {
+    top: 0 !important
+}
+

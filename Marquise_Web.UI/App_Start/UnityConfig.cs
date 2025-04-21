@@ -56,17 +56,17 @@ namespace Marquise_Web.UI
 
             // ثبت IdentityDbContext
             container.RegisterType<Marquise_WebEntities>(new HierarchicalLifetimeManager());
-
+            container.RegisterType<ApplicationDbContext>(new HierarchicalLifetimeManager());
             // ثبت UserManager و SignInManager
             // UserStore
             container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(
                 new HierarchicalLifetimeManager(),
-                new InjectionConstructor(new ResolvedParameter<Marquise_WebEntities>())
+                new InjectionConstructor(new ResolvedParameter<ApplicationDbContext>())
             );
 
             container.RegisterFactory<ApplicationUserManager>(c =>
             {
-                var dbContext = c.Resolve<Marquise_WebEntities>();
+                var dbContext = c.Resolve<ApplicationDbContext>();
                 var userStore = new UserStore<ApplicationUser>(dbContext);
                 return new ApplicationUserManager(userStore);
             });

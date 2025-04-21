@@ -1,0 +1,53 @@
+﻿@model Marquise_Web.UI.areas.CRM.Models.VerifyOtpVM
+
+@{
+    ViewBag.Title = "VerifyOtp";
+    Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
+    ViewData["IsLoginPage"] = true;
+}
+
+<section class="login-page pt50 pb50 dir-rtl">
+    <div class="v-center m-auto">
+        <div class="login-form-div">
+            <h4 class="text-center">ورود به حساب کاربری</h4>
+            <div class="form-block">
+                <form id="Login-form" onsubmit="return handleVerifyOTPFormSubmit(event);" novalidate>
+                    @Html.AntiForgeryToken()
+                    <div class="fieldsets row dir-center d-flex justify-content-center">
+                        <div class="col-md-8 pt-5 form-group dir-center text-center">
+                            <p class="form-check-label font-14">
+                                به زودی کد برای شما ارسال می شود.
+                            </p>
+                        </div>
+                        <input class="dir-center" id="PhoneNumber" name="کد ورود" type="hidden" value="@Model.PhoneNumber">
+                        <div class="col-md-8 form-group dir-center text-center d-flex justify-content-center flex-column">
+
+                            <input class="dir-center m-0" id="OtpCode" name="کد ورود" type="text" placeholder="کد ورود" required>
+                            <div class="help-block with-errors"></div>
+                            <div class="form-group dir-center text-center flex-column ">
+                                <p class="form-check-label font-14">
+                                    <span id="timer">2:00</span>
+                                </p>
+                                <a href="#" class="font-13" id="resendButton" style="display:none;" onclick="sendOtpAgain()">ارسال مجدد</a>
+                            </div>
+                        </div>
+                        <div class="col-md-8 form-group pt-1 dir-center text-center d-flex flex-row align-items-center">
+                            <p class="font-13">شماره تماس شما:&nbsp;</p>
+                            <p class="font-13">@Model.PhoneNumber &nbsp;</p>
+                            <a href="~/CRM/Auth/SendOtp" class="font-13">ویرایش</a>
+                        </div>
+                    </div>
+                    <div class="fieldsets row mt20 d-flex flex-column v-center">
+                        <div class="col-md-8 form-group v-center mb-3 dir-center">
+                            <button type="submit" class="outline-btn w-75 font-14">ورود</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/Areas/CRM/Scripts/CRM/Auth.js"></script>
+}

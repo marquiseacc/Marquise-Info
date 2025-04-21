@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Marquise_Web.UI.areas.CRM.Models
 {
@@ -18,5 +19,11 @@ namespace Marquise_Web.UI.areas.CRM.Models
         [Required]
         [StringLength(6, MinimumLength = 6)]
         public string Code { get; set; }
+    }
+
+    public class CRMCodeVM
+    {
+        [Required]
+        public Guid CrmId { get; set; }
     }
 }

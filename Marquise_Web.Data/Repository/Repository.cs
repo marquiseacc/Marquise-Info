@@ -7,9 +7,9 @@ namespace Marquise_Web.Data.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly Marquise_WebEntities context;
+        protected readonly DbContext context;
 
-        public Repository(Marquise_WebEntities context)
+        public Repository(DbContext context)
         {
             this.context = context;
         }
