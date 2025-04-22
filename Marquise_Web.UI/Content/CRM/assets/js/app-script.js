@@ -87,68 +87,81 @@ $(function () {
     $('#theme13').click(theme13);
     $('#theme14').click(theme14);
     $('#theme15').click(theme15);
+    $('#theme16').click(theme16);
+    $('#theme17').click(theme17);
+    $('#theme18').click(theme18);
 
     function theme1() {
-      $('body').attr('class', 'bg-theme bg-theme1');
+        $('body').attr('class', 'bg-theme bg-theme1 dir-rtl');
     }
 
     function theme2() {
-      $('body').attr('class', 'bg-theme bg-theme2');
+        $('body').attr('class', 'bg-theme bg-theme2 dir-rtl');
     }
 
     function theme3() {
-      $('body').attr('class', 'bg-theme bg-theme3');
+        $('body').attr('class', 'bg-theme bg-theme3 dir-rtl');
     }
 
     function theme4() {
-      $('body').attr('class', 'bg-theme bg-theme4');
+        $('body').attr('class', 'bg-theme bg-theme4 dir-rtl');
     }
 	
 	function theme5() {
-      $('body').attr('class', 'bg-theme bg-theme5');
+        $('body').attr('class', 'bg-theme bg-theme5 dir-rtl');
     }
 	
 	function theme6() {
-      $('body').attr('class', 'bg-theme bg-theme6');
+        $('body').attr('class', 'bg-theme bg-theme6 dir-rtl');
     }
 
     function theme7() {
-      $('body').attr('class', 'bg-theme bg-theme7');
+        $('body').attr('class', 'bg-theme bg-theme7 dir-rtl');
     }
 
     function theme8() {
-      $('body').attr('class', 'bg-theme bg-theme8');
+        $('body').attr('class', 'bg-theme bg-theme8 dir-rtl');
     }
 
     function theme9() {
-      $('body').attr('class', 'bg-theme bg-theme9');
+        $('body').attr('class', 'bg-theme bg-theme9 dir-rtl');
     }
 
     function theme10() {
-      $('body').attr('class', 'bg-theme bg-theme10');
+        $('body').attr('class', 'bg-theme bg-theme10 dir-rtl');
     }
 
     function theme11() {
-      $('body').attr('class', 'bg-theme bg-theme11');
+        $('body').attr('class', 'bg-theme bg-theme11 dir-rtl');
     }
 
     function theme12() {
-      $('body').attr('class', 'bg-theme bg-theme12');
+        $('body').attr('class', 'bg-theme bg-theme12 dir-rtl');
     }
 	
 	function theme13() {
-      $('body').attr('class', 'bg-theme bg-theme13');
+        $('body').attr('class', 'bg-theme bg-theme13 dir-rtl');
     }
 	
 	function theme14() {
-      $('body').attr('class', 'bg-theme bg-theme14');
+        $('body').attr('class', 'bg-theme bg-theme14 dir-rtl');
     }
 	
 	function theme15() {
-      $('body').attr('class', 'bg-theme bg-theme15');
+        $('body').attr('class', 'bg-theme bg-theme15 dir-rtl');
     }
 
+    function theme16() {
+        $('body').attr('class', 'bg-theme bg-theme16 dir-rtl');
+    }
 
+    function theme17() {
+        $('body').attr('class', 'bg-theme bg-theme17 dir-rtl');
+    }
+
+    function theme18() {
+        $('body').attr('class', 'bg-theme bg-theme18 dir-rtl');
+    }
 
 
 });
