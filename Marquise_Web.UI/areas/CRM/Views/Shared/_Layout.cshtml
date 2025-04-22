@@ -33,10 +33,10 @@
     <link href="~/Content//CSS/CRMCustom.css" rel="stylesheet">
     @RenderSection("scripts", required: false)
 </head>
-<body class="bg-theme bg-theme1 dir-rtl">
+<body class="bg-theme bg-theme1 dir-rtl h-100">
 
     <!-- Start wrapper-->
-    <div id="wrapper">
+    <div id="wrapper" class="h-100">
         @if (ViewBag.IsLoginPage != true)
         {
             @Html.Partial("Sidebar")

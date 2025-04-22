@@ -795,7 +795,7 @@ body.bg-theme18 {
 }
 
 .row.row-group>div {
-    border-right: 1px solid rgba(255, 255, 255, 0.12)
+    border: 1px solid rgba(255, 255, 255, 0.12)
 }
 
 .row.row-group>div:last-child{
@@ -1933,8 +1933,8 @@ table.grid td {
 }
 
 .card .table td, .card .table th {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
 }
 .table {
     width: 100%;
@@ -3651,9 +3651,9 @@ body.bg-theme16 .table {
 }	 
 	 
 .content-wrapper {
-    margin-left: 0px;
-    padding-left: 10px;
+    margin-right: 0px;
     padding-right: 10px;
+    padding-left: 10px;
 }
 
 .footer {

@@ -405,9 +405,13 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="areas\CRM\ApiController\AccountApiController.cs" />
+    <Compile Include="areas\CRM\Controllers\AccountManagementController.cs" />
     <Compile Include="areas\CRM\Controllers\AuthController.cs" />
+    <Compile Include="areas\CRM\Controllers\ContractController.cs" />
     <Compile Include="areas\CRM\Controllers\DashboardController.cs" />
+    <Compile Include="areas\CRM\Controllers\InvoiceController.cs" />
     <Compile Include="areas\CRM\Controllers\PreInvoiceController.cs" />
+    <Compile Include="areas\CRM\Controllers\TicketController.cs" />
     <Compile Include="areas\CRM\CRMAreaRegistration.cs" />
     <Compile Include="areas\CRM\Models\AcountVM.cs" />
     <Compile Include="areas\CRM\Models\AuthVM.cs" />
@@ -989,6 +993,7 @@
     <Content Include="Content\CRM\assets\images\bg-themes\3.png" />
     <Content Include="Content\CRM\assets\images\bg-themes\4.png" />
     <Content Include="Content\CRM\assets\images\bg-themes\5.png" />
+    <Content Include="Content\CRM\assets\images\bg-themes\6.jpg" />
     <Content Include="Content\CRM\assets\images\bg-themes\6.png" />
     <Content Include="Content\CRM\assets\images\favicon.ico" />
     <Content Include="Content\CRM\assets\images\gallery\cd-icon-navigation.svg" />
@@ -1183,6 +1188,10 @@
     <Content Include="areas\CRM\Views\Shared\RightSidebar.cshtml" />
     <Content Include="areas\CRM\Views\Shared\Footer.cshtml" />
     <Content Include="areas\CRM\Views\PreInvoice\Index.cshtml" />
+    <Content Include="areas\CRM\Views\Invoice\Index.cshtml" />
+    <Content Include="areas\CRM\Views\Contract\Index.cshtml" />
+    <Content Include="areas\CRM\Views\AccountManagement\Index.cshtml" />
+    <Content Include="areas\CRM\Views\Ticket\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
