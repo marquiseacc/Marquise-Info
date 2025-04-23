@@ -1933,8 +1933,8 @@ table.grid td {
 }
 
 .card .table td, .card .table th {
-    padding-right: 1rem;
-    padding-left: 1rem;
+    padding-right: .9rem;
+    padding-left: .9rem;
 }
 .table {
     width: 100%;
@@ -3428,8 +3428,8 @@ body.bg-theme16 .table {
   text-align: center;
   padding: 12px 30px;
   position: absolute;
-  right: 0;
-  left: 250px;
+  left: 0;
+  right: 250px;
   background-color: transparent;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   -webkit-transition: all 0.3s ease;

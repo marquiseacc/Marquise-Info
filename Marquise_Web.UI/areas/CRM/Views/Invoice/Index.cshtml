@@ -10,7 +10,7 @@
             <div class="col-lg-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title pb-2">لیست پیش فاکتورها</h5>
+                        <h5 class="card-title pb-2">لیست فاکتورها</h5>
                         <div class="table-responsive">
                             <table class="table font-14">
                                 <thead>
@@ -19,26 +19,37 @@
                                         <th scope="col">نام</th>
                                         <th scope="col">تاریخ</th>
                                         <th scope="col">مبلغ</th>
+                                        <th scope="col">وضعیت</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td>پشتیبانی فصلی</td>
+                                        <td>خدمات</td>
                                         <td>1404.01.01</td>
                                         <td>25000000</td>
+                                        <td>پرداخت شده</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
-                                        <td>پشتیبانی فصلی</td>
+                                        <td>خدمات</td>
                                         <td>1404.01.01</td>
                                         <td>25000000</td>
+                                        <td>تایید</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
-                                        <td>پشتیبانی فصلی</td>
+                                        <td>خدمات</td>
                                         <td>1404.01.01</td>
                                         <td>25000000</td>
+                                        <td>ابطال شده</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>خدمات</td>
+                                        <td>1404.01.01</td>
+                                        <td>25000000</td>
+                                        <td>باز</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -50,24 +61,30 @@
             <div class="col-lg-8">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title pb-2">پشتیبانی فصلی</h5>
+                        <h5 class="card-title pb-2">فاکتور فروش</h5>
                         <div class="row m-0 row-group text-center border border-light-3">
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-3">
                                 <div class="p-3">
-                                    <h5 class="mb-0">مسئول خرید</h5>
-                                    <small class="mb-0">خانم بابایی</small>
+                                    <h5 class="mb-0">شماره فاکتور</h5>
+                                    <small class="mb-0">0145</small>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-3">
                                 <div class="p-3">
                                     <h5 class="mb-0">تاریخ ثبت</h5>
                                     <small class="mb-0">1404.01.01</small>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-3">
                                 <div class="p-3">
                                     <h5 class="mb-0">نوع پیش فاکتور</h5>
                                     <small class="mb-0">خدمات</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <div class="p-3">
+                                    <h5 class="mb-0">وضعیت</h5>
+                                    <small class="mb-0">پرداخت شده</small>
                                 </div>
                             </div>
                         </div>
@@ -109,21 +126,58 @@
                             </table>
                         </div>
 
+                        <h6 class="card-title pt-5 pb-2">پرداخت ها</h6>
+                        <div class="table-responsive">
+                            <table class="table font-14">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">شماره</th>
+                                        <th scope="col">مبلغ</th>
+                                        <th scope="col">روش پرداخت</th>
+                                        <th scope="col">تاریخ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>000111</td>
+                                        <td>36000000</td>
+                                        <td>واریز به حساب</td>
+                                        <td>1404.01.03</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>000111</td>
+                                        <td>36000000</td>
+                                        <td>واریز به حساب</td>
+                                        <td>1404.01.03</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                         <h6 class="card-title pt-5 pb-2">مجموع مبالغ</h6>
                         <div class="row m-0 row-group text-center border border-light-3">
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-3">
                                 <div class="p-3">
                                     <h5 class="mb-0">جمع کل محصولات</h5>
                                     <small class="mb-0">75000000</small>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-3">
                                 <div class="p-3">
                                     <h5 class="mb-0">مجموع تخفیف</h5>
                                     <small class="mb-0">24000000</small>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-3">
+                                <div class="p-3">
+                                    <h5 class="mb-0">مالیات</h5>
+                                    <small class="mb-0">0</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
                                 <div class="p-3">
                                     <h5 class="mb-0">مبلغ نهایی</h5>
                                     <small class="mb-0">51000000</small>

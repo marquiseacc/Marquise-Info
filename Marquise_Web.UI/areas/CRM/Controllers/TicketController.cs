@@ -13,5 +13,11 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         {
             return View();
         }
+
+        // GET: CRM/Ticket
+        public ActionResult Detail()
+        {
+            return View();
+        }
     }
 }

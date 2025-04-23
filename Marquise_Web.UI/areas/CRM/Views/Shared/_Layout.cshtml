@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#D68631">
     <link rel="icon" type="image/webp" href="~/Content/Images/Logo.webp">
-    
+
     <link href="~/Content/CRM/assets/css/pace.min.css" rel="stylesheet" />
     <script src="~/Content/CRM/assets/js/pace.min.js"></script>
     <!--favicon-->
@@ -33,10 +33,10 @@
     <link href="~/Content//CSS/CRMCustom.css" rel="stylesheet">
     @RenderSection("scripts", required: false)
 </head>
-<body class="bg-theme bg-theme1 dir-rtl h-100">
+<body class="bg-theme bg-theme1 dir-rtl d-flex flex-column min-vh-100">
 
     <!-- Start wrapper-->
-    <div id="wrapper" class="h-100">
+    <div id="wrapper" class="flex-grow-1">
         @if (ViewBag.IsLoginPage != true)
         {
             @Html.Partial("Sidebar")

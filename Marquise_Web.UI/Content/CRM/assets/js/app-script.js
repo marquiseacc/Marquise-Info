@@ -92,75 +92,75 @@ $(function () {
     $('#theme18').click(theme18);
 
     function theme1() {
-        $('body').attr('class', 'bg-theme bg-theme1 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme1 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme2() {
-        $('body').attr('class', 'bg-theme bg-theme2 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme2 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme3() {
-        $('body').attr('class', 'bg-theme bg-theme3 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme3 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme4() {
-        $('body').attr('class', 'bg-theme bg-theme4 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme4 dir-rtl d-flex flex-column min-vh-100');
     }
 	
 	function theme5() {
-        $('body').attr('class', 'bg-theme bg-theme5 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme5 dir-rtl d-flex flex-column min-vh-100');
     }
 	
 	function theme6() {
-        $('body').attr('class', 'bg-theme bg-theme6 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme6 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme7() {
-        $('body').attr('class', 'bg-theme bg-theme7 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme7 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme8() {
-        $('body').attr('class', 'bg-theme bg-theme8 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme8 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme9() {
-        $('body').attr('class', 'bg-theme bg-theme9 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme9 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme10() {
-        $('body').attr('class', 'bg-theme bg-theme10 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme10 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme11() {
-        $('body').attr('class', 'bg-theme bg-theme11 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme11 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme12() {
-        $('body').attr('class', 'bg-theme bg-theme12 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme12 dir-rtl d-flex flex-column min-vh-100');
     }
 	
 	function theme13() {
-        $('body').attr('class', 'bg-theme bg-theme13 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme13 dir-rtl d-flex flex-column min-vh-100');
     }
 	
 	function theme14() {
-        $('body').attr('class', 'bg-theme bg-theme14 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme14 dir-rtl d-flex flex-column min-vh-100');
     }
 	
 	function theme15() {
-        $('body').attr('class', 'bg-theme bg-theme15 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme15 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme16() {
-        $('body').attr('class', 'bg-theme bg-theme16 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme16 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme17() {
-        $('body').attr('class', 'bg-theme bg-theme17 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme17 dir-rtl d-flex flex-column min-vh-100');
     }
 
     function theme18() {
-        $('body').attr('class', 'bg-theme bg-theme18 dir-rtl');
+        $('body').attr('class', 'bg-theme bg-theme18 dir-rtl d-flex flex-column min-vh-100');
     }
 
 
