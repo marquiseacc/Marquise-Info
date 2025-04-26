@@ -991,7 +991,7 @@ body.bg-theme18 {
    font-size: 10px;
 }
 
-.btn-primary {
+/*.btn-primary {
 	color: #fff;
 	background-color: #7934f3;
 	border-color: #7934f3
@@ -1021,9 +1021,9 @@ body.bg-theme18 {
 
 .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
 	box-shadow:none;
-}
+}*/
 
-.btn-secondary {
+/*.btn-secondary {
 	color: #fff;
 	background-color: #94614f;
 	border-color: #94614f
@@ -1048,7 +1048,7 @@ body.bg-theme18 {
 }
 .btn-secondary:not(:disabled):not(.disabled).active:focus, .btn-secondary:not(:disabled):not(.disabled):active:focus, .show>.btn-secondary.dropdown-toggle:focus {
 	box-shadow:none;
-}
+}*/
 
 .btn-success {
 	color: #fff;

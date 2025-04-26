@@ -1193,6 +1193,7 @@
     <Content Include="areas\CRM\Views\AccountManagement\Index.cshtml" />
     <Content Include="areas\CRM\Views\Ticket\Index.cshtml" />
     <Content Include="areas\CRM\Views\Ticket\Detail.cshtml" />
+    <Content Include="areas\CRM\Views\Ticket\NewTicket.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

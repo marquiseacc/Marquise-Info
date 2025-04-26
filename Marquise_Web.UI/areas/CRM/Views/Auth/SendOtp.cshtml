@@ -9,7 +9,7 @@
 <section class="login-page pt50 pb50 dir-rtl">
     <div class="v-center m-auto">
         <div class="login-form-div">
-            <h4 class="text-center">ورود به حساب کاربری</h4>
+            <h4 class="text-center color-black">ورود به حساب کاربری</h4>
             <div class="form-block">
                 <form id="Login-form" onsubmit="return handleSentOTPFormSubmit(event);" novalidate>
                     @Html.AntiForgeryToken()
@@ -20,7 +20,7 @@
                             </label>
                         </div>
                         <div class="d-flex justify-content-center flex-row dir-ltr col-md-8 form-group align-content-center align-items-center">
-                            <p class="form-check-label font-15 px-2">+98</p>
+                            <p class="form-check-label font-15 px-2 color-black">+98</p>
                             <input class="dir-center font-15 h-75 pt-3" id="PhoneNumber" name="شماره تماس" type="text" placeholder="9121234567" autocomplete="PhoneNumber" required>
                             <div class="help-block with-errors"></div>
                         </div>

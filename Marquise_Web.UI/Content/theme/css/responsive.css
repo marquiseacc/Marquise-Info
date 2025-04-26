@@ -387,7 +387,7 @@
     }
     /**width 576**/
     @media (min-width:576px) {
-    .modal-dialog {max-width: 400px; margin: 1.75rem auto}
+    .modal-dialog {max-width: 700px; margin: 1.75rem auto}
     }
     /**width 580**/
     @media (max-width:580px) {
