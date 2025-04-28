@@ -25,20 +25,13 @@
     });
 
     if (isValid) {
-        var data = {
-            PhoneNumber: phoneNumber
-        };
-
+        var formData = new FormData();
+        formData.append("PhoneNumber", phoneNumber);
         
-        var token = document.querySelector('input[name="__RequestVerificationToken"]').value;
 
         fetch('/CRM/Auth/SendOtp', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'RequestVerificationToken': token 
-            },
-            body: JSON.stringify(data)
+            body: formData
         })
             .then(response => {
                 if (!response.ok) throw new Error("HTTP error");
@@ -61,6 +54,7 @@
                 alert("لطفا مجددا تلاش کنید.");
             });
     }
+
 }
 
 function handleVerifyOTPFormSubmit(event) {
@@ -91,21 +85,13 @@ function handleVerifyOTPFormSubmit(event) {
     });
 
     if (isValid) {
-        var data = {
-            PhoneNumber: phoneNumber,
-            Code: otpCode
-        };
-
-        // گرفتن توکن ضد جعل (AntiForgeryToken) از input hidden
-        var token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+        var formData = new FormData();
+        formData.append("PhoneNumber", phoneNumber);
+        formData.append("Code", otpCode);
 
         fetch('/CRM/Auth/VerifyOtp', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'RequestVerificationToken': token
-            },
-            body: JSON.stringify(data)
+            body: formData
         })
             .then(response => {
                 if (!response.ok) throw new Error("HTTP error");
@@ -114,8 +100,7 @@ function handleVerifyOTPFormSubmit(event) {
             .then(data => {
                 if (data.success) {
                     alert("ورود با موفقیت انجام شد.");
-                    // انتقال کاربر به داشبورد با CRMId
-                    window.location.href = '/Dashboard/Index?CrmId=' + data.crmId;
+                    window.location.href = '/CRM/Dashboard/Index';
                 } else {
                     alert(data.message || "خطا! لطفا مجددا تلاش کنید.");
                 }
@@ -125,6 +110,7 @@ function handleVerifyOTPFormSubmit(event) {
                 alert("لطفا مجددا تلاش کنید.");
             });
     }
+
 }
 
 
@@ -139,8 +125,8 @@ function getCustomErrorMessage(input) {
 }
 
 
-function fetchCrmData(crmId) {
-    return fetch('/CRM/Account/GetData/' + crmId)
+function fetchCrmData() {
+    return fetch('/CRM/Account/GetData/')
         .then(response => {
             if (!response.ok) throw new Error("Failed to fetch CRM data");
             return response.json();

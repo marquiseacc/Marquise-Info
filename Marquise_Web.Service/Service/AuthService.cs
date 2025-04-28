@@ -7,6 +7,8 @@ using Marquise_Web.Model.DTOs.CRM;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 using System.Web;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace Marquise_Web.Service.Service
 {
@@ -61,7 +63,6 @@ namespace Marquise_Web.Service.Service
             return true;
         }
 
-        // تایید کد OTP
         public async Task<AuthUserDto> VerifyOtpAsync(string phoneNumber, string code)
         {
             var user = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
@@ -72,6 +73,19 @@ namespace Marquise_Web.Service.Service
             user.OtpCode = null;
             user.OtpExpiration = null;
 
+            // در اینجا می‌توانید Claim را به Identity اضافه کنید
+            var claims = new List<Claim>
+    {
+        new Claim("OtpVerified", "True") // اضافه کردن claim برای تایید OTP
+    };
+
+            // اینجا به جای استفاده از AddClaimAsync، به ClaimsIdentity اضافه می‌کنیم
+            var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+            // اضافه کردن claims جدید به Identity
+            identity.AddClaims(claims);
+
+            // ذخیره سازی تغییرات و اعمال آنها در دیتابیس
             await unitOfWork.CompleteAsync();
 
             return new AuthUserDto
@@ -89,11 +103,30 @@ namespace Marquise_Web.Service.Service
                 return false;
 
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-            var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+            // ابتدا Claims قبلی کاربر را دریافت می‌کنیم
+            var existingClaims = await userManager.GetClaimsAsync(user.Id);
+
+            // اضافه کردن Claims جدید به لیست Claims موجود
+            var claims = new List<Claim>(existingClaims)
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), // شناسه کاربر
+                new Claim(ClaimTypes.Name, user.FullName ?? ""), // نام کامل کاربر
+                new Claim("CRMId", user.CRMId.ToString()), // شناسه CRM
+                new Claim("OtpVerified", "True") // اضافه کردن Claim برای تایید OTP
+            };
+
+            // ایجاد ClaimsIdentity جدید با Claims موجود
+            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+            // انجام عملیات ورود با حذف sessionهای قبلی
             authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
+
             return true;
         }
+
+
     }
 
 }

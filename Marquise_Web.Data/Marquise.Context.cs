@@ -14,19 +14,19 @@ namespace Marquise_Web.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class Marquise_WebEntities : DbContext
     {
         public Marquise_WebEntities()
             : base("name=Marquise_WebEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Message> Messages { get; set; }
     }
 
@@ -44,14 +44,15 @@ namespace Marquise_Web.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // اگر جدول‌ها از قبل تو دیتابیس هستن و نمی‌خوای تغییر کنن، جدول‌ها رو به‌صورت دستی مپ کن
-            modelBuilder.Entity<ApplicationUser>().ToTable("AspNetUsers");
-            modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("AspNetUserRoles");
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("AspNetUserLogins");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
-
             base.OnModelCreating(modelBuilder);
+            // اگر جدول‌ها از قبل تو دیتابیس هستن و نمی‌خوای تغییر کنن، جدول‌ها رو به‌صورت دستی مپ کن
+            modelBuilder.Entity<ApplicationUser>().ToTable("Users", "Security");
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles", "Security");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles", "Security");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins", "Security");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims", "Security");
+
+
         }
     }
 

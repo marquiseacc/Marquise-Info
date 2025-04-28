@@ -2,6 +2,7 @@
 using AutoMapper;
 using Marquise_Web.UI.Models;
 using Marquise_Web.Model.DTOs.SiteModel;
+using Marquise_Web.UI.areas.CRM.Models;
 
 namespace Utilities.Map
 {
@@ -19,6 +20,18 @@ namespace Utilities.Map
             .ForMember(dest => dest.FileName, opt => opt.Ignore())
             .ForMember(dest => dest.FileType, opt => opt.Ignore())
             .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => DateConvert.GetPersianDateTimeString(src.Birthday))); // تبدیل DateTime به string
+
+
+            CreateMap<ResultItem, AccountVM>()
+            .ForMember(dest => dest.ManagementName, opt => opt.MapFrom(src => src.management__C.ToString()))
+            .ForMember(dest => dest.GalleryName, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Industry, opt => opt.MapFrom(src => src.IndustryCode.ToString()))
+            .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.ShippingAddress))
+            .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.cituu__C))
+            .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.mahale__C))
+            .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.Telephone))
+            .ForMember(dest => dest.Mobile, opt => opt.MapFrom(src => src.Mobile));
+
         }
 
     }

@@ -1,9 +1,5 @@
 ﻿using Marquise_Web.Service.IService;
 using Marquise_Web.UI.areas.CRM.Models;
-using Newtonsoft.Json;
-using System;
-using System.Net.Http.Headers;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web;
@@ -34,7 +30,8 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             if (!ModelState.IsValid)
                 return Json(new { success = false, message = "اطلاعات ورودی نامعتبر است." });
 
-            var result = await unitOfWork.AuthService.SendOtpAsync(model.PhoneNumber);
+            var phoneNumber = "98" + model.PhoneNumber;
+            var result = await unitOfWork.AuthService.SendOtpAsync(phoneNumber);
             if (!result)
             {
                 string contactUrl = Url.Action("Index", "ContactUs", new { area = "" });
@@ -66,26 +63,24 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         [System.Web.Http.Route("CRM/Auth/VerifyOtp")]
         public async Task<ActionResult> VerifyOtp(VerifyOtpVM model)
         {
             if (!ModelState.IsValid)
                 return Json(new { success = false, message = "ورودی نامعتبر است." });
 
-            var userDto = await unitOfWork.AuthService.VerifyOtpAsync(model.PhoneNumber, model.Code);
+            var phoneNumber = "98" + model.PhoneNumber;
+            var userDto = await unitOfWork.AuthService.VerifyOtpAsync(phoneNumber, model.Code);
             if (userDto == null)
                 return Json(new { success = false, message = "کد اشتباه یا منقضی شده است." });
 
-            var user = await UserManager.FindByIdAsync(userDto.Id.ToString());
-            if (user == null)
-                return Json(new { success = false, message = "کاربر یافت نشد." });
-
-            // ورود کاربر با Identity
-            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+            // فراخوانی متد SignInUserAsync برای ورود کاربر به سیستم
+            var signInResult = await unitOfWork.AuthService.SignInUserAsync(userDto.Id.ToString());
+            if (!signInResult)
+                return Json(new { success = false, message = "ورود به سیستم با مشکل مواجه شد." });
 
             // ارسال CRMId برای انتقال به داشبورد
-            return Json(new { success = true, crmId = userDto.CRMId });
+            return Json(new { success = true});
         }
 
         private ApplicationSignInManager _signInManager;

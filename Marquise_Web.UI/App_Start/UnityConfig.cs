@@ -12,15 +12,13 @@ using System.Web.Mvc;
 using Unity;
 using Unity.Injection;
 using Unity.Lifetime;
-using Unity.WebApi;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
 using System.Web;
 using System;
 using Unity.AspNet.Mvc;
 using Marquise_Web.Utilities.Messaging;
+using Marquise_Web.UI.areas.CRM.Models;
 
 
 namespace Marquise_Web.UI
@@ -50,6 +48,13 @@ namespace Marquise_Web.UI
                 Username = ConfigurationManager.AppSettings["SmtpUsername"],
                 Password = ConfigurationManager.AppSettings["SmtpPassword"],
                 From = ConfigurationManager.AppSettings["SmtpFrom"]
+            }, new HierarchicalLifetimeManager());
+
+
+            container.RegisterFactory<ApiSetting>(c => new ApiSetting
+            {
+                ApiBaseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"],
+                ApiToken = ConfigurationManager.AppSettings["ApiToken"]
             }, new HierarchicalLifetimeManager());
 
             container.RegisterType<HttpClient>(new HierarchicalLifetimeManager());

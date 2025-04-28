@@ -2424,7 +2424,8 @@ footer.ftshap:before {
     color: #170748;
     font-size: 26px;
     border-radius: 4px;
-    margin: 0 20px;
+    margin: 0 ;
+    margin-right: 20px;
     width: 150px;
     height: 35px;
     display: inline;

@@ -148,6 +148,10 @@
     <Compile Include="Migrations\202504200945081_AddCRMIdAndGender.Designer.cs">
       <DependentUpon>202504200945081_AddCRMIdAndGender.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504270741589_RenameIdentityTables.cs" />
+    <Compile Include="Migrations\202504270741589_RenameIdentityTables.Designer.cs">
+      <DependentUpon>202504270741589_RenameIdentityTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\MessageRepository.cs" />
@@ -201,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202504200945081_AddCRMIdAndGender.resx">
       <DependentUpon>202504200945081_AddCRMIdAndGender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504270741589_RenameIdentityTables.resx">
+      <DependentUpon>202504270741589_RenameIdentityTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

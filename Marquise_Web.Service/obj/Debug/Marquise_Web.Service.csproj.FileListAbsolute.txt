@@ -68,7 +68,6 @@ C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.E
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.Diagnostics.Abstractions.xml
-C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.xml
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.Logging.xml
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml

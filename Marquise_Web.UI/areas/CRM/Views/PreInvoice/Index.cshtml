@@ -1,4 +1,5 @@
-﻿
+﻿@model List<Marquise_Web.UI.areas.CRM.Models.QuoteVM>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
@@ -23,27 +24,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>خدمات</td>
-                                        <td>1404.01.01</td>
-                                        <td>25000000</td>
-                                        <td>تبدیل شده</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>خدمات</td>
-                                        <td>1404.01.01</td>
-                                        <td>25000000</td>
-                                        <td>جدید</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>خدمات</td>
-                                        <td>1404.01.01</td>
-                                        <td>25000000</td>
-                                        <td>تبدیل شده</td>
-                                    </tr>
+                                    @foreach (var quote in Model)
+                                    {
+                                        <tr>
+                                            <th scope="row">@quote.QuoteCode</th>
+                                            <td>@quote.Name</td>
+                                            <td>@quote.CreateDate</td>
+                                            <td>@quote.TotalPrice</td>
+                                            <td>تبدیل شده</td>
+                                        </tr>
+                                       
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -56,33 +47,33 @@
                     <div class="card-body">
                         <h5 class="card-title pb-2">پشتیبانی فصلی</h5>
                         <div class="row row-cols-5 m-0 row-group text-center border border-light-3">
-                            <div class="col-12 col-lg-2">
+                            <div class="col">
                                 <div class="p-3">
-                                    <h5 class="mb-0">شماره پیش فاکتور</h5>
+                                    <h6 class="mb-0">شماره پیش فاکتور</h6>
                                     <small class="mb-0">0145</small>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-2">
+                            <div class="col">
                                 <div class="p-3">
-                                    <h5 class="mb-0">مسئول خرید</h5>
+                                    <h6 class="mb-0">مسئول خرید</h6>
                                     <small class="mb-0">خانم بابایی</small>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-2">
+                            <div class="col">
                                 <div class="p-3">
-                                    <h5 class="mb-0">تاریخ ثبت</h5>
+                                    <h6 class="mb-0">تاریخ ثبت</h6>
                                     <small class="mb-0">1404.01.01</small>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-2">
+                            <div class="col">
                                 <div class="p-3">
-                                    <h5 class="mb-0">نوع پیش فاکتور</h5>
+                                    <h6 class="mb-0">نوع پیش فاکتور</h6>
                                     <small class="mb-0">خدمات</small>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-2">
+                            <div class="col">
                                 <div class="p-3">
-                                    <h5 class="mb-0">وضعیت</h5>
+                                    <h6 class="mb-0">وضعیت</h6>
                                     <small class="mb-0">تبدیل شده</small>
                                 </div>
                             </div>

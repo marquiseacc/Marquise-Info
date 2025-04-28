@@ -1,8 +1,10 @@
-﻿
+﻿@model Marquise_Web.UI.areas.CRM.Models.AccountVM
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
 }
+ 
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -14,57 +16,51 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">نام</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="طلا">
+                                    <input class="form-control" type="text" value="@Model.GalleryName">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">نام مدیریت</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="بابایی">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">ایمیل</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="email" value="gallery@example.com">
+                                    <input class="form-control" type="text" value="@Model.ManagementName">
                                 </div>
                             </div>
                             
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">صنعت</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="url" value="">
+                                    <input class="form-control" type="url" value="@Model.Industry">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">آدرس</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="" placeholder="Street">
+                                    <input class="form-control" type="text" value="@Model.Address" placeholder="Street">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-6">
-                                    <input class="form-control" type="text" value="" placeholder="شهر">
+                                    <input class="form-control" type="text" value="@Model.City" placeholder="شهر">
                                 </div>
                                 <div class="col-lg-3">
-                                    <input class="form-control" type="text" value="" placeholder="محله">
+                                    <input class="form-control" type="text" value="@Model.Area" placeholder="محله">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">تلفن</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="02155774565">
+                                    <input class="form-control" type="text" value="@Model.Phone" placeholder="02144556677">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">موبایل</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" value="989333801631">
+                                    <input class="form-control" value="@Model.Mobile" placeholder="09123456789">
                                 </div>
                             </div>
-                            
+
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-9">
@@ -79,3 +75,4 @@
         </div>
     </div>
 </div>
+
