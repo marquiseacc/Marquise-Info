@@ -59,7 +59,7 @@ namespace Marquise_Web.Service.Service
             await unitOfWork.CompleteAsync();
 
             // ارسال پیامک
-            await smsSender.SendSmsAsync(user.PhoneNumber, $"کد ورود شما: {otpCode}");
+            //await smsSender.SendSmsAsync(user.PhoneNumber, $"کد ورود شما: {otpCode}");
             return true;
         }
 

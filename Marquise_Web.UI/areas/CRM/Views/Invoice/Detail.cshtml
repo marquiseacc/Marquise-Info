@@ -1,0 +1,129 @@
+﻿@model Marquise_Web.UI.areas.CRM.Models.InvoiceDetailVm
+
+<div class="card h-100">
+    <div class="card-body">
+        <h5 class="card-title pb-2">فاکتور فروش</h5>
+        <div class="row m-0 row-group text-center border border-light-3">
+            <div class="col-12 col-lg-3">
+                <div class="p-3">
+                    <h6 class="mb-0">شماره فاکتور</h6>
+                    <small class="mb-0">@Model.InvoiceNumber</small>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="p-3">
+                    <h6 class="mb-0">تاریخ ثبت</h6>
+                    <small class="mb-0">@Model.CreateDate</small>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="p-3">
+                    <h6 class="mb-0">نوع پیش فاکتور</h6>
+                    <small class="mb-0">@Model.Title</small>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="p-3">
+                    <h6 class="mb-0">وضعیت</h6>
+                    <small class="mb-0">پرداخت شده</small>
+                </div>
+            </div>
+        </div>
+
+        <h6 class="card-title pt-5 pb-2">لیست خدمات</h6>
+        <div class="table-responsive">
+            <table class="table font-14">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">نام</th>
+                        <th scope="col">قیمت لیست</th>
+                        <th scope="col">تعداد</th>
+                        <th scope="col">تخفیف</th>
+                        <th scope="col">مالیات</th>
+                        <th scope="col">مبلغ نهایی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>پشتیبانی فصلی اینترنتی</td>
+                        <td>36000000</td>
+                        <td>1</td>
+                        <td>12000000</td>
+                        <td>0</td>
+                        <td>24000000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>حسابرسی ماهیانه</td>
+                        <td>13000000</td>
+                        <td>3</td>
+                        <td>4000000</td>
+                        <td>0</td>
+                        <td>27000000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h6 class="card-title pt-5 pb-2">پرداخت ها</h6>
+        <div class="table-responsive">
+            <table class="table font-14">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">شماره</th>
+                        <th scope="col">مبلغ</th>
+                        <th scope="col">روش پرداخت</th>
+                        <th scope="col">تاریخ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>000111</td>
+                        <td>36000000</td>
+                        <td>واریز به حساب</td>
+                        <td>1404.01.03</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>000111</td>
+                        <td>36000000</td>
+                        <td>واریز به حساب</td>
+                        <td>1404.01.03</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h6 class="card-title pt-5 pb-2">مجموع مبالغ</h6>
+        <div class="row m-0 row-group text-center border border-light-3">
+            <div class="col-12 col-lg-3">
+                <div class="p-3">
+                    <h5 class="mb-0">جمع کل محصولات</h5>
+                    <small class="mb-0">@Model.TotalPrice</small>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="p-3">
+                    <h5 class="mb-0">مجموع تخفیف</h5>
+                    <small class="mb-0">@Model.TotalDiscount</small>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="p-3">
+                    <h5 class="mb-0">مالیات</h5>
+                    <small class="mb-0">@Model.TotalTax</small>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="p-3">
+                    <h5 class="mb-0">مبلغ نهایی</h5>
+                    <small class="mb-0">@Model.FinalAmount</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

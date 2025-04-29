@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Marquise_Web.UI.areas.CRM.Models.ContractVM>
 @{
     ViewBag.Title = "Index";
     Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
@@ -22,24 +22,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>پشتیبانی فصلی</td>
-                                        <td>1404.01.01</td>
-                                        <td>فعال</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>پشتیبانی فصلی</td>
-                                        <td>1404.01.01</td>
-                                        <td>غیرفعال</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>پشتیبانی فصلی</td>
-                                        <td>1404.01.01</td>
-                                        <td>فعال</td>
-                                    </tr>
+                                    @foreach (var contract in Model)
+                                    {
+                                        <tr data-contract-id="@contract.Id">
+                                            <td>@contract.sodoureghoflName__C</td>
+                                            <td>@contract.CreateDate</td>
+                                            <td>تبدیل شده</td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -47,55 +37,8 @@
                 </div>
             </div>
 
-            <div class="col-lg-8">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title pb-2">پشتیبانی فصلی</h5>
-                        <div class="row m-0 row-group text-center border border-light-3">
-                            <div class="col-12 col-lg-4">
-                                <div class="p-3">
-                                    <h5 class="mb-0">نوع پشتیبانی</h5>
-                                    <small class="mb-0">فصلی</small>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-4">
-                                <div class="p-3">
-                                    <h5 class="mb-0">تاریخ ثبت</h5>
-                                    <small class="mb-0">1404.01.01</small>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-4">
-                                <div class="p-3">
-                                    <h5 class="mb-0">وضعیت</h5>
-                                    <small class="mb-0">فعال</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                        <h6 class="card-title pt-5 pb-2">مشخصات قرارداد</h6>
-                        <div class="row m-0 row-group text-center border border-light-3">
-                            <div class="col-12 col-lg-4">
-                                <div class="p-3">
-                                    <h5 class="mb-0">تاریخ شروع</h5>
-                                    <small class="mb-0">1404.01.01</small>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-4">
-                                <div class="p-3">
-                                    <h5 class="mb-0">تاریخ اتمام</h5>
-                                    <small class="mb-0">1404.3.31</small>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-4">
-                                <div class="p-3">
-                                    <h5 class="mb-0">وضعیت تمدید خودکار</h5>
-                                    <small class="mb-0">غیرفعال</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-8" id="DetailContract">
+              
             </div>
         </div>
 
@@ -106,3 +49,7 @@
     </div>
     <!-- End container-fluid-->
 </div>
+
+@section Scripts{
+    <script src="~/areas//CRM/Scripts/CRM/Contract.js"></script>
+    }

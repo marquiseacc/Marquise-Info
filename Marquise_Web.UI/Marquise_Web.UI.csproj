@@ -433,6 +433,8 @@
     <Compile Include="areas\CRM\Models\AccountVM.cs" />
     <Compile Include="areas\CRM\Models\ApiSetting.cs" />
     <Compile Include="areas\CRM\Models\AuthVM.cs" />
+    <Compile Include="areas\CRM\Models\ContractVM.cs" />
+    <Compile Include="areas\CRM\Models\InvoiceVM.cs" />
     <Compile Include="areas\CRM\Models\QuoteVM.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
@@ -459,6 +461,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="areas\CRM\Scripts\CRM\Auth.js" />
+    <Content Include="areas\CRM\Scripts\CRM\Contract.js" />
+    <Content Include="areas\CRM\Scripts\CRM\Invoice.js" />
+    <Content Include="areas\CRM\Scripts\CRM\Quote.js" />
     <Content Include="Content\Blog\blog1\blog11.jpg" />
     <Content Include="Content\Blog\blog2\blog21.jpg" />
     <Content Include="Content\Blog\blog2\blog22.jpg" />
@@ -1240,6 +1245,9 @@
     <Content Include="areas\CRM\json.json" />
     <Content Include="areas\CRM\Views\AccountManagement\Index.cshtml" />
     <Content Include="areas\CRM\Views\PreInvoice\Index.cshtml" />
+    <Content Include="areas\CRM\Views\PreInvoice\Detail.cshtml" />
+    <Content Include="areas\CRM\Views\Invoice\Detail.cshtml" />
+    <Content Include="areas\CRM\Views\Contract\Detail.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

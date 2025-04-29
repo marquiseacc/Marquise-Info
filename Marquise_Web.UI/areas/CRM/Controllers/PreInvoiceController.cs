@@ -61,6 +61,9 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             return View(quotes);
         }
 
+
+        [HttpGet]
+        [System.Web.Http.Route("CRM/PreInvoice/Detail")]
         public async Task<ActionResult> Detail(string quoteId)
         {
             var CRMSection = "CRM_Quote/";
@@ -71,18 +74,18 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 return RedirectToAction("Index", "Dashboard");
 
             var responseString = await response.Content.ReadAsStringAsync();
-
             var jObject = JObject.Parse(responseString);
 
             var resultArray = jObject["ResultData"]?["result"] as JArray;
 
-            if (resultArray == null)
+            if (resultArray == null || !resultArray.Any())
                 return RedirectToAction("Index", "Dashboard");
-            var filteredJson = JsonConvert.SerializeObject(resultArray);
-            var quote = JsonConvert.DeserializeObject<QuoteVM>(filteredJson);
 
+            var firstItemJson = resultArray.First().ToString();
 
-            return View(quote);
+            var quote = JsonConvert.DeserializeObject<QuoteDetailVm>(firstItemJson);
+
+            return PartialView("Detail", quote);
         }
 
     }

@@ -5,26 +5,25 @@ using System.Web;
 
 namespace Marquise_Web.UI.areas.CRM.Models
 {
-    public class QuoteVM
+    public class InvoiceVM
     {
-        public string QuoteId { get; set; }
-        public int QuoteCode { get; set; }
-        public string Name { get; set; }
+        public string InvoiceId { get; set; }
+        public int InvoiceNumber { get; set; }
+        public string Title { get; set; }
         public double TotalPrice { get; set; }
         public double FinalAmount { get; set; }
         public DateTime CreateDate { get; set; }
     }
 
-    
-    public class QuoteDetailVm
+    public class InvoiceDetailVm
     {
-        public string QuoteId { get; set; }
-        public int QuoteCode { get; set; }
-        public string Name { get; set; }
+        public string InvoiceId { get; set; }
+        public int InvoiceNumber { get; set; }
+        public string Title { get; set; }
         public double TotalPrice { get; set; }
         public double FinalAmount { get; set; }
         public double TotalDiscount { get; set; }
         public DateTime CreateDate { get; set; }
-        public string Purchaser { get; set; }
+        public double TotalTax { get; set; }
     }
 }
