@@ -26,7 +26,7 @@
                                 <tbody>
                                     @foreach (var quote in Model)
                                     {
-                                        <tr data-quote-id="@quote.QuoteId">
+                                        <tr class="table-row-link" data-quote-id="@quote.QuoteId">
                                             <th scope="row">@quote.QuoteCode</th>
                                             <td>@quote.Name</td>
                                             <td>@quote.CreateDatePersian</td>

@@ -1,9 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
-}
-
+﻿@model List<Marquise_Web.UI.areas.CRM.Models.TicketVM>
 
 @{
     ViewBag.Title = "Index";
@@ -16,13 +11,22 @@
             <div class="col-lg-12">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title pb-2">تیکت</h5>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h5 class="card-title pb-2">تیکت</h5>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary btn-block ml-lg-3" onclick="location.href='@Url.Action("NewTicket", "Ticket", new { area = "CRM"})'">
+                                    تیکت جدید
+
+                                </button>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table font-14">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">شماره</th>
                                         <th scope="col">موضوع</th>
                                         <th scope="col">تاریخ</th>
                                         <th scope="col">کارشناس</th>
@@ -31,24 +35,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>0010089</td>
-                                        <td>باز نشدن محیط</td>
-                                        <td>1403.10.11</td>
-                                        <td>مهسا هوشنگی</td>
-                                        <td></td>
-                                        <td>بسته</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>0012130</td>
-                                        <td>اختتامیه</td>
-                                        <td>1404.01.30</td>
-                                        <td>مارال دارنهال</td>
-                                        <td>1 روز 4 ساعت 20 دقیقه</td>
-                                        <td>باز</td>
-                                    </tr>
+                                    @foreach (var ticket in Model)
+                                    {
+                                       
+                                        <tr class="table-row-link" onclick="location.href='@Url.Action("Detail", "Ticket", new { area = "CRM", ticketId = ticket.TicketId })'">
+                                            <th scope="row">@ticket.TicketNumber</th>
+                                            <td>@ticket.Title</td>
+                                            <td>@ticket.CreateDatePersian</td>
+                                            <td>@ticket.StaffName</td>
+                                            <td></td>
+                                            <td>@ticket.StatusTitle</td>
+                                        </tr>
+                                    }
+                                    
                                 </tbody>
                             </table>
                         </div>

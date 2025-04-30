@@ -24,7 +24,7 @@ namespace Marquise_Web.Data.Repository
 
         public async Task<ApplicationUser> GetByPhoneNumberAsync(string phoneNumber)
         {
-            var user = context.Set<ApplicationUser>().ToListAsync();
+            
             return await context.Set<ApplicationUser>()
                 .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
         }

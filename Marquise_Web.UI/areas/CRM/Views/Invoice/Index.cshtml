@@ -5,7 +5,7 @@
 <div class="content-wrapper">
     <div class="container-fluid">
         <div class="row mt-3">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title pb-2">لیست فاکتورها</h5>
@@ -23,7 +23,7 @@
                                 <tbody>
                                     @foreach (var invoice in Model)
                                     {
-                                        <tr data-invoice-id="@invoice.InvoiceId">
+                                        <tr class="table-row-link" data-invoice-id="@invoice.InvoiceId">
                                             <th scope="row">@invoice.InvoiceNumber</th>
                                             <td>@invoice.Title</td>
                                             <td>@invoice.CreateDatePersian</td>
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-8" id="DetailInvoice">
+            <div class="col-lg-7" id="DetailInvoice">
 
             </div>
 

@@ -436,6 +436,7 @@
     <Compile Include="areas\CRM\Models\ContractVM.cs" />
     <Compile Include="areas\CRM\Models\InvoiceVM.cs" />
     <Compile Include="areas\CRM\Models\QuoteVM.cs" />
+    <Compile Include="areas\CRM\Models\TicketVM.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\FeaturesController.cs" />

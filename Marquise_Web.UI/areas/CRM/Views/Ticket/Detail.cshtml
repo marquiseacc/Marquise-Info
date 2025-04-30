@@ -1,4 +1,5 @@
-﻿
+﻿@model Marquise_Web.UI.areas.CRM.Models.TicketDetailVm
+
 @{
     ViewBag.Title = "Detail";
     Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
@@ -15,31 +16,31 @@
                             <div class="col-12 col-lg-2">
                                 <div class="p-3">
                                     <h5 class="mb-0">شماره تیکت</h5>
-                                    <small class="mb-0">0010089</small>
+                                    <small class="mb-0">@Model.TicketNumber</small>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-2">
                                 <div class="p-3">
                                     <h5 class="mb-0">موضوع</h5>
-                                    <small class="mb-0">باز نشدن محیط</small>
+                                    <small class="mb-0">@Model.Title</small>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-2">
                                 <div class="p-3">
                                     <h5 class="mb-0">وضعیت</h5>
-                                    <small class="mb-0">بسته</small>
+                                    <small class="mb-0">@Model.StatusTitle</small>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-2">
                                 <div class="p-3">
                                     <h5 class="mb-0">تاریخ</h5>
-                                    <small class="mb-0">1403.10.11</small>
+                                    <small class="mb-0">@Model.CreateDatePersian</small>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-2">
                                 <div class="p-3">
                                     <h5 class="mb-0">کارشناس</h5>
-                                    <small class="mb-0">مهسا هوشنگی</small>
+                                    <small class="mb-0">@Model.StaffName</small>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-2">
