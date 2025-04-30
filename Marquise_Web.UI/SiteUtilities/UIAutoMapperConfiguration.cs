@@ -12,14 +12,14 @@ namespace Utilities.Map
         {
             CreateMap<MessageViewModel, MessageDTO>()
             .ForMember(dest => dest.FilePath, opt => opt.Ignore()) // تبدیل File به FilePath
-            .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => DateConvert.ConvertPersianToGregorian(src.Birthday))); // تبدیل Birthday از string به DateTime
+            .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.ToPersianDateTimeString())); // تبدیل Birthday از string به DateTime
 
         // در صورت نیاز، تبدیل برعکس هم می‌توانید انجام دهید.
         CreateMap<MessageDTO, MessageViewModel>()
             .ForMember(dest => dest.File, opt => opt.Ignore())
             .ForMember(dest => dest.FileName, opt => opt.Ignore())
             .ForMember(dest => dest.FileType, opt => opt.Ignore())
-            .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => DateConvert.GetPersianDateTimeString(src.Birthday))); // تبدیل DateTime به string
+            .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.ToPersianDateTimeString())); // تبدیل DateTime به string
 
 
             CreateMap<ResultItem, AccountVM>()

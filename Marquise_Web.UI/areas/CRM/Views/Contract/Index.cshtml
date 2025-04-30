@@ -15,7 +15,6 @@
                             <table class="table font-14">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">نام</th>
                                         <th scope="col">تاریخ</th>
                                         <th scope="col">وضعیت</th>
@@ -26,8 +25,8 @@
                                     {
                                         <tr data-contract-id="@contract.Id">
                                             <td>@contract.sodoureghoflName__C</td>
-                                            <td>@contract.CreateDate</td>
-                                            <td>تبدیل شده</td>
+                                            <td>@contract.CreateDatePersian</td>
+                                            <td>@contract.StatusTitle</td>
                                         </tr>
                                     }
                                 </tbody>

@@ -30,7 +30,7 @@ namespace Marquise_Web.UI.APIController
         {
             if (ModelState.IsValid)
             {
-                var date = DateConvert.GetPersianDateTimeString(DateTime.Now);
+                var date = DateTime.Now.ToPersianDateTimeString();
                 var email = "sdffbabaei@gmail.com";
                 var subject = "پیام از سایت";
                 var body = $@"
@@ -77,7 +77,7 @@ namespace Marquise_Web.UI.APIController
             {
                 // تبدیل فایل از Base64 به بایت آرایه
                 var fileBytes = Convert.FromBase64String(messageViewModel.File);
-                var date = DateConvert.GetPersianDateTimeString(DateTime.Now);
+                var date = DateTime.Now.ToPersianDateTimeString();
                 var email = "sdffbabaei@gmail.com";
                 var subject = "پیام از سایت";
                 var body = $@"
