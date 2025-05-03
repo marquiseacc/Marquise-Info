@@ -16,25 +16,22 @@
                     <div class="card-body">
                         <div class="card-title">تیکت</div>
                         <hr>
-                        <form>
-                            <div class="form-group">
-                                <label for="input-1">انتخاب بخش مربوطه</label>
-                                <input type="text" class="form-control" id="input-1" placeholder="بخش">
-                            </div>
+                        <form id="new-ticket-form" class="shake" onsubmit="return handleNewTicketFormSubmit(event);" novalidate>
                             <div class="form-group">
                                 <label for="input-2">موضوع</label>
-                                <input type="text" class="form-control" id="input-2" placeholder="موضوع مورد نظر را وارد کنید.">
+                                <input type="text" class="form-control" id="title" placeholder="موضوع مورد نظر را وارد کنید.">
+                                <div id="title-error" class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <label for="input-3">توضیحات</label>
-                                <textarea type="text" class="form-control" id="input-3" placeholder="توضیحات خود را وارد کنید." rows="10"></textarea>
+                                <textarea type="text" class="form-control" id="description" placeholder="توضیحات خود را وارد کنید." rows="10"></textarea>
+                                <div id="description-error" class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block ml-lg-3">
-                                   ثبت
+                                    ثبت
                                 </button>
                             </div>
-                            
                         </form>
                     </div>
                 </div>
@@ -42,3 +39,6 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script src="~/areas//CRM/Scripts/CRM/Ticket.js"></script>
+}

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using System.Web;
 using System.Collections.Generic;
 using System.Security.Claims;
+using Microsoft.Extensions.Logging;
 
 namespace Marquise_Web.Service.Service
 {
@@ -46,7 +47,6 @@ namespace Marquise_Web.Service.Service
         // ارسال کد OTP
         public async Task<bool> SendOtpAsync(string phoneNumber)
         {
-
             try
             {
                 var user = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
@@ -61,7 +61,7 @@ namespace Marquise_Web.Service.Service
                 await unitOfWork.CompleteAsync();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
@@ -72,43 +72,39 @@ namespace Marquise_Web.Service.Service
 
         public async Task<AuthUserDto> VerifyOtpAsync(string phoneNumber, string code)
         {
-            try
-            {
-                var user = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
-                if (user == null || user.OtpCode != code || user.OtpExpiration <= DateTime.UtcNow)
-                    return null;
+            var user = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
+            if (user == null || user.OtpCode != code || user.OtpExpiration <= DateTime.UtcNow)
+                return null;
 
-                // پاک کردن کد OTP پس از تایید
-                user.OtpCode = null;
-                user.OtpExpiration = null;
-
-                // در اینجا می‌توانید Claim را به Identity اضافه کنید
-                var claims = new List<Claim>
+            // در اینجا می‌توانید Claim را به Identity اضافه کنید
+            var claims = new List<Claim>
             {
                 new Claim("OtpVerified", "True") // اضافه کردن claim برای تایید OTP
             };
 
-                // اینجا به جای استفاده از AddClaimAsync، به ClaimsIdentity اضافه می‌کنیم
-                var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
 
-                // اضافه کردن claims جدید به Identity
-                identity.AddClaims(claims);
+            // اضافه کردن claims جدید به Identity
+            identity.AddClaims(claims);
 
-                // ذخیره سازی تغییرات و اعمال آنها در دیتابیس
-                await unitOfWork.CompleteAsync();
+            // اضافه کردن claims جدید به Identity
+            identity.AddClaims(claims);
 
-                return new AuthUserDto
-                {
-                    Id = user.Id,
-                    PhoneNumber = user.PhoneNumber,
-                    CRMId = user.CRMId
-                };
-            }
-            catch (Exception ex)
+            // پاک کردن کد OTP پس از تایید
+            user.OtpCode = null;
+            user.OtpExpiration = null;
+
+            
+            // ذخیره سازی تغییرات و اعمال آنها در دیتابیس
+            await unitOfWork.CompleteAsync();
+
+            return new AuthUserDto
             {
-                Console.WriteLine(ex);
-            }
-            return new AuthUserDto();
+                Id = user.Id,
+                PhoneNumber = user.PhoneNumber,
+                CRMId = user.CRMId
+            };
+
         }
 
         public async Task<bool> SignInUserAsync(string userId)

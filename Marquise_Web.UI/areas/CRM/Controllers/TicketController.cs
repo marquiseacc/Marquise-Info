@@ -10,6 +10,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Text;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
@@ -36,7 +37,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
 
             var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
-            
+
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
             var CRMSection = "Ticket/";
             var response = await httpClient.GetAsync(apiSetting.ApiBaseUrl + CRMSection);
@@ -133,7 +134,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
 
         // GET: CRM/Ticket
-        public ActionResult NewTicket()
+        public async Task<ActionResult> NewTicket()
         {
             return View();
         }

@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Utilities.Convert;
 
 namespace Marquise_Web.UI.areas.CRM.Models
 {
+    public class StaffInfo
+    {
+        public string UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
     public class TicketVM
     {
         public string TicketId { get; set; }
@@ -42,13 +47,6 @@ namespace Marquise_Web.UI.areas.CRM.Models
                 /* else*/
             }
         }
-    }
-
-    public class StaffInfo
-    {
-        public string UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
     }
 
     public class TicketDetailVm
@@ -88,4 +86,38 @@ namespace Marquise_Web.UI.areas.CRM.Models
             }
         }
     }
+
+    public class AnswerVM
+    {
+        public string TicketId { get; set; }
+        public string Message { get; set; }
+        
+    }
+
+    public class NewTicketVM
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class RootResponse
+    {
+        public bool Succeeded { get; set; }
+        public string ResultId { get; set; }
+        public TicketResultData ResultData { get; set; }
+    }
+
+    public class TicketResultData
+    {
+        public string rowId { get; set; }
+        public object JTRowId { get; set; }
+        public List<IncrementalField> IncrementalFields { get; set; }
+    }
+
+    public class IncrementalField
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
+    }
+
 }

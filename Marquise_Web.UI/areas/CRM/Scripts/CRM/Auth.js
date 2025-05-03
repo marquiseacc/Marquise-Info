@@ -1,4 +1,14 @@
-﻿function handleSentOTPFormSubmit(event) {
+﻿window.alert = function (message,icon) {
+    Swal.fire({
+        title: 'پیام',
+        text: message,
+        icon: icon,
+        confirmButtonText: 'باشه'
+    });
+};
+
+
+function handleSentOTPFormSubmit(event) {
     event.preventDefault();
 
     var phoneNumber = document.getElementById("PhoneNumber").value;
@@ -42,16 +52,24 @@
                     window.location.href = data.redirectUrl;
                 }
                 else if (data.redirectUrl) {
-                    alert("لطفا برای پیوستن به همراهان مارکیز از طریق صفحه تماس با ما با تیم مارکیز در ارتباط باشید.");
-                    window.location.href = decodeURIComponent(data.redirectUrl);
+                    Swal.fire({
+                        title: 'پیام',
+                        text: 'لطفا برای پیوستن به همراهان مارکیز از طریق صفحه تماس با ما با تیم مارکیز در ارتباط باشید.',
+                        icon: 'info',
+                        confirmButtonText: 'باشه'
+                    }).then(() => {
+                        // فقط بعد از تایید کاربر، ریدایرکت انجام بشه
+                        window.location.href = decodeURIComponent(data.redirectUrl);
+                    });
+                    
                 }
                 else {
-                    alert(data.message || "خطایی رخ داده است");
+                    alert(data.message || "خطایی رخ داده است", 'error');
                 }
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("لطفا مجددا تلاش کنید.");
+                alert("لطفا مجددا تلاش کنید.", 'error');
             });
     }
 
@@ -99,15 +117,21 @@ function handleVerifyOTPFormSubmit(event) {
             })
             .then(data => {
                 if (data.success) {
-                    alert("ورود با موفقیت انجام شد.");
-                    window.location.href = '/CRM/Dashboard/Index';
+                    Swal.fire({
+                        title: 'پیام',
+                        text: 'ورود با موفقیت انجام شد.',
+                        icon: 'success',
+                        confirmButtonText: 'باشه'
+                    }).then(() => {
+                        window.location.href = '/CRM/Dashboard/Index';
+                    });
                 } else {
-                    alert(data.message || "خطا! لطفا مجددا تلاش کنید.");
+                    alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');
                 }
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("لطفا مجددا تلاش کنید.");
+                alert("لطفا مجددا تلاش کنید.", 'error');
             });
     }
 
@@ -183,15 +207,15 @@ function fetchCrmData() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert("کد مجدد ارسال شد.");
+                alert("کد مجدد ارسال شد.", 'info');
                 startTimer(); // تایمر را دوباره شروع می‌کنیم
                 document.getElementById("resendButton").style.display = "none"; // مخفی کردن دکمه ارسال مجدد
             } else {
-                alert("خطا در ارسال کد مجدد.");
+                alert("خطا در ارسال کد مجدد.", 'error');
             }
         })
         .catch(error => {
-            alert("خطا در ارتباط با سرور.");
+            alert("خطا در ارتباط با سرور.", 'error');
         });
     }
 

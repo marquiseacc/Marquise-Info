@@ -422,6 +422,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="areas\CRM\ApiControllers\TicketApiController.cs" />
     <Compile Include="areas\CRM\Controllers\AccountManagementController.cs" />
     <Compile Include="areas\CRM\Controllers\AuthController.cs" />
     <Compile Include="areas\CRM\Controllers\ContractController.cs" />
@@ -465,6 +466,7 @@
     <Content Include="areas\CRM\Scripts\CRM\Contract.js" />
     <Content Include="areas\CRM\Scripts\CRM\Invoice.js" />
     <Content Include="areas\CRM\Scripts\CRM\Quote.js" />
+    <Content Include="areas\CRM\Scripts\CRM\Ticket.js" />
     <Content Include="Content\Blog\blog1\blog11.jpg" />
     <Content Include="Content\Blog\blog2\blog21.jpg" />
     <Content Include="Content\Blog\blog2\blog22.jpg" />
@@ -1386,7 +1388,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="areas\CRM\ApiController\" />
     <Folder Include="areas\CRM\Data\" />
   </ItemGroup>
   <ItemGroup>
