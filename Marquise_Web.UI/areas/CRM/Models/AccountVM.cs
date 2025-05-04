@@ -1,99 +1,86 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Marquise_Web.UI.areas.CRM.Models
 {
-    public class ApiResponse
+    public class AccountApiResponse
     {
-    public bool Succeeded { get; set; }
+        public bool Succeeded { get; set; }
         public List<string> ResultMessageList { get; set; }
         public object ResultId { get; set; }
         public object ErrorCode { get; set; }
-        public ResultData ResultData { get; set; }
+        public AccountResultData ResultData { get; set; }
     }
 
-    public class ResultData
+    public class AccountResultData
     {
-        public List<ResultItem> result { get; set; }
+        public List<AccountVM> result { get; set; }
         public object TotalRows { get; set; }
-    }
-
-    public class ResultItem
-    {
-        public Guid AccountId { get; set; }
-        public string Name { get; set; }
-        public Guid ITStaffID { get; set; }
-        public string Type { get; set; }
-        public string WebSiteUrl { get; set; }
-        public string Telephone { get; set; }
-        public string Fax { get; set; }
-        public Guid IndustryCode { get; set; }
-        public double PersonnelCount { get; set; }
-        public string Description { get; set; }
-        public double EconomicCode { get; set; }
-        public double NationalCode { get; set; }
-        public Guid? ParentID { get; set; }
-        public string LogoPath { get; set; }
-        public string ShippingAddress { get; set; }
-        public Guid? ShippingAddress_ProvinceId { get; set; }
-        public Guid? ShippingAddress_CityId { get; set; }
-        public string ShippingAddress_Street { get; set; }
-        public string ShippingAddress_PostalCode { get; set; }
-        public string BillAddress { get; set; }
-        public Guid? BillAddress_ProvinceId { get; set; }
-        public Guid? BillAddress_CityId { get; set; }
-        public string BillAddress_PostalCode { get; set; }
-        public string BillAddress_Street { get; set; }
-        public Guid TemplateAttributeId { get; set; }
-        public Guid CreateBy { get; set; }
-        public DateTime CreateDate { get; set; }
-        public Guid ModifyBy { get; set; }
-        public DateTime ModifyDate { get; set; }
-        public bool IsRemoved { get; set; }
-        public string IsApprovalLock { get; set; }
-        public Guid ApprovalStatus { get; set; }
-        public object WorkingHours { get; set; }
-        public DateTime? LastActivityDate { get; set; }
-        public string RecordColor { get; set; }
-        public double Rest { get; set; }
-        public double Paid { get; set; }
-        public double SumInvoices { get; set; }
-        public Guid IdentityType { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Mobile { get; set; }
-        public Guid? BillAddress_ZoneId { get; set; }
-        public double shomaremoshtari__C { get; set; }
-        public object gharardaad__C { get; set; }
-        public Guid MizaneDaramad__C { get; set; }
-        public Guid MIzanedaramdzaee__C { get; set; }
-        public Guid Raftarkharidmoshtari__C { get; set; }
-        public double Mantaghe__C { get; set; }
-        public string mahale__C { get; set; }
-        public string cituu__C { get; set; }
-        public double rezayatemoshtari__C { get; set; }
-        public double narezayateemoshtari__C { get; set; }
-        public object needss__C { get; set; }
-        public Guid dalilerezayat__C { get; set; }
-        public Guid dalilenarezayatee__C { get; set; }
-        public string nahveashnaee__C { get; set; }
-        public string sodoureghoflName__C { get; set; }
-        public string seryalmarkiz__C { get; set; }
-        public object sathedaramadmoshtari__C { get; set; }
-        public string telephoone__C { get; set; }
-        public Guid management__C { get; set; }
-        public object moearef__C { get; set; }
     }
 
     public class AccountVM
     {
-        public string ManagementName { get; set; }
-        public string GalleryName { get; set; }
-        public string Industry { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string Area { get; set; }
-        public string Phone { get; set; }
+        public Guid AccountId { get; set; }
+        public string Name { get; set; }
+        public string Telephone { get; set; }
+        public string IndustryCode { get; set; }
+        public string IndustryTitle => Industry.GetTitle(IndustryCode);
+        public string ShippingAddress { get; set; }
         public string Mobile { get; set; }
+        public double shomaremoshtari__C { get; set; }
+        public string mahale__C { get; set; }
+        public string cituu__C { get; set; }
+        public string management__C { get; set; }
+        public string ManagementName { get; set; }
+    }
+
+    public class Industry
+    {
+        public string Id { get; set; }
+        public string Title { get; set; }
+
+        public static List<Industry> GetAll() => new List<Industry>
+    {
+        new Industry { Id = "759302ac-5a4e-4a44-a5bb-92a1cea1b488", Title = "خرده فروش" },
+        new Industry { Id = "e685c0e4-2606-4307-b763-456d0d17426a", Title = "بنکدار" },
+        new Industry { Id = "a6479a35-6e51-49c3-9e4d-1ee207d11d80", Title = "کیفی" },
+        new Industry { Id = "bc74e815-8519-4b8c-bd5e-a510b0cbb267", Title = "سکه فروش" },
+        new Industry { Id = "7af8fdf0-570f-4a8b-8f68-21b648c8360f", Title = "آبشده فروش" },
+        new Industry { Id = "6eb7c362-2050-40cc-ac12-0c492457f51f", Title = "سنگ فروش" },
+        new Industry { Id = "067977ac-c5f7-4220-aecf-9c7ccfd0ef80", Title = "خدمات زرگری" },
+        new Industry { Id = "04906e01-2541-4d23-a813-9235b30bd9ee", Title = "نقره فروش" },
+        new Industry { Id = "1eb05f3d-e76e-4fb0-98a0-ae8467cc1769", Title = "صرافی" },
+        new Industry { Id = "9e1814c2-ade9-40ca-8b9f-b50e17f1b775", Title = "مشاوره" },
+        new Industry { Id = "c9acc41f-db23-4f64-8c83-efdf47b05c1f", Title = "آموزش" },
+        new Industry { Id = "090903a7-9813-423d-92dc-06bd364bd380", Title = "سایر" },
+    };
+
+        public static string GetTitle(string id)
+        {
+            return GetAll().FirstOrDefault(x => x.Id == id)?.Title ?? "نامشخص";
+        }
+    }
+
+
+    public class ContactApiResponse
+    {
+        public bool Succeeded { get; set; }
+        public List<string> ResultMessageList { get; set; }
+        public object ResultId { get; set; }
+        public object ErrorCode { get; set; }
+        public ContactResultData ResultData { get; set; }
+    }
+
+    public class ContactResultData
+    {
+        public List<ContactVM> result { get; set; }
+        public object TotalRows { get; set; }
+    }
+
+    public class ContactVM
+    {
+        public Guid ContactId { get; set; }
+        public string FullName { get; set; }
     }
 }

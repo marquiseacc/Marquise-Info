@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
+    var industries = ViewBag.Industries as List<Marquise_Web.UI.areas.CRM.Models.Industry> ?? new List<Marquise_Web.UI.areas.CRM.Models.Industry>();
+    var selectedIndustryId = Model?.IndustryCode;
 }
  
 
@@ -16,7 +18,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">نام</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="@Model.GalleryName">
+                                    <input class="form-control" type="text" value="@Model.Name">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -29,29 +31,37 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">صنعت</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="url" value="@Model.Industry">
+                                    <select name="IndustryCode" id="industrySelect" class="form-control">
+                                        <option value="">صنعت کاری خود را انتخاب کنید</option>
+                                        @foreach (var industry in industries)
+                                        {
+                                            <option value="@industry.Id" selected="@(Model.IndustryCode == industry.Id)">
+                                                @industry.Title
+                                            </option>
+                                        }
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">آدرس</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="@Model.Address" placeholder="Street">
+                                    <input class="form-control" type="text" value="@Model.ShippingAddress" placeholder="Street">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-6">
-                                    <input class="form-control" type="text" value="@Model.City" placeholder="شهر">
+                                    <input class="form-control" type="text" value="@Model.cituu__C" placeholder="شهر">
                                 </div>
                                 <div class="col-lg-3">
-                                    <input class="form-control" type="text" value="@Model.Area" placeholder="محله">
+                                    <input class="form-control" type="text" value="@Model.mahale__C" placeholder="محله">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">تلفن</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="@Model.Phone" placeholder="02144556677">
+                                    <input class="form-control" type="text" value="@Model.Telephone" placeholder="02144556677">
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -90,7 +90,6 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                 return Json(new { success = false });
             }
 
-            Answer.TicketId = "c5bebb7f-cc3c-4612-8e56-0a9def3796f5";
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

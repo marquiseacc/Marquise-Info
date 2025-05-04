@@ -42,16 +42,28 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
             var responseData = await response.Content.ReadAsStringAsync();
 
-            
-                var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseData);
-                var user = apiResponse?.ResultData?.result?.FirstOrDefault();
+            var apiResponse = JsonConvert.DeserializeObject<AccountApiResponse>(responseData);
+            var user = apiResponse?.ResultData?.result?.FirstOrDefault();
 
-                if (user == null)
+            if (user == null)
                 return RedirectToAction("Index", "Dashboard");
 
-            var account = UIDataMapper.Mapper.Map<AccountVM>(user);
-            return View(account);
-                
+            var CRMSection2 = "CRM_Contact/";
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
+
+            var contactResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + CRMSection2 + user.management__C.ToString());
+            if (!response.IsSuccessStatusCode)
+                return RedirectToAction("Index", "Dashboard");
+
+            var contactResponseData = await contactResponse.Content.ReadAsStringAsync();
+
+            var ContactApiResponse = JsonConvert.DeserializeObject<ContactApiResponse>(contactResponseData);
+            var contact = ContactApiResponse?.ResultData?.result?.FirstOrDefault();
+
+            user.ManagementName= contact?.FullName;
+            ViewBag.Industries = Industry.GetAll();
+            return View(user);
+
         }
     }
 }
