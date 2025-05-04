@@ -45,34 +45,42 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
 
             var requestBody = new
             {
-                Title = newTicket.Title,
-                ApplicantId = "9ae2b3e1-056e-4331-8e2f-4930a0d115c0",
                 TemplateAttributeId = "E659E12C-0FAC-49D2-B752-06A8D156CFA8",
-                ApplicantId1__C = crmId
+                SaveMethod = "fc651d0a-61c2-4c8a-9bec-a1f7a45eb151",
+                Status = "28cb76a6-d999-4ee3-887c-66792287453d",
+                ApplicantId = "9ae2b3e1-056e-4331-8e2f-4930a0d115c0",
+                Title = newTicket.Title,
+                ApplicantId1__C = crmId,
+                DoneDate = (object)null,
+                RecordColor = (object)null,
+                LastResponseDate = (object)null,
+                ITStaffId = (object)null,
+                ProblemManagementId = (object)null,
+                AssetId = (object)null,
+                IsRemoved = (object)null,
+                ITStaffGroupID = (object)null,
+                Type = (object)null,
+                SatifacationRate = (object)null,
+                InfluenceLevel = (object)null,
+                GroupId = (object)null,
+                Urgency = (object)null,
+                DueDate = (object)null,
+                Priority = (object)null,
+                TicketBody = new
+                {
+                    TicketBody = new
+                    {
+                        Body = newTicket.Description,
+                        IsPublic = true
+                    }
+                }
             };
 
-            var json = JsonConvert.SerializeObject(requestBody); // نیاز به Newtonsoft.Json
+            var json = JsonConvert.SerializeObject(requestBody);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+
             var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl + CRMSection, content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseContent = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<RootResponse>(responseContent);
-
-                string rowId = result?.ResultData?.rowId;
-
-                var url = apiSetting.ApiBaseUrl + CRMSection + rowId + "/AddTicketResponse?message=" + Uri.EscapeDataString(newTicket.Description);
-                var emptyContent = new StringContent("", Encoding.UTF8, "application/json");
-
-                var messageResponse = await httpClient.PostAsync(url, emptyContent);
-            }
-            else
-            {
-                var error = await response.Content.ReadAsStringAsync();
-            }
-
 
             if (!response.IsSuccessStatusCode)
                 return Json(new { success = false });

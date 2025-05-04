@@ -89,7 +89,8 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         [HttpGet]
         [System.Web.Http.Route("CRM/Ticket/Detail")]
         public async Task<ActionResult> Detail(string ticketId)
-        {
+         {
+            var claimsPrincipal = User as ClaimsPrincipal;
             var CRMSection = "Ticket/";
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
 
@@ -109,29 +110,53 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             var firstItemJson = resultArray.First().ToString();
             var ticket = JsonConvert.DeserializeObject<TicketDetailVm>(firstItemJson);
 
+
+
+
+            var CRMSection2 = "Tickets/GetTicketBodyWithAttachment/";
+            var responseAnswer = await httpClient.GetAsync(apiSetting.ApiBaseUrl + CRMSection2 + ticket.TicketId.ToString());
+            if (!responseAnswer.IsSuccessStatusCode)
+                return RedirectToAction("Index", "Dashboard");
+
+            var responseStringAnswer = await responseAnswer.Content.ReadAsStringAsync();
+
+            var jObjectAnswer = JObject.Parse(responseStringAnswer);
+
+            var resultArrayAnswer = jObjectAnswer["ResultData"] as JArray;
+
+            if (resultArrayAnswer == null)
+                return RedirectToAction("Index", "Dashboard");
+
+            var filteredRecords = resultArrayAnswer.ToList();
+
+            var filteredJson = JsonConvert.SerializeObject(filteredRecords);
+            var answers = JsonConvert.DeserializeObject<List<ShowAnswerVM>>(filteredJson);
+
+
             // ----------------------------
             // دریافت لیست کارشناسان
             var staffResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "users/");
-            if (staffResponse.IsSuccessStatusCode)
-            {
-                var staffJson = await staffResponse.Content.ReadAsStringAsync();
-                var staffJObj = JObject.Parse(staffJson);
-                var staffArray = staffJObj["ResultData"] as JArray;
 
-                if (staffArray != null)
-                {
-                    var allStaffs = JsonConvert.DeserializeObject<List<StaffInfo>>(staffArray.ToString());
+            var staffJson = await staffResponse.Content.ReadAsStringAsync();
+            var staffJObj = JObject.Parse(staffJson);
+            var staffArray = staffJObj["ResultData"] as JArray;
+            var allStaffs = JsonConvert.DeserializeObject<List<StaffInfo>>(staffArray.ToString());
 
-                    var staff = allStaffs.FirstOrDefault(s => s.UserId == ticket.ITStaffId);
-                    ticket.Staff = staff; // پر کردن property در ViewModel
-                }
-            }
+            ticket.Staff = allStaffs.FirstOrDefault(s => s.UserId == ticket.ITStaffId);
+
+
             // ----------------------------
+            foreach (var answer in answers)
+            {
+                answer.Staff = allStaffs.FirstOrDefault(s => s.UserId == answer.CreateBy);
+                if (answer.Staff.UserId.ToString() == "9ae2b3e1-056e-4331-8e2f-4930a0d115c0")
+                    answer.StaffName = claimsPrincipal.Identity.Name;
+                else answer.StaffName = answer.Staff.FirstName + " " + answer.Staff.LastName;
+            }
 
+            ticket.Answers = answers;
             return View(ticket);
         }
-
-
 
         // GET: CRM/Ticket
         public async Task<ActionResult> NewTicket()

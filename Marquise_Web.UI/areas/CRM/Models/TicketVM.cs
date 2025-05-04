@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using Utilities.Convert;
 
 namespace Marquise_Web.UI.areas.CRM.Models
@@ -32,7 +33,7 @@ namespace Marquise_Web.UI.areas.CRM.Models
         {
             get
             {
-                if (Status == "3ab6b173-2e12-4e3f-813b-8a14ae01385d")
+                if (Status == "b1af65c3-af6e-48a6-8d1f-b5c09d7f03c9")
                     return "باز";
                 else if (Status == "8804f420-0c59-44d2-a4ca-711af8822c56")
                     return "انجام شده";
@@ -58,6 +59,7 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public string CreateDatePersian => CreateDate.ToPersianDateString();
         public string ITStaffId { get; set; }
         public StaffInfo Staff { get; set; }
+        public List<ShowAnswerVM> Answers { get; set; }
         public string StaffName
         {
             get
@@ -85,6 +87,15 @@ namespace Marquise_Web.UI.areas.CRM.Models
                 /* else*/
             }
         }
+    }
+
+    public class ShowAnswerVM
+    {
+        public string CreateBy { get; set; }
+        public StaffInfo Staff { get; set; }
+        public string StaffName { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string Body { get; set; }
     }
 
     public class AnswerVM
