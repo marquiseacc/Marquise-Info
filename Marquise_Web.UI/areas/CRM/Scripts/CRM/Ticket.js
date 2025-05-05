@@ -140,3 +140,55 @@ function handleNewAnswerFormSubmit(event) {
         return "";
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".close-ticket-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            var ticketId = this.getAttribute("data-ticketId");
+            console.log(ticketId);
+            closeTicket(ticketId);
+        });
+    });
+});
+
+function closeTicket(id) {
+
+    Swal.fire({
+        title: 'پیام',
+        text: 'از بستن این تیکت مطمئن هستید؟',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'بله، تیکت بسته بشه',
+        cancelButtonText: 'لغو'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var data = {
+                TicketId: id
+            }
+            fetch('/api/CRM/TicketApi/CloseTicket', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: 'پیام',
+                            text: 'تیکت شما با بسته شد.',
+                            icon: 'success',
+                            confirmButtonText: 'باشه'
+                        }).then(() => {
+                            window.location.href = '/CRM/Ticket/Index';
+                        });
+                    } else {
+                        alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');
+                    }
+                })
+                .catch(error => { console.error("Error:", error); alert("لطفا مجددا تلاش کنید."); });
+        }
+    });
+}
+

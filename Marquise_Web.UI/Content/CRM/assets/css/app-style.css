@@ -4139,6 +4139,14 @@ body.bg-theme16 .table {
     }
 }
 
+.selected-row {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
 
 .table-row-link {
     cursor: pointer;

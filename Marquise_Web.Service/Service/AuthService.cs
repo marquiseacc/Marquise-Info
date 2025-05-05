@@ -9,7 +9,6 @@ using Microsoft.AspNet.Identity;
 using System.Web;
 using System.Collections.Generic;
 using System.Security.Claims;
-using Microsoft.Extensions.Logging;
 
 namespace Marquise_Web.Service.Service
 {
@@ -56,7 +55,7 @@ namespace Marquise_Web.Service.Service
                 // ایجاد کد OTP
                 var otpCode = "123456";
                 user.OtpCode = otpCode;
-                user.OtpExpiration = DateTime.UtcNow.AddMinutes(5);
+                user.OtpExpiration = DateTime.UtcNow.AddMinutes(2);
 
                 await unitOfWork.CompleteAsync();
 

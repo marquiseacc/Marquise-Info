@@ -1,16 +1,13 @@
 ﻿using Marquise_Web.UI.areas.CRM.Models;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Text;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
@@ -34,8 +31,6 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             {
                 return RedirectToAction("SendOtp", "Auth");
             }
-
-
             var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
 
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
@@ -45,14 +40,10 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 return RedirectToAction("Index", "Dashboard");
 
             var responseString = await response.Content.ReadAsStringAsync();
-
             var jObject = JObject.Parse(responseString);
-
             var resultArray = jObject["ResultData"]?["result"] as JArray;
-
             if (resultArray == null)
                 return RedirectToAction("Index", "Dashboard");
-
             var filteredRecords = resultArray
                 .Where(item => (string)item["ApplicantId1__C"] == crmId)
                 .ToList();
@@ -61,7 +52,6 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             var tickets = JsonConvert.DeserializeObject<List<TicketVM>>(filteredJson);
 
             //////////////////
-            ///
             var staffResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "users/");
             if (staffResponse.IsSuccessStatusCode)
             {
@@ -72,8 +62,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 if (staffArray != null)
                 {
                     var staffList = JsonConvert.DeserializeObject<List<StaffInfo>>(staffArray.ToString());
-                    var staffDict = staffList.ToDictionary(s => s.UserId, s => s); // فرض بر این که StaffInfo شامل StaffId هست
-
+                    var staffDict = staffList.ToDictionary(s => s.UserId, s => s); 
                     foreach (var ticket in tickets)
                     {
                         if (!string.IsNullOrEmpty(ticket.ITStaffId) && staffDict.ContainsKey(ticket.ITStaffId))
@@ -117,23 +106,16 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             var responseAnswer = await httpClient.GetAsync(apiSetting.ApiBaseUrl + CRMSection2 + ticket.TicketId.ToString());
             if (!responseAnswer.IsSuccessStatusCode)
                 return RedirectToAction("Index", "Dashboard");
-
             var responseStringAnswer = await responseAnswer.Content.ReadAsStringAsync();
-
             var jObjectAnswer = JObject.Parse(responseStringAnswer);
-
             var resultArrayAnswer = jObjectAnswer["ResultData"] as JArray;
 
             if (resultArrayAnswer == null)
                 return RedirectToAction("Index", "Dashboard");
-
             var filteredRecords = resultArrayAnswer.ToList();
-
             var filteredJson = JsonConvert.SerializeObject(filteredRecords);
             var answers = JsonConvert.DeserializeObject<List<ShowAnswerVM>>(filteredJson);
 
-
-            // ----------------------------
             // دریافت لیست کارشناسان
             var staffResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "users/");
 
@@ -141,10 +123,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             var staffJObj = JObject.Parse(staffJson);
             var staffArray = staffJObj["ResultData"] as JArray;
             var allStaffs = JsonConvert.DeserializeObject<List<StaffInfo>>(staffArray.ToString());
-
             ticket.Staff = allStaffs.FirstOrDefault(s => s.UserId == ticket.ITStaffId);
-
-
             // ----------------------------
             foreach (var answer in answers)
             {

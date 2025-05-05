@@ -1,4 +1,5 @@
 ﻿using Marquise_Web.UI.areas.CRM.Models;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -111,6 +112,36 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                 var response = await httpClient.PostAsync(url, emptyContent);
             
             
+            if (!response.IsSuccessStatusCode)
+                return Json(new { success = false });
+            return Json(new { success = true });
+        }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("api/CRM/TicketApi/CloseTicket")]
+        public async Task<IHttpActionResult> CloseTicket(CloseTicket ticket)
+        {
+            var claimsPrincipal = User as ClaimsPrincipal;
+
+            if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
+            {
+                return Json(new { success = false });
+            }
+
+            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
+
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var CRMSection = "Ticket/";
+            var requestBody = new
+            {
+                Status = "9a5e80a8-cc75-46f1-b158-01d58384d4f7"
+            };
+            var json = JsonConvert.SerializeObject(requestBody);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PutAsync(apiSetting.ApiBaseUrl + CRMSection + ticket.TicketId, content);
             if (!response.IsSuccessStatusCode)
                 return Json(new { success = false });
             return Json(new { success = true });

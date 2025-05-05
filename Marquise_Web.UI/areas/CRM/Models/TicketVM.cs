@@ -131,4 +131,8 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public string Value { get; set; }
     }
 
+    public class CloseTicket
+    {
+        public string TicketId { get; set; }
+    }
 }

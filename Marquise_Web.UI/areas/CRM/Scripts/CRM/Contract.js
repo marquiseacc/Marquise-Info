@@ -1,26 +1,27 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    // گرفتن همه ردیف‌های جدول
     const rows = document.querySelectorAll("table tbody tr");
 
     if (rows.length > 0) {
-        // گرفتن اولین ردیف
         const firstRow = rows[0];
         const firstContractId = firstRow.getAttribute('data-contract-id');
-
-        // فراخوانی دیتیل برای اولین ردیف
-        loadQuoteDetail(firstContractId);
+        firstRow.classList.add('selected-row'); // انتخاب اولین ردیف
+        loadContractDetail(firstContractId);
     }
 
-    // افزودن رویداد کلیک برای هر ردیف
     rows.forEach(row => {
         row.addEventListener('click', function () {
+            // حذف انتخاب قبلی از همه ردیف‌ها
+            rows.forEach(r => r.classList.remove('selected-row'));
+
+            // افزودن کلاس به ردیف کلیک‌شده
+            this.classList.add('selected-row');
+
             const contractId = this.getAttribute('data-contract-id');
-            loadQuoteDetail(contractId);
+            loadContractDetail(contractId);
         });
     });
 
-    // تابع مشترک برای دریافت دیتیل
-    function loadQuoteDetail(contractId) {
+    function loadContractDetail(contractId) {
         fetch('/CRM/Contract/Detail?contractId=' + contractId, {
             method: 'GET'
         })

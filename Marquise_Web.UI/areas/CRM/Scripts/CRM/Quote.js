@@ -1,25 +1,26 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    // گرفتن همه ردیف‌های جدول
     const rows = document.querySelectorAll("table tbody tr");
 
     if (rows.length > 0) {
-        // گرفتن اولین ردیف
         const firstRow = rows[0];
         const firstQuoteId = firstRow.getAttribute('data-quote-id');
-
-        // فراخوانی دیتیل برای اولین ردیف
+        firstRow.classList.add('selected-row'); // افزودن کلاس به اولین ردیف
         loadQuoteDetail(firstQuoteId);
     }
 
-    // افزودن رویداد کلیک برای هر ردیف
     rows.forEach(row => {
         row.addEventListener('click', function () {
+            // حذف کلاس انتخاب از همه ردیف‌ها
+            rows.forEach(r => r.classList.remove('selected-row'));
+
+            // افزودن کلاس به ردیف کلیک‌شده
+            this.classList.add('selected-row');
+
             const quoteId = this.getAttribute('data-quote-id');
             loadQuoteDetail(quoteId);
         });
     });
 
-    // تابع مشترک برای دریافت دیتیل
     function loadQuoteDetail(quoteId) {
         fetch('/CRM/PreInvoice/Detail?quoteId=' + quoteId, {
             method: 'GET'

@@ -1,26 +1,27 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    // گرفتن همه ردیف‌های جدول
     const rows = document.querySelectorAll("table tbody tr");
 
     if (rows.length > 0) {
-        // گرفتن اولین ردیف
         const firstRow = rows[0];
-        const firstQuoteId = firstRow.getAttribute('data-invoice-id');
-
-        // فراخوانی دیتیل برای اولین ردیف
-        loadQuoteDetail(firstQuoteId);
+        const firstInvoiceId = firstRow.getAttribute('data-invoice-id');
+        firstRow.classList.add('selected-row'); // رنگ دادن به اولین ردیف
+        loadInvoiceDetail(firstInvoiceId);
     }
 
-    // افزودن رویداد کلیک برای هر ردیف
     rows.forEach(row => {
         row.addEventListener('click', function () {
+            // حذف رنگ قبلی از تمام ردیف‌ها
+            rows.forEach(r => r.classList.remove('selected-row'));
+
+            // رنگ دادن به ردیف کلیک‌شده
+            this.classList.add('selected-row');
+
             const invoiceId = this.getAttribute('data-invoice-id');
-            loadQuoteDetail(quoteId);
+            loadInvoiceDetail(invoiceId);
         });
     });
 
-    // تابع مشترک برای دریافت دیتیل
-    function loadQuoteDetail(invoiceId) {
+    function loadInvoiceDetail(invoiceId) {
         fetch('/CRM/Invoice/Detail?invoiceId=' + invoiceId, {
             method: 'GET'
         })

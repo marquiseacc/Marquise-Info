@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="form-group mb-0 col-6 text-right">
-                            <button type="button" class="btn btn-light btn-block">
+                            <button type="button" class="btn btn-light btn-block close-ticket-btn" data-ticketId="@Model.TicketId">
                                 بستن تیکت
                                 <i class="zmdi zmdi-close"></i>
                             </button>
@@ -110,9 +110,9 @@
                             <div class="row">
                                 @Html.Raw(
                                     HttpUtility.HtmlEncode(answer.Body)
-                                        .Replace("<p>", "")                  // حذف تگ شروع پاراگراف
-                                        .Replace("</p>", "<br /><br />")     // تبدیل تگ پایان پاراگراف به دو خط فاصله
-                                        .Replace("\n", "<br />")             // تبدیل اینترها به <br />
+                                        .Replace("&lt;p&gt;", "")                     
+                                        .Replace("&lt;/p&gt;", "<br /><br />")       
+                                        .Replace("\n", "<br />")                    
                                 )
                             </div>
                         </div>
