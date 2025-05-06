@@ -24,6 +24,11 @@ namespace Utilities.Map
 
             CreateMap<TicketDto, TicketVM>();
             CreateMap<StaffDto, StaffInfo>();
+            CreateMap<TicketDetailDto, TicketDetailVm>();
+            CreateMap<AnswerDto, ShowAnswerVM>();
+            CreateMap<NewTicketVM, NewTicketDto>();
+            CreateMap<AnswerVM, NewAnswerDto>();
+            CreateMap<CloseTicket, CloseTicketDto>();
         }
 
     }

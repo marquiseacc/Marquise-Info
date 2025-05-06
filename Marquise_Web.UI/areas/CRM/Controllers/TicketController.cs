@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using MArquise_Web.Model.DTOs.CRM;
 using Marquise_Web.Service.IService;
 using Utilities.Map;
+using Marquise_Web.Service.Service;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
@@ -58,64 +59,47 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         [HttpGet]
         [System.Web.Http.Route("CRM/Ticket/Detail")]
         public async Task<ActionResult> Detail(string ticketId)
-         {
+        {
             var claimsPrincipal = User as ClaimsPrincipal;
-            var CRMSection = "Ticket/";
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
+            var crmName = claimsPrincipal.Identity.Name;
 
-            // دریافت تیکت
-            var response = await httpClient.GetAsync(apiSetting.ApiBaseUrl + CRMSection + ticketId);
-            if (!response.IsSuccessStatusCode)
+            // دریافت داده از سرویس
+            var ticketDto = await unitOfWork.TicketService.GetTicketByIdAsync(ticketId);
+            if (ticketDto == null)
                 return RedirectToAction("Index", "Dashboard");
 
-            var responseString = await response.Content.ReadAsStringAsync();
-            var jObject = JObject.Parse(responseString);
-            var resultArray = jObject["ResultData"]?["result"] as JArray;
+            var answersDto = await unitOfWork.TicketService.GetAnswersByTicketIdAsync(ticketId);
+            var staffDtos = await unitOfWork.TicketService.GetAllStaffAsync();
 
+            // مپ DTO ها به ViewModel ها
+            var ticketVM = UIDataMapper.Mapper.Map<TicketDetailVm>(ticketDto);
+            var answersVM = UIDataMapper.Mapper.Map<List<ShowAnswerVM>>(answersDto);
+            var staffVMs = UIDataMapper.Mapper.Map<List<StaffInfo>>(staffDtos);
 
-            if (resultArray == null || !resultArray.Any())
-                return RedirectToAction("Index", "Dashboard");
+            // ساخت دیکشنری برای دسترسی سریع به کارشناس‌ها
+            var staffDict = staffVMs.ToDictionary(s => s.UserId, s => s);
 
-            var firstItemJson = resultArray.First().ToString();
-            var ticket = JsonConvert.DeserializeObject<TicketDetailVm>(firstItemJson);
+            // تخصیص کارشناس اصلی تیکت
+            ticketVM.Staff = staffDict.ContainsKey(ticketVM.ITStaffId)
+                ? staffDict[ticketVM.ITStaffId]
+                : null;
 
-
-
-
-            var CRMSection2 = "Tickets/GetTicketBodyWithAttachment/";
-            var responseAnswer = await httpClient.GetAsync(apiSetting.ApiBaseUrl + CRMSection2 + ticket.TicketId.ToString());
-            if (!responseAnswer.IsSuccessStatusCode)
-                return RedirectToAction("Index", "Dashboard");
-            var responseStringAnswer = await responseAnswer.Content.ReadAsStringAsync();
-            var jObjectAnswer = JObject.Parse(responseStringAnswer);
-            var resultArrayAnswer = jObjectAnswer["ResultData"] as JArray;
-
-            if (resultArrayAnswer == null)
-                return RedirectToAction("Index", "Dashboard");
-            var filteredRecords = resultArrayAnswer.ToList();
-            var filteredJson = JsonConvert.SerializeObject(filteredRecords);
-            var answers = JsonConvert.DeserializeObject<List<ShowAnswerVM>>(filteredJson);
-
-            // دریافت لیست کارشناسان
-            var staffResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "users/");
-
-            var staffJson = await staffResponse.Content.ReadAsStringAsync();
-            var staffJObj = JObject.Parse(staffJson);
-            var staffArray = staffJObj["ResultData"] as JArray;
-            var allStaffs = JsonConvert.DeserializeObject<List<StaffInfo>>(staffArray.ToString());
-            ticket.Staff = allStaffs.FirstOrDefault(s => s.UserId == ticket.ITStaffId);
-            // ----------------------------
-            foreach (var answer in answers)
+            // تخصیص اطلاعات کارشناس به پاسخ‌ها
+            foreach (var answer in answersVM)
             {
-                answer.Staff = allStaffs.FirstOrDefault(s => s.UserId == answer.CreateBy);
-                if (answer.Staff.UserId.ToString() == "9ae2b3e1-056e-4331-8e2f-4930a0d115c0")
-                    answer.StaffName = claimsPrincipal.Identity.Name;
-                else answer.StaffName = answer.Staff.FirstName + " " + answer.Staff.LastName;
+                answer.Staff = answer.CreateBy != null && staffDict.ContainsKey(answer.CreateBy)
+                    ? staffDict[answer.CreateBy]
+                    : null;
+
+                answer.StaffName = answer.Staff?.UserId == "9ae2b3e1-056e-4331-8e2f-4930a0d115c0"
+                    ? crmName
+                    : $"{answer.Staff?.FirstName} {answer.Staff?.LastName}";
             }
 
-            ticket.Answers = answers;
-            return View(ticket);
+            ticketVM.Answers = answersVM;
+            return View(ticketVM);
         }
+
 
         // GET: CRM/Ticket
         public async Task<ActionResult> NewTicket()
