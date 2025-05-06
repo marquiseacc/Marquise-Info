@@ -1,15 +1,14 @@
 ﻿using Marquise_Web.UI.areas.CRM.Models;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
-using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using MArquise_Web.Model.DTOs.CRM;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
@@ -75,16 +74,32 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
             var responseString = await response.Content.ReadAsStringAsync();
             var jObject = JObject.Parse(responseString);
-
             var resultArray = jObject["ResultData"]?["result"] as JArray;
-
             if (resultArray == null || !resultArray.Any())
                 return RedirectToAction("Index", "Dashboard");
 
             var firstItemJson = resultArray.First().ToString();
-
             var invoice = JsonConvert.DeserializeObject<InvoiceDetailVm>(firstItemJson);
 
+            var CRMSection2 = "CRM_Payment/";
+            var paymentResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + CRMSection2);
+            if (!paymentResponse.IsSuccessStatusCode)
+                return RedirectToAction("Index", "Dashboard");
+
+            var paymentResponseString = await paymentResponse.Content.ReadAsStringAsync();
+            var paymentJObject = JObject.Parse(paymentResponseString);
+            var paymentResultArray = paymentJObject["ResultData"]?["result"] as JArray;
+
+            if (paymentResultArray == null)
+                return RedirectToAction("Index", "Dashboard");
+
+            var paymentFilteredRecords = paymentResultArray
+                .Where(item => (string)item["InvoiceId"] == invoice.InvoiceId)
+                .ToList();
+
+            var paymentFilteredJson = JsonConvert.SerializeObject(paymentFilteredRecords);
+            var payments = JsonConvert.DeserializeObject<List<PaymentVM>>(paymentFilteredJson);
+            invoice.Payments = payments;
             return PartialView("Detail", invoice);
         }
 

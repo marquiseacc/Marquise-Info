@@ -95,6 +95,7 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public StaffInfo Staff { get; set; }
         public string StaffName { get; set; }
         public DateTime CreateDate { get; set; }
+        public string CreateDatePersian => CreateDate.ToPersianDateTimeFormatted();
         public string Body { get; set; }
     }
 

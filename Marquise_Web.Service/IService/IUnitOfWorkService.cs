@@ -6,6 +6,11 @@ namespace Marquise_Web.Service.IService
     {
         IMessageService MessageService { get; }
         IAuthService AuthService { get; }
+        ITicketService TicketService { get; }
+        IInvoiceService InvoiceService { get; }
+        IQuoteService QuoteService { get; }
+        IAccountService AccountService { get; }
+        IContractService ContractService { get; }   
         Task CompleteAsync();
     }
 

@@ -73,27 +73,21 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">شماره</th>
                         <th scope="col">مبلغ</th>
                         <th scope="col">روش پرداخت</th>
                         <th scope="col">تاریخ</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>000111</td>
-                        <td>36000000</td>
-                        <td>واریز به حساب</td>
-                        <td>1404.01.03</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>000111</td>
-                        <td>36000000</td>
-                        <td>واریز به حساب</td>
-                        <td>1404.01.03</td>
-                    </tr>
+                    @foreach (var payment in Model.Payments)
+                    {
+                        <tr>
+                            <td>@payment.Number</td>
+                            <td>@payment.Amount</td>
+                            <td>@payment.TypeName</td>
+                            <td>@payment.PaymentDatePersian</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

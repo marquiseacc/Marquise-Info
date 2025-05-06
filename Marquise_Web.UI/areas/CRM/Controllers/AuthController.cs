@@ -6,6 +6,7 @@ using System.Web;
 using Marquise_Web.Service.Service;
 using Microsoft.AspNet.Identity.Owin;
 using System;
+using Microsoft.AspNet.Identity;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
@@ -111,5 +112,13 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             }
         }
 
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("SendOtp", "Auth"); // یا هر جایی که باید بعد از خروج برود
+        }
     }
+
 }

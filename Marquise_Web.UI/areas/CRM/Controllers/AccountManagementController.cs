@@ -1,4 +1,5 @@
 ﻿using Marquise_Web.UI.areas.CRM.Models;
+using MArquise_Web.Model.DTOs.CRM;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Net.Http;
@@ -6,7 +7,6 @@ using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Utilities.Map;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {

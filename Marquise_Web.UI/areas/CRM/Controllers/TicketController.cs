@@ -8,6 +8,9 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using MArquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Service.IService;
+using Utilities.Map;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
@@ -15,11 +18,13 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
     {
         private readonly HttpClient httpClient;
         private readonly ApiSetting apiSetting;
+        private readonly IUnitOfWorkService unitOfWork;
 
-        public TicketController(HttpClient httpClient, ApiSetting apiSetting)
+        public TicketController(HttpClient httpClient, ApiSetting apiSetting, IUnitOfWorkService unitOfWork)
         {
             this.httpClient = httpClient;
             this.apiSetting = apiSetting;
+            this.unitOfWork = unitOfWork;
         }
 
         // GET: CRM/Invoice
@@ -33,46 +38,21 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             }
             var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
 
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
-            var CRMSection = "Ticket/";
-            var response = await httpClient.GetAsync(apiSetting.ApiBaseUrl + CRMSection);
-            if (!response.IsSuccessStatusCode)
-                return RedirectToAction("Index", "Dashboard");
+            var ticketDtos = await unitOfWork.TicketService.GetTicketsByApplicantIdAsync(crmId);
+            var staffDtos = await unitOfWork.TicketService.GetAllStaffAsync();
 
-            var responseString = await response.Content.ReadAsStringAsync();
-            var jObject = JObject.Parse(responseString);
-            var resultArray = jObject["ResultData"]?["result"] as JArray;
-            if (resultArray == null)
-                return RedirectToAction("Index", "Dashboard");
-            var filteredRecords = resultArray
-                .Where(item => (string)item["ApplicantId1__C"] == crmId)
-                .ToList();
+            var ticketVMs = UIDataMapper.Mapper.Map<List<TicketVM>>(ticketDtos);
+            var staffDict = UIDataMapper.Mapper.Map<List<StaffInfo>>(staffDtos).ToDictionary(s => s.UserId, s => s);
 
-            var filteredJson = JsonConvert.SerializeObject(filteredRecords);
-            var tickets = JsonConvert.DeserializeObject<List<TicketVM>>(filteredJson);
-
-            //////////////////
-            var staffResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "users/");
-            if (staffResponse.IsSuccessStatusCode)
+            foreach (var ticket in ticketVMs)
             {
-                var staffJson = await staffResponse.Content.ReadAsStringAsync();
-                var staffJObj = JObject.Parse(staffJson);
-                var staffArray = staffJObj["ResultData"] as JArray;
-
-                if (staffArray != null)
+                if (!string.IsNullOrEmpty(ticket.ITStaffId) && staffDict.ContainsKey(ticket.ITStaffId))
                 {
-                    var staffList = JsonConvert.DeserializeObject<List<StaffInfo>>(staffArray.ToString());
-                    var staffDict = staffList.ToDictionary(s => s.UserId, s => s); 
-                    foreach (var ticket in tickets)
-                    {
-                        if (!string.IsNullOrEmpty(ticket.ITStaffId) && staffDict.ContainsKey(ticket.ITStaffId))
-                        {
-                            ticket.Staff = staffDict[ticket.ITStaffId];
-                        }
-                    }
+                    ticket.Staff = staffDict[ticket.ITStaffId];
                 }
             }
-            return View(tickets);
+
+            return View(ticketVMs);
         }
 
         [HttpGet]

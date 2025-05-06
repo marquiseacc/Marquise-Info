@@ -179,13 +179,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IService\IAccountService.cs" />
     <Compile Include="IService\IAuthService.cs" />
+    <Compile Include="IService\IContractService.cs" />
+    <Compile Include="IService\IInvoiceService.cs" />
     <Compile Include="IService\IMessageService.cs" />
+    <Compile Include="IService\IQuoteService.cs" />
     <Compile Include="IService\IService.cs" />
+    <Compile Include="IService\ITicketService.cs" />
     <Compile Include="IService\IUnitOfWorkService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\ApplicationUserManager.cs" />
+    <Compile Include="Service\ContractService.cs" />
+    <Compile Include="Service\InvoiceService.cs" />
     <Compile Include="Service\MessageService.cs" />
+    <Compile Include="Service\QuoteService.cs" />
+    <Compile Include="Service\TicketService.cs" />
     <Compile Include="Service\UnitOfWorkService.cs" />
     <Compile Include="Service\AuthService.cs" />
   </ItemGroup>

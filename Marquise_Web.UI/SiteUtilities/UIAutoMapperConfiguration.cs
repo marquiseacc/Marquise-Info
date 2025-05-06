@@ -3,6 +3,7 @@ using AutoMapper;
 using Marquise_Web.UI.Models;
 using Marquise_Web.Model.DTOs.SiteModel;
 using Marquise_Web.UI.areas.CRM.Models;
+using MArquise_Web.Model.DTOs.CRM;
 
 namespace Utilities.Map
 {
@@ -20,6 +21,9 @@ namespace Utilities.Map
             .ForMember(dest => dest.FileName, opt => opt.Ignore())
             .ForMember(dest => dest.FileType, opt => opt.Ignore())
             .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.ToPersianDateTimeString())); // تبدیل DateTime به string
+
+            CreateMap<TicketDto, TicketVM>();
+            CreateMap<StaffDto, StaffInfo>();
         }
 
     }

@@ -1,14 +1,5 @@
-﻿using AutoMapper;
-using Marquise_Web.UI.areas.CRM.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
@@ -33,6 +24,16 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             }
             
             return View();
+        }
+
+        public async Task<ActionResult> MainDetail()
+        {
+            return PartialView();
+        }
+        
+        public async Task<ActionResult> SupportTimeLine()
+        {
+            return PartialView();
         }
     }
 }

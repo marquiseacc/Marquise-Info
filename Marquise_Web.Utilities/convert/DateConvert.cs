@@ -36,5 +36,19 @@ namespace Utilities.Convert
 
             return persianCalendar.ToDateTime(year, month, day, 0, 0, 0, 0);
         }
-    }
+
+        public static string ToPersianDateTimeFormatted(this DateTime dateTime)
+        {
+           
+            PersianCalendar persianCalendar = new PersianCalendar();
+
+            int year = persianCalendar.GetYear(dateTime);
+            int month = persianCalendar.GetMonth(dateTime);
+            int day = persianCalendar.GetDayOfMonth(dateTime);
+            int hour = dateTime.Hour;
+            int minute = dateTime.Minute;
+
+            return $"{year}/{month:D2}/{day:D2} {hour:D2}:{minute:D2}";
+        }
+}
 }

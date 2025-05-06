@@ -1,4 +1,4 @@
-/*
+﻿/*
 Template Name: Dashtreme Admin
 Author: CODERVENT
 Email: codervent@gmail.com
@@ -4150,5 +4150,114 @@ tr:hover {
 
 .table-row-link {
     cursor: pointer;
+}
+
+
+
+.month-labels {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* ۱۲ ستون برای ۱۲ ماه */
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.month-label {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* نوار زمانی */
+.timeline {
+    display: flex;
+    flex-wrap: nowrap; /* جلوگیری از شکسته شدن به ردیف‌های جدید */
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 5px; /* گرد کردن لبه‌ها */
+}
+
+.day {
+    flex: 0 0 calc(100% / 365); /* هر روز عرض ۱ روز از ۳۶۵ روز */
+    height: 100%; /* تنظیم ارتفاع برای خط‌های نوار زمانی */
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+    .day.active {
+        background-color: rgba(255, 255, 255, 0.75);
+    }
+
+        .day.active:hover {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+    .day:hover {
+        background-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .day.start {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .day.end {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    /* گوشه‌های کل نمودار — حتی اگر غیرفعال باشه */
+    .day.first {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .day.last {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+/* تنظیمات ریسپانسیو */
+@media (max-width: 768px) {
+    .month-label {
+        font-size: 12px;
+    }
+
+    .timeline {
+        height: 50px;
+    }
+
+    .day {
+        height: 15px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .month-label {
+        font-size: 10px;
+    }
+
+    .timeline {
+        height: 40px;
+    }
+
+    .day {
+        height: 10px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
 }
 

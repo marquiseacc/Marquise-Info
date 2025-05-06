@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Marquise_Web.UI.areas.CRM.Models
+namespace MArquise_Web.Model.DTOs.CRM
 {
     public class ApiSetting
     {

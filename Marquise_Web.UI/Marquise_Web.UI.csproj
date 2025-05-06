@@ -432,7 +432,6 @@
     <Compile Include="areas\CRM\Controllers\TicketController.cs" />
     <Compile Include="areas\CRM\CRMAreaRegistration.cs" />
     <Compile Include="areas\CRM\Models\AccountVM.cs" />
-    <Compile Include="areas\CRM\Models\ApiSetting.cs" />
     <Compile Include="areas\CRM\Models\AuthVM.cs" />
     <Compile Include="areas\CRM\Models\ContractVM.cs" />
     <Compile Include="areas\CRM\Models\InvoiceVM.cs" />
@@ -464,6 +463,7 @@
   <ItemGroup>
     <Content Include="areas\CRM\Scripts\CRM\Auth.js" />
     <Content Include="areas\CRM\Scripts\CRM\Contract.js" />
+    <Content Include="areas\CRM\Scripts\CRM\Dashboard.js" />
     <Content Include="areas\CRM\Scripts\CRM\Invoice.js" />
     <Content Include="areas\CRM\Scripts\CRM\Quote.js" />
     <Content Include="areas\CRM\Scripts\CRM\Ticket.js" />
@@ -1251,6 +1251,8 @@
     <Content Include="areas\CRM\Views\PreInvoice\Detail.cshtml" />
     <Content Include="areas\CRM\Views\Invoice\Detail.cshtml" />
     <Content Include="areas\CRM\Views\Contract\Detail.cshtml" />
+    <Content Include="areas\CRM\Views\Dashboard\MainDetail.cshtml" />
+    <Content Include="areas\CRM\Views\Dashboard\SupportTimeLine.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
