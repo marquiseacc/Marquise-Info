@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\10\\source\\repos\\Marquise_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.ui\\areas\\crm\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\areas\\crm\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.service\\iservice\\iticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\iservice\\iticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.ui\\areas\\crm\\controllers\\quotecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\areas\\crm\\controllers\\quotecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.ui\\siteutilities\\uiautomapperconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\siteutilities\\uiautomapperconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.service\\service\\ticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\service\\ticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.ui\\areas\\crm\\views\\shared\\sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\areas\\crm\\views\\shared\\sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.model\\dtos\\crm\\ticketmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|solutionrelative:marquise_web.model\\dtos\\crm\\ticketmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.model\\dtos\\crm\\quotemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|solutionrelative:marquise_web.model\\dtos\\crm\\quotemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.service\\service\\quoteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\service\\quoteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.service\\iservice\\iquoteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\iservice\\iquoteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +34,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TicketController.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Controllers\\TicketController.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.UI\\areas\\CRM\\Controllers\\TicketController.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Controllers\\TicketController.cs",
-              "RelativeToolTip": "Marquise_Web.UI\\areas\\CRM\\Controllers\\TicketController.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAmwGUAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "IQuoteService.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\IService\\IQuoteService.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.Service\\IService\\IQuoteService.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\IService\\IQuoteService.cs",
+              "RelativeToolTip": "Marquise_Web.Service\\IService\\IQuoteService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T13:38:35.922Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UIAutoMapperConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\SiteUtilities\\UIAutoMapperConfiguration.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.UI\\SiteUtilities\\UIAutoMapperConfiguration.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\SiteUtilities\\UIAutoMapperConfiguration.cs",
-              "RelativeToolTip": "Marquise_Web.UI\\SiteUtilities\\UIAutoMapperConfiguration.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T13:38:26.897Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ITicketService.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\IService\\ITicketService.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.Service\\IService\\ITicketService.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\IService\\ITicketService.cs",
-              "RelativeToolTip": "Marquise_Web.Service\\IService\\ITicketService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T13:37:32.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TicketService.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\TicketService.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.Service\\Service\\TicketService.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\TicketService.cs",
-              "RelativeToolTip": "Marquise_Web.Service\\Service\\TicketService.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAmwDAAAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T13:36:49.401Z",
+              "WhenOpened": "2025-05-07T07:18:12.634Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "TicketModel.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\TicketModel.cs",
-              "RelativeDocumentMoniker": "MArquise_Web.Model\\DTOs\\CRM\\TicketModel.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\TicketModel.cs",
-              "RelativeToolTip": "MArquise_Web.Model\\DTOs\\CRM\\TicketModel.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAmwC8AAAAAAAAAAAAAAA==",
+              "Title": "QuoteService.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\QuoteService.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.Service\\Service\\QuoteService.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\QuoteService.cs",
+              "RelativeToolTip": "Marquise_Web.Service\\Service\\QuoteService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T13:34:34.603Z",
+              "WhenOpened": "2025-05-07T07:15:29.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "QuoteModel.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\QuoteModel.cs",
+              "RelativeDocumentMoniker": "MArquise_Web.Model\\DTOs\\CRM\\QuoteModel.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\QuoteModel.cs",
+              "RelativeToolTip": "MArquise_Web.Model\\DTOs\\CRM\\QuoteModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T07:13:27.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Sidebar.cshtml",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Views\\Shared\\Sidebar.cshtml",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\areas\\CRM\\Views\\Shared\\Sidebar.cshtml",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Views\\Shared\\Sidebar.cshtml",
+              "RelativeToolTip": "Marquise_Web.UI\\areas\\CRM\\Views\\Shared\\Sidebar.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-07T07:11:39.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuoteController.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Controllers\\QuoteController.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\areas\\CRM\\Controllers\\QuoteController.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Controllers\\QuoteController.cs",
+              "RelativeToolTip": "Marquise_Web.UI\\areas\\CRM\\Controllers\\QuoteController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T07:11:07.025Z",
               "EditorCaption": ""
             },
             {
@@ -108,6 +112,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UIAutoMapperConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\SiteUtilities\\UIAutoMapperConfiguration.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\SiteUtilities\\UIAutoMapperConfiguration.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\SiteUtilities\\UIAutoMapperConfiguration.cs",
+              "RelativeToolTip": "Marquise_Web.UI\\SiteUtilities\\UIAutoMapperConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:29:01.415Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -29,6 +29,20 @@ namespace Utilities.Map
             CreateMap<NewTicketVM, NewTicketDto>();
             CreateMap<AnswerVM, NewAnswerDto>();
             CreateMap<CloseTicket, CloseTicketDto>();
+
+            CreateMap<AccountDto, AccountVM>();
+            CreateMap<ContactDto, ContactVM>();
+
+            CreateMap<ContractDto, ContractVM>();
+            CreateMap<ContractDto, ContractDetailVm>()
+                .ForMember(dest => dest.tamdidStatus, opt => opt.Ignore());
+
+            CreateMap<InvoiceDto, InvoiceVM>();
+            CreateMap<InvoiceDetailDto, InvoiceDetailVm>();
+            CreateMap<PaymentDto, PaymentVM>();
+
+            CreateMap<QuoteDto, QuoteVM>();
+            CreateMap<QuoteDetailDto, QuoteDetailVm>();
         }
 
     }

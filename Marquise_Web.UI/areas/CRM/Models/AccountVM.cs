@@ -4,21 +4,6 @@ using System.Linq;
 
 namespace Marquise_Web.UI.areas.CRM.Models
 {
-    public class AccountApiResponse
-    {
-        public bool Succeeded { get; set; }
-        public List<string> ResultMessageList { get; set; }
-        public object ResultId { get; set; }
-        public object ErrorCode { get; set; }
-        public AccountResultData ResultData { get; set; }
-    }
-
-    public class AccountResultData
-    {
-        public List<AccountVM> result { get; set; }
-        public object TotalRows { get; set; }
-    }
-
     public class AccountVM
     {
         public Guid AccountId { get; set; }
@@ -34,7 +19,6 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public string management__C { get; set; }
         public string ManagementName { get; set; }
     }
-
     public class Industry
     {
         public string Id { get; set; }
@@ -62,25 +46,10 @@ namespace Marquise_Web.UI.areas.CRM.Models
         }
     }
 
-
-    public class ContactApiResponse
-    {
-        public bool Succeeded { get; set; }
-        public List<string> ResultMessageList { get; set; }
-        public object ResultId { get; set; }
-        public object ErrorCode { get; set; }
-        public ContactResultData ResultData { get; set; }
-    }
-
-    public class ContactResultData
-    {
-        public List<ContactVM> result { get; set; }
-        public object TotalRows { get; set; }
-    }
-
     public class ContactVM
     {
         public Guid ContactId { get; set; }
         public string FullName { get; set; }
     }
+
 }

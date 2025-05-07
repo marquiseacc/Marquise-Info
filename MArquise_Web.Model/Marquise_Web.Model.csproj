@@ -87,7 +87,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\CRM\AccountModel.cs" />
     <Compile Include="DTOs\CRM\ApiSetting.cs" />
+    <Compile Include="DTOs\CRM\ContractModel.cs" />
+    <Compile Include="DTOs\CRM\InvoiceModel.cs" />
+    <Compile Include="DTOs\CRM\QuoteModel.cs" />
     <Compile Include="DTOs\CRM\TicketModel.cs" />
     <Compile Include="DTOs\CRM\UserModel.cs" />
     <Compile Include="DTOs\SiteModel\MessageModel.cs" />

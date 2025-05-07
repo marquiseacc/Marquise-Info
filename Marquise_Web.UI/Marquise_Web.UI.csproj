@@ -423,12 +423,12 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="areas\CRM\ApiControllers\TicketApiController.cs" />
-    <Compile Include="areas\CRM\Controllers\AccountManagementController.cs" />
+    <Compile Include="areas\CRM\Controllers\AccountController.cs" />
     <Compile Include="areas\CRM\Controllers\AuthController.cs" />
     <Compile Include="areas\CRM\Controllers\ContractController.cs" />
     <Compile Include="areas\CRM\Controllers\DashboardController.cs" />
     <Compile Include="areas\CRM\Controllers\InvoiceController.cs" />
-    <Compile Include="areas\CRM\Controllers\PreInvoiceController.cs" />
+    <Compile Include="areas\CRM\Controllers\QuoteController.cs" />
     <Compile Include="areas\CRM\Controllers\TicketController.cs" />
     <Compile Include="areas\CRM\CRMAreaRegistration.cs" />
     <Compile Include="areas\CRM\Models\AccountVM.cs" />
@@ -1246,9 +1246,9 @@
     <Content Include="Content\CRM\assets\fonts\weathericons-regular-webfont.woff2" />
     <Content Include="appsetting.json" />
     <Content Include="areas\CRM\json.json" />
-    <Content Include="areas\CRM\Views\AccountManagement\Index.cshtml" />
-    <Content Include="areas\CRM\Views\PreInvoice\Index.cshtml" />
-    <Content Include="areas\CRM\Views\PreInvoice\Detail.cshtml" />
+    <Content Include="areas\CRM\Views\Account\Index.cshtml" />
+    <Content Include="areas\CRM\Views\Quote\Index.cshtml" />
+    <Content Include="areas\CRM\Views\Quote\Detail.cshtml" />
     <Content Include="areas\CRM\Views\Invoice\Detail.cshtml" />
     <Content Include="areas\CRM\Views\Contract\Detail.cshtml" />
     <Content Include="areas\CRM\Views\Dashboard\MainDetail.cshtml" />
@@ -1393,9 +1393,6 @@
     <Folder Include="areas\CRM\Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="areas\CRM\Views\Account\Index.cshtml" />
-    <Content Include="areas\CRM\Views\Account\ForgetPassword.cshtml" />
-    <Content Include="areas\CRM\Views\Account\SetPassword.cshtml" />
     <Content Include="areas\CRM\Views\Auth\SendOtp.cshtml" />
   </ItemGroup>
   <ItemGroup>
