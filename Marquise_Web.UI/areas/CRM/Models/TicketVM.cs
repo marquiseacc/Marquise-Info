@@ -39,13 +39,12 @@ namespace Marquise_Web.UI.areas.CRM.Models
                     return "انجام شده";
                 else if (Status == "9a5e80a8-cc75-46f1-b158-01d58384d4f7")
                     return "بسته";
+                else if (Status == "9a5e80a8-cc75-46f1-b158-01d58384d4f7")
+                    return "منتظر پاسخ";
+                if (Status == "28cb76a6-d999-4ee3-887c-66792287453d")
+                    return "جدید";
                 else
                     return "نامشخص";
-                //else if (Status == "")
-                //    return "منتظر پاسخ";
-                //if (Status == "")
-                //    return "جدید";
-                /* else*/
             }
         }
     }
@@ -72,19 +71,18 @@ namespace Marquise_Web.UI.areas.CRM.Models
         {
             get
             {
-                if (Status == "3ab6b173-2e12-4e3f-813b-8a14ae01385d")
+                if (Status == "b1af65c3-af6e-48a6-8d1f-b5c09d7f03c9")
                     return "باز";
                 else if (Status == "8804f420-0c59-44d2-a4ca-711af8822c56")
                     return "انجام شده";
                 else if (Status == "9a5e80a8-cc75-46f1-b158-01d58384d4f7")
                     return "بسته";
+                else if (Status == "9a5e80a8-cc75-46f1-b158-01d58384d4f7")
+                    return "منتظر پاسخ";
+                if (Status == "28cb76a6-d999-4ee3-887c-66792287453d")
+                    return "جدید";
                 else
                     return "نامشخص";
-                //else if (Status == "")
-                //    return "منتظر پاسخ";
-                //if (Status == "")
-                //    return "جدید";
-                /* else*/
             }
         }
     }
@@ -95,7 +93,7 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public StaffInfo Staff { get; set; }
         public string StaffName { get; set; }
         public DateTime CreateDate { get; set; }
-        public string CreateDatePersian => CreateDate.ToPersianDateTimeFormatted();
+        public string CreateDatePersian => CreateDate.ToPersianDateTimeString();
         public string Body { get; set; }
     }
 

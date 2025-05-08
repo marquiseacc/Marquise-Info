@@ -24,8 +24,8 @@ namespace Marquise_Web.UI.areas.CRM.Models
                     return "باز";
                 else if (Status == "9e771182-851a-4417-accf-e5e1ea5167b9")
                     return "پرداخت شده";
-                //else if (Status == "")
-                //    return "ابطال";
+                else if (Status == "9d0bce73-e071-4c6f-a64e-1fed6bd7df74")
+                    return "ابطال";
                 else
                     return "نامشخص";
             }
@@ -55,8 +55,8 @@ namespace Marquise_Web.UI.areas.CRM.Models
                     return "باز";
                 else if (Status == "9e771182-851a-4417-accf-e5e1ea5167b9")
                     return "پرداخت شده";
-                //else if (Status == "")
-                //    return "ابطال";
+                else if (Status == "9d0bce73-e071-4c6f-a64e-1fed6bd7df74")
+                    return "ابطال";
                 else
                     return "نامشخص";
             }

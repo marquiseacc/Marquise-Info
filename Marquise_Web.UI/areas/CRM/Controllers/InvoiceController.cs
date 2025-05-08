@@ -24,11 +24,11 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 return RedirectToAction("SendOtp", "Auth");
 
             var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
-            var invoicesDto = await unitOfWork.InvoiceService.GetInvoicesByAccountIdAsync(crmId);
-            if (invoicesDto == null)
+            var invoicesDtos = await unitOfWork.InvoiceService.GetInvoicesByAccountIdAsync(crmId);
+            if (invoicesDtos == null)
                 return RedirectToAction("Index", "Dashboard");
 
-            var invoicesVm = UIDataMapper.Mapper.Map<List<InvoiceVM>>(invoicesDto);
+            var invoicesVm = UIDataMapper.Mapper.Map<List<InvoiceVM>>(invoicesDtos);
             return View(invoicesVm);
         }
 

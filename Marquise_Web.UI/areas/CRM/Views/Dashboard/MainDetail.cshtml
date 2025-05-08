@@ -1,47 +1,49 @@
-﻿<div class="card mt-3">
+﻿@model Marquise_Web.UI.areas.CRM.Models.MainDetailVM
+
+<div class="card mt-3">
     <div class="card-content">
         <div class="row row-group m-0">
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body d-flex justify-content-center flex-column">
-                    <h5 class="text-white mb-0 text-center">
+                    <p class="text-white mb-0 text-center font-16">
                         <i class="bi bi-headset ml-2 mt-3"></i> پشتیبانی
-                    </h5>
+                    </p>
 
                     <p class="mb-0 text-white small-font mt-2 text-center">
-                        فعال
+                        @(Model.SupportStatus ? "فعال" : "غیرفعال")
                     </p>
                 </div>
             </div>
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body d-flex justify-content-center flex-column">
-                    <h5 class="text-white mb-0 text-center">
+                    <p class="text-white mb-0 text-center font-16">
                         <i class="bi bi-ticket ml-2 mt-3"></i> تیکت باز
 
-                    </h5>
+                    </p>
 
                     <p class="mb-0 text-white small-font mt-2 text-center">
-                        ندارد
+                        @(Model.ActiveTicketNumber ==0 ? "تیکت باز ندارید" : $" {Model.ActiveTicketNumber} مورد")
                     </p>
                 </div>
             </div>
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body d-flex justify-content-center flex-column">
-                    <h5 class="text-white mb-0 text-center">
+                    <p class="text-white mb-0 text-center font-16">
                         <i class="bi-file-earmark ml-2 mt-3"></i>فاکتور باز
-                    </h5>
+                    </p>
 
                     <p class="mb-0 text-white small-font mt-2 text-center">
-                        2 مورد
+                        @(Model.ActiveInvoiceNumber ==0 ? "فاکتور باز ندارید" : $" {Model.ActiveInvoiceNumber} مورد")
                     </p>
                 </div>
             </div>
             <div class="col-12 col-lg-6 col-xl-3 border-light">
                 <div class="card-body d-flex justify-content-center flex-column">
-                    <h5 class="text-white mb-0 text-center">
-                        <i class="bi bi-currency-dollar ml-2 mt-3"></i> پرداخت ها
-                    </h5>
+                    <p class="text-white mb-0 text-center font-16">
+                        <i class="bi bi-currency-dollar ml-2 mt-3"></i> پرداخت های شما از ابتدای سال
+                    </p>
                     <p class="mb-0 text-white small-font mt-2 text-center">
-                        500000000
+                        @Model.PaymentSum.ToString("N0")
                     </p>
                 </div>
             </div>

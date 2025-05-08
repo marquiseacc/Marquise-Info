@@ -12,19 +12,19 @@ namespace Marquise_Web.Service.Service
 {
     public class InvoiceService: IInvoiceService
     {
-        private readonly HttpClient _httpClient;
-        private readonly ApiSetting _apiSetting;
+        private readonly HttpClient httpClient;
+        private readonly ApiSetting apiSetting;
 
         public InvoiceService(HttpClient httpClient, ApiSetting apiSetting)
         {
-            _httpClient = httpClient;
-            _apiSetting = apiSetting;
+            this.httpClient = httpClient;
+            this.apiSetting = apiSetting;
         }
 
         public async Task<List<InvoiceDto>> GetInvoicesByAccountIdAsync(string accountId)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiSetting.ApiToken);
-            var response = await _httpClient.GetAsync(_apiSetting.ApiBaseUrl + "WarehouseInvoice/");
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
+            var response = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "WarehouseInvoice/");
             if (!response.IsSuccessStatusCode) return null;
 
             var result = await response.Content.ReadAsStringAsync();
@@ -38,13 +38,17 @@ namespace Marquise_Web.Service.Service
                 .ToList();
 
             var json = JsonConvert.SerializeObject(filtered);
-            return JsonConvert.DeserializeObject<List<InvoiceDto>>(json);
+            var sortedList = JsonConvert
+               .DeserializeObject<List<InvoiceDto>>(json)
+               .OrderByDescending(t => t.CreateDate)
+               .ToList();
+            return sortedList;
         }
 
         public async Task<InvoiceDetailDto> GetInvoiceDetailAsync(string invoiceId)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiSetting.ApiToken);
-            var invoiceResponse = await _httpClient.GetAsync(_apiSetting.ApiBaseUrl + "WarehouseInvoice/" + invoiceId);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
+            var invoiceResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "WarehouseInvoice/" + invoiceId);
             if (!invoiceResponse.IsSuccessStatusCode) return null;
 
             var invoiceContent = await invoiceResponse.Content.ReadAsStringAsync();
@@ -53,24 +57,53 @@ namespace Marquise_Web.Service.Service
             if (invoiceData == null) return null;
 
             var invoice = JsonConvert.DeserializeObject<InvoiceDetailDto>(invoiceData.ToString());
+            invoice.Payments = await GetPaymentsByInvoiceIdAsync(invoice.InvoiceId);
+            return invoice;
+        }
 
-            var paymentResponse = await _httpClient.GetAsync(_apiSetting.ApiBaseUrl + "CRM_Payment/");
-            if (!paymentResponse.IsSuccessStatusCode) return invoice;
+        public async Task<List<PaymentDto>> GetPaymentsByInvoiceIdAsync(string invoiceId)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
+            var paymentResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "CRM_Payment/");
+            if (!paymentResponse.IsSuccessStatusCode) return null;
 
             var paymentContent = await paymentResponse.Content.ReadAsStringAsync();
             var paymentJObject = JObject.Parse(paymentContent);
             var paymentArray = paymentJObject["ResultData"]?["result"] as JArray;
-
+            var Payments = new List<PaymentDto>();
             if (paymentArray != null)
             {
                 var filtered = paymentArray
-                    .Where(x => (string)x["InvoiceId"] == invoice.InvoiceId)
+                    .Where(x => (string)x["InvoiceId"] == invoiceId)
                     .ToList();
                 var json = JsonConvert.SerializeObject(filtered);
-                invoice.Payments = JsonConvert.DeserializeObject<List<PaymentDto>>(json);
+                Payments = JsonConvert.DeserializeObject<List<PaymentDto>>(json);
             }
+            return Payments;
+        }
 
-            return invoice;
+        public async Task<List<PaymentDto>> GetPaymentsByAccountIdAsync(string accountId)
+        {
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
+            var paymentResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "CRM_Payment/");
+            if (!paymentResponse.IsSuccessStatusCode) return null;
+
+            var paymentContent = await paymentResponse.Content.ReadAsStringAsync();
+            var paymentJObject = JObject.Parse(paymentContent);
+            var paymentArray = paymentJObject["ResultData"]?["result"] as JArray;
+            var Payments = new List<PaymentDto>();
+            if (paymentArray != null)
+            {
+                var filtered = paymentArray
+                    .Where(x => (string)x["AccountId"] == accountId)
+                    .ToList();
+                var json = JsonConvert.SerializeObject(filtered);
+                Payments = JsonConvert.DeserializeObject<List<PaymentDto>>(json);
+            }
+            var sortedList = Payments
+               .OrderByDescending(t => t.PaymentDate)
+               .ToList();
+            return sortedList;
         }
     }
 }

@@ -422,6 +422,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="areas\CRM\ApiControllers\DashboardApiController.cs" />
     <Compile Include="areas\CRM\ApiControllers\TicketApiController.cs" />
     <Compile Include="areas\CRM\Controllers\AccountController.cs" />
     <Compile Include="areas\CRM\Controllers\AuthController.cs" />
@@ -434,6 +435,7 @@
     <Compile Include="areas\CRM\Models\AccountVM.cs" />
     <Compile Include="areas\CRM\Models\AuthVM.cs" />
     <Compile Include="areas\CRM\Models\ContractVM.cs" />
+    <Compile Include="areas\CRM\Models\DashboardVM.cs" />
     <Compile Include="areas\CRM\Models\InvoiceVM.cs" />
     <Compile Include="areas\CRM\Models\QuoteVM.cs" />
     <Compile Include="areas\CRM\Models\TicketVM.cs" />
@@ -1251,8 +1253,8 @@
     <Content Include="areas\CRM\Views\Quote\Detail.cshtml" />
     <Content Include="areas\CRM\Views\Invoice\Detail.cshtml" />
     <Content Include="areas\CRM\Views\Contract\Detail.cshtml" />
-    <Content Include="areas\CRM\Views\Dashboard\MainDetail.cshtml" />
     <Content Include="areas\CRM\Views\Dashboard\SupportTimeLine.cshtml" />
+    <Content Include="areas\CRM\Views\Dashboard\MainDetail.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

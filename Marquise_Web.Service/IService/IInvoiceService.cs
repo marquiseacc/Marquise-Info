@@ -8,5 +8,7 @@ namespace Marquise_Web.Service.IService
     {
         Task<List<InvoiceDto>> GetInvoicesByAccountIdAsync(string accountId);
         Task<InvoiceDetailDto> GetInvoiceDetailAsync(string invoiceId);
+        Task<List<PaymentDto>> GetPaymentsByInvoiceIdAsync(string invoiceId);
+        Task<List<PaymentDto>> GetPaymentsByAccountIdAsync(string accountId);
     }
 }

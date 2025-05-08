@@ -22,7 +22,7 @@
     });
 
     function loadQuoteDetail(quoteId) {
-        fetch('/CRM/PreInvoice/Detail?quoteId=' + quoteId, {
+        fetch('/CRM/Quote/Detail?quoteId=' + quoteId, {
             method: 'GET'
         })
             .then(response => response.text())

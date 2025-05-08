@@ -8,13 +8,11 @@ namespace Utilities.Convert
         public static string ToPersianDateTimeString(this DateTime dateTime)
         {
             PersianCalendar persianCalendar = new PersianCalendar();
-            int year = persianCalendar.GetYear(dateTime);
-            int month = persianCalendar.GetMonth(dateTime);
-            int day = persianCalendar.GetDayOfMonth(dateTime);
+            
             int hour = dateTime.Hour;
             int minute = dateTime.Minute;
 
-            return $"{year}/{month:D2}/{day:D2} {hour:D2}:{minute:D2}";
+            return $"{dateTime.Year}/{dateTime.Month}/{dateTime.Day} {hour:D2}:{minute:D2}";
         }
 
         public static string ToPersianDateString(this DateTime dateTime)
@@ -23,9 +21,9 @@ namespace Utilities.Convert
             int year = pc.GetYear(dateTime);
             int month = pc.GetMonth(dateTime);
             int day = pc.GetDayOfMonth(dateTime);
-
-            return $"{year}/{month:D2}/{day:D2}";
+            return $"{year:D4}-{month:D2}-{day:D2}";
         }
+
 
         public static DateTime ToGregorianDate(this string persianDate)
         {
@@ -37,18 +35,5 @@ namespace Utilities.Convert
             return persianCalendar.ToDateTime(year, month, day, 0, 0, 0, 0);
         }
 
-        public static string ToPersianDateTimeFormatted(this DateTime dateTime)
-        {
-           
-            PersianCalendar persianCalendar = new PersianCalendar();
-
-            int year = persianCalendar.GetYear(dateTime);
-            int month = persianCalendar.GetMonth(dateTime);
-            int day = persianCalendar.GetDayOfMonth(dateTime);
-            int hour = dateTime.Hour;
-            int minute = dateTime.Minute;
-
-            return $"{year}/{month:D2}/{day:D2} {hour:D2}:{minute:D2}";
-        }
-}
+    }
 }

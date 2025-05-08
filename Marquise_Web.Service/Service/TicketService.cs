@@ -12,7 +12,7 @@ using System;
 
 namespace Marquise_Web.Service.Service
 {
-    public class TicketService: ITicketService
+    public class TicketService : ITicketService
     {
         private readonly HttpClient httpClient;
         private readonly ApiSetting apiSetting;
@@ -42,7 +42,11 @@ namespace Marquise_Web.Service.Service
                 .ToList();
 
             var filteredJson = JsonConvert.SerializeObject(filteredRecords);
-            return JsonConvert.DeserializeObject<List<TicketDto>>(filteredJson);
+            var sortedList = JsonConvert
+                .DeserializeObject<List<TicketDto>>(filteredJson)
+                .OrderByDescending(t => t.CreateDate) 
+                .ToList();
+            return sortedList;
         }
 
         public async Task<TicketDetailDto> GetTicketByIdAsync(string ticketId)
@@ -70,7 +74,11 @@ namespace Marquise_Web.Service.Service
             var resultArray = jObject["ResultData"] as JArray;
             if (resultArray == null) return new List<AnswerDto>();
 
-            return JsonConvert.DeserializeObject<List<AnswerDto>>(resultArray.ToString());
+            var sortedList = JsonConvert
+               .DeserializeObject<List<AnswerDto>>(resultArray.ToString())
+               .OrderByDescending(t => t.CreateDate)
+               .ToList();
+            return sortedList;
         }
 
         public async Task<List<StaffDto>> GetAllStaffAsync()

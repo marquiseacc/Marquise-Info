@@ -27,7 +27,7 @@
                                             <th scope="row">@invoice.InvoiceNumber</th>
                                             <td>@invoice.Title</td>
                                             <td>@invoice.CreateDatePersian</td>
-                                            <td>@invoice.TotalPrice</td>
+                                            <td>@invoice.TotalPrice.ToString("N0")</td>
                                             <td>@invoice.StatusTitle</td>
                                         </tr>
                                     }

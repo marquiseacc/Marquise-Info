@@ -83,7 +83,7 @@
                     {
                         <tr>
                             <td>@payment.Number</td>
-                            <td>@payment.Amount</td>
+                            <td>@payment.Amount.ToString("N0")</td>
                             <td>@payment.TypeName</td>
                             <td>@payment.PaymentDatePersian</td>
                         </tr>
@@ -97,25 +97,25 @@
             <div class="col-12 col-lg-3">
                 <div class="p-3">
                     <h5 class="mb-0">جمع کل محصولات</h5>
-                    <small class="mb-0">@Model.TotalPrice</small>
+                    <small class="mb-0">@Model.TotalPrice.ToString("N0")</small>
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="p-3">
                     <h5 class="mb-0">مجموع تخفیف</h5>
-                    <small class="mb-0">@Model.TotalDiscount</small>
+                    <small class="mb-0">@Model.TotalDiscount.ToString("N0")</small>
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="p-3">
                     <h5 class="mb-0">مالیات</h5>
-                    <small class="mb-0">@Model.TotalTax</small>
+                    <small class="mb-0">@Model.TotalTax.ToString("N0")</small>
                 </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="p-3">
                     <h5 class="mb-0">مبلغ نهایی</h5>
-                    <small class="mb-0">@Model.FinalAmount</small>
+                    <small class="mb-0">@Model.FinalAmount.ToString("N0")</small>
                 </div>
             </div>
         </div>

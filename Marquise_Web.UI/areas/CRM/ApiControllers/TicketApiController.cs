@@ -1,12 +1,8 @@
 ﻿using Marquise_Web.Service.IService;
 using Marquise_Web.UI.areas.CRM.Models;
 using MArquise_Web.Model.DTOs.CRM;
-using Newtonsoft.Json;
-using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Utilities.Map;

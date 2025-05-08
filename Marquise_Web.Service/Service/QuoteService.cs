@@ -41,7 +41,11 @@ namespace Marquise_Web.Service.Service
                 .ToList();
 
             var serialized = JsonConvert.SerializeObject(filtered);
-            return JsonConvert.DeserializeObject<List<QuoteDto>>(serialized);
+            var sortedList = JsonConvert
+               .DeserializeObject<List<QuoteDto>>(serialized)
+               .OrderByDescending(t => t.CreateDate)
+               .ToList();
+            return sortedList;
         }
 
         public async Task<QuoteDetailDto> GetQuoteDetailAsync(string quoteId)

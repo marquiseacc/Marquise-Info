@@ -1,3 +1,5 @@
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\obj\Debug\Marquise_Web.UI.csproj.AssemblyReference.cache
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\obj\Debug\Marquise_Web.UI.csproj.CoreCompileInputs.cache
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\App.config
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\Marquise_Web.UI.dll.config
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\Marquise_Web.UI.dll
@@ -292,8 +294,6 @@ C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\ru\Microsoft.Data.SqlC
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\tr\Microsoft.Data.SqlClient.resources.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\obj\Debug\Marquise_Web.UI.csproj.AssemblyReference.cache
-C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\obj\Debug\Marquise_Web.UI.csproj.CoreCompileInputs.cache
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\obj\Debug\Marquise.E51EE4DA.Up2Date
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\obj\Debug\Marquise_Web.UI.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\obj\Debug\Marquise_Web.UI.pdb

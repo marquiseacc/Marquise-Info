@@ -1,10 +1,8 @@
 ﻿using Marquise_Web.UI.areas.CRM.Models;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using MArquise_Web.Model.DTOs.CRM;
 using Marquise_Web.Service.Service;
 using Utilities.Map;
 

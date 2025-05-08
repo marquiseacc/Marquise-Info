@@ -40,7 +40,11 @@ namespace Marquise_Web.Service.Service
                 .ToList();
 
             var filteredJson = JsonConvert.SerializeObject(filtered);
-            return JsonConvert.DeserializeObject<List<ContractDto>>(filteredJson);
+            var sortedList = JsonConvert
+               .DeserializeObject<List<ContractDto>>(filteredJson)
+               .OrderByDescending(t => t.CreateDate)
+               .ToList();
+            return sortedList;
         }
 
         public async Task<ContractDto> GetContractById(string contractId)
