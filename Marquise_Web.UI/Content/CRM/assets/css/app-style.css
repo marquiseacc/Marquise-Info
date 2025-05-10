@@ -60,6 +60,9 @@ body {
     font-size: 15px;
     color: rgba(255,255,255,.85);
     letter-spacing: 0.5px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 [tabindex="-1"]:focus {
@@ -762,8 +765,11 @@ body.bg-theme18 {
 }
 
 .logo-icon {
-    width: 35px;
+    width: 25px;
     margin-left: 5px;
+    margin-right: 10px;
+    height: 40px;
+    text-align: center;
 }
 
 
@@ -4153,16 +4159,19 @@ tr:hover {
 }
 
 
+.timeline-container {
+    overflow-x: auto;
+    max-width: 100%;
+    padding-bottom: 10px;
+}
 
 .month-labels {
     display: grid;
     grid-template-columns: repeat(12, minmax(80px, 1fr));
     gap: 10px;
     margin-bottom: 15px;
-    overflow-x: auto;
-    white-space: nowrap;
+    min-width: 800px;
 }
-
 
 .month-label {
     font-weight: bold;
@@ -4174,22 +4183,19 @@ tr:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* نوار زمانی */
 .timeline {
     display: flex;
-    flex-wrap: nowrap; /* جلوگیری از شکسته شدن به ردیف‌های جدید */
-    margin-top: 20px;
-    position: relative;
-    width: 100%;
+    flex-wrap: nowrap;
+    min-width: 800px; 
     height: 50px;
     background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 5px; /* گرد کردن لبه‌ها */
+    border-radius: 5px;
     overflow: hidden;
 }
 
 .day {
-    flex: 0 0 calc(100% / 365); /* هر روز عرض ۱ روز از ۳۶۵ روز */
-    height: 100%; /* تنظیم ارتفاع برای خط‌های نوار زمانی */
+    flex: 0 0 calc(100% / 365);
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.15);
     transition: background-color 0.3s ease;
     cursor: pointer;
@@ -4238,10 +4244,7 @@ tr:hover {
         height: 50px;
     }
 
-    .day {
-        height: 15px;
-    }
-
+    
     h2 {
         font-size: 20px;
     }
@@ -4256,9 +4259,6 @@ tr:hover {
         height: 40px;
     }
 
-    .day {
-        height: 10px;
-    }
 
     h2 {
         font-size: 18px;
@@ -4294,5 +4294,36 @@ tr:hover {
 .inactive-color {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
+.today-color {
+    background-color: rgba(255, 165, 0, 0.7);
+}
+
+.cursor-pointer:hover {
+    cursor: pointer
+}
+
+.day.today {
+    background-color: orange;
+    position: relative;
+}
+
+    .day.today::after {
+        content: "امروز";
+        position: absolute;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(255, 165, 0, 0.7);
+        color: white;
+        font-size: 10px;
+        padding: 2px 5px;
+        border-radius: 6px;
+        white-space: nowrap;
+    }
+    .day.today:hover {
+        background-color: rgba(255, 165, 0, 1);
+    }
+
 
 

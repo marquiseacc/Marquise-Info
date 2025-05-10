@@ -94,28 +94,40 @@
 
         <h6 class="card-title pt-5 pb-2">مجموع مبالغ</h6>
         <div class="row m-0 row-group text-center border border-light-3">
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-2">
                 <div class="p-3">
-                    <h5 class="mb-0">جمع کل محصولات</h5>
+                    <p class="mb-1">جمع کل</p>
                     <small class="mb-0">@Model.TotalPrice.ToString("N0")</small>
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-2">
                 <div class="p-3">
-                    <h5 class="mb-0">مجموع تخفیف</h5>
+                    <p class="mb-1">جمع تخفیف</p>
                     <small class="mb-0">@Model.TotalDiscount.ToString("N0")</small>
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-2">
                 <div class="p-3">
-                    <h5 class="mb-0">مالیات</h5>
+                    <p class="mb-1">مالیات</p>
                     <small class="mb-0">@Model.TotalTax.ToString("N0")</small>
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-2">
                 <div class="p-3">
-                    <h5 class="mb-0">مبلغ نهایی</h5>
+                    <p class="mb-1">مبلغ نهایی</p>
                     <small class="mb-0">@Model.FinalAmount.ToString("N0")</small>
+                </div>
+            </div>
+            <div class="col-12 col-lg-2">
+                <div class="p-3">
+                    <p class="mb-1">جمع پرداخت‌ها</p>
+                    <small class="mb-0">@Model.Paid.ToString("N0")</small>
+                </div>
+            </div>
+            <div class="col-12 col-lg-2">
+                <div class="p-3">
+                    <p class="mb-1">مبلغ باقیمانده</p>
+                    <small class="mb-0">@Model.Rest.ToString("N0")</small>
                 </div>
             </div>
         </div>

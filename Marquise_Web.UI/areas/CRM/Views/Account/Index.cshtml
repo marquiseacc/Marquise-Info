@@ -6,7 +6,7 @@
     var industries = ViewBag.Industries as List<Marquise_Web.UI.areas.CRM.Models.Industry> ?? new List<Marquise_Web.UI.areas.CRM.Models.Industry>();
     var selectedIndustryId = Model?.IndustryCode;
 }
- 
+
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -14,28 +14,28 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form id="update-account-form" class="shake" onsubmit="return handleUpdateAccountFormSubmit(event);" novalidate>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">نام</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="@Model.Name">
+                                    <input id="name" class="form-control" type="text" value="@Model.Name">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">نام مدیریت</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="@Model.ManagementName">
-                                </div>
-                            </div>
-                            
+                            @*<div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">نام مدیریت</label>
+                                    <div class="col-lg-9">
+                                        <input id="managementName" class="form-control" type="text" value="@Model.ManagementName">
+                                    </div>
+                                </div>*@
+
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">صنعت</label>
                                 <div class="col-lg-9">
-                                    <select name="IndustryCode" id="industrySelect" class="form-control">
+                                    <select name="IndustryCode" id="IndustryCode" class="form-control">
                                         <option value="">صنعت کاری خود را انتخاب کنید</option>
                                         @foreach (var industry in industries)
                                         {
-                                            <option value="@industry.Id" selected="@(Model.IndustryCode == industry.Id)">
+                                            <option value="@industry.Id" @(Model.IndustryCode == industry.Id ? "selected" : "")>
                                                 @industry.Title
                                             </option>
                                         }
@@ -45,36 +45,36 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">آدرس</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="@Model.ShippingAddress" placeholder="Street">
+                                    <input id="shippingAddress" class="form-control" type="text" value="@Model.ShippingAddress" placeholder="Street">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-6">
-                                    <input class="form-control" type="text" value="@Model.cituu__C" placeholder="شهر">
+                                    <input id="city" class="form-control" type="text" value="@Model.cituu__C" placeholder="شهر">
                                 </div>
                                 <div class="col-lg-3">
-                                    <input class="form-control" type="text" value="@Model.mahale__C" placeholder="محله">
+                                    <input id="mahale" class="form-control" type="text" value="@Model.mahale__C" placeholder="محله">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">تلفن</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" value="@Model.Telephone" placeholder="02144556677">
+                                    <input id="phone" class="form-control" type="text" value="@Model.Telephone" placeholder="02144556677">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">موبایل</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" value="@Model.Mobile" placeholder="09123456789">
+                                    <input id="mobile" class="form-control" value="@Model.Mobile" placeholder="09123456789">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-9">
-                                    <input type="button" class="btn btn-primary" value="ذخیره اصلاحات">
+                                    <input type="submit" class="btn btn-primary" value="ذخیره اصلاحات">
                                     <input type="reset" class="btn btn-secondary" value="انصراف">
                                 </div>
                             </div>
@@ -85,4 +85,6 @@
         </div>
     </div>
 </div>
-
+@section Scripts{
+    <script src="~/areas//CRM/Scripts/CRM/Account.js"></script>
+}

@@ -40,6 +40,8 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public double TotalPrice { get; set; }
         public double FinalAmount { get; set; }
         public double TotalDiscount { get; set; }
+        public double Rest { get; set; }
+        public double Paid { get; set; }
         public DateTime CreateDate { get; set; }
         public string CreateDatePersian => CreateDate.ToPersianDateTimeString();
         public double TotalTax { get; set; }

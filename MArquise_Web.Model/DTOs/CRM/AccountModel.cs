@@ -8,7 +8,7 @@ namespace MArquise_Web.Model.DTOs.CRM
 {
     public class AccountDto
     {
-        public Guid AccountId { get; set; }
+        public string AccountId { get; set; }
         public string Name { get; set; }
         public string Telephone { get; set; }
         public string IndustryCode { get; set; }
@@ -18,7 +18,7 @@ namespace MArquise_Web.Model.DTOs.CRM
         public string mahale__C { get; set; }
         public string cituu__C { get; set; }
         public string management__C { get; set; }
-        public string ManagementName { get; set; } // پر می‌شه از contact
+        //public string ManagementName { get; set; } // پر می‌شه از contact
     }
 
     public class ContactDto

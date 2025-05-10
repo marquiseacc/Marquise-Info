@@ -10,6 +10,8 @@ namespace MArquise_Web.Model.DTOs.CRM
         public string Title { get; set; }
         public double TotalPrice { get; set; }
         public double FinalAmount { get; set; }
+        public double Rest { get; set; }
+        public double Paid { get; set; }
         public DateTime CreateDate { get; set; }
         public string Status { get; set; }
         public string AccountId { get; set; }

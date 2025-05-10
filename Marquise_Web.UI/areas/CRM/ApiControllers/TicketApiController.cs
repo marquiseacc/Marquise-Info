@@ -11,14 +11,10 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
 {
     public class TicketApiController : ApiController
     {
-        private readonly HttpClient httpClient;
-        private readonly ApiSetting apiSetting;
         private readonly IUnitOfWorkService unitOfWork;
 
-        public TicketApiController(HttpClient httpClient, ApiSetting apiSetting, IUnitOfWorkService unitOfWork)
+        public TicketApiController(IUnitOfWorkService unitOfWork)
         {
-            this.httpClient = httpClient;
-            this.apiSetting = apiSetting;
             this.unitOfWork = unitOfWork;
         }
 

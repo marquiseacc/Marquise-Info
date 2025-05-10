@@ -1,6 +1,5 @@
 ﻿using Marquise_Web.Service.Service;
 using Marquise_Web.UI.areas.CRM.Models;
-using MArquise_Web.Model.DTOs.CRM;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,7 +8,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Utilities.Map;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
@@ -47,6 +45,8 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 if (DateTime.Now >= contract.datestart__C && DateTime.Now <= contract.dateend__C)
                 {
                     detailVM.SupportStatus = true;
+                    var today = DateTime.Now;
+                    detailVM.RestDaies = (contract.dateend__C - today).Days.ToString();
                     continue;
                 }
                 else detailVM.SupportStatus = false;

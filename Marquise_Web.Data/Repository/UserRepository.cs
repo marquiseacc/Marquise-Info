@@ -1,5 +1,6 @@
 ﻿using Marquise_Web.Data.IRepository;
 using Marquise_Web.Model.Entities;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +28,12 @@ namespace Marquise_Web.Data.Repository
             
             return await context.Set<ApplicationUser>()
                 .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
+        }
+        public async Task<ApplicationUser> GetByCRMIdAsync(string crmId)
+        {
+            Guid crmGuid = Guid.Parse(crmId);
+            return await context.Set<ApplicationUser>()
+                .FirstOrDefaultAsync(x => x.CRMId == crmGuid);
         }
     }
 }

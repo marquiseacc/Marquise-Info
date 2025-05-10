@@ -422,6 +422,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="areas\CRM\ApiControllers\AccountApiController.cs" />
     <Compile Include="areas\CRM\ApiControllers\DashboardApiController.cs" />
     <Compile Include="areas\CRM\ApiControllers\TicketApiController.cs" />
     <Compile Include="areas\CRM\Controllers\AccountController.cs" />
@@ -463,6 +464,7 @@
     <Compile Include="App_Start\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="areas\CRM\Scripts\CRM\Account.js" />
     <Content Include="areas\CRM\Scripts\CRM\Auth.js" />
     <Content Include="areas\CRM\Scripts\CRM\Contract.js" />
     <Content Include="areas\CRM\Scripts\CRM\Dashboard.js" />
@@ -1393,7 +1395,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="areas\CRM\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="areas\CRM\Views\Auth\SendOtp.cshtml" />

@@ -1,13 +1,12 @@
 ﻿using Marquise_Web.Service.IService;
 using MArquise_Web.Model.DTOs.CRM;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Marquise_Web.Data.Repository;
 
 namespace Marquise_Web.Service.Service
 {
@@ -15,11 +14,13 @@ namespace Marquise_Web.Service.Service
     {
         private readonly HttpClient _httpClient;
         private readonly ApiSetting _apiSetting;
+        private readonly UnitOfWorkRepository unitOfWork;
 
-        public AccountService(HttpClient httpClient, ApiSetting apiSetting)
+        public AccountService(HttpClient httpClient, ApiSetting apiSetting, UnitOfWorkRepository unitOfWork)
         {
             _httpClient = httpClient;
             _apiSetting = apiSetting;
+            this.unitOfWork = unitOfWork;
         }
 
         public async Task<AccountDto> GetAccountWithManagerAsync(string crmId)
@@ -37,18 +38,7 @@ namespace Marquise_Web.Service.Service
             if (account == null)
                 return null;
 
-            string managerName = null;
-
-            if (!string.IsNullOrEmpty(account.management__C))
-            {
-                var contactResponse = await _httpClient.GetAsync(_apiSetting.ApiBaseUrl + "CRM_Contact/" + account.management__C);
-                if (contactResponse.IsSuccessStatusCode)
-                {
-                    var contactJson = await contactResponse.Content.ReadAsStringAsync();
-                    var contactApiResponse = JsonConvert.DeserializeObject<ContactApiResponse>(contactJson);
-                    managerName = contactApiResponse?.ResultData?.result?.FirstOrDefault()?.FullName;
-                }
-            }
+            
 
             return new AccountDto
             {
@@ -62,8 +52,38 @@ namespace Marquise_Web.Service.Service
                 mahale__C = account.mahale__C,
                 cituu__C = account.cituu__C,
                 management__C = account.management__C,
-                ManagementName = managerName
+                //ManagementName = managerName
             };
+        }
+
+        public async Task<bool> UpdateAccountAsync(AccountDto account)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiSetting.ApiToken);
+
+            // تبدیل مدل به JSON
+            var jsonContent = JsonConvert.SerializeObject(new
+            {
+                AccountId = account.AccountId,
+                Name = account.Name,
+                Telephone = account.Telephone,
+                IndustryCode = account.IndustryCode,
+                ShippingAddress = account.ShippingAddress,
+                Mobile = account.Mobile,
+                shomaremoshtari__C = account.shomaremoshtari__C,
+                mahale__C = account.mahale__C,
+                cituu__C = account.cituu__C,
+                management__C = account.management__C
+            });
+
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync(_apiSetting.ApiBaseUrl + "CRM_Account/" + account.AccountId, content);
+            var user = await unitOfWork.UserRepository.GetByCRMIdAsync(account.AccountId);
+            user.FullName = account.Name;
+            await unitOfWork.UserRepository.UpdateAsync(user);
+            await unitOfWork.CompleteAsync();
+            var user1 = await unitOfWork.UserRepository.GetByCRMIdAsync(account.AccountId);
+            return response.IsSuccessStatusCode;
         }
     }
 }

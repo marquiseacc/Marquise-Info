@@ -7,5 +7,6 @@ namespace Marquise_Web.Data.IRepository
     {
         Task<ApplicationUser> GetByPhoneNumberAsync(string phoneNumber);
         Task<ApplicationUser> GetByIdAsync(string id);
+        Task<ApplicationUser> GetByCRMIdAsync(string crmId);
     }
 }

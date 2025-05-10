@@ -40,7 +40,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 mahale__C = accountDto.mahale__C,
                 cituu__C = accountDto.cituu__C,
                 management__C = accountDto.management__C,
-                ManagementName = accountDto.ManagementName
+                //ManagementName = accountDto.ManagementName
             };
 
             ViewBag.Industries = Industry.GetAll();

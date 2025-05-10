@@ -28,6 +28,7 @@
 
 
     const currentYear = getCurrentJalaliYear();
+    const todayDate = getTodayJalaliDate(); // روز شمسی جاری
 
     fetch('/api/CRM/DashboardApi/SupportTimeLine', {
         method: 'GET',
@@ -73,7 +74,13 @@
                         if (isEnd) dayDiv.classList.add('end');
                     }
 
-                    dayDiv.title = date;
+                    if (date === todayDate) {
+                        dayDiv.classList.add('today');
+                        dayDiv.title = date + ' (امروز)';
+                    } else {
+                        dayDiv.title = date;
+                    }
+
                     timeline.appendChild(dayDiv);
                 });
 
@@ -83,20 +90,21 @@
         });
 
 
-    // توابع عمومی
-    // دریافت سال شمسی جاری از تاریخ میلادی
+    // گرفتن سال شمسی جاری
     function getCurrentJalaliYear() {
         const now = new Date();
-        const gYear = now.getFullYear();
-        const gMonth = now.getMonth() + 1;
-        const gDay = now.getDate();
-
-        // تبدیل میلادی به شمسی
-        const g2j = toJalali(gYear, gMonth, gDay);
-        return g2j.jy;
+        const { jy } = toJalali(now.getFullYear(), now.getMonth() + 1, now.getDate());
+        return jy;
     }
 
-    // تبدیل تاریخ میلادی به شمسی
+    // گرفتن تاریخ شمسی امروز
+    function getTodayJalaliDate() {
+        const now = new Date();
+        const j = toJalali(now.getFullYear(), now.getMonth() + 1, now.getDate());
+        return `${j.jy}-${String(j.jm).padStart(2, '0')}-${String(j.jd).padStart(2, '0')}`;
+    }
+
+    // تبدیل میلادی به شمسی
     function toJalali(gy, gm, gd) {
         const g_d_m = [0, 31, (gy % 4 === 0 && gy % 100 !== 0 || gy % 400 === 0) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         let gy2 = (gm > 2) ? (gy + 1) : gy;

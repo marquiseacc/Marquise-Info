@@ -8,6 +8,7 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public int ActiveTicketNumber { get; set; }
         public int ActiveInvoiceNumber { get; set; }
         public double PaymentSum { get; set; }
+        public string RestDaies { get; set; }
     }
 
     public class SupportTimeVM

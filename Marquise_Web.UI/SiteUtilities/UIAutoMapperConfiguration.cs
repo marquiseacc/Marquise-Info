@@ -30,7 +30,8 @@ namespace Utilities.Map
             CreateMap<AnswerVM, NewAnswerDto>();
             CreateMap<CloseTicket, CloseTicketDto>();
 
-            CreateMap<AccountDto, AccountVM>();
+            CreateMap<AccountDto, AccountVM>()
+                .ReverseMap();
             CreateMap<ContactDto, ContactVM>();
 
             CreateMap<ContractDto, ContractVM>();
