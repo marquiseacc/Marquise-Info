@@ -1255,6 +1255,7 @@
     <Content Include="areas\CRM\Views\Contract\Detail.cshtml" />
     <Content Include="areas\CRM\Views\Dashboard\SupportTimeLine.cshtml" />
     <Content Include="areas\CRM\Views\Dashboard\MainDetail.cshtml" />
+    <Content Include="areas\CRM\Views\Dashboard\LastTicket.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

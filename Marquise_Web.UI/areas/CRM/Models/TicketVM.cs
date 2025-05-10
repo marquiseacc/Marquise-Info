@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 using Utilities.Convert;
 
 namespace Marquise_Web.UI.areas.CRM.Models

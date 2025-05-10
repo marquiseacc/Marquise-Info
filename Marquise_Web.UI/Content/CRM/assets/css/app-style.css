@@ -4156,10 +4156,13 @@ tr:hover {
 
 .month-labels {
     display: grid;
-    grid-template-columns: repeat(12, 1fr); /* ۱۲ ستون برای ۱۲ ماه */
+    grid-template-columns: repeat(12, minmax(80px, 1fr));
     gap: 10px;
     margin-bottom: 15px;
+    overflow-x: auto;
+    white-space: nowrap;
 }
+
 
 .month-label {
     font-weight: bold;
@@ -4181,6 +4184,7 @@ tr:hover {
     height: 50px;
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 5px; /* گرد کردن لبه‌ها */
+    overflow: hidden;
 }
 
 .day {
@@ -4260,4 +4264,35 @@ tr:hover {
         font-size: 18px;
     }
 }
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.color-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.active-color {
+    background-color: rgba(106, 247, 154, 0.9);
+}
+
+.inactive-color {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
 

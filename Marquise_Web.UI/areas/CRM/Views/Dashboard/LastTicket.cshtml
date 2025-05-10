@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Marquise_Web.UI.areas.CRM.Models.TicketVM>
+
+
+<div class="card h-100">
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h5 class="card-title pb-2">آخرین تیکت ها</h5>
+            </div>
+            <div>
+                <a class="ml-lg-3 font-14 cursor-pointer" onclick="location.href='@Url.Action("Index", "Ticket", new { area = "CRM"})'">
+                   مشاهده بیشتر
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table font-14">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">موضوع</th>
+                        <th scope="col">تاریخ</th>
+                        <th scope="col">کارشناس</th>
+                        <th scope="col">مهلت زمانی</th>
+                        <th scope="col">وضعیت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ticket in Model)
+                    {
+
+                        <tr class="table-row-link" onclick="location.href='@Url.Action("Detail", "Ticket", new { area = "CRM", ticketId = ticket.TicketId })'">
+                            <th scope="row">@ticket.TicketNumber</th>
+                            <td>@ticket.Title</td>
+                            <td>@ticket.CreateDatePersian</td>
+                            <td>@ticket.StaffName</td>
+                            <td></td>
+                            <td>@ticket.StatusTitle</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

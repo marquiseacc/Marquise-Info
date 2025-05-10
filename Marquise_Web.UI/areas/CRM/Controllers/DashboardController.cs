@@ -1,11 +1,14 @@
 ﻿using Marquise_Web.Service.Service;
 using Marquise_Web.UI.areas.CRM.Models;
+using MArquise_Web.Model.DTOs.CRM;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Utilities.Map;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
@@ -24,12 +27,10 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         public ActionResult Index()
         {
             var claimsPrincipal = User as ClaimsPrincipal;
-
             if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
             {
                 return RedirectToAction("SendOtp", "Auth");
             }
-
             return View();
         }
 
@@ -71,12 +72,26 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             return PartialView("MainDetail", detailVM);
         }
 
+        [HttpGet]
         public async Task<ActionResult> LastTicket()
         {
             var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
-            var ticketDtos = await unitOfWork.TicketService.GetTicketsByApplicantIdAsync(crmId);
 
-            return PartialView("LastTicket");
+            var ticketDtos = await unitOfWork.TicketService.GetTicketsByApplicantIdAsync(crmId);
+            var staffDtos = await unitOfWork.TicketService.GetAllStaffAsync();
+
+            var ticketVMs = UIDataMapper.Mapper.Map<List<TicketVM>>(ticketDtos).Take(3);
+            var staffDict = UIDataMapper.Mapper.Map<List<StaffInfo>>(staffDtos).ToDictionary(s => s.UserId, s => s);
+
+            foreach (var ticket in ticketVMs)
+            {
+                if (!string.IsNullOrEmpty(ticket.ITStaffId) && staffDict.ContainsKey(ticket.ITStaffId))
+                {
+                    ticket.Staff = staffDict[ticket.ITStaffId];
+                }
+            }
+
+            return PartialView("LastTicket", ticketVMs);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Utilities.Convert
             int hour = dateTime.Hour;
             int minute = dateTime.Minute;
 
-            return $"{dateTime.Year}/{dateTime.Month}/{dateTime.Day} {hour:D2}:{minute:D2}";
+            return $"{dateTime.Year}-{dateTime.Month}-{dateTime.Day} {hour:D2}:{minute:D2}";
         }
 
         public static string ToPersianDateString(this DateTime dateTime)

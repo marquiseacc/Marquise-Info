@@ -11,8 +11,20 @@
             document.getElementById("main-detail").innerHTML = "خطا در بارگذاری .";
         });
 
-    const today = new Date();
-    const currentJalaliYear = parseInt(today.toLocaleDateString('fa-IR').split('/')[0]);
+
+    fetch("/CRM/Dashboard/LastTicket")
+        .then(response => {
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById("last-ticket").innerHTML = html;
+        })
+        .catch(error => {
+            console.log(error);
+            document.getElementById("last-ticket").innerHTML = "خطا در بارگذاری .";
+        });
+
 
 
     const currentYear = getCurrentJalaliYear();
