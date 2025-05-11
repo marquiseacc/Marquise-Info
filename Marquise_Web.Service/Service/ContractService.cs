@@ -13,9 +13,9 @@ namespace Marquise_Web.Service.Service
     public class ContractService: IContractService
     {
         private readonly HttpClient _httpClient;
-        private readonly ApiSetting _apiSetting;
+        private readonly CRMApiSetting _apiSetting;
 
-        public ContractService(HttpClient httpClient, ApiSetting apiSetting)
+        public ContractService(HttpClient httpClient, CRMApiSetting apiSetting)
         {
             _httpClient = httpClient;
             _apiSetting = apiSetting;

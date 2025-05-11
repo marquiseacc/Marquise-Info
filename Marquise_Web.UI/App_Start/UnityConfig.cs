@@ -56,11 +56,20 @@ namespace Marquise_Web.UI
             }, new HierarchicalLifetimeManager());
 
 
-            container.RegisterFactory<ApiSetting>(c => new ApiSetting
+            container.RegisterFactory<CRMApiSetting>(c => new CRMApiSetting
             {
-                ApiBaseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"],
-                ApiToken = ConfigurationManager.AppSettings["ApiToken"]
+                ApiBaseUrl = ConfigurationManager.AppSettings["CrmApiBaseUrl"],
+                ApiToken = ConfigurationManager.AppSettings["CrmApiToken"]
             }, new HierarchicalLifetimeManager());
+
+
+            container.RegisterFactory<SMSApiSetting>(c => new SMSApiSetting
+            {
+                ApiBaseUrl = ConfigurationManager.AppSettings["SmsApiBaseUrl"],
+                ApiKey = ConfigurationManager.AppSettings["SmsApiKey"],
+                ApiTemplateId = ConfigurationManager.AppSettings["SmsApiTemplateId"]
+            }, new HierarchicalLifetimeManager());
+
 
             container.RegisterType<HttpClient>(new HierarchicalLifetimeManager());
 

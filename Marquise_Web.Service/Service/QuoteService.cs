@@ -13,9 +13,9 @@ namespace Marquise_Web.Service.Service
     public class QuoteService: IQuoteService
     {
         private readonly HttpClient httpClient;
-        private readonly ApiSetting apiSetting;
+        private readonly CRMApiSetting apiSetting;
 
-        public QuoteService(HttpClient httpClient, ApiSetting apiSetting)
+        public QuoteService(HttpClient httpClient, CRMApiSetting apiSetting)
         {
             this.httpClient = httpClient;
             this.apiSetting = apiSetting;

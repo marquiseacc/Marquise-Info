@@ -3,50 +3,59 @@
 <div class="card mt-3">
     <div class="card-content">
         <div class="row row-group m-0">
-            <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body d-flex justify-content-center flex-column">
-                    <p class="mb-0 text-center font-16">
-                        <i class="bi bi-headset ml-2 mt-3"></i> پشتیبانی
-                    </p>
 
-                    <p class="mb-0 small-font mt-2 text-center">
-                        @(Model.SupportStatus ? $"  فعال - {Model.RestDaies} باقی مانده " : "غیرفعال")
-                    </p>
-                </div>
+            <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <a href="~/CRM/Contrat/Index">
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <p class="mb-0 text-center font-16">
+                            <i class="bi bi-headset ml-2 mt-3"></i> پشتیبانی
+                        </p>
+                        <p class="mb-0 small-font mt-2 text-center">
+                            @(Model.SupportStatus ? $"  فعال - {Model.RestDaies} روز باقی مانده " : "غیرفعال")
+                        </p>
+                    </div>
+                </a>
             </div>
             <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body d-flex justify-content-center flex-column">
-                    <p class="mb-0 text-center font-16">
-                        <i class="bi bi-ticket ml-2 mt-3"></i> تیکت باز
+                <a href="~/CRM/Ticket/Index">
 
-                    </p>
-
-                    <p class="mb-0 small-font mt-2 text-center">
-                        @(Model.ActiveTicketNumber ==0 ? "تیکت باز ندارید" : $" {Model.ActiveTicketNumber} مورد")
-                    </p>
-                </div>
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <p class="mb-0 text-center font-16">
+                            <i class="bi bi-ticket ml-2 mt-3"></i> تیکت باز
+                        </p>
+                        <p class="mb-0 small-font mt-2 text-center">
+                            @(Model.ActiveTicketNumber ==0 ? "تیکت باز ندارید" : $" {Model.ActiveTicketNumber} مورد")
+                        </p>
+                    </div>
+                </a>
             </div>
             <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body d-flex justify-content-center flex-column">
-                    <p class="mb-0 text-center font-16">
-                        <i class="bi-file-earmark ml-2 mt-3"></i>فاکتور باز
-                    </p>
+                <a href="~/CRM/Invoice/Index">
 
-                    <p class="mb-0 small-font mt-2 text-center">
-                        @(Model.ActiveInvoiceNumber ==0 ? "فاکتور باز ندارید" : $" {Model.ActiveInvoiceNumber} مورد")
-                    </p>
-                </div>
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <p class="mb-0 text-center font-16">
+                            <i class="bi-file-earmark ml-2 mt-3"></i>فاکتور باز
+                        </p>
+                        <p class="mb-0 small-font mt-2 text-center">
+                            @(Model.ActiveInvoiceNumber ==0 ? "فاکتور باز ندارید" : $" {Model.ActiveInvoiceNumber} مورد")
+                        </p>
+                    </div>
+                </a>
             </div>
             <div class="col-12 col-lg-6 col-xl-3 border-light">
-                <div class="card-body d-flex justify-content-center flex-column">
-                    <p class="mb-0 text-center font-16">
-                        <i class="bi bi-currency-dollar ml-2 mt-3"></i> پرداخت های شما از ابتدای سال
-                    </p>
-                    <p class="mb-0 small-font mt-2 text-center">
-                        @Model.PaymentSum.ToString("N0")
-                    </p>
-                </div>
+                <a href="~/CRM/Invoice/Index">
+
+                    <div class="card-body d-flex justify-content-center flex-column">
+                        <p class="mb-0 text-center font-16">
+                            <i class="bi bi-currency-dollar ml-2 mt-3"></i> پرداخت های شما از ابتدای سال
+                        </p>
+                        <p class="mb-0 small-font mt-2 text-center">
+                            @Model.PaymentSum.ToString("N0")
+                        </p>
+                    </div>
+                </a>
             </div>
+
         </div>
     </div>
 </div>

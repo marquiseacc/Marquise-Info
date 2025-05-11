@@ -13,10 +13,10 @@ namespace Marquise_Web.Service.Service
     public class AccountService: IAccountService
     {
         private readonly HttpClient _httpClient;
-        private readonly ApiSetting _apiSetting;
+        private readonly CRMApiSetting _apiSetting;
         private readonly UnitOfWorkRepository unitOfWork;
 
-        public AccountService(HttpClient httpClient, ApiSetting apiSetting, UnitOfWorkRepository unitOfWork)
+        public AccountService(HttpClient httpClient, CRMApiSetting apiSetting, UnitOfWorkRepository unitOfWork)
         {
             _httpClient = httpClient;
             _apiSetting = apiSetting;

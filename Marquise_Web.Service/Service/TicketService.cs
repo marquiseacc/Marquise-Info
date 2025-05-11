@@ -15,9 +15,9 @@ namespace Marquise_Web.Service.Service
     public class TicketService : ITicketService
     {
         private readonly HttpClient httpClient;
-        private readonly ApiSetting apiSetting;
+        private readonly CRMApiSetting apiSetting;
 
-        public TicketService(HttpClient httpClient, ApiSetting apiSetting)
+        public TicketService(HttpClient httpClient, CRMApiSetting apiSetting)
         {
             this.httpClient = httpClient;
             this.apiSetting = apiSetting;

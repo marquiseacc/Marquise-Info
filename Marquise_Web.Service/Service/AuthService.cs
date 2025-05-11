@@ -9,6 +9,10 @@ using Microsoft.AspNet.Identity;
 using System.Web;
 using System.Collections.Generic;
 using System.Security.Claims;
+using MArquise_Web.Model.DTOs.CRM;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 
 namespace Marquise_Web.Service.Service
 {
@@ -16,16 +20,16 @@ namespace Marquise_Web.Service.Service
     {
         private readonly IUnitOfWorkRepository unitOfWork;
         private readonly ApplicationUserManager userManager;
-        private readonly ISmsSender smsSender;
+        private readonly SMSApiSetting apiSetting;
 
         public AuthService(
             IUnitOfWorkRepository unitOfWork,
             ApplicationUserManager userManager,
-            ISmsSender smsSender)
+            SMSApiSetting apiSetting)
         {
             this.unitOfWork = unitOfWork;
             this.userManager = userManager;
-            this.smsSender = smsSender;
+            this.apiSetting = apiSetting;
         }
 
         public ApplicationSignInManager GetSignInManager()
@@ -46,27 +50,46 @@ namespace Marquise_Web.Service.Service
         // ارسال کد OTP
         public async Task<bool> SendOtpAsync(string phoneNumber)
         {
-            try
-            {
-                var user = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
-                if (user == null)
-                    return false;
 
-                // ایجاد کد OTP
-                var otpCode = "123456";
+            var user = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
+            if (user == null)
+                return false;
+
+            // ایجاد کد OTP
+            var otpCode = new Random().Next(100000, 999999).ToString();
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("x-api-key", apiSetting.ApiKey);
+
+            var requestModel = new
+            {
+                mobile = phoneNumber,
+                templateId = apiSetting.ApiTemplateId, // شناسه قالب صحیح از پنل
+                parameters = new[]
+                {
+                new { name = "Code", value = otpCode.ToString() }
+            }
+            };
+
+            var json = JsonSerializer.Serialize(requestModel);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return false;
+            }
+            else
+            {
                 user.OtpCode = otpCode;
                 user.OtpExpiration = DateTime.UtcNow.AddMinutes(2);
+                await unitOfWork.UserRepository.UpdateAsync(user);
+                var user1 = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
+                await unitOfWork.UserRepository.SaveAsync();
 
-                await unitOfWork.CompleteAsync();
 
+                return true;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            // ارسال پیامک
-            //await smsSender.SendSmsAsync(user.PhoneNumber, $"کد ورود شما: {otpCode}");
-            return true;
         }
 
         public async Task<AuthUserDto> VerifyOtpAsync(string phoneNumber, string code)
@@ -93,7 +116,7 @@ namespace Marquise_Web.Service.Service
             user.OtpCode = null;
             user.OtpExpiration = null;
 
-            
+
             // ذخیره سازی تغییرات و اعمال آنها در دیتابیس
             await unitOfWork.CompleteAsync();
 

@@ -1249,7 +1249,6 @@
     <Content Include="Content\CRM\assets\fonts\weathericons-regular-webfont.woff" />
     <Content Include="Content\CRM\assets\fonts\weathericons-regular-webfont.woff2" />
     <Content Include="appsetting.json" />
-    <Content Include="areas\CRM\json.json" />
     <Content Include="areas\CRM\Views\Account\Index.cshtml" />
     <Content Include="areas\CRM\Views\Quote\Index.cshtml" />
     <Content Include="areas\CRM\Views\Quote\Detail.cshtml" />

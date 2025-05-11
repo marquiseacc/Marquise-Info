@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using System.Web;
 using Marquise_Web.Service.Service;
 using Microsoft.AspNet.Identity.Owin;
-using System;
 using Microsoft.AspNet.Identity;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
@@ -32,7 +31,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 if (!ModelState.IsValid)
                     return Json(new { success = false, message = "اطلاعات ورودی نامعتبر است." });
 
-                var phoneNumber = "98" + model.PhoneNumber;
+                var phoneNumber = model.PhoneNumber;
                 var result = await unitOfWork.AuthService.SendOtpAsync(phoneNumber);
                 if (!result)
                 {
@@ -71,7 +70,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             if (!ModelState.IsValid)
                 return Json(new { success = false, message = "ورودی نامعتبر است." });
 
-             var phoneNumber = "98" + model.PhoneNumber;
+             var phoneNumber = model.PhoneNumber;
             var userDto = await unitOfWork.AuthService.VerifyOtpAsync(phoneNumber, model.Code);
             if (userDto == null)
                 return Json(new { success = false, message = "کد اشتباه یا منقضی شده است." });

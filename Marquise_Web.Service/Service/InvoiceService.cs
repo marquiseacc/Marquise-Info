@@ -13,9 +13,9 @@ namespace Marquise_Web.Service.Service
     public class InvoiceService: IInvoiceService
     {
         private readonly HttpClient httpClient;
-        private readonly ApiSetting apiSetting;
+        private readonly CRMApiSetting apiSetting;
 
-        public InvoiceService(HttpClient httpClient, ApiSetting apiSetting)
+        public InvoiceService(HttpClient httpClient, CRMApiSetting apiSetting)
         {
             this.httpClient = httpClient;
             this.apiSetting = apiSetting;
