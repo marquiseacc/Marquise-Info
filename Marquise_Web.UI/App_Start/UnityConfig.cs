@@ -17,8 +17,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web;
 using System;
 using Unity.AspNet.Mvc;
-using Marquise_Web.Utilities.Messaging;
-using MArquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Model.DTOs.CRM;
 
 
 namespace Marquise_Web.UI
@@ -42,9 +41,6 @@ namespace Marquise_Web.UI
             container.RegisterType<IQuoteService, QuoteService>(new HierarchicalLifetimeManager());
             container.RegisterType<IAccountService, AccountService>(new HierarchicalLifetimeManager());
             container.RegisterType<IContractService,  ContractService>(new HierarchicalLifetimeManager());
-
-            container.RegisterType<ISmsSender, SmsSender>(new HierarchicalLifetimeManager());
-
 
             container.RegisterFactory<SmtpSettings>(c => new SmtpSettings
             {

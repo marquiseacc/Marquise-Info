@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Marquise_Web.Model.DTOs.CRM;
 using Marquise_Web.Model.Entities;
 
 namespace Marquise_Web.Data.IRepository
@@ -8,5 +10,7 @@ namespace Marquise_Web.Data.IRepository
         Task<ApplicationUser> GetByPhoneNumberAsync(string phoneNumber);
         Task<ApplicationUser> GetByIdAsync(string id);
         Task<ApplicationUser> GetByCRMIdAsync(string crmId);
+        Task<int> CountRecentAsync(string phoneNumber, DateTime since);
+        Task AddOtpRequestLogAsync(OtpRequestLog log);
     }
 }

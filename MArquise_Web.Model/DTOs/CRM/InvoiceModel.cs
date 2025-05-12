@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MArquise_Web.Model.DTOs.CRM
+namespace Marquise_Web.Model.DTOs.CRM
 {
     public class InvoiceDto
     {

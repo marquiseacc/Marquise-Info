@@ -152,6 +152,14 @@
     <Compile Include="Migrations\202504270741589_RenameIdentityTables.Designer.cs">
       <DependentUpon>202504270741589_RenameIdentityTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505120937306_AddOtpRequestLogsTableToSecuritySchema.cs" />
+    <Compile Include="Migrations\202505120937306_AddOtpRequestLogsTableToSecuritySchema.Designer.cs">
+      <DependentUpon>202505120937306_AddOtpRequestLogsTableToSecuritySchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202505120958464_AddOtpRequestLogsToApplicationUser.cs" />
+    <Compile Include="Migrations\202505120958464_AddOtpRequestLogsToApplicationUser.Designer.cs">
+      <DependentUpon>202505120958464_AddOtpRequestLogsToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\MessageRepository.cs" />
@@ -208,6 +216,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202504270741589_RenameIdentityTables.resx">
       <DependentUpon>202504270741589_RenameIdentityTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505120937306_AddOtpRequestLogsTableToSecuritySchema.resx">
+      <DependentUpon>202505120937306_AddOtpRequestLogsTableToSecuritySchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505120958464_AddOtpRequestLogsToApplicationUser.resx">
+      <DependentUpon>202505120958464_AddOtpRequestLogsToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,6 +9,7 @@
 
 namespace Marquise_Web.Data
 {
+    using Marquise_Web.Model.DTOs.CRM;
     using Marquise_Web.Model.Entities;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
@@ -51,8 +52,12 @@ namespace Marquise_Web.Data
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles", "Security");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins", "Security");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims", "Security");
+            modelBuilder.Entity<OtpRequestLog>().ToTable("OtpRequestLogs", "Security");
 
-
+            modelBuilder.Entity<OtpRequestLog>()
+            .HasRequired(o => o.User) 
+            .WithMany(u => u.OtpRequestLogs) 
+            .HasForeignKey(o => o.UserId);
         }
     }
 

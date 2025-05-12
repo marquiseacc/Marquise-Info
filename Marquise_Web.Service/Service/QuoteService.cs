@@ -1,5 +1,5 @@
 ﻿using Marquise_Web.Service.IService;
-using MArquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Model.DTOs.CRM;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;

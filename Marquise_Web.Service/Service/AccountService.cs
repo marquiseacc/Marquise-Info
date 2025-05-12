@@ -1,5 +1,5 @@
 ﻿using Marquise_Web.Service.IService;
-using MArquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Model.DTOs.CRM;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Net.Http.Headers;

@@ -5,7 +5,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Marquise_Web.Data;
-using System.Web;
 
 namespace Marquise_Web.Service.Service
 {

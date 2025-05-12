@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MArquise_Web.Model.DTOs.CRM
+namespace Marquise_Web.Model.DTOs.CRM
 {
     public class ContractDto
     {

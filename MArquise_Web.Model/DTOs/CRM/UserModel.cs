@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Marquise_Web.Model.DTOs.CRM
 {

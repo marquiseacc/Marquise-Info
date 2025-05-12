@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using MArquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Model.DTOs.CRM;
 using Marquise_Web.Service.IService;
 using Utilities.Map;
 

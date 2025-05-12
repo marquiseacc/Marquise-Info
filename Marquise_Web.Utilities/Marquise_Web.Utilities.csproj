@@ -60,8 +60,7 @@
     <Compile Include="convert\DateConvert.cs" />
     <Compile Include="convert\PasswordHelper.cs" />
     <Compile Include="map\AutoMapperConfiguration.cs" />
-    <Compile Include="Messaging\ISmsSender.cs" />
-    <Compile Include="Messaging\SmsSender.cs" />
+    <Compile Include="Messaging\OtpHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

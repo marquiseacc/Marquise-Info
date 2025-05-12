@@ -38,7 +38,6 @@ function handleSentOTPFormSubmit(event) {
         var formData = new FormData();
         formData.append("PhoneNumber", phoneNumber);
         
-
         fetch('/CRM/Auth/SendOtp', {
             method: 'POST',
             body: formData
@@ -48,33 +47,44 @@ function handleSentOTPFormSubmit(event) {
                 return response.json();
             })
             .then(data => {
-                if (data.success) {
-                    window.location.href = data.redirectUrl;
+                if (data.IsSuccess) {
+                    // موفقیت در ارسال کد
+                    window.location.href = data.Data.redirectUrl;
                 }
-                else if (data.redirectUrl) {
+                else if (data.Data && data.Data.redirectUrl) {
+                    // مثلا کاربر مجاز به دریافت کد نیست => نمایش پیام و ریدایرکت بعد از تأیید
                     Swal.fire({
                         title: 'پیام',
-                        text: 'لطفا برای پیوستن به همراهان مارکیز از طریق صفحه تماس با ما با تیم مارکیز در ارتباط باشید.',
+                        text: data.Message || 'خطایی رخ داده است.',
                         icon: 'info',
                         confirmButtonText: 'باشه'
                     }).then(() => {
-                        // فقط بعد از تایید کاربر، ریدایرکت انجام بشه
-                        window.location.href = decodeURIComponent(data.redirectUrl);
+                        window.location.href = decodeURIComponent(data.Data.redirectUrl);
                     });
-                    
                 }
                 else {
-                    alert(data.message || "خطایی رخ داده است", 'error');
+                    // نمایش پیام خطا بدون ریدایرکت
+                    Swal.fire({
+                        title: 'خطا',
+                        text: data.Message || 'خطایی رخ داده است.',
+                        icon: 'error',
+                        confirmButtonText: 'باشه'
+                    });
                 }
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("لطفا مجددا تلاش کنید.", 'error');
+                Swal.fire({
+                    title: 'خطا',
+                    text: 'لطفا مجدداً تلاش کنید.',
+                    icon: 'error',
+                    confirmButtonText: 'باشه'
+                });
             });
+
     }
 
 }
-
 function handleVerifyOTPFormSubmit(event) {
     event.preventDefault();
 
@@ -102,40 +112,132 @@ function handleVerifyOTPFormSubmit(event) {
         }
     });
 
-    if (isValid) {
-        var formData = new FormData();
-        formData.append("PhoneNumber", phoneNumber);
-        formData.append("Code", otpCode);
+    if (!isValid) return;
 
-        fetch('/CRM/Auth/VerifyOtp', {
-            method: 'POST',
-            body: formData
+    const formData = new FormData();
+    formData.append("PhoneNumber", phoneNumber);
+    formData.append("Code", otpCode);
+
+    fetch('/CRM/Auth/VerifyOtp', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => {
+            if (!response.ok) throw new Error("HTTP error");
+            return response.json();
         })
-            .then(response => {
-                if (!response.ok) throw new Error("HTTP error");
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    Swal.fire({
-                        title: 'پیام',
-                        text: 'ورود با موفقیت انجام شد.',
-                        icon: 'success',
-                        confirmButtonText: 'باشه'
-                    }).then(() => {
-                        window.location.href = '/CRM/Dashboard/Index';
-                    });
-                } else {
-                    alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("لطفا مجددا تلاش کنید.", 'error');
+        .then(data => {
+            if (data.IsSuccess) {
+                Swal.fire({
+                    title: 'موفق',
+                    text: data.Message || 'ورود با موفقیت انجام شد.',
+                    icon: 'success',
+                    confirmButtonText: 'باشه'
+                }).then(() => {
+                    const redirectUrl = data.Data?.redirectUrl || '/CRM/Dashboard/Index';
+                    window.location.href = redirectUrl;
+                });
+            } else {
+                Swal.fire({
+                    title: 'خطا',
+                    text: data.Message || "کد اشتباه یا منقضی شده است.",
+                    icon: 'error',
+                    confirmButtonText: 'باشه'
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            Swal.fire({
+                title: 'خطا',
+                text: "لطفا مجددا تلاش کنید.",
+                icon: 'error',
+                confirmButtonText: 'باشه'
             });
+        });
+}
+
+
+// تابع ارسال مجدد OTP
+function sendOtpAgain() {
+    const phoneNumber = document.getElementById("PhoneNumber").value;
+
+    fetch('/CRM/Auth/SendOtp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ PhoneNumber: phoneNumber })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.IsSuccess) {
+                Swal.fire({
+                    title: 'ارسال مجدد',
+                    text: data.Message || 'کد یک‌بار مصرف مجدداً ارسال شد.',
+                    icon: 'info',
+                    confirmButtonText: 'باشه'
+                });
+                startTimer();
+                document.getElementById("resendButton").style.display = "none";
+            } else {
+                Swal.fire({
+                    title: 'خطا',
+                    text: data.Message || 'ارسال مجدد با مشکل مواجه شد.',
+                    icon: 'error',
+                    confirmButtonText: 'باشه'
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                title: 'خطا',
+                text: "ارتباط با سرور برقرار نشد.",
+                icon: 'error',
+                confirmButtonText: 'باشه'
+            });
+        });
+}
+
+
+// تایمر OTP
+let timeRemaining = 2 * 60;
+let timerInterval;
+
+function updateTimerDisplay() {
+    let timerElement = document.getElementById("timer");
+
+    if (!timerElement) {
+        clearInterval(timerInterval); // تایمر را متوقف کنید چون عنصر وجود ندارد
+        return;
     }
 
+    let minutes = Math.floor(timeRemaining / 60);
+    let seconds = timeRemaining % 60;
+    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+    if (timeRemaining <= 0) {
+        clearInterval(timerInterval);
+        timerElement.textContent = "زمان تمام شد";
+
+        const resendButton = document.getElementById("resendButton");
+        if (resendButton) {
+            resendButton.style.display = "inline-block";
+        }
+    }
+
+    timeRemaining--;
 }
+
+
+function startTimer() {
+    timeRemaining = 2 * 60;
+    clearInterval(timerInterval);
+    updateTimerDisplay(); // برای نمایش اولیه
+    timerInterval = setInterval(updateTimerDisplay, 1000);
+}
+
+window.onload = function () {
+    startTimer();
+};
 
 
 function getCustomErrorMessage(input) {
@@ -149,77 +251,3 @@ function getCustomErrorMessage(input) {
 }
 
 
-function fetchCrmData() {
-    return fetch('/CRM/Account/GetData/')
-        .then(response => {
-            if (!response.ok) throw new Error("Failed to fetch CRM data");
-            return response.json();
-        })
-        .then(data => {
-            return data; // داده‌های CRM برگشتی
-        })
-        .catch(error => {
-            console.error("CRM Data Fetch Error:", error);
-            return null;
-        });
-}
-
-
-
-
-    let timeRemaining = 2 * 60; // 2 دقیقه به ثانیه
-    let timerInterval;
-
-    // تابع برای به روز رسانی زمان تایمر
-    function updateTimerDisplay() {
-        let minutes = Math.floor(timeRemaining / 60);
-        let seconds = timeRemaining % 60;
-        document.getElementById("timer").textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-
-        if (timeRemaining <= 0) {
-            clearInterval(timerInterval);
-            document.getElementById("timer").textContent = "زمان تمام شد";
-            document.getElementById("resendButton").style.display = "inline-block"; // نمایش دکمه ارسال مجدد
-        }
-
-        timeRemaining--;
-    }
-
-    // شروع تایمر
-    function startTimer() {
-        timeRemaining = 2 * 60; // بازنشانی تایمر
-        clearInterval(timerInterval); // تایمر قبلی را متوقف می‌کنیم
-        timerInterval = setInterval(updateTimerDisplay, 1000); // تایمر جدید را شروع می‌کنیم
-    }
-
-    // ارسال کد مجدد
-    function sendOtpAgain() {
-        const phoneNumber = document.getElementById("PhoneNumber").value;  // شماره تماس مدل را به اینجا منتقل کنید
-
-        // ارسال درخواست برای ارسال کد OTP مجدد به سرور با AJAX
-        fetch('/CRM/Auth/SendOtp', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ PhoneNumber: phoneNumber })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("کد مجدد ارسال شد.", 'info');
-                startTimer(); // تایمر را دوباره شروع می‌کنیم
-                document.getElementById("resendButton").style.display = "none"; // مخفی کردن دکمه ارسال مجدد
-            } else {
-                alert("خطا در ارسال کد مجدد.", 'error');
-            }
-        })
-        .catch(error => {
-            alert("خطا در ارتباط با سرور.", 'error');
-        });
-    }
-
-    // شروع تایمر در بارگذاری صفحه
-    window.onload = function() {
-        startTimer();
-    };

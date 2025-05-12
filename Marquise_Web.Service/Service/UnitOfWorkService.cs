@@ -1,6 +1,5 @@
 ﻿using Marquise_Web.Data.IRepository;
 using Marquise_Web.Service.IService;
-using Marquise_Web.Utilities.Messaging;
 using System.Threading.Tasks;
 
 namespace Marquise_Web.Service.Service
@@ -8,10 +7,9 @@ namespace Marquise_Web.Service.Service
     public class UnitOfWorkService : IUnitOfWorkService
     {
         private readonly IUnitOfWorkRepository unitOfWork;
-        private readonly ApplicationSignInManager signInManager; 
-        private readonly ISmsSender smsSender;
+        private readonly ApplicationSignInManager signInManager;
 
-        // این وابستگی‌ها از DI تزریق می‌شوند
+        
         public IMessageService MessageService { get; }
         public IAuthService AuthService { get; }
 
@@ -29,7 +27,6 @@ namespace Marquise_Web.Service.Service
         public UnitOfWorkService(
             IUnitOfWorkRepository unitOfWork,
             ApplicationSignInManager signInManager, 
-            ISmsSender smsSender,
             IMessageService messageService,
             IAuthService authService,
             ITicketService ticketService,
@@ -40,7 +37,6 @@ namespace Marquise_Web.Service.Service
         {
             this.unitOfWork = unitOfWork;
             this.signInManager = signInManager;
-            this.smsSender = smsSender;
             this.MessageService = messageService;
             this.AuthService = authService;
             this.TicketService = ticketService;

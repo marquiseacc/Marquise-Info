@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MArquise_Web.Model.DTOs.CRM
+namespace Marquise_Web.Model.DTOs.CRM
 {
     public class AccountDto
     {

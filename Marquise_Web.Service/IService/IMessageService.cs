@@ -1,6 +1,4 @@
-﻿
-
-using Marquise_Web.Model.DTOs.SiteModel;
+﻿using Marquise_Web.Model.DTOs.SiteModel;
 
 namespace Marquise_Web.Service.IService
 {

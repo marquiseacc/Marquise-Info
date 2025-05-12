@@ -17,7 +17,7 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public string PhoneNumber { get; set; }
 
         [Required]
-        [StringLength(6, MinimumLength = 6)]
+        [StringLength(5, MinimumLength = 5)]
         public string Code { get; set; }
     }
 

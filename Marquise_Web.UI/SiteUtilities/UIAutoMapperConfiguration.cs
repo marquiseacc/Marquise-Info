@@ -3,7 +3,7 @@ using AutoMapper;
 using Marquise_Web.UI.Models;
 using Marquise_Web.Model.DTOs.SiteModel;
 using Marquise_Web.UI.areas.CRM.Models;
-using MArquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Model.DTOs.CRM;
 
 namespace Utilities.Map
 {

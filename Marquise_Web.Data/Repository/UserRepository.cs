@@ -1,4 +1,5 @@
 ﻿using Marquise_Web.Data.IRepository;
+using Marquise_Web.Model.DTOs.CRM;
 using Marquise_Web.Model.Entities;
 using System;
 using System.Data.Entity;
@@ -35,5 +36,28 @@ namespace Marquise_Web.Data.Repository
             return await context.Set<ApplicationUser>()
                 .FirstOrDefaultAsync(x => x.CRMId == crmGuid);
         }
+
+        public async Task<int> CountRecentAsync(string phoneNumber, DateTime since)
+        {
+            var user = await context.Set<ApplicationUser>()
+                .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
+            if (user == null)
+                return 0;
+
+            return user.OtpRequestLogs.Count(r => r.RequestTime >= since);
+        }
+
+
+        public async Task AddOtpRequestLogAsync(OtpRequestLog log)
+        {
+            var user = await context.Set<ApplicationUser>()
+                .FirstOrDefaultAsync(u => u.PhoneNumber == log.PhoneNumber);
+            if (user != null)
+            {
+                user.OtpRequestLogs.Add(log);
+                await context.SaveChangesAsync();
+            }
+        }
+
     }
 }

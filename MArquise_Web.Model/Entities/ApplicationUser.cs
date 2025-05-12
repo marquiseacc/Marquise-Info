@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Marquise_Web.Model.DTOs.CRM;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 
 namespace Marquise_Web.Model.Entities
 {
@@ -10,6 +12,8 @@ namespace Marquise_Web.Model.Entities
         public DateTime? OtpExpiration { get; set; }
         public Guid CRMId { get; set; }
         public string Gender { get; set; }
+
+        public virtual ICollection<OtpRequestLog> OtpRequestLogs { get; set; }
     }
 
     public enum Gender

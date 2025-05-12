@@ -1,7 +1,6 @@
 ﻿using Marquise_Web.Service.IService;
 using Marquise_Web.UI.areas.CRM.Models;
-using MArquise_Web.Model.DTOs.CRM;
-using System.Net.Http;
+using Marquise_Web.Model.DTOs.CRM;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;

@@ -1,4 +1,4 @@
-﻿using MArquise_Web.Model.DTOs.CRM;
+﻿using Marquise_Web.Model.DTOs.CRM;
 using Marquise_Web.UI.areas.CRM.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
