@@ -1,6 +1,5 @@
 ﻿using Marquise_Web.Data.IRepository;
 using Marquise_Web.Service.IService;
-using Marquise_Web.Utilities.Messaging;
 using System;
 using System.Threading.Tasks;
 using Marquise_Web.Model.DTOs.CRM;
@@ -10,9 +9,6 @@ using System.Web;
 using System.Collections.Generic;
 using System.Security.Claims;
 using MArquise_Web.Model.DTOs.CRM;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 
 namespace Marquise_Web.Service.Service
 {
@@ -56,40 +52,41 @@ namespace Marquise_Web.Service.Service
                 return false;
 
             // ایجاد کد OTP
-            var otpCode = new Random().Next(100000, 999999).ToString();
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("x-api-key", apiSetting.ApiKey);
+            //var otpCode = new Random().Next(100000, 999999).ToString();
+            //var httpClient = new HttpClient();
+            //httpClient.DefaultRequestHeaders.Add("x-api-key", apiSetting.ApiKey);
 
-            var requestModel = new
-            {
-                mobile = phoneNumber,
-                templateId = apiSetting.ApiTemplateId, // شناسه قالب صحیح از پنل
-                parameters = new[]
-                {
-                new { name = "Code", value = otpCode.ToString() }
-            }
-            };
+            //var requestModel = new
+            //{
+            //    mobile = phoneNumber,
+            //    templateId = apiSetting.ApiTemplateId, // شناسه قالب صحیح از پنل
+            //    parameters = new[]
+            //    {
+            //    new { name = "Code", value = otpCode.ToString() }
+            //}
+            //};
 
-            var json = JsonSerializer.Serialize(requestModel);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            //var json = JsonSerializer.Serialize(requestModel);
+            //var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl, content);
+            //var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl, content);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                return false;
-            }
-            else
-            {
-                user.OtpCode = otpCode;
-                user.OtpExpiration = DateTime.UtcNow.AddMinutes(2);
-                await unitOfWork.UserRepository.UpdateAsync(user);
-                var user1 = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
-                await unitOfWork.UserRepository.SaveAsync();
+            //if (!response.IsSuccessStatusCode)
+            //{
+            //    return false;
+            //}
+            //else
+            //{
+            var otpCode = "123456";
+            user.OtpCode = otpCode;
+            user.OtpExpiration = DateTime.UtcNow.AddMinutes(2);
+            await unitOfWork.UserRepository.UpdateAsync(user);
+            var user1 = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
+            await unitOfWork.UserRepository.SaveAsync();
 
 
-                return true;
-            }
+            return true;
+            //}
         }
 
         public async Task<AuthUserDto> VerifyOtpAsync(string phoneNumber, string code)

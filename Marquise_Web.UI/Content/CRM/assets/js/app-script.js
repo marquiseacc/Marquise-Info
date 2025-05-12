@@ -93,75 +93,113 @@ $(function () {
 
     function theme1() {
         $('body').attr('class', 'bg-theme bg-theme1 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme1');
     }
 
     function theme2() {
         $('body').attr('class', 'bg-theme bg-theme2 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme2');
     }
 
     function theme3() {
         $('body').attr('class', 'bg-theme bg-theme3 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme3');
     }
 
     function theme4() {
         $('body').attr('class', 'bg-theme bg-theme4 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme4');
     }
 	
 	function theme5() {
         $('body').attr('class', 'bg-theme bg-theme5 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme5');
     }
 	
 	function theme6() {
         $('body').attr('class', 'bg-theme bg-theme6 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme6');
     }
 
     function theme7() {
         $('body').attr('class', 'bg-theme bg-theme7 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme7');
     }
 
     function theme8() {
         $('body').attr('class', 'bg-theme bg-theme8 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme8');
     }
 
     function theme9() {
         $('body').attr('class', 'bg-theme bg-theme9 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme9');
     }
 
     function theme10() {
         $('body').attr('class', 'bg-theme bg-theme10 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme10');
     }
 
     function theme11() {
         $('body').attr('class', 'bg-theme bg-theme11 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme11');
     }
 
     function theme12() {
         $('body').attr('class', 'bg-theme bg-theme12 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme12');
     }
 	
 	function theme13() {
         $('body').attr('class', 'bg-theme bg-theme13 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme13');
     }
 	
 	function theme14() {
         $('body').attr('class', 'bg-theme bg-theme14 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme14');
     }
 	
 	function theme15() {
         $('body').attr('class', 'bg-theme bg-theme15 dir-rtl d-flex flex-column min-vh-100');
+        $('#logo-icon').attr('src', '/Content/Images/logo-white.png');
+        setThemeCookie('theme15');
     }
 
     function theme16() {
-        $('body').attr('class', 'bg-theme bg-theme16 dir-rtl d-flex flex-column min-vh-100');
+        $('body').attr('class', 'bg-theme bg-theme16 dir-rtl d-flex flex-column min-vh-100 black-color');
+        $('#logo-icon').attr('src', '/Content/Images/logo-black.png');
+        setThemeCookie('theme16');
     }
 
     function theme17() {
-        $('body').attr('class', 'bg-theme bg-theme17 dir-rtl d-flex flex-column min-vh-100');
+        $('body').attr('class', 'bg-theme bg-theme17 dir-rtl d-flex flex-column min-vh-100 black-color');
+        $('#logo-icon').attr('src', '/Content/Images/logo-black.png');
+        setThemeCookie('theme17');
     }
 
     function theme18() {
-        $('body').attr('class', 'bg-theme bg-theme18 dir-rtl d-flex flex-column min-vh-100');
+        $('body').attr('class', 'bg-theme bg-theme18 dir-rtl d-flex flex-column min-vh-100 black-color');
+        $('#logo-icon').attr('src', '/Content/Images/logo-black.png');
+        setThemeCookie('theme18');
     }
-
-
 });
+
+function setThemeCookie(themeName) {
+    document.cookie = "userTheme=" + themeName + "; path=/; max-age=" + (60 * 60 * 24 * 30); // 30 ???
+}

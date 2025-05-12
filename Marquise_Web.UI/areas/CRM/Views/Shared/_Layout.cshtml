@@ -34,48 +34,60 @@
     <link href="~/Content/theme/css/responsive.css" />
     @RenderSection("scripts", required: false)
 </head>
-<body class="bg-theme bg-theme1 dir-rtl d-flex flex-column min-vh-100">
+@{
+    var themeCookie = Request.Cookies["userTheme"];
+    var theme = themeCookie != null ? themeCookie.Value : "theme1"; // مقدار پیش‌فرض
+    var bodyClass = "bg-theme bg-" + theme + " dir-rtl d-flex flex-column min-vh-100";
 
-    <!-- Start wrapper-->
-    <div id="wrapper" class="flex-grow-1">
-        @if (ViewBag.IsLoginPage != true)
-        {
-            @Html.Partial("Sidebar")
-            @Html.Partial("Topbar")
+    if (theme == "theme16" || theme == "theme17" || theme == "theme18")
+    {
+        bodyClass += " black-color";
+    }
+}
+
+    <body class="@bodyClass">
 
 
-        }
+        <!-- Start wrapper-->
+        <div id="wrapper" class="flex-grow-1">
+            @if (ViewBag.IsLoginPage != true)
+            {
+                @Html.Partial("Sidebar")
+                @Html.Partial("Topbar")
 
-        @RenderBody()
 
-        @if (ViewBag.IsLoginPage != true)
-        {
-            @Html.Partial("Footer")
-            @Html.Partial("RightSidebar")
-        }
-    </div>
+            }
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            @RenderBody()
 
-    <script src="~/Content/CRM/assets/js/jquery.min.js"></script>
-    <script src="~/Content/CRM/assets/js/popper.min.js"></script>
-    <script src="~/Content/CRM/assets/js/bootstrap.min.js"></script>
+            @if (ViewBag.IsLoginPage != true)
+            {
+                @Html.Partial("Footer")
+                @Html.Partial("RightSidebar")
+            }
+        </div>
 
-    <!-- simplebar js -->
-    <script src="~/Content/CRM/assets/plugins/simplebar/js/simplebar.js"></script>
-    <!-- sidebar-menu js -->
-    <script src="~/Content/CRM/assets/js/sidebar-menu.js"></script>
-    <!-- loader scripts -->
-    <!-- Custom scripts -->
-    <script src="~/Content/CRM/assets/js/app-script.js"></script>
-    <!-- Chart js -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="~/Content/CRM/assets/plugins/Chart.js/Chart.min.js"></script>
+        <script src="~/Content/CRM/assets/js/jquery.min.js"></script>
+        <script src="~/Content/CRM/assets/js/popper.min.js"></script>
+        <script src="~/Content/CRM/assets/js/bootstrap.min.js"></script>
 
-    <!-- Index js -->
-    <script src="~/Content/CRM/assets/js/index.js"></script>
+        <!-- simplebar js -->
+        <script src="~/Content/CRM/assets/plugins/simplebar/js/simplebar.js"></script>
+        <!-- sidebar-menu js -->
+        <script src="~/Content/CRM/assets/js/sidebar-menu.js"></script>
+        <!-- loader scripts -->
+        <!-- Custom scripts -->
+        <script src="~/Content/CRM/assets/js/app-script.js"></script>
+        <!-- Chart js -->
 
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+        <script src="~/Content/CRM/assets/plugins/Chart.js/Chart.min.js"></script>
 
-</body>
+        <!-- Index js -->
+        <script src="~/Content/CRM/assets/js/index.js"></script>
+
+        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+    </body>
 </html>

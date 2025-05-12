@@ -47,7 +47,7 @@
                 days.forEach(({ date }, index) => {
                     const dayDiv = document.createElement('div');
                     dayDiv.classList.add('day');
-                    dayDiv.style.width = `${dayWidth}%`;
+                    /*dayDiv.style.width = `${dayWidth}%`;*/
 
                     if (index === 0) dayDiv.classList.add('first');
                     if (index === days.length - 1) dayDiv.classList.add('last');

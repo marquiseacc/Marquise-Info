@@ -1,48 +1,62 @@
-﻿<div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-    <div class="brand-logo">
-        <a href="index.html" class="d-flex justify-content-start align-content-center align-items-center">
-            <img src="~/Content/Images/logo-white.png" class="logo-icon" alt="logo icon">
-            <h5 class="logo-text">پشتیبانی مارکیز</h5>
-        </a>
+﻿@{
+    var themeCookie = Request.Cookies["userTheme"];
+    var theme = themeCookie != null ? themeCookie.Value : "theme1"; // مقدار پیش‌فرض
+    var bodyClass = "bg-theme bg-" + theme + " dir-rtl d-flex flex-column min-vh-100";
+
+    if (theme == "theme16" || theme == "theme17" || theme == "theme18")
+    {
+        bodyClass += " black-color";
+    }
+}
+
+    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+        <div class="brand-logo">
+            <a href="~/CRM/Dashboard/Index" class="d-flex justify-content-start align-content-center align-items-center">
+                <img class="logo-icon" id="logo-icon" src="@((theme == "theme16" || theme == "theme17" || theme == "theme18")
+    ? "/Content/Images/logo-black.png"
+    : "/Content/Images/logo-white.png")" />
+
+                <h5 class="logo-text">پشتیبانی مارکیز</h5>
+            </a>
+        </div>
+        <ul class="sidebar-menu do-nicescrol">
+            <li>
+                <a href="~/CRM/Dashboard/Index">
+                    <i class="zmdi zmdi-view-dashboard"></i> <span>صفحه اصلی</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="~/CRM/Quote/Index">
+                    <i class="zmdi zmdi-book"></i> <span>پیش فاکتور</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="~/CRM/Invoice/Index">
+                    <i class="zmdi zmdi-case-check"></i> <span>فاکتور</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="~/CRM/Contract/Index">
+                    <i class="zmdi zmdi-format-list-bulleted"></i> <span>قرارداد</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="~/CRM/Ticket/Index">
+                    <i class="zmdi zmdi-comment-outline"></i> <span>تیکت</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="~/CRM/Account/Index">
+                    <i class="zmdi zmdi-account-o"></i> <span>حساب کاربری</span>
+                </a>
+            </li>
+
+
+        </ul>
+
     </div>
-    <ul class="sidebar-menu do-nicescrol">
-        <li>
-            <a href="~/CRM/Dashboard/Index">
-                <i class="zmdi zmdi-view-dashboard"></i> <span>صفحه اصلی</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="~/CRM/Quote/Index">
-                <i class="zmdi zmdi-book"></i> <span>پیش فاکتور</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="~/CRM/Invoice/Index">
-                <i class="zmdi zmdi-case-check"></i> <span>فاکتور</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="~/CRM/Contract/Index">
-                <i class="zmdi zmdi-format-list-bulleted"></i> <span>قرارداد</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="~/CRM/Ticket/Index">
-                <i class="zmdi zmdi-comment-outline"></i> <span>تیکت</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="~/CRM/Account/Index">
-                <i class="zmdi zmdi-account-o"></i> <span>حساب کاربری</span>
-            </a>
-        </li>
-
-        
-    </ul>
-
-</div>

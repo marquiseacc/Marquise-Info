@@ -56,7 +56,7 @@
                 <div class="form-row mt-4 mb-4 d-flex justify-content-center">
                     <div class="col-lg-6 d-flex flex-row">
                         <div class="form-group mb-0 col-6">
-                            <button type="button" class="btn btn-light btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 ارسال پاسخ
                                 <i class="zmdi zmdi-mail-reply"></i>
                             </button>
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="form-group mb-0 col-6 text-right">
-                            <button type="button" class="btn btn-light btn-block close-ticket-btn" data-ticketId="@Model.TicketId">
+                            <button type="button" class="btn btn-warning btn-block close-ticket-btn" data-ticketId="@Model.TicketId" @(Model.Status =="9a5e80a8-cc75-46f1-b158-01d58384d4f7" ? "disabled" : "")>
                                 بستن تیکت
                                 <i class="zmdi zmdi-close"></i>
                             </button>

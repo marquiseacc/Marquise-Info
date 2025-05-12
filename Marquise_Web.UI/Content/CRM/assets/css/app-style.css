@@ -95,16 +95,16 @@ select option {
 
 
 
-.bg-theme16 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.bg-theme16 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, a {
     color: #fff !important;
 }
 
-.bg-theme16 .h1, .bg-theme16 .h2, .bg-theme16 .h3, .bg-theme16 .h4, .bg-theme16 .h5, .bg-theme16 .h6,
-.bg-theme16 h1, .bg-theme16 h2, .bg-theme16 h3, .bg-theme16 h4, .bg-theme16 h5, .bg-theme16 h6,
-.bg-theme17 .h1, .bg-theme17 .h2, .bg-theme17 .h3, .bg-theme17 .h4, .bg-theme17 .h5, .bg-theme17 .h6,
-.bg-theme17 h1, .bg-theme17 h2, .bg-theme17 h3, .bg-theme17 h4, .bg-theme17 h5, .bg-theme17 h6,
-.bg-theme18 .h1, .bg-theme18 .h2, .bg-theme18 .h3, .bg-theme18 .h4, .bg-theme18 .h5, .bg-theme18 .h6,
-.bg-theme18 h1, .bg-theme18 h2, .bg-theme18 h3, .bg-theme18 h4, .bg-theme18 h5, .bg-theme18 h6 {
+.bg-theme16 .h1, .bg-theme16 .h2, .bg-theme16 .h3, .bg-theme16 .h4, .bg-theme16 .h5, .bg-theme16 .h6, .bg-theme16 h1, .bg-theme16 h2,
+.bg-theme16 h3, .bg-theme16 h4, .bg-theme16 h5, .bg-theme16 h6, .bg-theme16 a, bg-theme16 .toggle-menu i, .bg-theme16 p, .bg-theme16 .form-control, .bg-theme16 .col-form-label, .bg-theme16 input::placeholder,
+.bg-theme17 .h1, .bg-theme17 .h2, .bg-theme17 .h3, .bg-theme17 .h4, .bg-theme17 .h5, .bg-theme17 .h6, .bg-theme17 h1, .bg-theme17 h2,
+.bg-theme17 h3, .bg-theme17 h4, .bg-theme17 h5, .bg-theme17 h6, .bg-theme17 a, bg-theme17 .toggle-menu i, .bg-theme17 p, .bg-theme17 .form-control, .bg-theme17 .col-form-label, .bgtheme17 input::placeholder,
+.bg-theme18 .h1, .bg-theme18 .h2, .bg-theme18 .h3, .bg-theme18 .h4, .bg-theme18 .h5, .bg-theme18 .h6, .bg-theme18 h1, .bg-theme18 h2,
+.bg-theme18 h3, .bg-theme18 h4, .bg-theme18 h5, .bg-theme18 h6, .bg-theme18 a, bg-theme18 .toggle-menu i, .bg-theme18 p, .bg-theme18 .form-control, .bg-theme18 .col-form-label, .bgtheme18 input::placeholder {
     color: #000 !important;
 }
 
@@ -194,9 +194,6 @@ p {
     outline: 0 !important
 }
 
-a {
-    color: #ffffff;
-}
 
 a {
     outline: none !important
@@ -660,7 +657,6 @@ body.bg-theme18 {
     margin-right: 250px;
     font-size: 14px;
     font-weight: 600;
-    color: #ffffff;
     cursor: pointer;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -685,6 +681,14 @@ body.bg-theme18 {
     color: #ffffff;
 }
 
+.bg-theme16 .dropdown-menu, .bg-theme17 .dropdown-menu, .bg-theme18 .dropdown-menu {
+    border: 0px solid rgba(0,0,0,.15);
+    -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+    font-size: 15px;
+    background-color: #fff;
+    color: #000;
+}
     .dropdown-menu ul {
         margin-top: 0px;
     }
@@ -2124,13 +2128,13 @@ body.bg-theme16 .table {
     color: rgba(0,0,0,.75);
 }
 
-body.bg-theme16 .table {
+body.bg-theme17 .table {
     width: 100%;
     margin-bottom: 1rem;
     color: rgba(0,0,0,.75);
 }
 
-body.bg-theme16 .table {
+body.bg-theme18 .table {
     width: 100%;
     margin-bottom: 1rem;
     color: rgba(0,0,0,.75);
@@ -4013,6 +4017,21 @@ body.bg-theme16 .table {
         transition: all 0.2s ease;
         box-shadow: none;
     }
+    .bg-theme16 #sidebar-wrapper, .bg-theme17 #sidebar-wrapper, .bg-theme18 #sidebar-wrapper {
+        background: #fff;
+        position: fixed;
+        top: 0px;
+        right: -250px;
+        z-index: 1000;
+        overflow-y: auto;
+        width: 250px;
+        height: 100%;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        box-shadow: none;
+    }
 
     .toggle-menu i {
         line-height: 60px;
@@ -4045,7 +4064,7 @@ body.bg-theme16 .table {
 
     .footer {
         position: absolute;
-        left: 0px;
+        right: 0px;
     }
 
     #wrapper.toggled #sidebar-wrapper {
@@ -4165,12 +4184,19 @@ tr:hover {
     padding-bottom: 10px;
 }
 
+.scroll-area {
+    display: flex;
+    flex-direction: column;
+    min-width: 1200px; /* عرض پایه برای ردیف ماه‌ها و روزها */
+}
+
 .month-labels {
     display: grid;
-    grid-template-columns: repeat(12, minmax(80px, 1fr));
+    grid-template-columns: repeat(12, 1fr);
     gap: 10px;
-    margin-bottom: 15px;
-    min-width: 800px;
+    margin-bottom: 10px;
+    min-width: 1200px; /* معادل عرض 12 ماه (مثلا 100px هر ماه) */
+    padding-inline: 10px;
 }
 
 .month-label {
@@ -4183,22 +4209,25 @@ tr:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
 .timeline {
     display: flex;
     flex-wrap: nowrap;
-    min-width: 800px; 
+    min-width: 1200px;
     height: 50px;
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 5px;
     overflow: hidden;
+    padding-inline: 0px;
 }
 
 .day {
-    flex: 0 0 calc(100% / 365);
+    flex: 0 0 calc(1200px / 365); /* عرض هر روز متناسب با عرض کل */
     height: 100%;
     background-color: rgba(255, 255, 255, 0.15);
     transition: background-color 0.3s ease;
     cursor: pointer;
+    position: relative;
 }
 
     .day.active {
@@ -4236,15 +4265,21 @@ tr:hover {
 
 /* تنظیمات ریسپانسیو */
 @media (max-width: 768px) {
+    .timeline-container {
+        overflow-x: auto;
+    }
+
+    .scroll-area {
+        min-width: 1200px; /* حفظ عرض ثابت برای هم‌راستایی در موبایل */
+    }
+
     .month-label {
         font-size: 12px;
     }
 
     .timeline {
-        height: 50px;
+        height: 40px;
     }
-
-    
     h2 {
         font-size: 20px;
     }
@@ -4330,4 +4365,19 @@ tr:hover {
     }
 
 
+.black-color {
+    color: #000 !important
+}
+@media (min-width: 1024px) {
+    .scroll-area,
+    .timeline,
+    .month-labels {
+        min-width: 100%;
+    }
+
+    .day {
+        flex: 1 0 auto; /* عرض هر روز رو انعطاف‌پذیر می‌کنیم */
+        width: auto !important;
+    }
+}
 
