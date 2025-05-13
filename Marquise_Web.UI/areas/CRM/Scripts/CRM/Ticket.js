@@ -42,14 +42,15 @@
         })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
+                if (data.IsSuccess) {
                     Swal.fire({
-                        title: 'پیام',
-                        text: 'تیکت شما با موفقیت ثبت شد.',
+                        title: 'موفق',
+                        text: data.Message || 'ثبت تیکت با موفقیت انجام شد.',
                         icon: 'success',
                         confirmButtonText: 'باشه'
                     }).then(() => {
-                        window.location.href = '/CRM/Ticket/Index';
+                        const redirectUrl = data.Data?.redirectUrl || '/CRM/Ticket/Index';
+                        window.location.href = redirectUrl;
                     });
                 } else {
                     alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');
@@ -68,7 +69,6 @@
         return "";
     }
 }
-
 
 function handleNewAnswerFormSubmit(event) {
     event.preventDefault();
@@ -114,14 +114,15 @@ function handleNewAnswerFormSubmit(event) {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
+                if (data.IsSuccess) {
                     Swal.fire({
-                        title: 'پیام',
-                        text: 'پاسخ شما با موفقیت ثبت شد.',
+                        title: 'موفق',
+                        text: data.Message || 'بروزرسانی اطلاعات با موفقیت انجام شد.',
                         icon: 'success',
                         confirmButtonText: 'باشه'
                     }).then(() => {
-                        window.location.href = `/CRM/Ticket/Detail?ticketId=${ticketId}`;
+                        const redirectUrl = data.Data?.redirectUrl || `/CRM/Ticket/Detail?ticketId=${ticketId}`;
+                        window.location.href = redirectUrl;
                     });
                 } else {
                     alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');
@@ -174,14 +175,15 @@ function closeTicket(id) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
+                    if (data.IsSuccess) {
                         Swal.fire({
-                            title: 'پیام',
-                            text: 'تیکت شما با بسته شد.',
+                            title: 'موفق',
+                            text: data.Message || 'تیکت بسته شد.',
                             icon: 'success',
                             confirmButtonText: 'باشه'
                         }).then(() => {
-                            window.location.href = '/CRM/Ticket/Index';
+                            const redirectUrl = data.Data?.redirectUrl || '/CRM/Ticket/Index';
+                            window.location.href = redirectUrl;
                         });
                     } else {
                         alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');

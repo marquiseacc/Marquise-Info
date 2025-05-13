@@ -7,6 +7,7 @@ using Marquise_Web.Service.Service;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 using Marquise_Web.Model.Utilities;
+using Marquise_Web.Model.DTOs.CRM;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
@@ -26,20 +27,18 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         }
 
         [HttpPost]
-        [System.Web.Http.Route("CRM/Auth/SendOtp")]
         public async Task<ActionResult> SendOtp(SendOtpVM model)
         {
-                if (!ModelState.IsValid)
-                    return Json(new OperationResult<object>
-                    {
-                        IsSuccess = false,
-                        Message = "اطلاعات ورودی نامعتبر است."
-                    });
+            if (!ModelState.IsValid)
+            {
+                return Json(OperationResult<object>.Failure("اطلاعات ورودی نامعتبر است."));
+            }
 
-                var phoneNumber = model.PhoneNumber;
-                var result = await unitOfWork.AuthService.SendOtpAsync(phoneNumber);
-                if (!result.IsSuccess)
-                {
+            var phoneNumber = model.PhoneNumber;
+            var result = await unitOfWork.AuthService.SendOtpAsync(phoneNumber);
+
+            if (!result.IsSuccess)
+            {
                 string contactUrl = Url.Action("Index", "ContactUs", new { area = "" });
                 return Json(new OperationResult<object>
                 {
@@ -49,18 +48,14 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 });
             }
 
-                TempData["PhoneNumber"] = model.PhoneNumber;
+            TempData["PhoneNumber"] = phoneNumber;
 
-            return Json(new OperationResult<object>
+            return Json(OperationResult<object>.Success(new
             {
-                IsSuccess = true,
-                Message = result.Message,
-                Data = new
-                {
-                    redirectUrl = Url.Action("VerifyOtp", "Auth", new { area = "CRM" })
-                }
-            });
+                redirectUrl = Url.Action("VerifyOtp", "Auth", new { area = "CRM" })
+            }, result.Message));
         }
+
 
 
         [HttpGet]
@@ -70,39 +65,37 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             if (string.IsNullOrEmpty(phone))
                 return RedirectToAction(nameof(SendOtp));
 
+            TempData.Keep("PhoneNumber"); // تا بعد از رفرش هم باقی بماند
+
             return View(new VerifyOtpVM { PhoneNumber = phone });
         }
 
         [HttpPost]
-        [System.Web.Http.Route("CRM/Auth/VerifyOtp")]
         public async Task<ActionResult> VerifyOtp(VerifyOtpVM model)
         {
             if (!ModelState.IsValid)
             {
-                return Json(OperationResult<object>.Failure("ورودی نامعتبر است."));
+                return Json(OperationResult<object>.Failure("کد وارد شده معتبر نمی‌باشد."));
             }
 
-            var phoneNumber = model.PhoneNumber;
-            var userDto = await unitOfWork.AuthService.VerifyOtpAsync(phoneNumber, model.Code);
-            if (userDto == null)
+            var result = await unitOfWork.AuthService.VerifyOtpAsync(model.PhoneNumber, model.Code);
+            if (!result.IsSuccess)
             {
-                return Json(OperationResult<object>.Failure("کد اشتباه یا منقضی شده است."));
+                return Json(OperationResult<object>.Failure(result.Message));
             }
 
+            var userDto = result.Data as AuthUserDto;
             var signInResult = await unitOfWork.AuthService.SignInUserAsync(userDto.Id.ToString());
+
             if (!signInResult)
             {
                 return Json(OperationResult<object>.Failure("ورود به سیستم با مشکل مواجه شد."));
             }
 
-            // در صورت موفقیت می‌تونی مسیر ریدایرکت رو به صورت داینامیک تعیین کنی
             var redirectUrl = Url.Action("Index", "Dashboard", new { area = "CRM" });
 
-            return Json(OperationResult<object>.Success(
-                new { redirectUrl },
-                "ورود با موفقیت انجام شد."));
+            return Json(OperationResult<object>.Success(new { redirectUrl }, "ورود با موفقیت انجام شد."));
         }
-
 
         private ApplicationSignInManager _signInManager;
         public ApplicationSignInManager SignInManager

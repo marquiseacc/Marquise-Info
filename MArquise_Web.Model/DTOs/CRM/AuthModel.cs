@@ -14,4 +14,16 @@ namespace Marquise_Web.Model.DTOs.CRM
         public virtual ApplicationUser User { get; set; }
     }
 
+    public class OtpVerifyLog
+    {
+        public int Id { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateTime TryTime { get; set; }
+        public bool IsSuccess { get; set; }
+        public string IPAddress { get; set; }
+
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+    }
+
 }

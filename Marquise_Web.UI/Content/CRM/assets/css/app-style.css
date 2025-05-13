@@ -99,12 +99,12 @@ select option {
     color: #fff !important;
 }
 
-.bg-theme16 .h1, .bg-theme16 .h2, .bg-theme16 .h3, .bg-theme16 .h4, .bg-theme16 .h5, .bg-theme16 .h6, .bg-theme16 h1, .bg-theme16 h2,
-.bg-theme16 h3, .bg-theme16 h4, .bg-theme16 h5, .bg-theme16 h6, .bg-theme16 a, bg-theme16 .toggle-menu i, .bg-theme16 p, .bg-theme16 .form-control, .bg-theme16 .col-form-label, .bg-theme16 input::placeholder,
-.bg-theme17 .h1, .bg-theme17 .h2, .bg-theme17 .h3, .bg-theme17 .h4, .bg-theme17 .h5, .bg-theme17 .h6, .bg-theme17 h1, .bg-theme17 h2,
-.bg-theme17 h3, .bg-theme17 h4, .bg-theme17 h5, .bg-theme17 h6, .bg-theme17 a, bg-theme17 .toggle-menu i, .bg-theme17 p, .bg-theme17 .form-control, .bg-theme17 .col-form-label, .bgtheme17 input::placeholder,
-.bg-theme18 .h1, .bg-theme18 .h2, .bg-theme18 .h3, .bg-theme18 .h4, .bg-theme18 .h5, .bg-theme18 .h6, .bg-theme18 h1, .bg-theme18 h2,
-.bg-theme18 h3, .bg-theme18 h4, .bg-theme18 h5, .bg-theme18 h6, .bg-theme18 a, bg-theme18 .toggle-menu i, .bg-theme18 p, .bg-theme18 .form-control, .bg-theme18 .col-form-label, .bgtheme18 input::placeholder {
+.bg-theme16 .h1, .bg-theme16 .h2, .bg-theme16 .h3, .bg-theme16 .h4, .bg-theme16 .h5, .bg-theme16 .h6, .bg-theme16 h1, .bg-theme16 h2, .bg-theme16 h3, .bg-theme16 h4, .bg-theme16 h5,
+.bg-theme16 h6, .bg-theme16 a, bg-theme16 .toggle-menu i, .bg-theme16 p, .bg-theme16 .form-control, .bg-theme16 .col-form-label, .bg-theme16 input::placeholder, .bg-theme16 textarea::placeholder,
+.bg-theme17 .h1, .bg-theme17 .h2, .bg-theme17 .h3, .bg-theme17 .h4, .bg-theme17 .h5, .bg-theme17 .h6, .bg-theme17 h1, .bg-theme17 h2, .bg-theme17 h3, .bg-theme17 h4, .bg-theme17 h5,
+.bg-theme17 h6, .bg-theme17 a, bg-theme17 .toggle-menu i, .bg-theme17 p, .bg-theme17 .form-control, .bg-theme17 .col-form-label, .bg-theme17 input::placeholder, .bg-theme17 textarea::placeholder,
+.bg-theme18 .h1, .bg-theme18 .h2, .bg-theme18 .h3, .bg-theme18 .h4, .bg-theme18 .h5, .bg-theme18 .h6, .bg-theme18 h1, .bg-theme18 h2, .bg-theme18 h3, .bg-theme18 h4, .bg-theme18 h5,
+.bg-theme18 h6, .bg-theme18 a, bg-theme18 .toggle-menu i, .bg-theme18 p, .bg-theme18 .form-control, .bg-theme18 .col-form-label, .bg-theme18 input::placeholder, .bg-theme18 textarea::placeholder {
     color: #000 !important;
 }
 
@@ -4197,6 +4197,7 @@ tr:hover {
     margin-bottom: 10px;
     min-width: 1200px; /* معادل عرض 12 ماه (مثلا 100px هر ماه) */
     padding-inline: 10px;
+    margin-top: 10px;
 }
 
 .month-label {

@@ -14,6 +14,7 @@ namespace Marquise_Web.Model.Entities
         public string Gender { get; set; }
 
         public virtual ICollection<OtpRequestLog> OtpRequestLogs { get; set; }
+        public virtual ICollection<OtpVerifyLog> OtpVerifyLogs { get; set; }
     }
 
     public enum Gender

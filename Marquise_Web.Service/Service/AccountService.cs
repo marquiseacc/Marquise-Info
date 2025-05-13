@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Marquise_Web.Data.Repository;
+using Marquise_Web.Model.Utilities;
 
 namespace Marquise_Web.Service.Service
 {
@@ -56,7 +57,7 @@ namespace Marquise_Web.Service.Service
             };
         }
 
-        public async Task<bool> UpdateAccountAsync(AccountDto account)
+        public async Task<OperationResult<object>> UpdateAccountAsync(AccountDto account)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiSetting.ApiToken);
 
@@ -83,7 +84,8 @@ namespace Marquise_Web.Service.Service
             await unitOfWork.UserRepository.UpdateAsync(user);
             await unitOfWork.CompleteAsync();
             var user1 = await unitOfWork.UserRepository.GetByCRMIdAsync(account.AccountId);
-            return response.IsSuccessStatusCode;
+            if (response.IsSuccessStatusCode) return OperationResult<object>.Success(null, "مشخصات با موفقیت بروزرسانی شد.");
+            else return OperationResult<object>.Failure("بروزرسانی با خطا مواجه شد.");
         }
     }
 }

@@ -55,14 +55,15 @@
         })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
+                if (data.IsSuccess) {
                     Swal.fire({
-                        title: 'پیام',
-                        text: 'مشخصات شما بروزرسانی شد.',
+                        title: 'موفق',
+                        text: data.Message || 'بروزرسانی اطلاعات با موفقیت انجام شد.',
                         icon: 'success',
                         confirmButtonText: 'باشه'
                     }).then(() => {
-                        window.location.href = '/CRM/Account/Index';
+                        const redirectUrl = data.Data?.redirectUrl || '/CRM/Account/Index';
+                        window.location.href = redirectUrl;
                     });
                 } else {
                     alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');

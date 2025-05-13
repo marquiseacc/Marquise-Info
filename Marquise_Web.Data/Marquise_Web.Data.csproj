@@ -160,6 +160,14 @@
     <Compile Include="Migrations\202505120958464_AddOtpRequestLogsToApplicationUser.Designer.cs">
       <DependentUpon>202505120958464_AddOtpRequestLogsToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505130742022_AddOtpVerifyLog.cs" />
+    <Compile Include="Migrations\202505130742022_AddOtpVerifyLog.Designer.cs">
+      <DependentUpon>202505130742022_AddOtpVerifyLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs" />
+    <Compile Include="Migrations\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.Designer.cs">
+      <DependentUpon>202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\MessageRepository.cs" />
@@ -222,6 +230,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202505120958464_AddOtpRequestLogsToApplicationUser.resx">
       <DependentUpon>202505120958464_AddOtpRequestLogsToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505130742022_AddOtpVerifyLog.resx">
+      <DependentUpon>202505130742022_AddOtpVerifyLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.resx">
+      <DependentUpon>202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
 ﻿using Marquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Model.Utilities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,8 +11,8 @@ namespace Marquise_Web.Service.IService
         Task<TicketDetailDto> GetTicketByIdAsync(string ticketId);
         Task<List<AnswerDto>> GetAnswersByTicketIdAsync(string ticketId);
         Task<List<StaffDto>> GetAllStaffAsync();
-        Task<bool> CreateTicketAsync(NewTicketDto dto);
-        Task<bool> AddAnswerAsync(NewAnswerDto dto);
-        Task<bool> CloseTicketAsync(CloseTicketDto dto);
+        Task<OperationResult<object>> CreateTicketAsync(NewTicketDto dto);
+        Task<OperationResult<object>> AddAnswerAsync(NewAnswerDto dto);
+        Task<OperationResult<object>> CloseTicketAsync(CloseTicketDto dto);
     }
 }

@@ -12,5 +12,11 @@ namespace Marquise_Web.Data.IRepository
         Task<ApplicationUser> GetByCRMIdAsync(string crmId);
         Task<int> CountRecentAsync(string phoneNumber, DateTime since);
         Task AddOtpRequestLogAsync(OtpRequestLog log);
+        Task AddOtpVerifyLogAsync(OtpVerifyLog log);
+        Task<int> CountRecentFailedOtpAttemptsAsync(string phoneNumber, DateTime since);
+        Task<int> CountRecentOtpRequestsAsync(string phoneNumber, DateTime since);
+        Task<DateTime?> GetLastOtpRequestTimeAsync(string phoneNumber);
+        Task<DateTime?> GetLastFailedOtpAttemptTimeAsync(string phoneNumber);
+
     }
 }

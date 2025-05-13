@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Utilities.Map;
 using Marquise_Web.Service.Service;
+using Marquise_Web.Model.Utilities;
+using System.Web.Mvc;
 
 namespace Marquise_Web.UI.areas.CRM.ApiControllers
 {
@@ -18,7 +20,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
         }
 
 
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         [System.Web.Http.Route("api/CRM/AccountApi/UpdateAccount")]
         public async Task<IHttpActionResult> UpdateAccount(AccountVM account)
         {
@@ -33,7 +35,29 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
             dto.AccountId = crmId;
 
             var result = await unitOfWork.AccountService.UpdateAccountAsync(dto);
-            return Json(new { success = result });
+            if (result.IsSuccess)
+            {
+                return Json(new OperationResult<object>
+                {
+                    IsSuccess = true,
+                    Message = result.Message,
+                    Data = new
+                    {
+                        redirectUrl = Url.Link("DefaultApi", new { controller = "Account", action = "Index", area = "CRM" })
+                    }
+                });
+            }
+            else {
+                return Json(new OperationResult<object>
+                {
+                    IsSuccess = false,
+                    Message = result.Message,
+                    Data = new
+                    {
+                        redirectUrl = Url.Link("DefaultApi", new { controller = "Account", action = "Index", area = "CRM" })
+                    }
+                });
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Marquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Model.Utilities;
 using System.Threading.Tasks;
 
 namespace Marquise_Web.Service.IService
@@ -6,6 +7,6 @@ namespace Marquise_Web.Service.IService
     public interface IAccountService
     {
         Task<AccountDto> GetAccountWithManagerAsync(string crmId);
-        Task<bool> UpdateAccountAsync(AccountDto account);
+        Task<OperationResult<object>> UpdateAccountAsync(AccountDto account);
     }
 }

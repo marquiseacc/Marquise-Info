@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System;
+using Marquise_Web.Model.Utilities;
 
 namespace Marquise_Web.Service.Service
 {
@@ -97,7 +98,7 @@ namespace Marquise_Web.Service.Service
                 : JsonConvert.DeserializeObject<List<StaffDto>>(staffArray.ToString());
         }
 
-        public async Task<bool> CreateTicketAsync(NewTicketDto dto)
+        public async Task<OperationResult<object>> CreateTicketAsync(NewTicketDto dto)
         {
             var requestBody = new
             {
@@ -139,10 +140,11 @@ namespace Marquise_Web.Service.Service
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl + "Ticket/", content);
-            return response.IsSuccessStatusCode;
+            if (response.IsSuccessStatusCode) return OperationResult<object>.Success(null, "تیکت با موفقیت ثبت شد.");
+            else return OperationResult<object>.Failure("ثبت تیکت با خطا مواجه شد.");
         }
 
-        public async Task<bool> AddAnswerAsync(NewAnswerDto dto)
+        public async Task<OperationResult<object>> AddAnswerAsync(NewAnswerDto dto)
         {
             var url = $"{apiSetting.ApiBaseUrl}Ticket/{dto.TicketId}/AddTicketResponse?message={Uri.EscapeDataString(dto.Message)}";
             var emptyContent = new StringContent("", Encoding.UTF8, "application/json");
@@ -151,10 +153,11 @@ namespace Marquise_Web.Service.Service
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var response = await httpClient.PostAsync(url, emptyContent);
-            return response.IsSuccessStatusCode;
+            if (response.IsSuccessStatusCode) return OperationResult<object>.Success(null, "پاسخ شما با موفقیت ثبت شد.");
+            else return OperationResult<object>.Failure("ثبت پاسخ با خطا مواجه شد.");
         }
 
-        public async Task<bool> CloseTicketAsync(CloseTicketDto dto)
+        public async Task<OperationResult<object>> CloseTicketAsync(CloseTicketDto dto)
         {
             var url = $"{apiSetting.ApiBaseUrl}Ticket/{dto.TicketId}";
             var requestBody = new
@@ -169,7 +172,8 @@ namespace Marquise_Web.Service.Service
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var response = await httpClient.PutAsync(url, content);
-            return response.IsSuccessStatusCode;
+            if (response.IsSuccessStatusCode) return OperationResult<object>.Success(null, "تیکت مورد نظر بسته شد.");
+            else return OperationResult<object>.Failure("بستن این تیکت با خطا مواجه شد.");
         }
 
     }

@@ -1,131 +1,58 @@
-﻿window.alert = function (message,icon) {
+﻿// جایگزینی alert با SweetAlert
+window.alert = function (message, icon = 'info') {
     Swal.fire({
         title: 'پیام',
         text: message,
-        icon: icon,
+        icon,
         confirmButtonText: 'باشه'
     });
 };
 
-
+// فرم ارسال OTP
 function handleSentOTPFormSubmit(event) {
     event.preventDefault();
 
-    var phoneNumber = document.getElementById("PhoneNumber").value;
+    if (!validateForm(event.target)) return;
 
-    var isValid = true;
-    const form = event.target;
-    const inputs = form.querySelectorAll("input");
+    const phoneNumber = document.getElementById("PhoneNumber").value;
+    const formData = new FormData();
+    formData.append("PhoneNumber", phoneNumber);
 
-    inputs.forEach(input => {
-        input.setCustomValidity("");
-
-        if (input.validity.valueMissing) {
-            input.setCustomValidity(`لطفاً فیلد "${input.name}" را پر کنید.`);
-            input.reportValidity();
-            isValid = false;
-        } else {
-            const errorMessage = getCustomErrorMessage(input);
-            if (errorMessage) {
-                input.setCustomValidity(errorMessage);
-                input.reportValidity();
-                isValid = false;
-            }
-        }
-    });
-
-    if (isValid) {
-        var formData = new FormData();
-        formData.append("PhoneNumber", phoneNumber);
-        
-        fetch('/CRM/Auth/SendOtp', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => {
-                if (!response.ok) throw new Error("HTTP error");
-                return response.json();
-            })
-            .then(data => {
-                if (data.IsSuccess) {
-                    // موفقیت در ارسال کد
-                    window.location.href = data.Data.redirectUrl;
-                }
-                else if (data.Data && data.Data.redirectUrl) {
-                    // مثلا کاربر مجاز به دریافت کد نیست => نمایش پیام و ریدایرکت بعد از تأیید
-                    Swal.fire({
-                        title: 'پیام',
-                        text: data.Message || 'خطایی رخ داده است.',
-                        icon: 'info',
-                        confirmButtonText: 'باشه'
-                    }).then(() => {
-                        window.location.href = decodeURIComponent(data.Data.redirectUrl);
-                    });
-                }
-                else {
-                    // نمایش پیام خطا بدون ریدایرکت
-                    Swal.fire({
-                        title: 'خطا',
-                        text: data.Message || 'خطایی رخ داده است.',
-                        icon: 'error',
-                        confirmButtonText: 'باشه'
-                    });
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
+    fetch('/CRM/Auth/SendOtp', {
+        method: 'POST',
+        body: formData
+    })
+        .then(handleResponse)
+        .then(data => {
+            if (data.IsSuccess) {
+                window.location.href = data.Data.redirectUrl;
+            } else if (data.Data?.redirectUrl) {
                 Swal.fire({
-                    title: 'خطا',
-                    text: 'لطفا مجدداً تلاش کنید.',
-                    icon: 'error',
+                    title: 'پیام',
+                    text: data.Message || 'خطایی رخ داده است.',
+                    icon: 'info',
                     confirmButtonText: 'باشه'
-                });
-            });
-
-    }
-
+                }).then(() => window.location.href = decodeURIComponent(data.Data.redirectUrl));
+            } else {
+                window.alert(data.Message || 'خطایی رخ داده است.', 'error');
+            }
+        })
+        .catch(handleError);
 }
+
+// فرم تایید OTP
 function handleVerifyOTPFormSubmit(event) {
     event.preventDefault();
 
-    var phoneNumber = document.getElementById("PhoneNumber").value;
-    var otpCode = document.getElementById("OtpCode").value;
+    if (!validateForm(event.target)) return;
 
-    var isValid = true;
-    const form = event.target;
-    const inputs = form.querySelectorAll("input");
-
-    inputs.forEach(input => {
-        input.setCustomValidity("");
-
-        if (input.validity.valueMissing) {
-            input.setCustomValidity(`لطفاً فیلد "${input.name}" را پر کنید.`);
-            input.reportValidity();
-            isValid = false;
-        } else {
-            const errorMessage = getCustomErrorMessage(input);
-            if (errorMessage) {
-                input.setCustomValidity(errorMessage);
-                input.reportValidity();
-                isValid = false;
-            }
-        }
-    });
-
-    if (!isValid) return;
-
-    const formData = new FormData();
-    formData.append("PhoneNumber", phoneNumber);
-    formData.append("Code", otpCode);
+    const formData = new FormData(event.target);
 
     fetch('/CRM/Auth/VerifyOtp', {
         method: 'POST',
         body: formData
     })
-        .then(response => {
-            if (!response.ok) throw new Error("HTTP error");
-            return response.json();
-        })
+        .then(handleResponse)
         .then(data => {
             if (data.IsSuccess) {
                 Swal.fire({
@@ -138,27 +65,13 @@ function handleVerifyOTPFormSubmit(event) {
                     window.location.href = redirectUrl;
                 });
             } else {
-                Swal.fire({
-                    title: 'خطا',
-                    text: data.Message || "کد اشتباه یا منقضی شده است.",
-                    icon: 'error',
-                    confirmButtonText: 'باشه'
-                });
+                window.alert(data.Message || 'کد اشتباه یا منقضی شده است.', 'error');
             }
         })
-        .catch(error => {
-            console.error("Error:", error);
-            Swal.fire({
-                title: 'خطا',
-                text: "لطفا مجددا تلاش کنید.",
-                icon: 'error',
-                confirmButtonText: 'باشه'
-            });
-        });
+        .catch(handleError);
 }
 
-
-// تابع ارسال مجدد OTP
+// ارسال مجدد OTP
 function sendOtpAgain() {
     const phoneNumber = document.getElementById("PhoneNumber").value;
 
@@ -167,87 +80,98 @@ function sendOtpAgain() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ PhoneNumber: phoneNumber })
     })
-        .then(response => response.json())
+        .then(handleResponse)
         .then(data => {
             if (data.IsSuccess) {
-                Swal.fire({
-                    title: 'ارسال مجدد',
-                    text: data.Message || 'کد یک‌بار مصرف مجدداً ارسال شد.',
-                    icon: 'info',
-                    confirmButtonText: 'باشه'
-                });
+                window.alert(data.Message || 'کد یک‌بار مصرف مجدداً ارسال شد.', 'info');
                 startTimer();
                 document.getElementById("resendButton").style.display = "none";
             } else {
-                Swal.fire({
-                    title: 'خطا',
-                    text: data.Message || 'ارسال مجدد با مشکل مواجه شد.',
-                    icon: 'error',
-                    confirmButtonText: 'باشه'
-                });
+                window.alert(data.Message || 'ارسال مجدد با مشکل مواجه شد.', 'error');
             }
         })
-        .catch(error => {
-            Swal.fire({
-                title: 'خطا',
-                text: "ارتباط با سرور برقرار نشد.",
-                icon: 'error',
-                confirmButtonText: 'باشه'
-            });
-        });
+        .catch(handleError);
 }
 
+// اعتبارسنجی فرم به صورت عمومی
+function validateForm(form) {
+    let isValid = true;
+    const inputs = form.querySelectorAll("input");
 
-// تایمر OTP
-let timeRemaining = 2 * 60;
+    inputs.forEach(input => {
+        input.setCustomValidity("");
+
+        if (input.validity.valueMissing) {
+            input.setCustomValidity(`لطفاً فیلد "${input.name}" را پر کنید.`);
+            input.reportValidity();
+            isValid = false;
+        } else {
+            const errorMessage = getCustomErrorMessage(input);
+            if (errorMessage) {
+                input.setCustomValidity(errorMessage);
+                input.reportValidity();
+                isValid = false;
+            }
+        }
+    });
+
+    return isValid;
+}
+
+// پیام‌های سفارشی برای ورودی‌ها
+function getCustomErrorMessage(input) {
+    if (input.validity.typeMismatch) {
+        return `لطفاً مقدار معتبر برای "${input.name}" وارد کنید.`;
+    }
+    if (input.validity.patternMismatch) {
+        return `لطفاً الگوی صحیح برای "${input.name}" را وارد کنید.`;
+    }
+    return "";
+}
+
+// مدیریت پاسخ JSON
+function handleResponse(response) {
+    if (!response.ok) throw new Error("خطا در ارتباط با سرور");
+    return response.json();
+}
+
+// مدیریت خطاهای عمومی
+function handleError(error) {
+    console.error("Error:", error);
+    window.alert("خطا در ارتباط با سرور. لطفاً مجدداً تلاش کنید.", "error");
+}
+
+// مدیریت تایمر
+let timeRemaining = 120;
 let timerInterval;
 
 function updateTimerDisplay() {
-    let timerElement = document.getElementById("timer");
+    const timerElement = document.getElementById("timer");
 
     if (!timerElement) {
-        clearInterval(timerInterval); // تایمر را متوقف کنید چون عنصر وجود ندارد
+        clearInterval(timerInterval);
         return;
     }
 
-    let minutes = Math.floor(timeRemaining / 60);
-    let seconds = timeRemaining % 60;
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
     timerElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 
     if (timeRemaining <= 0) {
         clearInterval(timerInterval);
         timerElement.textContent = "زمان تمام شد";
-
         const resendButton = document.getElementById("resendButton");
-        if (resendButton) {
-            resendButton.style.display = "inline-block";
-        }
+        if (resendButton) resendButton.style.display = "inline-block";
     }
 
     timeRemaining--;
 }
 
-
 function startTimer() {
-    timeRemaining = 2 * 60;
+    timeRemaining = 120;
     clearInterval(timerInterval);
-    updateTimerDisplay(); // برای نمایش اولیه
+    updateTimerDisplay(); // بار اول
     timerInterval = setInterval(updateTimerDisplay, 1000);
 }
 
-window.onload = function () {
-    startTimer();
-};
-
-
-function getCustomErrorMessage(input) {
-    if (input.validity.typeMismatch) {
-        return `لطفاً  "${input.name}"خود را وارد کنید.`;
-    }
-    if (input.validity.patternMismatch) {
-        return `لطفاً الگوی صحیح برای "${input.name}" را وارد کنید.`;
-    }
-    return ""; // اگر خطایی وجود ندارد
-}
-
-
+window.onload = startTimer;

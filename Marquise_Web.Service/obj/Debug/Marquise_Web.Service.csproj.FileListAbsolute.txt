@@ -8,7 +8,7 @@ C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\AutoMapper.
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\EntityFramework.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Data.dll
-C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\MArquise_Web.Model.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Model.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Utilities.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
@@ -53,8 +53,8 @@ C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\System.Thre
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\System.ValueTuple.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Data.pdb
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Data.dll.config
-C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\MArquise_Web.Model.pdb
-C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\MArquise_Web.Model.dll.config
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Model.pdb
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Model.dll.config
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Utilities.pdb
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Utilities.dll.config
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\AutoMapper.xml

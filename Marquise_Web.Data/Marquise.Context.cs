@@ -42,7 +42,8 @@ namespace Marquise_Web.Data
         {
             return new ApplicationDbContext();
         }
-
+        public DbSet<OtpRequestLog> OtpRequestLogs { get; set; }
+        public DbSet<OtpVerifyLog> OtpVerifyLogs { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -53,11 +54,21 @@ namespace Marquise_Web.Data
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins", "Security");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims", "Security");
             modelBuilder.Entity<OtpRequestLog>().ToTable("OtpRequestLogs", "Security");
+            modelBuilder.Entity<OtpVerifyLog>().ToTable("OtpVerifyLogs", "Security");
 
+            // تنظیم روابط OTPRequestLog با ApplicationUser
             modelBuilder.Entity<OtpRequestLog>()
-            .HasRequired(o => o.User) 
-            .WithMany(u => u.OtpRequestLogs) 
-            .HasForeignKey(o => o.UserId);
+                .HasRequired(o => o.User)
+                .WithMany(u => u.OtpRequestLogs)
+                .HasForeignKey(o => o.UserId)
+                .WillCascadeOnDelete(false);  // جلوگیری از حذف خودکار
+
+            // تنظیم روابط OtpVerifyLog با ApplicationUser
+            modelBuilder.Entity<OtpVerifyLog>()
+                .HasRequired(v => v.User)
+                .WithMany(u => u.OtpVerifyLogs)
+                .HasForeignKey(v => v.UserId)
+                .WillCascadeOnDelete(false);
         }
     }
 
