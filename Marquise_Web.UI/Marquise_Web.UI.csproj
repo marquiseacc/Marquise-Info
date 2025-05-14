@@ -1194,7 +1194,6 @@
     <Content Include="Content\theme\css\bootstrap.min.css" />
     <Content Include="Content\theme\css\coming-soon.css" />
     <Content Include="Content\theme\css\custom.css" />
-    <Content Include="Content\theme\css\customFont.css" />
     <Content Include="Content\theme\css\darkmode.css" />
     <Content Include="Content\theme\css\demo-css.css" />
     <Content Include="Content\theme\css\gdpr-cookie.css" />
@@ -1257,6 +1256,8 @@
     <Content Include="areas\CRM\Views\Dashboard\SupportTimeLine.cshtml" />
     <Content Include="areas\CRM\Views\Dashboard\MainDetail.cshtml" />
     <Content Include="areas\CRM\Views\Dashboard\LastTicket.cshtml" />
+    <Content Include="Content\fonts\Vazirmatn-Bold.woff2" />
+    <Content Include="Content\fonts\Vazirmatn-Regular.woff2" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

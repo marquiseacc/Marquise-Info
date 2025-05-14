@@ -622,20 +622,21 @@ TODO: more distinction between this file and common.css
 /* Icons (inline elements with styled text that mock arrow icons)
 --------------------------------------------------------------------------------------------------*/
 .fc-icon {
-  display: inline-block;
-  height: 1em;
-  line-height: 1em;
-  font-size: 1em;
-  text-align: center;
-  overflow: hidden;
-  font-family: "Courier New", Courier, monospace;
-  /* don't allow browser text-selection */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+    display: inline-block;
+    height: 1em;
+    line-height: 1em;
+    font-size: 1em;
+    text-align: center;
+    overflow: hidden;
+    font-family: 'Vazirmatn', sans-serif;
+    /* don't allow browser text-selection */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 /*
 Acceptable font-family overrides for individual icons:

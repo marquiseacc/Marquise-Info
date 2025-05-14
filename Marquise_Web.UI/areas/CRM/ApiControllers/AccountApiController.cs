@@ -19,7 +19,6 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
             this.unitOfWork = unitOfWork;
         }
 
-
         [System.Web.Http.HttpPost]
         [System.Web.Http.Route("api/CRM/AccountApi/UpdateAccount")]
         public async Task<IHttpActionResult> UpdateAccount(AccountVM account)
@@ -40,22 +39,14 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                 return Json(new OperationResult<object>
                 {
                     IsSuccess = true,
-                    Message = result.Message,
-                    Data = new
-                    {
-                        redirectUrl = Url.Link("DefaultApi", new { controller = "Account", action = "Index", area = "CRM" })
-                    }
+                    Message = result.Message
                 });
             }
             else {
                 return Json(new OperationResult<object>
                 {
                     IsSuccess = false,
-                    Message = result.Message,
-                    Data = new
-                    {
-                        redirectUrl = Url.Link("DefaultApi", new { controller = "Account", action = "Index", area = "CRM" })
-                    }
+                    Message = result.Message
                 });
             }
         }

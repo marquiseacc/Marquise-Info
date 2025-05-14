@@ -55,6 +55,7 @@
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 if (data.IsSuccess) {
                     Swal.fire({
                         title: 'موفق',
@@ -62,7 +63,7 @@
                         icon: 'success',
                         confirmButtonText: 'باشه'
                     }).then(() => {
-                        const redirectUrl = data.Data?.redirectUrl || '/CRM/Account/Index';
+                        const redirectUrl = '/CRM/Account/Index';
                         window.location.href = redirectUrl;
                     });
                 } else {

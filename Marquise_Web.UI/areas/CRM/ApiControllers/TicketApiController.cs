@@ -43,7 +43,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                     Message = result.Message,
                     Data = new
                     {
-                        redirectUrl = Url.Link("DefaultApi", new { controller = "Ticket", action = "Index", area = "CRM" })
+                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
                     }
                 });
             }
@@ -55,7 +55,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                     Message = result.Message,
                     Data = new
                     {
-                        redirectUrl = Url.Link("DefaultApi", new { controller = "Ticket", action = "Index", area = "CRM" })
+                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
                     }
                 });
             }
@@ -84,7 +84,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                     Message = result.Message,
                     Data = new
                     {
-                        redirectUrl = Url.Link("DefaultApi", new { controller = "Ticket", action = "Index", area = "CRM", ticketId= answer.TicketId })
+                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM", ticketId= answer.TicketId })
                     }
                 });
             }
@@ -96,7 +96,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                     Message = result.Message,
                     Data = new
                     {
-                        redirectUrl = Url.Link("DefaultApi", new { controller = "Ticket", action = "Index", area = "CRM" })
+                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
                     }
                 });
             }
@@ -124,7 +124,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                     Message = result.Message,
                     Data = new
                     {
-                        redirectUrl = Url.Link("DefaultApi", new { controller = "Ticket", action = "Index", area = "CRM" })
+                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
                     }
                 });
             }
@@ -136,7 +136,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                     Message = result.Message,
                     Data = new
                     {
-                        redirectUrl = Url.Link("DefaultApi", new { controller = "Ticket", action = "Index", area = "CRM" })
+                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
                     }
                 });
             }

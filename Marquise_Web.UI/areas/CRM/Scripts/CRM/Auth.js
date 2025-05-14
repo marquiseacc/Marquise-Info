@@ -44,9 +44,17 @@ function handleSentOTPFormSubmit(event) {
 function handleVerifyOTPFormSubmit(event) {
     event.preventDefault();
 
+    var phoneNumber = document.getElementById("PhoneNumber").value;
+    var otpCode = document.getElementById("OtpCode").value;
+
+
     if (!validateForm(event.target)) return;
 
-    const formData = new FormData(event.target);
+    const formData = new FormData();
+    formData.append("PhoneNumber", phoneNumber);
+    formData.append("Code", otpCode);
+
+
 
     fetch('/CRM/Auth/VerifyOtp', {
         method: 'POST',

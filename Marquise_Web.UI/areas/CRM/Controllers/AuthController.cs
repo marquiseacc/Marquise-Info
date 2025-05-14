@@ -56,8 +56,6 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             }, result.Message));
         }
 
-
-
         [HttpGet]
         public ActionResult VerifyOtp()
         {
@@ -123,7 +121,6 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 _userManager = value;
             }
         }
-
 
         [Authorize]
         public ActionResult Logout()
