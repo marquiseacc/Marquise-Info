@@ -42,21 +42,35 @@
         })
             .then(response => response.json())
             .then(data => {
-                if (data.IsSuccess) {
+                if (data.success) { // توجه: خروجی Web API باید "success" باشه نه "IsSuccess"
                     Swal.fire({
                         title: 'موفق',
-                        text: data.Message || 'ثبت تیکت با موفقیت انجام شد.',
+                        text: data.message || 'ثبت تیکت با موفقیت انجام شد.',
                         icon: 'success',
                         confirmButtonText: 'باشه'
                     }).then(() => {
-                        const redirectUrl = data.Data?.redirectUrl || '/CRM/Ticket/Index';
+                        const redirectUrl = '/CRM/Ticket/Index';
                         window.location.href = redirectUrl;
                     });
                 } else {
-                    alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');
+                    Swal.fire({
+                        title: 'خطا',
+                        text: data.message || "خطایی رخ داد. لطفاً دوباره تلاش کنید.",
+                        icon: 'error',
+                        confirmButtonText: 'باشه'
+                    });
                 }
             })
-            .catch(error => { console.error("Error:", error); alert("لطفا مجددا تلاش کنید."); });
+            .catch(error => {
+                console.error("Error:", error);
+                Swal.fire({
+                    title: 'خطا',
+                    text: "مشکلی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.",
+                    icon: 'error',
+                    confirmButtonText: 'باشه'
+                });
+            });
+
     }
 
     function getCustomErrorMessage(input) {
@@ -114,21 +128,35 @@ function handleNewAnswerFormSubmit(event) {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.IsSuccess) {
+                if (data.success) {
                     Swal.fire({
                         title: 'موفق',
-                        text: data.Message || 'بروزرسانی اطلاعات با موفقیت انجام شد.',
+                        text: data.message || 'پاسخ با موفقیت ثبت شد.',
                         icon: 'success',
                         confirmButtonText: 'باشه'
                     }).then(() => {
-                        const redirectUrl = data.Data?.redirectUrl || `/CRM/Ticket/Detail?ticketId=${ticketId}`;
+                        const redirectUrl = '/CRM/Ticket/Detail?ticketId=' + ticketId;
                         window.location.href = redirectUrl;
                     });
                 } else {
-                    alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');
+                    Swal.fire({
+                        title: 'خطا',
+                        text: data.message || 'ثبت پاسخ با خطا مواجه شد.',
+                        icon: 'error',
+                        confirmButtonText: 'باشه'
+                    });
                 }
             })
-            .catch(error => { console.error("Error:", error); alert("لطفا مجددا تلاش کنید."); });
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    title: 'خطا',
+                    text: 'مشکلی در ارتباط با سرور پیش آمد.',
+                    icon: 'error',
+                    confirmButtonText: 'باشه'
+                });
+            });
+
     }
 
     function getCustomErrorMessage(input) {
@@ -175,21 +203,35 @@ function closeTicket(id) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.IsSuccess) {
+                    if (data.success) {
                         Swal.fire({
                             title: 'موفق',
-                            text: data.Message || 'تیکت بسته شد.',
+                            text: data.message || 'تیکت بسته شد.',
                             icon: 'success',
                             confirmButtonText: 'باشه'
                         }).then(() => {
-                            const redirectUrl = data.Data?.redirectUrl || '/CRM/Ticket/Index';
+                            const redirectUrl = '/CRM/Ticket/Detail?ticketId=' + id;
                             window.location.href = redirectUrl;
                         });
                     } else {
-                        alert(data.message || "خطا! لطفا مجددا تلاش کنید.", 'error');
+                        Swal.fire({
+                            title: 'خطا',
+                            text: data.message || 'بستن تیکت با خطا مواجه شد.',
+                            icon: 'error',
+                            confirmButtonText: 'باشه'
+                        });
                     }
                 })
-                .catch(error => { console.error("Error:", error); alert("لطفا مجددا تلاش کنید."); });
+                .catch(error => {
+                    console.error("Error:", error);
+                    Swal.fire({
+                        title: 'خطا',
+                        text: "مشکلی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.",
+                        icon: 'error',
+                        confirmButtonText: 'باشه'
+                    });
+                });
+
         }
     });
 }

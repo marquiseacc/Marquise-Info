@@ -3,48 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\10\\source\\repos\\Marquise_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.service\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.data\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|solutionrelative:marquise_web.data\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.data\\marquise.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|solutionrelative:marquise_web.data\\marquise.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.service\\service\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\service\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.ui\\areas\\crm\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\areas\\crm\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.data\\migrations\\202505130912243_addotprequestlogsandotpverifylogs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|solutionrelative:marquise_web.data\\migrations\\202505130912243_addotprequestlogsandotpverifylogs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.data\\irepository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.data\\irepository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|solutionrelative:marquise_web.data\\irepository\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.ui\\areas\\crm\\scripts\\crm\\auth.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\areas\\crm\\scripts\\crm\\auth.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.model\\dtos\\crm\\accountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|solutionrelative:marquise_web.model\\dtos\\crm\\accountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.service\\iservice\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\iservice\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.service\\service\\ticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\service\\ticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.data\\migrations\\202505130742022_addotpverifylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|solutionrelative:marquise_web.data\\migrations\\202505130742022_addotpverifylog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.ui\\app_start\\unityconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\app_start\\unityconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.model\\entities\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|solutionrelative:marquise_web.model\\entities\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.ui\\app_start\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\app_start\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.model\\dtos\\crm\\authmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|solutionrelative:marquise_web.model\\dtos\\crm\\authmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.ui\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.ui\\models\\hangfireactivator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\models\\hangfireactivator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.service\\iservice\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\iservice\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.ui\\areas\\crm\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\areas\\crm\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.ui\\areas\\crm\\scripts\\crm\\ticket.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\areas\\crm\\scripts\\crm\\ticket.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|C:\\Users\\10\\source\\repos\\Marquise_Web\\marquise_web.ui\\areas\\crm\\apicontrollers\\ticketapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\areas\\crm\\apicontrollers\\ticketapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,140 +78,163 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\Migrations\\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.Data\\Migrations\\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\Migrations\\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs",
-              "RelativeToolTip": "Marquise_Web.Data\\Migrations\\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T09:12:29.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Auth.js",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Scripts\\CRM\\Auth.js",
-              "RelativeDocumentMoniker": "Marquise_Web.UI\\areas\\CRM\\Scripts\\CRM\\Auth.js",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Scripts\\CRM\\Auth.js",
-              "RelativeToolTip": "Marquise_Web.UI\\areas\\CRM\\Scripts\\CRM\\Auth.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-05-13T08:03:01.258Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "202505130742022_AddOtpVerifyLog.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\Migrations\\202505130742022_AddOtpVerifyLog.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.Data\\Migrations\\202505130742022_AddOtpVerifyLog.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\Migrations\\202505130742022_AddOtpVerifyLog.cs",
-              "RelativeToolTip": "Marquise_Web.Data\\Migrations\\202505130742022_AddOtpVerifyLog.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:42:07.602Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Marquise.Context.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\Marquise.Context.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.Data\\Marquise.Context.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\Marquise.Context.cs",
-              "RelativeToolTip": "Marquise_Web.Data\\Marquise.Context.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAC0AAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:40:43.414Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\IRepository\\IUserRepository.cs",
               "RelativeDocumentMoniker": "Marquise_Web.Data\\IRepository\\IUserRepository.cs",
               "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\IRepository\\IUserRepository.cs",
               "RelativeToolTip": "Marquise_Web.Data\\IRepository\\IUserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:37:45.336Z"
+              "WhenOpened": "2025-05-18T13:16:55.07Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\Repository\\UserRepository.cs",
               "RelativeDocumentMoniker": "Marquise_Web.Data\\Repository\\UserRepository.cs",
               "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\Repository\\UserRepository.cs",
               "RelativeToolTip": "Marquise_Web.Data\\Repository\\UserRepository.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAiwGIAAABZAAAAAAAAAA==",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAhwLgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:37:07.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\Entities\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "MArquise_Web.Model\\Entities\\ApplicationUser.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\Entities\\ApplicationUser.cs",
-              "RelativeToolTip": "MArquise_Web.Model\\Entities\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:36:42.679Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AuthModel.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\AuthModel.cs",
-              "RelativeDocumentMoniker": "MArquise_Web.Model\\DTOs\\CRM\\AuthModel.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\AuthModel.cs",
-              "RelativeToolTip": "MArquise_Web.Model\\DTOs\\CRM\\AuthModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:34:45.669Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.UI\\areas\\CRM\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Marquise_Web.UI\\areas\\CRM\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:14:33.064Z",
+              "WhenOpened": "2025-05-18T13:16:20.401Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\IService\\IAuthService.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.Service\\IService\\IAuthService.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\IService\\IAuthService.cs",
-              "RelativeToolTip": "Marquise_Web.Service\\IService\\IAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:08:08.716Z"
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\Web.config",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\Web.config",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\Web.config",
+              "RelativeToolTip": "Marquise_Web.UI\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-18T06:49:54.051Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\AuthService.cs",
-              "RelativeDocumentMoniker": "Marquise_Web.Service\\Service\\AuthService.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\AuthService.cs",
-              "RelativeToolTip": "Marquise_Web.Service\\Service\\AuthService.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAALEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\App_Start\\Startup.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\App_Start\\Startup.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\App_Start\\Startup.cs",
+              "RelativeToolTip": "Marquise_Web.UI\\App_Start\\Startup.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T07:07:12.352Z",
+              "WhenOpened": "2025-05-18T06:47:48.268Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IAccountService.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\IService\\IAccountService.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.Service\\IService\\IAccountService.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\IService\\IAccountService.cs",
+              "RelativeToolTip": "Marquise_Web.Service\\IService\\IAccountService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T06:38:45.193Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\AccountService.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.Service\\Service\\AccountService.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\AccountService.cs",
+              "RelativeToolTip": "Marquise_Web.Service\\Service\\AccountService.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAhwKYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T06:22:27.287Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UnityConfig.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\App_Start\\UnityConfig.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\App_Start\\UnityConfig.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\App_Start\\UnityConfig.cs",
+              "RelativeToolTip": "Marquise_Web.UI\\App_Start\\UnityConfig.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAhwD4AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T07:11:35.463Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountModel.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\AccountModel.cs",
+              "RelativeDocumentMoniker": "MArquise_Web.Model\\DTOs\\CRM\\AccountModel.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\AccountModel.cs",
+              "RelativeToolTip": "MArquise_Web.Model\\DTOs\\CRM\\AccountModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T06:32:29.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TicketController.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Controllers\\TicketController.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\areas\\CRM\\Controllers\\TicketController.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Controllers\\TicketController.cs",
+              "RelativeToolTip": "Marquise_Web.UI\\areas\\CRM\\Controllers\\TicketController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T14:02:34.937Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TicketApiController.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\ApiControllers\\TicketApiController.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\areas\\CRM\\ApiControllers\\TicketApiController.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\ApiControllers\\TicketApiController.cs",
+              "RelativeToolTip": "Marquise_Web.UI\\areas\\CRM\\ApiControllers\\TicketApiController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAcwEMAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T13:15:11.271Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Ticket.js",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Scripts\\CRM\\Ticket.js",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\areas\\CRM\\Scripts\\CRM\\Ticket.js",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\areas\\CRM\\Scripts\\CRM\\Ticket.js",
+              "RelativeToolTip": "Marquise_Web.UI\\areas\\CRM\\Scripts\\CRM\\Ticket.js",
+              "ViewState": "AgIAAMcAAAAAAAAAAAAIwNQAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-17T13:13:28.32Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TicketService.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\TicketService.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.Service\\Service\\TicketService.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\TicketService.cs",
+              "RelativeToolTip": "Marquise_Web.Service\\Service\\TicketService.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwDEAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T13:12:36.118Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "HangfireActivator.cs",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\Models\\HangfireActivator.cs",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\Models\\HangfireActivator.cs",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\Models\\HangfireActivator.cs",
+              "RelativeToolTip": "Marquise_Web.UI\\Models\\HangfireActivator.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAqwBYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T09:15:44.571Z"
             }
           ]
         }

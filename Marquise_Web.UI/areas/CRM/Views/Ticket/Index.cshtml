@@ -42,7 +42,10 @@
                                             <td>@ticket.Title</td>
                                             <td>@ticket.CreateDatePersian</td>
                                             <td>@ticket.StaffName</td>
-                                            <td>@ticket.StatusTitle</td>
+                                            <td>
+                                                @ticket.StatusTitle
+                                                @(ticket.Status == "9a5e80a8-cc75-46f1-b158-01d58384d4f7" ? Html.Raw("<i class=\"bi bi-check2-circle font-14\"></i>") : null)
+                                            </td>
                                         </tr>
                                     }
                                     

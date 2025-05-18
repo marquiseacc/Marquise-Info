@@ -46,12 +46,11 @@ namespace Marquise_Web.Service.Service
             throw new InvalidOperationException("OwinContext is not available.");
         }
 
-
         public async Task<OperationResult<object>> SendOtpAsync(string phoneNumber)
         {
             var user = await unitOfWork.UserRepository.GetByPhoneNumberAsync(phoneNumber);
             if (user == null)
-                return OperationResult<object>.Failure("کاربر با این شماره یافت نشد.");
+                return OperationResult<object>.Failure("کاربر با این شماره یافت نشد.برای پیوستن به تیم مارکیز از طریق صفحه ارتباط با ما اقدام کنید.");
 
             var fiveMinutesAgo = DateTime.UtcNow.AddMinutes(-5);
             var recentRequests = await unitOfWork.UserRepository.CountRecentOtpRequestsAsync(phoneNumber, fiveMinutesAgo);

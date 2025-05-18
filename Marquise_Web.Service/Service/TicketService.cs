@@ -140,8 +140,19 @@ namespace Marquise_Web.Service.Service
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl + "Ticket/", content);
-            if (response.IsSuccessStatusCode) return OperationResult<object>.Success(null, "تیکت با موفقیت ثبت شد.");
-            else return OperationResult<object>.Failure("ثبت تیکت با خطا مواجه شد.");
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                return OperationResult<object>.Success(null, "تیکت با موفقیت ثبت شد.");
+            }
+            else
+            {
+                var errorMsg = $"ثبت تیکت با خطا مواجه شد. کد خطا: {response.StatusCode}";
+                // می‌تونی responseBody هم log کنی یا تحلیل کنی
+                return OperationResult<object>.Failure(errorMsg);
+            }
+
         }
 
         public async Task<OperationResult<object>> AddAnswerAsync(NewAnswerDto dto)
@@ -149,12 +160,27 @@ namespace Marquise_Web.Service.Service
             var url = $"{apiSetting.ApiBaseUrl}Ticket/{dto.TicketId}/AddTicketResponse?message={Uri.EscapeDataString(dto.Message)}";
             var emptyContent = new StringContent("", Encoding.UTF8, "application/json");
 
+            var statusUrl = $"{apiSetting.ApiBaseUrl}Ticket/{dto.TicketId}";
+            var requestBody = new
+            {
+                Status = "b1af65c3-af6e-48a6-8d1f-b5c09d7f03c9" // وضعیت "بسته شده"
+            };
+            var json = JsonConvert.SerializeObject(requestBody);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var response = await httpClient.PostAsync(url, emptyContent);
-            if (response.IsSuccessStatusCode) return OperationResult<object>.Success(null, "پاسخ شما با موفقیت ثبت شد.");
-            else return OperationResult<object>.Failure("ثبت پاسخ با خطا مواجه شد.");
+            var statusResponse = await httpClient.PutAsync(statusUrl, content);
+            if (response.IsSuccessStatusCode && statusResponse.IsSuccessStatusCode)
+            {
+                return OperationResult<object>.Success(null, "پاسخ شما با موفقیت ثبت شد.");
+            }
+            else
+            {
+                var responseText = await response.Content.ReadAsStringAsync(); // برای دیباگ یا لاگ
+                return OperationResult<object>.Failure("ثبت پاسخ با خطا مواجه شد.");
+            }
         }
 
         public async Task<OperationResult<object>> CloseTicketAsync(CloseTicketDto dto)
@@ -162,18 +188,22 @@ namespace Marquise_Web.Service.Service
             var url = $"{apiSetting.ApiBaseUrl}Ticket/{dto.TicketId}";
             var requestBody = new
             {
-                Status = "9a5e80a8-cc75-46f1-b158-01d58384d4f7"
+                Status = "9a5e80a8-cc75-46f1-b158-01d58384d4f7" // وضعیت "بسته شده"
             };
 
             var json = JsonConvert.SerializeObject(requestBody);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
+            httpClient.DefaultRequestHeaders.Accept.Clear(); // پاکسازی قبلی‌ها برای احتیاط
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var response = await httpClient.PutAsync(url, content);
-            if (response.IsSuccessStatusCode) return OperationResult<object>.Success(null, "تیکت مورد نظر بسته شد.");
-            else return OperationResult<object>.Failure("بستن این تیکت با خطا مواجه شد.");
+
+            if (response.IsSuccessStatusCode)
+                return OperationResult<object>.Success(null, "تیکت مورد نظر با موفقیت بسته شد.");
+            else
+                return OperationResult<object>.Failure("بستن این تیکت با خطا مواجه شد.");
         }
 
     }

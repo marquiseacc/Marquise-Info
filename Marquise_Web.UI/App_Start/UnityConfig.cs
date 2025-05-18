@@ -25,6 +25,12 @@ namespace Marquise_Web.UI
     public static class UnityConfig
     {
         private static UnityContainer container;
+        public static IUnityContainer Container => container;
+        public static IUnityContainer GetConfiguredContainer()
+        {
+            return container;
+        }
+
         public static void RegisterComponents()
         {
             container = new UnityContainer();
@@ -47,26 +53,38 @@ namespace Marquise_Web.UI
                 Host = ConfigurationManager.AppSettings["SmtpHost"],
                 Port = int.Parse(ConfigurationManager.AppSettings["SmtpPort"]),
                 Username = ConfigurationManager.AppSettings["SmtpUsername"],
-                Password = ConfigurationManager.AppSettings["SmtpPassword"],
+                Password = Environment.GetEnvironmentVariable("SmtpPassword")
+                ?? throw new ConfigurationErrorsException("SmtpPassword env var not set."),
                 From = ConfigurationManager.AppSettings["SmtpFrom"]
             }, new HierarchicalLifetimeManager());
+
 
 
             container.RegisterFactory<CRMApiSetting>(c => new CRMApiSetting
             {
                 ApiBaseUrl = ConfigurationManager.AppSettings["CrmApiBaseUrl"],
-                ApiToken = ConfigurationManager.AppSettings["CrmApiToken"]
+                ApiToken = Environment.GetEnvironmentVariable("CrmApiToken")
+                ?? ConfigurationManager.AppSettings["CrmApiToken"]
+                ?? throw new ConfigurationErrorsException("CrmApiToken not set")
             }, new HierarchicalLifetimeManager());
 
 
             container.RegisterFactory<SMSApiSetting>(c => new SMSApiSetting
             {
                 ApiBaseUrl = ConfigurationManager.AppSettings["SmsApiBaseUrl"],
-                ApiKey = ConfigurationManager.AppSettings["SmsApiKey"],
-                ApiTemplateId = ConfigurationManager.AppSettings["SmsApiTemplateId"]
+                ApiTemplateId = ConfigurationManager.AppSettings["SmsApiTemplateId"],
+                ApiKey = Environment.GetEnvironmentVariable("SmsApiKey")
+                ?? ConfigurationManager.AppSettings["SmsApiKey"]
+                ?? throw new ConfigurationErrorsException("SmsApiKey not set")
             }, new HierarchicalLifetimeManager());
 
+            var token = Environment.GetEnvironmentVariable("CrmApiToken")
+          ?? ConfigurationManager.AppSettings["CrmApiToken"];
 
+            if (string.IsNullOrEmpty(token))
+            {
+                throw new ConfigurationErrorsException("❌ CrmApiToken not found");
+            }
             container.RegisterType<HttpClient>(new HierarchicalLifetimeManager());
 
             // ثبت IdentityDbContext

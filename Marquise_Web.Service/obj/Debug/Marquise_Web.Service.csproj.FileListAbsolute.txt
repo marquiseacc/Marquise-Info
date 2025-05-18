@@ -1,5 +1,3 @@
-C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\obj\Debug\Marquise_Web.Service.csproj.AssemblyReference.cache
-C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\obj\Debug\Marquise_Web.Service.csproj.CoreCompileInputs.cache
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\App.config
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Service.dll.config
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Marquise_Web.Service.dll
@@ -20,7 +18,6 @@ C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.E
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.Diagnostics.Abstractions.dll
-C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\Microsoft.Extensions.Logging.dll
@@ -96,6 +93,8 @@ C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\System.Text
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\System.Text.Json.xml
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Debug\System.ValueTuple.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\obj\Debug\Marquise_Web.Service.csproj.AssemblyReference.cache
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\obj\Debug\Marquise_Web.Service.csproj.CoreCompileInputs.cache
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\obj\Debug\Marquise.C705DC0D.Up2Date
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\obj\Debug\Marquise_Web.Service.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\obj\Debug\Marquise_Web.Service.pdb

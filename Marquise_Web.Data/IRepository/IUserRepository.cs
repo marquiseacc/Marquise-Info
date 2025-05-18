@@ -1,7 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Marquise_Web.Model.DTOs.CRM;
+﻿using Marquise_Web.Model.DTOs.CRM;
 using Marquise_Web.Model.Entities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Marquise_Web.Data.IRepository
 {
@@ -17,6 +18,7 @@ namespace Marquise_Web.Data.IRepository
         Task<int> CountRecentOtpRequestsAsync(string phoneNumber, DateTime since);
         Task<DateTime?> GetLastOtpRequestTimeAsync(string phoneNumber);
         Task<DateTime?> GetLastFailedOtpAttemptTimeAsync(string phoneNumber);
+        Task BulkInsertUsersAsync(List<ApplicationUser> users);
 
     }
 }

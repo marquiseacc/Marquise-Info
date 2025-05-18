@@ -70,40 +70,34 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
 
             if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
             {
-                return Json(new { success = false });
+                return Json(new
+                {
+                    success = false,
+                    message = "دسترسی غیرمجاز"
+                });
             }
 
             var dto = UIDataMapper.Mapper.Map<NewAnswerDto>(answer);
             var result = await unitOfWork.TicketService.AddAnswerAsync(dto);
 
-            if (result.IsSuccess)
+            var redirectUrl = Url.Link("CRM_Area", new
             {
-                return Json(new OperationResult<object>
-                {
-                    IsSuccess = true,
-                    Message = result.Message,
-                    Data = new
-                    {
-                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM", ticketId= answer.TicketId })
-                    }
-                });
-            }
-            else
+                controller = "Ticket",
+                action = "Index",
+                area = "CRM",
+                ticketId = answer.TicketId
+            });
+
+            return Json(new
             {
-                return Json(new OperationResult<object>
-                {
-                    IsSuccess = false,
-                    Message = result.Message,
-                    Data = new
-                    {
-                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
-                    }
-                });
-            }
+                success = result.IsSuccess,
+                message = result.Message,
+                redirectUrl = redirectUrl
+            });
         }
 
 
-        [System.Web.Http.HttpPost]
+        [HttpPost]
         [System.Web.Http.Route("api/CRM/TicketApi/CloseTicket")]
         public async Task<IHttpActionResult> CloseTicket(CloseTicket ticket)
         {
@@ -111,36 +105,28 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
 
             if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
             {
-                return Json(new { success = false });
+                return Json(new
+                {
+                    success = false,
+                    message = "دسترسی غیرمجاز"
+                });
             }
 
             var dto = UIDataMapper.Mapper.Map<CloseTicketDto>(ticket);
             var result = await unitOfWork.TicketService.CloseTicketAsync(dto);
-            if (result.IsSuccess)
-            {
-                return Json(new OperationResult<object>
-                {
-                    IsSuccess = true,
-                    Message = result.Message,
-                    Data = new
-                    {
-                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
-                    }
-                });
-            }
-            else
-            {
-                return Json(new OperationResult<object>
-                {
-                    IsSuccess = false,
-                    Message = result.Message,
-                    Data = new
-                    {
-                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
-                    }
-                });
-            }
 
+            return Json(new
+            {
+                success = result.IsSuccess,
+                message = result.Message,
+                redirectUrl = Url.Link("CRM_Area", new
+                {
+                    controller = "Ticket",
+                    action = "Index",
+                    area = "CRM"
+                })
+            });
         }
+
     }
 }

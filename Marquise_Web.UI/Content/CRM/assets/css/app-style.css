@@ -4278,7 +4278,7 @@ tr:hover {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     min-width: 1200px; /* معادل عرض 12 ماه (مثلا 100px هر ماه) */
     padding-inline: 10px;
     margin-top: 10px;
