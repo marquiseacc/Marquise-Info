@@ -30,7 +30,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                 return Json(new { success = false });
             }
             var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
-            var dto = UIDataMapper.Mapper.Map<AccountDto>(account);
+            var dto = UIDataMapper.Mapper.Map<CrmAccountDto>(account);
             dto.AccountId = crmId;
 
             var result = await unitOfWork.AccountService.UpdateAccountAsync(dto);

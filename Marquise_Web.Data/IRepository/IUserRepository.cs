@@ -19,6 +19,6 @@ namespace Marquise_Web.Data.IRepository
         Task<DateTime?> GetLastOtpRequestTimeAsync(string phoneNumber);
         Task<DateTime?> GetLastFailedOtpAttemptTimeAsync(string phoneNumber);
         //Task BulkInsertUsersAsync(List<ApplicationUser> users);
-        
+        Task<List<Account>> GetAccountByUserIdAsync(string userId);
     }
 }

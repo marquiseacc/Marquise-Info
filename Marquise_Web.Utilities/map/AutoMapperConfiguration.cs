@@ -2,6 +2,8 @@
 using System;
 using AutoMapper;
 using Marquise_Web.Model.DTOs.SiteModel;
+using Marquise_Web.Model.Entities;
+using Marquise_Web.Model.DTOs.CRM;
 
 namespace Utilities.Map
 {
@@ -24,10 +26,14 @@ namespace Utilities.Map
                 .ForMember(dest => dest.EmailAddress, opt => opt.Ignore())
                 .ForMember(dest => dest.EmailSubject, opt => opt.Ignore());
             CreateMap<Message, MessageDTO>()
-                 .ForMember(dest => dest.EmailBody, opt => opt.Ignore())
+                .ForMember(dest => dest.EmailBody, opt => opt.Ignore())
                 .ForMember(dest => dest.EmailAddress, opt => opt.Ignore())
                 .ForMember(dest => dest.EmailSubject, opt => opt.Ignore());
-
+            CreateMap<Account, AccountDto>()
+            .ForMember(dest => dest.AccountId, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+            .ForMember(dest => dest.CrmAccountId, opt => opt.MapFrom(src => src.CrmAccountId))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
 
         }
     }

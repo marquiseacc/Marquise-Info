@@ -1,13 +1,16 @@
-﻿using Marquise_Web.Service.IService;
-using Marquise_Web.UI.areas.CRM.Models;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using System.Web;
-using Marquise_Web.Service.Service;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity;
+﻿using Marquise_Web.Model.DTOs.CRM;
 using Marquise_Web.Model.Utilities;
-using Marquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Service.IService;
+using Marquise_Web.Service.Service;
+using Marquise_Web.UI.areas.CRM.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using Utilities.Map;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
@@ -94,7 +97,10 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
         public async Task<ActionResult> BranchSelection()
         {
-            return View();
+            var userId = ((ClaimsIdentity)User.Identity).FindFirst("UserId")?.Value;
+            var accounts = await unitOfWork.AuthService.GetAccountByUserIdAsync(userId);
+            var accountVms = UIDataMapper.Mapper.Map<List<AccountVM>>(accounts);
+            return View(accountVms);
         }
 
         private ApplicationSignInManager _signInManager;

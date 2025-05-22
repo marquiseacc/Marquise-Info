@@ -1,18 +1,21 @@
 ﻿using Marquise_Web.Data.IRepository;
-using Marquise_Web.Service.IService;
-using System;
-using System.Threading.Tasks;
 using Marquise_Web.Model.DTOs.CRM;
-using Microsoft.Owin.Security;
-using Microsoft.AspNet.Identity;
-using System.Web;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Net.Http;
-using System.Text.Json;
-using System.Text;
-using Marquise_Web.Utilities.Messaging;
+using Marquise_Web.Model.Entities;
 using Marquise_Web.Model.Utilities;
+using Marquise_Web.Service.IService;
+using Marquise_Web.Utilities.Messaging;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Net.Http;
+using System.Security.Claims;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.Web;
+using Utilities.Map;
 
 namespace Marquise_Web.Service.Service
 {
@@ -78,35 +81,35 @@ namespace Marquise_Web.Service.Service
 
             var otpCode = OtpHelper.GenerateSecureOtp(5);
 
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.DefaultRequestHeaders.Add("x-api-key", apiSetting.ApiKey);
+            //using (var httpClient = new HttpClient())
+            //{
+            //    httpClient.DefaultRequestHeaders.Add("x-api-key", apiSetting.ApiKey);
 
-                var requestModel = new
-                {
-                    mobile = phoneNumber,
-                    templateId = apiSetting.ApiTemplateId,
-                    parameters = new[] { new { name = "Code", value = otpCode } }
-                };
+            //    var requestModel = new
+            //    {
+            //        mobile = phoneNumber,
+            //        templateId = apiSetting.ApiTemplateId,
+            //        parameters = new[] { new { name = "Code", value = otpCode } }
+            //    };
 
-                var json = JsonSerializer.Serialize(requestModel);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
+            //    var json = JsonSerializer.Serialize(requestModel);
+            //    var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                try
-                {
-                    var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl, content);
+            //    try
+            //    {
+            //        var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl, content);
 
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        var errorMessage = await response.Content.ReadAsStringAsync();
-                        return OperationResult<object>.Failure($"ارسال پیامک با خطا مواجه شد: {errorMessage}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return OperationResult<object>.Failure($"ارسال پیامک با خطا مواجه شد: {ex.Message}");
-                }
-            }
+            //        if (!response.IsSuccessStatusCode)
+            //        {
+            //            var errorMessage = await response.Content.ReadAsStringAsync();
+            //            return OperationResult<object>.Failure($"ارسال پیامک با خطا مواجه شد: {errorMessage}");
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return OperationResult<object>.Failure($"ارسال پیامک با خطا مواجه شد: {ex.Message}");
+            //    }
+            //}
 
             user.OtpCode = OtpHelper.HashOtp(otpCode);
             user.OtpExpiration = DateTime.UtcNow.AddMinutes(2);
@@ -114,12 +117,12 @@ namespace Marquise_Web.Service.Service
 
             var requestLog = new OtpRequestLog
             {
+                Id = Guid.NewGuid().ToString(),
                 PhoneNumber = phoneNumber,
                 RequestTime = DateTime.UtcNow,
                 IPAddress = HttpContext.Current?.Request?.UserHostAddress,
                 UserId = user.Id
             };
-
             await unitOfWork.UserRepository.AddOtpRequestLogAsync(requestLog);
             await unitOfWork.UserRepository.SaveAsync();
 
@@ -147,6 +150,7 @@ namespace Marquise_Web.Service.Service
 
             var verifyLog = new OtpVerifyLog
             {
+                Id = Guid.NewGuid().ToString(),
                 PhoneNumber = phoneNumber,
                 TryTime = DateTime.UtcNow,
                 IPAddress = ip,
@@ -189,7 +193,8 @@ namespace Marquise_Web.Service.Service
                 //new Claim(ClaimTypes.NameIdentifier, user.Id),
                 //new Claim(ClaimTypes.Name, user.FullName ?? ""),
                 //new Claim("CrmAccountId", user.CrmUserId.ToString()),
-                new Claim("OtpVerified", "True")
+                new Claim("OtpVerified", "True"),
+                new Claim("UserId", user.Id.ToString())
             };
 
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
@@ -232,6 +237,11 @@ namespace Marquise_Web.Service.Service
             return OperationResult<object>.Success("تعداد تلاش‌ها مجاز است.");
         }
 
+        public async Task<List<AccountDto>> GetAccountByUserIdAsync(string userId)
+        {
+            var accounts = DataMapper.Mapper.Map<List<AccountDto>>(await unitOfWork.UserRepository.GetAccountByUserIdAsync(userId));
+            return accounts;
+        }
     }
 
 }

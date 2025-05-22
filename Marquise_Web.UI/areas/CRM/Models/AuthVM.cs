@@ -26,4 +26,12 @@ namespace Marquise_Web.UI.areas.CRM.Models
         [Required]
         public Guid CrmId { get; set; }
     }
+
+    public class AccountVM
+    {
+        public string AccountId { get; set; }
+        public string UserId { get; set; }
+        public string CrmAccountId { get; set; }
+        public string Name { get; set; }
+    }
 }

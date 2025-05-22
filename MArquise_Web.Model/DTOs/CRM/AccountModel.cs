@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Marquise_Web.Model.DTOs.CRM
 {
-    public class AccountDto
+    public class CrmAccountDto
     {
         public string AccountId { get; set; }
         public string Name { get; set; }
@@ -36,7 +36,7 @@ namespace Marquise_Web.Model.DTOs.CRM
 
     public class AccountResultData
     {
-        public List<AccountDto> result { get; set; }
+        public List<CrmAccountDto> result { get; set; }
         public object TotalRows { get; set; }
     }
 

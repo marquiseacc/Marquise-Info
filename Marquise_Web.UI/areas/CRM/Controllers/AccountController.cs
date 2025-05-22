@@ -28,7 +28,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             if (accountDto == null)
                 return RedirectToAction("Index", "Dashboard");
 
-            var viewModel = new AccountVM
+            var viewModel = new CrmAccountVM
             {
                 AccountId = accountDto.AccountId,
                 Name = accountDto.Name,

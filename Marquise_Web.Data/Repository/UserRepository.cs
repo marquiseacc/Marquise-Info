@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -30,11 +31,12 @@ namespace Marquise_Web.Data.Repository
         }
         public async Task<ApplicationUser> GetByPhoneNumberAsync(string phoneNumber)
         {
-            try { 
-            return await context.Set<ApplicationUser>()
-                .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
+            try
+            {
+                return await context.Set<ApplicationUser>()
+                    .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
@@ -57,16 +59,25 @@ namespace Marquise_Web.Data.Repository
         }
         public async Task AddOtpRequestLogAsync(OtpRequestLog log)
         {
-            var user = await context.Set<ApplicationUser>()
-                .FirstOrDefaultAsync(u => u.PhoneNumber == log.PhoneNumber);
-            if (user != null)
+            try
             {
-                user.OtpRequestLogs.Add(log);
-                await context.SaveChangesAsync();
+                var user = await context.Set<ApplicationUser>()
+                .FirstOrDefaultAsync(u => u.PhoneNumber == log.PhoneNumber);
+                if (user != null)
+                {
+                    user.OtpRequestLogs.Add(log);
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex; // برای اینکه خطا به‌صورت کامل همچنان در خروجی نمایش داده شود
             }
         }
         public async Task AddOtpVerifyLogAsync(OtpVerifyLog log)
         {
+
             var user = await context.Set<ApplicationUser>()
                 .FirstOrDefaultAsync(u => u.PhoneNumber == log.PhoneNumber);
             if (user != null)
@@ -74,6 +85,7 @@ namespace Marquise_Web.Data.Repository
                 user.OtpVerifyLogs.Add(log);
                 await context.SaveChangesAsync();
             }
+
         }
         public async Task<int> CountRecentFailedOtpAttemptsAsync(string phoneNumber, DateTime since)
         {
@@ -112,6 +124,32 @@ namespace Marquise_Web.Data.Repository
                 .Select(x => (DateTime?)x.TryTime)
                 .FirstOrDefaultAsync();
         }
+        public async Task<List<Account>> GetAccountByUserIdAsync(string userId)
+        {
+            // مرحله ۱: گرفتن رکوردهایی که UserId == userId
+            var directAccounts = await context.Accounts
+                .Where(a => a.UserId == userId)
+                .ToListAsync();
+
+            // استخراج Id آن‌ها
+            var directAccountIds = directAccounts.Select(a => a.Id).ToList();
+
+            // مرحله ۲: گرفتن رکوردهایی که ParentId در لیست بالا باشد
+            var childAccounts = await context.Accounts
+                .Where(a => directAccountIds.Contains(a.ParentId))
+                .ToListAsync();
+
+            // مرحله ۳: ترکیب هر دو لیست و حذف تکراری‌ها
+            var allAccounts = directAccounts
+                .Concat(childAccounts)
+                .GroupBy(a => a.Id)
+                .Select(g => g.First())
+                .ToList();
+
+            return allAccounts;
+        }
+
+
         //public async Task BulkInsertUsersAsync(List<ApplicationUser> users)
         //{
         //    var dataTable = new DataTable();
@@ -198,7 +236,7 @@ namespace Marquise_Web.Data.Repository
 
         //    }
         //}
-        
+
     }
 
 }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Marquise_Web.UI.areas.CRM.Models
 {
-    public class AccountVM
+    public class CrmAccountVM
     {
         public string AccountId { get; set; }
         public string Name { get; set; }

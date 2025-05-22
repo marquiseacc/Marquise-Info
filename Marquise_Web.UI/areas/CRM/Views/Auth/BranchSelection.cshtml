@@ -1,4 +1,6 @@
-﻿
+﻿@model IEnumerable<Marquise_Web.UI.areas.CRM.Models.AccountVM>
+
+
 @{
     ViewBag.Title = "BranchSelection";
     Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
@@ -14,25 +16,21 @@
                         <table class="table table-light">
                             <thead>
                                 <tr class="custom-tr">
-                                    <th>لطفا شعبه مورد نظر خود را انتخاب کنید.</th>
+                                    <th class="font-16">لطفا شعبه مورد نظر خود را انتخاب کنید.</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="table-row-link">
-                                    <td>
-                                        شعبه قائم
-                                    </td>
-                                </tr>
-                                <tr class="table-row-link">
-                                    <td>
-                                        شعبه کیش
-                                    </td>
-                                </tr>
-                                <tr class="table-row-link">
-                                    <td>
-                                        شعبه اوپال
-                                    </td>
-                                </tr>
+                                @foreach (var account in Model)
+                                {
+                                    <tr class="table-row-link"
+                                        data-user-id="@account.UserId"
+                                        data-crmAccount-id="@account.CrmAccountId"
+                                        data-account-id="@account.AccountId">
+                                        <td>
+                                            @account.Name
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -42,4 +40,7 @@
         </div>
     </div>
 </section>
+@section Scripts {
+    <script src="~/Areas/CRM/Scripts/CRM/Auth.js"></script>
+}
 

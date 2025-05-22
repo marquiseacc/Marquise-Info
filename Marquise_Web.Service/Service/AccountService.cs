@@ -33,7 +33,7 @@ namespace Marquise_Web.Service.Service
             this.unitOfWork = unitOfWork;
         }
 
-        public async Task<AccountDto> GetAccountWithManagerAsync(string crmId)
+        public async Task<CrmAccountDto> GetAccountWithManagerAsync(string crmId)
         {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
 
@@ -45,14 +45,14 @@ namespace Marquise_Web.Service.Service
             var jObject = JObject.Parse(responseString);
             var resultArray = jObject["ResultData"]?["result"] as JArray;
 
-            var account = JsonConvert.DeserializeObject<AccountDto>(resultArray.First().ToString());
+            var account = JsonConvert.DeserializeObject<CrmAccountDto>(resultArray.First().ToString());
 
             if (account == null)
                 return null;
 
             return account;
         }
-        public async Task<OperationResult<object>> UpdateAccountAsync(AccountDto account)
+        public async Task<OperationResult<object>> UpdateAccountAsync(CrmAccountDto account)
         {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
 
