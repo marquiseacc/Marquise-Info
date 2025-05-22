@@ -15,6 +15,7 @@ namespace Marquise_Web.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Reflection;
 
     public partial class Marquise_WebEntities : DbContext
     {
@@ -44,26 +45,25 @@ namespace Marquise_Web.Data
         }
         public DbSet<OtpRequestLog> OtpRequestLogs { get; set; }
         public DbSet<OtpVerifyLog> OtpVerifyLogs { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // اگر جدول‌ها از قبل تو دیتابیس هستن و نمی‌خوای تغییر کنن، جدول‌ها رو به‌صورت دستی مپ کن
-            modelBuilder.Entity<ApplicationUser>().ToTable("Users", "Security");
+            modelBuilder.Entity<ApplicationUser>().ToTable("User", "Security");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles", "Security");
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles", "Security");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins", "Security");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims", "Security");
             modelBuilder.Entity<OtpRequestLog>().ToTable("OtpRequestLogs", "Security");
-            modelBuilder.Entity<OtpVerifyLog>().ToTable("OtpVerifyLogs", "Security");
+            modelBuilder.Entity<OtpVerifyLog>().ToTable("OtpVerifyLogs", "Security");            
+            modelBuilder.Entity<Account>().ToTable("Accounts", "Security");
 
-            // تنظیم روابط OTPRequestLog با ApplicationUser
             modelBuilder.Entity<OtpRequestLog>()
                 .HasRequired(o => o.User)
                 .WithMany(u => u.OtpRequestLogs)
                 .HasForeignKey(o => o.UserId)
-                .WillCascadeOnDelete(false);  // جلوگیری از حذف خودکار
+                .WillCascadeOnDelete(false);  
 
-            // تنظیم روابط OtpVerifyLog با ApplicationUser
             modelBuilder.Entity<OtpVerifyLog>()
                 .HasRequired(v => v.User)
                 .WithMany(u => u.OtpVerifyLogs)

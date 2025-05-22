@@ -34,7 +34,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
         public async Task<ActionResult> MainDetail()
         {
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
+            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
             var detailVM = new MainDetailVM();
 
             // support
@@ -75,7 +75,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         [HttpGet]
         public async Task<ActionResult> LastTicket()
         {
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
+            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
 
             var ticketDtos = await unitOfWork.TicketService.GetTicketsByApplicantIdAsync(crmId);
             var staffDtos = await unitOfWork.TicketService.GetAllStaffAsync();
@@ -93,5 +93,6 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
             return PartialView("LastTicket", ticketVMs);
         }
+
     }
 }

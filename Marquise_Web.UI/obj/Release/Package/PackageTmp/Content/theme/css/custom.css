@@ -56,7 +56,7 @@
 
 
 .nav-line {
-    border-top: 5px solid #5585B5;
+    border-top: 2px solid #5585B5;
 }
 
 .full-width {
@@ -264,7 +264,7 @@ input[type="file"]::file-selector-button {
     background-image: linear-gradient(45deg,#ff0048 0%,#ff3870 50%,#c300c3 100%);
     font-size: 16px;
     font-weight: 400;
-    font-family: 'IRANYekan', sans-serif;
+    font-family: 'Vazirmatn', sans-serif;
     padding: 0px 32px;
     line-height: 50px;
     text-align: center;
@@ -644,9 +644,9 @@ input[type="file"] {
     color: #e60072;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-size: 22px;
-    font-weight: 600;
-    margin: 0 0 26px 0;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 12px 0;
     display: block;
 }
 
@@ -663,7 +663,7 @@ input[type="file"] {
 .co-navyBlue {
     display: inline-block;
     margin: 0 0 20px 0;
-    font-family: 'IRANYekan', sans-serif;
+    font-family: 'Vazirmatn', sans-serif;
     color: #050748 !important
 }
 
@@ -671,7 +671,7 @@ input[type="file"] {
     color: #EC437C !important;
     display: flex;
     padding: 10px 32px;
-    font-family: 'IRANYekan', sans-serif;
+    font-family: 'Vazirmatn', sans-serif;
     font-size: 18px;
     background: #fff;
     -webkit-box-shadow: 0 10px 15px 0px rgba(3, 35, 68, 0.1);
@@ -711,7 +711,7 @@ input[type="file"] {
     width: 90%;
     margin: 0 auto;
     padding: 0.866% 0;
-    font-family: 'IRANYekan', sans-serif;
+    font-family: 'Vazirmatn', sans-serif;
     font-size: 15px;
 }
 
@@ -997,20 +997,32 @@ tbody:hover tr:hover td {
     text-shadow: 0 1px 0 #fff;
 }
 
+
+.font-12 {
+    font-size: 12px !important
+}
+
+.font-13 {
+    font-size: 13px !important
+}
+
 .font-14 {
-    font-size: 14px
+    font-size: 14px !important
 }
 
 
 .font-16 {
-    font-size: 16px
+    font-size: 16px !important
 }
 
 
 .font-24 {
-    font-size: 24px
+    font-size: 24px !important
 }
 
+.top-0{
+    top: 0 !important
+}
 
 .footer-color {
     color: #222222
@@ -1298,3 +1310,11 @@ tbody:hover tr:hover td {
 .base-footer-color {
     background-color: #DCD6F7;
 }
+
+
+.h_iframe-aparat_embed_frame span {
+    padding-top: 56.25% !important; 
+}
+
+
+

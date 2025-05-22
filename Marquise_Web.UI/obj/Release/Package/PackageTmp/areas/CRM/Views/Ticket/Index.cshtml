@@ -1,0 +1,70 @@
+﻿@model List<Marquise_Web.UI.areas.CRM.Models.TicketVM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h5 class="card-title pb-2">تیکت</h5>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary btn-block ml-lg-3" onclick="location.href='@Url.Action("NewTicket", "Ticket", new { area = "CRM"})'">
+                                    تیکت جدید
+
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table font-14">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">موضوع</th>
+                                        <th scope="col">تاریخ</th>
+                                        <th scope="col">کارشناس</th>
+                                        <th scope="col">وضعیت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var ticket in Model)
+                                    {
+                                       
+                                        <tr class="table-row-link" onclick="location.href='@Url.Action("Detail", "Ticket", new { area = "CRM", ticketId = ticket.TicketId })'">
+                                            <th scope="row">@ticket.TicketNumber</th>
+                                            <td>@ticket.Title</td>
+                                            <td>@ticket.CreateDatePersian</td>
+                                            <td>@ticket.StaffName</td>
+                                            <td>
+                                                @ticket.StatusTitle
+                                                @(ticket.Status == "9a5e80a8-cc75-46f1-b158-01d58384d4f7" ? Html.Raw("<i class=\"bi bi-check2-circle font-14\"></i>") : null)
+                                            </td>
+                                        </tr>
+                                    }
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+</div>
+
+
+
+

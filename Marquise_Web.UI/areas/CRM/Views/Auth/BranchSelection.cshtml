@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "BranchSelection";
+    Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
+    ViewData["IsLoginPage"] = true;
+}
+
+<section class="login-page pt50 pb50 dir-center">
+    <div class="v-center m-auto">
+        <div class="login-form-div">
+            <div class="form-block">
+                <form id="Login-form" onsubmit="return handleVerifyOTPFormSubmit(event);" novalidate>
+                    <div class="table-responsive">
+                        <table class="table table-light">
+                            <thead>
+                                <tr class="custom-tr">
+                                    <th>لطفا شعبه مورد نظر خود را انتخاب کنید.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-row-link">
+                                    <td>
+                                        شعبه قائم
+                                    </td>
+                                </tr>
+                                <tr class="table-row-link">
+                                    <td>
+                                        شعبه کیش
+                                    </td>
+                                </tr>
+                                <tr class="table-row-link">
+                                    <td>
+                                        شعبه اوپال
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

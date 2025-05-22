@@ -69,7 +69,7 @@ function handleVerifyOTPFormSubmit(event) {
                     icon: 'success',
                     confirmButtonText: 'باشه'
                 }).then(() => {
-                    const redirectUrl = data.Data?.redirectUrl || '/CRM/Dashboard/Index';
+                    const redirectUrl = data.Data?.redirectUrl || '/CRM/Auth/BranchSelection';
                     window.location.href = redirectUrl;
                 });
             } else {

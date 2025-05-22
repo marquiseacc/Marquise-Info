@@ -11,7 +11,7 @@ namespace Marquise_Web.Model.DTOs.CRM
         public string IndustryCode { get; set; }
         public string ShippingAddress { get; set; }
         public string Mobile { get; set; }
-        public bool IsSyncedToSite__C { get; set; }
+        public bool? IsSyncedToSite__C { get; set; }
         public double shomaremoshtari__C { get; set; }
         public string mahale__C { get; set; }
         public string cituu__C { get; set; }

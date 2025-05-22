@@ -22,7 +22,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
         [System.Web.Http.Route("api/CRM/DashboardApi/SupportTimeLine")]
         public async Task<IHttpActionResult> SupportTimeLine()
         {
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
+            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
             var supportTimes = new List<SupportTimeVM>();
 
             // support

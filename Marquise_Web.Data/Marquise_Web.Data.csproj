@@ -132,41 +132,9 @@
     <Compile Include="Message.cs">
       <DependentUpon>Marquise.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202504190815150_InitialCreate.cs" />
-    <Compile Include="Migrations\202504190815150_InitialCreate.Designer.cs">
-      <DependentUpon>202504190815150_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202504200608302_AddCRMIdToApplicationUser.cs" />
-    <Compile Include="Migrations\202504200608302_AddCRMIdToApplicationUser.Designer.cs">
-      <DependentUpon>202504200608302_AddCRMIdToApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202504200754273_AddGenderToApplicationUser.cs" />
-    <Compile Include="Migrations\202504200754273_AddGenderToApplicationUser.Designer.cs">
-      <DependentUpon>202504200754273_AddGenderToApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202504200945081_AddCRMIdAndGender.cs" />
-    <Compile Include="Migrations\202504200945081_AddCRMIdAndGender.Designer.cs">
-      <DependentUpon>202504200945081_AddCRMIdAndGender.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202504270741589_RenameIdentityTables.cs" />
-    <Compile Include="Migrations\202504270741589_RenameIdentityTables.Designer.cs">
-      <DependentUpon>202504270741589_RenameIdentityTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202505120937306_AddOtpRequestLogsTableToSecuritySchema.cs" />
-    <Compile Include="Migrations\202505120937306_AddOtpRequestLogsTableToSecuritySchema.Designer.cs">
-      <DependentUpon>202505120937306_AddOtpRequestLogsTableToSecuritySchema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202505120958464_AddOtpRequestLogsToApplicationUser.cs" />
-    <Compile Include="Migrations\202505120958464_AddOtpRequestLogsToApplicationUser.Designer.cs">
-      <DependentUpon>202505120958464_AddOtpRequestLogsToApplicationUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202505130742022_AddOtpVerifyLog.cs" />
-    <Compile Include="Migrations\202505130742022_AddOtpVerifyLog.Designer.cs">
-      <DependentUpon>202505130742022_AddOtpVerifyLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs" />
-    <Compile Include="Migrations\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.Designer.cs">
-      <DependentUpon>202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs</DependentUpon>
+    <Compile Include="Migrations\202505211137217_Update.cs" />
+    <Compile Include="Migrations\202505211137217_Update.Designer.cs">
+      <DependentUpon>202505211137217_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -210,32 +178,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202504190815150_InitialCreate.resx">
-      <DependentUpon>202504190815150_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202504200608302_AddCRMIdToApplicationUser.resx">
-      <DependentUpon>202504200608302_AddCRMIdToApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202504200754273_AddGenderToApplicationUser.resx">
-      <DependentUpon>202504200754273_AddGenderToApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202504200945081_AddCRMIdAndGender.resx">
-      <DependentUpon>202504200945081_AddCRMIdAndGender.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202504270741589_RenameIdentityTables.resx">
-      <DependentUpon>202504270741589_RenameIdentityTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202505120937306_AddOtpRequestLogsTableToSecuritySchema.resx">
-      <DependentUpon>202505120937306_AddOtpRequestLogsTableToSecuritySchema.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202505120958464_AddOtpRequestLogsToApplicationUser.resx">
-      <DependentUpon>202505120958464_AddOtpRequestLogsToApplicationUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202505130742022_AddOtpVerifyLog.resx">
-      <DependentUpon>202505130742022_AddOtpVerifyLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.resx">
-      <DependentUpon>202505130912243_AddOtpRequestLogsAndOtpVerifyLogs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202505211137217_Update.resx">
+      <DependentUpon>202505211137217_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

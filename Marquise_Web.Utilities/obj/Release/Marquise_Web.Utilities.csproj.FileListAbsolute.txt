@@ -15,3 +15,11 @@ C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\obj\Release\Marquis
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\obj\Release\Marquise.0F75461D.Up2Date
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\obj\Release\Marquise_Web.Utilities.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\obj\Release\Marquise_Web.Utilities.pdb
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Release\Marquise_Web.Utilities.dll.config
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Release\Microsoft.AspNet.Identity.Core.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Release\Marquise_Web.Model.dll.config
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Release\Microsoft.AspNet.Identity.Core.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Utilities\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml

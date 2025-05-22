@@ -12,7 +12,7 @@
     <link rel="icon" type="image/webp" href="~/Content/Images/Logo.webp">
     <!--plugin-css-->
     <link href="https://fonts.cdnfonts.com/css/iranyekan" rel="stylesheet">
-    <link href="~/Content/bootstrap/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/Content/theme/css//bootstrap-grid.css" rel="stylesheet" />
     <link href="~/Content/theme/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/Content/theme/css/plugin.min.css" rel="stylesheet">
     <link href="~/Content/theme/css/swiper.min.css" rel="stylesheet">
@@ -29,16 +29,16 @@
     @RenderSection("scripts", required: false)
 </head>
 <body>
-
+    
     @Html.Partial("Header")
-
+    <div id="custom-alert-container"></div>
     <div id="myDiv">
 
         @RenderBody()
     </div>
 
     @Html.Partial("Footer")
-    
+
     <!-- for theme -->
     <script src="~/Scripts/vendor/modernizr-3.5.0.min.js"></script>
     <script src="~/Scripts/jquery.min.js"></script>

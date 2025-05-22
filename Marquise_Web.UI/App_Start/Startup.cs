@@ -5,16 +5,13 @@ using Marquise_Web.Data.Repository;
 using Marquise_Web.Model.DTOs.CRM;
 using Marquise_Web.Service.IService;
 using Marquise_Web.Service.Service;
-using Marquise_Web.UI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Owin;
-using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
 using System.Net.Http;
-using Unity;
 
 [assembly: OwinStartup(typeof(Marquise_Web.UI.Startup))] // تغییر YourNamespace به نام فضای نام پروژه شما
 
@@ -63,18 +60,18 @@ namespace Marquise_Web.UI
             // ---------------------------
             // 🔵 Hangfire
             // ---------------------------
-            GlobalConfiguration.Configuration
-                .UseSqlServerStorage("Marquise_WebEntities")
-                .UseActivator(new UnityJobActivator(UnityConfig.Container)); // این خیلی مهمه
+            //GlobalConfiguration.Configuration
+            //    .UseSqlServerStorage("Marquise_WebEntities")
+            //    .UseActivator(new UnityJobActivator(UnityConfig.Container)); // این خیلی مهمه
 
 
-            app.UseHangfireDashboard();
-            app.UseHangfireServer();
+            //app.UseHangfireDashboard();
+            //app.UseHangfireServer();
 
-            RecurringJob.AddOrUpdate<IAccountService>(
-                "sync-accounts-job",
-                service => service.SyncAccountsToWebsiteAsync(),
-                Cron.Daily(7, 0));
+            //RecurringJob.AddOrUpdate<IAccountService>(
+            //    "sync-accounts-job",
+            //    service => service.SyncAccountsToWebsiteAsync(),
+            //    Cron.Daily(7, 0));
         }
     }
 

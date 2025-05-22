@@ -89,10 +89,12 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             {
                 return Json(OperationResult<object>.Failure("ورود به سیستم با مشکل مواجه شد."));
             }
+            return Json(OperationResult<object>.Success("ورود با موفقیت انجام شد."));
+        }
 
-            var redirectUrl = Url.Action("Index", "Dashboard", new { area = "CRM" });
-
-            return Json(OperationResult<object>.Success(new { redirectUrl }, "ورود با موفقیت انجام شد."));
+        public async Task<ActionResult> BranchSelection()
+        {
+            return View();
         }
 
         private ApplicationSignInManager _signInManager;

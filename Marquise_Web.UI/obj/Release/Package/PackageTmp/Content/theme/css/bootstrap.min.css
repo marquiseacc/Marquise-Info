@@ -4146,7 +4146,7 @@ textarea.form-control-lg {
 .navbar-nav {
     display: flex;
     flex-direction: column;
-    padding-left: 0;
+    padding-right: 0;
     margin-bottom: 0;
     list-style: none
 }
@@ -5903,7 +5903,7 @@ textarea.form-control-lg {
 
 @media (min-width:576px) {
     .modal-dialog {
-        max-width: 500px;
+        max-width: 700px;
         margin: 1.75rem auto
     }
 

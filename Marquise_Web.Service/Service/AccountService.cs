@@ -40,32 +40,18 @@ namespace Marquise_Web.Service.Service
             var accountResponse = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "CRM_Account/" + crmId);
             if (!accountResponse.IsSuccessStatusCode)
                 return null;
-
+            var responseString = await accountResponse.Content.ReadAsStringAsync();
             var accountJson = await accountResponse.Content.ReadAsStringAsync();
-            var accountApiResponse = JsonConvert.DeserializeObject<AccountApiResponse>(accountJson);
-            var account = accountApiResponse?.ResultData?.result?.FirstOrDefault();
+            var jObject = JObject.Parse(responseString);
+            var resultArray = jObject["ResultData"]?["result"] as JArray;
+
+            var account = JsonConvert.DeserializeObject<AccountDto>(resultArray.First().ToString());
 
             if (account == null)
                 return null;
 
-
-
-            return new AccountDto
-            {
-                AccountId = account.AccountId,
-                Name = account.Name,
-                Telephone = account.Telephone,
-                IndustryCode = account.IndustryCode,
-                ShippingAddress = account.ShippingAddress,
-                Mobile = account.Mobile,
-                shomaremoshtari__C = account.shomaremoshtari__C,
-                mahale__C = account.mahale__C,
-                cituu__C = account.cituu__C,
-                management__C = account.management__C,
-                //ManagementName = managerName
-            };
+            return account;
         }
-
         public async Task<OperationResult<object>> UpdateAccountAsync(AccountDto account)
         {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
@@ -87,97 +73,98 @@ namespace Marquise_Web.Service.Service
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             var response = await httpClient.PutAsync(apiSetting.ApiBaseUrl + "CRM_Account/" + account.AccountId, content);
-            var user = await unitOfWork.UserRepository.GetByCRMIdAsync(account.AccountId);
-            user.FullName = account.Name;
-            await unitOfWork.UserRepository.UpdateAsync(user);
-            await unitOfWork.UserRepository.SaveAsync();
+            //var user = await unitOfWork.UserRepository.GetByCRMIdAsync(account.AccountId);
+            //user.FullName = account.Name;
+            //await unitOfWork.UserRepository.UpdateAsync(user);
+            //await unitOfWork.UserRepository.SaveAsync();
 
-            // ساخت Claim جدید
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, user.FullName ?? ""),
-                new Claim("CRMId", user.CRMId.ToString()),
-                new Claim("OtpVerified", "True")
-            };
+            //// ساخت Claim جدید
+            //var claims = new List<Claim>
+            //{
+            //    new Claim(ClaimTypes.NameIdentifier, user.Id),
+            //    new Claim(ClaimTypes.Name, user.FullName ?? ""),
+            //    new Claim("CrmUserId", user.CrmUserId.ToString()),
+            //    new Claim("OtpVerified", "True")
+            //};
 
-            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+            //var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
-            // sign-in مجدد با Identity جدید
-            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-            authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
+            //// sign-in مجدد با Identity جدید
+            //var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+            //authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
 
-            if (response.IsSuccessStatusCode)
-                return OperationResult<object>.Success(null, "مشخصات با موفقیت بروزرسانی شد.");
-            else
-                return OperationResult<object>.Failure("بروزرسانی با خطا مواجه شد.");
+            //if (response.IsSuccessStatusCode)
+            //    return OperationResult<object>.Success(null, "مشخصات با موفقیت بروزرسانی شد.");
+            //else
+            //    return OperationResult<object>.Failure("بروزرسانی با خطا مواجه شد.");
+            return OperationResult<object>.Failure("بروزرسانی با خطا مواجه شد.");
         }
 
-        public async Task SyncAccountsToWebsiteAsync()
-        {
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
+        //public async Task SyncAccountsToWebsiteAsync()
+        //{
+        //    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
 
-            var response = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "CRM_Account");
-            if (!response.IsSuccessStatusCode)
-                return;
+        //    var response = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "CRM_Account");
+        //    if (!response.IsSuccessStatusCode)
+        //        return;
 
-            var responseString = await response.Content.ReadAsStringAsync();
-            var jObject = JObject.Parse(responseString);
-            var accountsArray = jObject["ResultData"]?["result"] as JArray;
+        //    var responseString = await response.Content.ReadAsStringAsync();
+        //    var jObject = JObject.Parse(responseString);
+        //    var accountsArray = jObject["ResultData"]?["result"] as JArray;
 
-            if (accountsArray == null)
-                return;
+        //    if (accountsArray == null)
+        //        return;
 
-            var unsyncedAccounts = accountsArray
-                .Where(a =>
-                {
-                    var telephone = (string)a["Telephone"];
-                    var isSyncedToken = a["IsSyncedToSite__C"];
-                    bool isSynced = false;
-                    if (isSyncedToken != null && isSyncedToken.Type == JTokenType.Boolean)
-                        isSynced = (bool)isSyncedToken;
+        //    var unsyncedAccounts = accountsArray
+        //        .Where(a =>
+        //        {
+        //            var telephone = (string)a["Telephone"];
+        //            var isSyncedToken = a["IsSyncedToSite__C"];
+        //            bool isSynced = false;
+        //            if (isSyncedToken != null && isSyncedToken.Type == JTokenType.Boolean)
+        //                isSynced = (bool)isSyncedToken;
 
-                    return !string.IsNullOrWhiteSpace(telephone) && !isSynced;
-                })
-                .ToList();
+        //            return !string.IsNullOrWhiteSpace(telephone) && !isSynced;
+        //        })
+        //        .ToList();
 
-            var usersToAdd = new List<ApplicationUser>();
+        //    var usersToAdd = new List<ApplicationUser>();
 
-            foreach (var account in unsyncedAccounts)
-            {
-                var accountId = (string)account["AccountId"];
+        //    foreach (var account in unsyncedAccounts)
+        //    {
+        //        var accountId = (string)account["AccountId"];
 
-                var existingUser = await unitOfWork.UserRepository.GetByCRMIdAsync(accountId);
-                if (existingUser != null)
-                    continue;
+        //        var existingUser = await unitOfWork.UserRepository.GetByCRMIdAsync(accountId);
+        //        if (existingUser != null)
+        //            continue;
 
-                var user = new ApplicationUser
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    FullName = (string)account["Name"],
-                    PhoneNumber = (string)account["Telephone"],
-                    SecurityStamp = Guid.NewGuid().ToString(),
-                    CRMId = Guid.Parse(accountId)
-                };
+        //        var user = new ApplicationUser
+        //        {
+        //            Id = Guid.NewGuid().ToString(),
+        //            FullName = (string)account["Name"],
+        //            PhoneNumber = (string)account["Telephone"],
+        //            SecurityStamp = Guid.NewGuid().ToString(),
+        //            CrmUserId = Guid.Parse(accountId)
+        //        };
 
-                usersToAdd.Add(user);
-            }
+        //        usersToAdd.Add(user);
+        //    }
 
-            if (usersToAdd.Any())
-            {
-                await unitOfWork.UserRepository.BulkInsertUsersAsync(usersToAdd);
-            }
+        //    if (usersToAdd.Any())
+        //    {
+        //        await unitOfWork.UserRepository.BulkInsertUsersAsync(usersToAdd);
+        //    }
 
-            // آپدیت فیلد IsSyncedToSite__C در CRM
-            foreach (var account in unsyncedAccounts)
-            {
-                var accountId = (string)account["AccountId"];
-                var updateData = new { IsSyncedToSite__C = true };
-                var content = new StringContent(JsonConvert.SerializeObject(updateData), Encoding.UTF8, "application/json");
-                await httpClient.PutAsync(apiSetting.ApiBaseUrl + "CRM_Account/" + accountId, content);
-            }
-        }
+        //    // آپدیت فیلد IsSyncedToSite__C در CRM
+        //    foreach (var account in unsyncedAccounts)
+        //    {
+        //        var accountId = (string)account["AccountId"];
+        //        var updateData = new { IsSyncedToSite__C = true };
+        //        var content = new StringContent(JsonConvert.SerializeObject(updateData), Encoding.UTF8, "application/json");
+        //        await httpClient.PutAsync(apiSetting.ApiBaseUrl + "CRM_Account/" + accountId, content);
+        //    }
+        //}
 
     }
 }

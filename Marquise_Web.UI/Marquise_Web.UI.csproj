@@ -1072,6 +1072,7 @@
     <Content Include="Content\CRM\assets\plugins\sparkline-charts\jquery.sparkline.min.js" />
     <Content Include="Content\CRM\assets\plugins\sparkline-charts\sparkline-chart-script.js" />
     <Content Include="Content\CSS\CRMCustom.css" />
+    <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\theme\css\bootstrap-grid.css" />
     <Content Include="Content\bootstrap\bootstrap-grid.css" />
     <Content Include="Content\bootstrap\bootstrap-grid.min.css" />
@@ -1171,7 +1172,6 @@
     <Content Include="Content\Images\golden-feature.jpg" />
     <Content Include="Content\Images\golden-mobile.jpg" />
     <Content Include="Content\Images\golden.jpg" />
-    <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\Images\logo-white.png" />
     <Content Include="Content\Images\otherSoftware\anydesk1.jpg" />
     <Content Include="Content\Images\otherSoftware\dorsan-desk.jpg" />
@@ -1265,6 +1265,7 @@
     <Content Include="areas\CRM\Views\Dashboard\LastTicket.cshtml" />
     <Content Include="Content\fonts\Vazirmatn-Bold.woff2" />
     <Content Include="Content\fonts\Vazirmatn-Regular.woff2" />
+    <Content Include="areas\CRM\Views\Auth\BranchSelection.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

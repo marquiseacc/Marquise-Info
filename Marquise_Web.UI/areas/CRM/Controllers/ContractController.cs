@@ -24,7 +24,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
                 return RedirectToAction("SendOtp", "Auth");
 
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
+            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
             var contractDtos = await unitOfWork.ContractService.GetContractsByCrmId(crmId);
             var viewModels = UIDataMapper.Mapper.Map<List<ContractVM>>(contractDtos);
 

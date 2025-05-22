@@ -171,7 +171,7 @@ namespace Marquise_Web.Service.Service
             {
                 Id = user.Id,
                 PhoneNumber = user.PhoneNumber,
-                CRMId = user.CRMId
+                //CrmContactId = user.CrmUserId
             }, "ورود با موفقیت انجام شد.");
         }
 
@@ -186,9 +186,9 @@ namespace Marquise_Web.Service.Service
             // Claims قبلی + جدید
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, user.FullName ?? ""),
-                new Claim("CRMId", user.CRMId.ToString()),
+                //new Claim(ClaimTypes.NameIdentifier, user.Id),
+                //new Claim(ClaimTypes.Name, user.FullName ?? ""),
+                //new Claim("CrmAccountId", user.CrmUserId.ToString()),
                 new Claim("OtpVerified", "True")
             };
 

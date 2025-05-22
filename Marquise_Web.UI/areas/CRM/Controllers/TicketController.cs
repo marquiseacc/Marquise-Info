@@ -33,7 +33,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             {
                 return RedirectToAction("SendOtp", "Auth");
             }
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CRMId")?.Value;
+            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
 
             var ticketDtos = await unitOfWork.TicketService.GetTicketsByApplicantIdAsync(crmId);
             var staffDtos = await unitOfWork.TicketService.GetAllStaffAsync();

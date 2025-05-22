@@ -1,0 +1,137 @@
+﻿@model Marquise_Web.UI.areas.CRM.Models.TicketDetailVm
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title pb-2">تیکت</h5>
+                        <div class="row m-0 row-group text-center border border-light-3">
+                            <div class="col-12 col-lg-2">
+                                <div class="p-3">
+                                    <h5 class="mb-0">شماره تیکت</h5>
+                                    <small class="mb-0">@Model.TicketNumber</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-2">
+                                <div class="p-3">
+                                    <h5 class="mb-0">موضوع</h5>
+                                    <small class="mb-0">@Model.Title</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-2">
+                                <div class="p-3">
+                                    <h5 class="mb-0">وضعیت</h5>
+                                    <small class="mb-0">
+                                            @Model.StatusTitle
+                                            @(Model.Status == "9a5e80a8-cc75-46f1-b158-01d58384d4f7" ? Html.Raw("<i class=\"bi bi-check2-circle font-14\"></i>") : null)
+                                        </small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-2">
+                                <div class="p-3">
+                                    <h5 class="mb-0">تاریخ</h5>
+                                    <small class="mb-0">@Model.CreateDatePersian</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-2">
+                                <div class="p-3">
+                                    <h5 class="mb-0">کارشناس</h5>
+                                    <small class="mb-0">@Model.StaffName</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-2">
+                                <div class="p-3">
+                                    <h5 class="mb-0">مهلت زمانی</h5>
+                                    <small class="mb-0">1 روز و 4 ساعت</small>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-row mt-4 mb-4 d-flex justify-content-center">
+                    <div class="col-lg-6 d-flex flex-row">
+                        <div class="form-group mb-0 col-6">
+                            <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                ارسال پاسخ
+                                <i class="zmdi zmdi-mail-reply"></i>
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog card">
+                                    <div class="modal-content card-body bg-theme1">
+                                        <form id="new-answer-form" class="shake" onsubmit="return handleNewAnswerFormSubmit(event);" novalidate>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title fs-5 color-black" id="exampleModalLabel">ارسال پاسخ</h5>
+                                                <button type="button" class="border-0" data-bs-dismiss="modal" aria-label="Close">
+                                                    <i class="zmdi zmdi-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input id="ticketId" type="hidden" value="@Model.TicketId" />
+                                                <textarea id="message" placeholder="لطفا پاسخ خود را وارد کند" rows="10" class="w-100 custom-border"></textarea>
+                                                <div id="message-error" class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="modal-footer d-flex justify-content-between">
+                                                <button type="submit" class="btn btn-primary">ذخیره</button>
+                                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">بستن</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-0 col-6 text-right">
+                            <button type="button" class="btn btn-warning btn-block close-ticket-btn" data-ticketId="@Model.TicketId" @(Model.Status =="9a5e80a8-cc75-46f1-b158-01d58384d4f7" ? "disabled" : "")>
+                                بستن تیکت
+                                <i class="zmdi zmdi-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @foreach (var answer in Model.Answers)
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title">@answer.StaffName</h5>
+                                </div>
+                                <div>
+                                    <h5>@answer.CreateDatePersian</h5>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                @Html.Raw(
+                                    HttpUtility.HtmlEncode(answer.Body)
+                                        .Replace("&lt;p&gt;", "")                     
+                                        .Replace("&lt;/p&gt;", "<br /><br />")       
+                                        .Replace("\n", "<br />")                    
+                                )
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+</div>
+
+@section Scripts{
+    <script src="~/areas//CRM/Scripts/CRM/Ticket.js"></script>
+}

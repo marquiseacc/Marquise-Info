@@ -1,0 +1,57 @@
+﻿@model List<Marquise_Web.UI.areas.CRM.Models.InvoiceVM>
+
+@{ ViewBag.Title = "Index"; Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml"; }
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title pb-2">لیست فاکتورها</h5>
+                        <div class="table-responsive">
+                            <table class="table font-13">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">نام</th>
+                                        <th scope="col">تاریخ</th>
+                                        <th scope="col">مبلغ</th>
+                                        <th scope="col">وضعیت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var invoice in Model)
+                                    {
+                                        <tr class="table-row-link" data-invoice-id="@invoice.InvoiceId">
+                                            <th scope="row">@invoice.InvoiceNumber</th>
+                                            <td>@invoice.Title</td>
+                                            <td>@invoice.CreateDatePersian</td>
+                                            <td>@invoice.TotalPrice.ToString("N0")</td>
+                                            <td>@invoice.StatusTitle</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8" id="DetailInvoice">
+
+            </div>
+
+        </div>
+
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+</div>
+
+@section Scripts {
+    <script src="~/Areas/CRM/Scripts/CRM/Invoice.js"></script>
+}

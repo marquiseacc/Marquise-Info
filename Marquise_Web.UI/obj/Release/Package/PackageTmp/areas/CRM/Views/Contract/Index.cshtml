@@ -1,0 +1,54 @@
+﻿@model List<Marquise_Web.UI.areas.CRM.Models.ContractVM>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title pb-2">لیست قراردادها</h5>
+                        <div class="table-responsive">
+                            <table class="table font-14">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">نام</th>
+                                        <th scope="col">تاریخ</th>
+                                        <th scope="col">وضعیت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var contract in Model)
+                                    {
+                                        <tr data-contract-id="@contract.Id">
+                                            <td>@contract.sodoureghoflName__C</td>
+                                            <td>@contract.CreateDatePersian</td>
+                                            <td>@contract.StatusTitle</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8" id="DetailContract">
+              
+            </div>
+        </div>
+
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+</div>
+
+@section Scripts{
+    <script src="~/areas//CRM/Scripts/CRM/Contract.js"></script>
+    }
