@@ -31,23 +31,9 @@ namespace Marquise_Web.Data.Repository
         }
         public async Task<ApplicationUser> GetByPhoneNumberAsync(string phoneNumber)
         {
-            try
-            {
-                return await context.Set<ApplicationUser>()
-                    .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            return null;
+            return await context.Set<ApplicationUser>()
+                .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
         }
-        //public async Task<ApplicationUser> GetByCRMIdAsync(string crmId)
-        //{
-        //    Guid crmGuid = Guid.Parse(crmId);
-        //    return await context.Set<ApplicationUser>()
-        //        .FirstOrDefaultAsync(x => x.CrmUserId == crmGuid);
-        //}
         public async Task<int> CountRecentAsync(string phoneNumber, DateTime since)
         {
             var user = await context.Set<ApplicationUser>()
@@ -59,20 +45,12 @@ namespace Marquise_Web.Data.Repository
         }
         public async Task AddOtpRequestLogAsync(OtpRequestLog log)
         {
-            try
+            var user = await context.Set<ApplicationUser>()
+            .FirstOrDefaultAsync(u => u.PhoneNumber == log.PhoneNumber);
+            if (user != null)
             {
-                var user = await context.Set<ApplicationUser>()
-                .FirstOrDefaultAsync(u => u.PhoneNumber == log.PhoneNumber);
-                if (user != null)
-                {
-                    user.OtpRequestLogs.Add(log);
-                    await context.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw ex; // برای اینکه خطا به‌صورت کامل همچنان در خروجی نمایش داده شود
+                user.OtpRequestLogs.Add(log);
+                await context.SaveChangesAsync();
             }
         }
         public async Task AddOtpVerifyLogAsync(OtpVerifyLog log)
@@ -147,6 +125,21 @@ namespace Marquise_Web.Data.Repository
                 .ToList();
 
             return allAccounts;
+        }
+        public async Task<Account> GetAccountByCrmAccountIdAsync(string crmAccountId)
+        {
+            return await context.Accounts.FirstOrDefaultAsync(a => a.CrmAccountId == crmAccountId);
+        }
+
+        public async Task UpdateAccount(Account account)
+        {
+            var existingAccount = await context.Accounts.FindAsync(account.Id);
+            if (existingAccount == null)
+            {
+                return;
+            }
+            existingAccount.Name = account.Name;
+            await context.SaveChangesAsync();
         }
 
 

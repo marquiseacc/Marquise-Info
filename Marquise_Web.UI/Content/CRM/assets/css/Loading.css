@@ -2,18 +2,6 @@
     position: relative;
     min-height: 80px; /* ارتفاع حداقلی برای جای لودر */
 }
-#global-loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.95); /* بک‌گراند مات */
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .sk-cube-grid {
     width: 40px;

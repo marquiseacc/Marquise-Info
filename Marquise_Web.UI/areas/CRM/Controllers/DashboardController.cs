@@ -1,11 +1,14 @@
 ﻿using Marquise_Web.Service.Service;
 using Marquise_Web.UI.areas.CRM.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using Utilities.Map;
 
@@ -29,8 +32,10 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             {
                 return RedirectToAction("SendOtp", "Auth");
             }
-            return View();
+
+            return View(); 
         }
+
 
         public async Task<ActionResult> MainDetail()
         {

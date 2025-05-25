@@ -33,6 +33,7 @@
     <link href="~/Content//CSS/CRMCustom.css" rel="stylesheet">
     <link href="~/Content/theme/css/bootstrap.min.css" />
     <link href="~/Content/theme/css/responsive.css" />
+    <link href="~/Content/CRM/assets/css/Loading.css" rel="stylesheet" />
     @RenderSection("scripts", required: false)
 </head>
 @{
@@ -46,49 +47,51 @@
     }
 }
 
-    <body class="@bodyClass">
+<body class="@bodyClass">
+
+    @Html.Partial("Loading")
+    <!-- Start wrapper-->
+    <div id="wrapper" class="flex-grow-1">
+        @if (ViewBag.IsLoginPage != true)
+        {
+            @Html.Partial("Sidebar")
+            @Html.Partial("Topbar")
 
 
-        <!-- Start wrapper-->
-        <div id="wrapper" class="flex-grow-1">
-            @if (ViewBag.IsLoginPage != true)
-            {
-                @Html.Partial("Sidebar")
-                @Html.Partial("Topbar")
+        }
+
+        @RenderBody()
+
+        @if (ViewBag.IsLoginPage != true)
+        {
+            @Html.Partial("Footer")
+            @Html.Partial("RightSidebar")
+        }
+    </div>
 
 
-            }
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-            @RenderBody()
+    <script src="~/Content/CRM/assets/js/jquery.min.js"></script>
+    <script src="~/Content/CRM/assets/js/popper.min.js"></script>
+    <script src="~/Content/CRM/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/CRM/assets/js/Loading.js"></script>
+    <!-- simplebar js -->
+    <script src="~/Content/CRM/assets/plugins/simplebar/js/simplebar.js"></script>
+    <!-- sidebar-menu js -->
+    <script src="~/Content/CRM/assets/js/sidebar-menu.js"></script>
+    <script src="~/areas/CRM/Scripts/CRM/Topbar.js"></script>
+    <!-- loader scripts -->
+    <!-- Custom scripts -->
+    <script src="~/Content/CRM/assets/js/app-script.js"></script>
+    <!-- Chart js -->
 
-            @if (ViewBag.IsLoginPage != true)
-            {
-                @Html.Partial("Footer")
-                @Html.Partial("RightSidebar")
-            }
-        </div>
+    <script src="~/Content/CRM/assets/plugins/Chart.js/Chart.min.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Index js -->
+    <script src="~/Content/CRM/assets/js/index.js"></script>
 
-        <script src="~/Content/CRM/assets/js/jquery.min.js"></script>
-        <script src="~/Content/CRM/assets/js/popper.min.js"></script>
-        <script src="~/Content/CRM/assets/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
 
-        <!-- simplebar js -->
-        <script src="~/Content/CRM/assets/plugins/simplebar/js/simplebar.js"></script>
-        <!-- sidebar-menu js -->
-        <script src="~/Content/CRM/assets/js/sidebar-menu.js"></script>
-        <!-- loader scripts -->
-        <!-- Custom scripts -->
-        <script src="~/Content/CRM/assets/js/app-script.js"></script>
-        <!-- Chart js -->
-
-        <script src="~/Content/CRM/assets/plugins/Chart.js/Chart.min.js"></script>
-
-        <!-- Index js -->
-        <script src="~/Content/CRM/assets/js/index.js"></script>
-
-        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-
-    </body>
+</body>
 </html>

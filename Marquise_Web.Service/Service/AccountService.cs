@@ -73,32 +73,17 @@ namespace Marquise_Web.Service.Service
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             var response = await httpClient.PutAsync(apiSetting.ApiBaseUrl + "CRM_Account/" + account.AccountId, content);
-            //var user = await unitOfWork.UserRepository.GetByCRMIdAsync(account.AccountId);
-            //user.FullName = account.Name;
-            //await unitOfWork.UserRepository.UpdateAsync(user);
-            //await unitOfWork.UserRepository.SaveAsync();
+            var existAccount = await unitOfWork.UserRepository.GetAccountByCrmAccountIdAsync(account.AccountId);
+            existAccount.Name = account.Name;
+            await unitOfWork.UserRepository.UpdateAccount(existAccount);
+            await unitOfWork.UserRepository.SaveAsync();
 
-            //// ساخت Claim جدید
-            //var claims = new List<Claim>
-            //{
-            //    new Claim(ClaimTypes.NameIdentifier, user.Id),
-            //    new Claim(ClaimTypes.Name, user.FullName ?? ""),
-            //    new Claim("CrmUserId", user.CrmUserId.ToString()),
-            //    new Claim("OtpVerified", "True")
-            //};
+            
 
-            //var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-
-            //// sign-in مجدد با Identity جدید
-            //var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-            //authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            //authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
-
-            //if (response.IsSuccessStatusCode)
-            //    return OperationResult<object>.Success(null, "مشخصات با موفقیت بروزرسانی شد.");
-            //else
-            //    return OperationResult<object>.Failure("بروزرسانی با خطا مواجه شد.");
-            return OperationResult<object>.Failure("بروزرسانی با خطا مواجه شد.");
+            if (response.IsSuccessStatusCode)
+                return OperationResult<object>.Success(null, "مشخصات با موفقیت بروزرسانی شد.");
+            else
+                return OperationResult<object>.Failure("بروزرسانی با خطا مواجه شد.");
         }
 
         //public async Task SyncAccountsToWebsiteAsync()

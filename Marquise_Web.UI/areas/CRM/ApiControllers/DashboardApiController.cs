@@ -24,6 +24,7 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
         {
             var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
             var supportTimes = new List<SupportTimeVM>();
+            string name = User.Identity.Name;
 
             // support
             var contractDtos = await unitOfWork.ContractService.GetContractsByCrmId(crmId);

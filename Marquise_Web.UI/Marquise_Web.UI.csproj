@@ -433,6 +433,7 @@
     <Compile Include="areas\CRM\ApiControllers\TicketApiController.cs" />
     <Compile Include="areas\CRM\Controllers\AccountController.cs" />
     <Compile Include="areas\CRM\Controllers\AuthController.cs" />
+    <Compile Include="areas\CRM\Controllers\BaseController.cs" />
     <Compile Include="areas\CRM\Controllers\ContractController.cs" />
     <Compile Include="areas\CRM\Controllers\DashboardController.cs" />
     <Compile Include="areas\CRM\Controllers\InvoiceController.cs" />
@@ -478,6 +479,7 @@
     <Content Include="areas\CRM\Scripts\CRM\Invoice.js" />
     <Content Include="areas\CRM\Scripts\CRM\Quote.js" />
     <Content Include="areas\CRM\Scripts\CRM\Ticket.js" />
+    <Content Include="areas\CRM\Scripts\CRM\Topbar.js" />
     <Content Include="Content\Blog\blog1\blog11.jpg" />
     <Content Include="Content\Blog\blog2\blog21.jpg" />
     <Content Include="Content\Blog\blog2\blog22.jpg" />
@@ -506,6 +508,7 @@
     <Content Include="Content\CRM\assets\css\bootstrap.css" />
     <Content Include="Content\CRM\assets\css\bootstrap.min.css" />
     <Content Include="Content\CRM\assets\css\icons.css" />
+    <Content Include="Content\CRM\assets\css\Loading.css" />
     <Content Include="Content\CRM\assets\css\pace.min.css" />
     <Content Include="Content\CRM\assets\css\sidebar-menu.css" />
     <Content Include="Content\CRM\assets\flags\1x1\ad.svg" />
@@ -1050,6 +1053,7 @@
     <Content Include="Content\CRM\assets\js\bootstrap.min.js" />
     <Content Include="Content\CRM\assets\js\index.js" />
     <Content Include="Content\CRM\assets\js\jquery.min.js" />
+    <Content Include="Content\CRM\assets\js\Loading.js" />
     <Content Include="Content\CRM\assets\js\pace.min.js" />
     <Content Include="Content\CRM\assets\js\popper.min.js" />
     <Content Include="Content\CRM\assets\js\sidebar-menu.js" />
@@ -1266,6 +1270,7 @@
     <Content Include="Content\fonts\Vazirmatn-Bold.woff2" />
     <Content Include="Content\fonts\Vazirmatn-Regular.woff2" />
     <Content Include="areas\CRM\Views\Auth\BranchSelection.cshtml" />
+    <Content Include="areas\CRM\Views\Shared\Loading.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

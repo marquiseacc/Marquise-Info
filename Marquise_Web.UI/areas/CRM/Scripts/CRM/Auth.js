@@ -185,14 +185,7 @@ function startTimer() {
 window.onload = startTimer;
 
 document.addEventListener('DOMContentLoaded', function () {
-    const rows = document.querySelectorAll("table-light tbody tr");
-
-    if (rows.length > 0) {
-        const firstRow = rows[0];
-        const firstInvoiceId = firstRow.getAttribute('data-user-id');
-        firstRow.classList.add('selected-row'); // رنگ دادن به اولین ردیف
-        loadInvoiceDetail(firstInvoiceId);
-    }
+    const rows = document.querySelectorAll(".table-light tbody tr");
 
     rows.forEach(row => {
         row.addEventListener('click', function () {
@@ -202,21 +195,21 @@ document.addEventListener('DOMContentLoaded', function () {
             // رنگ دادن به ردیف کلیک‌شده
             this.classList.add('selected-row');
 
-            const invoiceId = this.getAttribute('data-invoice-id');
-            loadInvoiceDetail(invoiceId);
+            const userId = this.getAttribute('data-user-id');
+            const accountId = this.getAttribute('data-account-id');
+            const crmAccountId = this.getAttribute('data-crm-account-id');
+            const name = this.getAttribute('data-name-id');
+
+            const queryString = new URLSearchParams({
+                UserId: userId,
+                AccountId: accountId,
+                CrmAccountId: crmAccountId,
+                Name: name
+            }).toString();
+
+            // فقط فراخوانی اکشن بدون نیاز به داده برگشتی
+            window.location.href = '/CRM/Auth/SetClaims?' + queryString;
+
         });
     });
-
-    function loadInvoiceDetail(invoiceId) {
-        fetch('/CRM/Invoice/Detail?invoiceId=' + invoiceId, {
-            method: 'GET'
-        })
-            .then(response => response.text())
-            .then(data => {
-                document.querySelector('#DetailInvoice').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('خطا در بارگذاری جزئیات:', error);
-            });
-    }
 });

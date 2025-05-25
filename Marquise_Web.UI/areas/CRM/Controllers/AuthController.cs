@@ -5,6 +5,7 @@ using Marquise_Web.Service.Service;
 using Marquise_Web.UI.areas.CRM.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -101,6 +102,30 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             var accounts = await unitOfWork.AuthService.GetAccountByUserIdAsync(userId);
             var accountVms = UIDataMapper.Mapper.Map<List<AccountVM>>(accounts);
             return View(accountVms);
+        }
+
+        public async Task<ActionResult> SetClaims(AccountVM accountVM)
+        {
+            var userId = ((ClaimsIdentity)User.Identity).FindFirst("UserId")?.Value;
+
+            var claims = new List<Claim>
+            {
+                new Claim("OtpVerified", "True"),
+                new Claim("UserId", userId ?? ""),
+                new Claim(ClaimTypes.NameIdentifier, accountVM.CrmAccountId ?? ""),
+                new Claim(ClaimTypes.Name, accountVM.Name ?? ""),
+                new Claim("CrmAccountId", accountVM.CrmAccountId ?? "")
+            };
+
+            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+            var authenticationManager = HttpContext.GetOwinContext().Authentication;
+
+            authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            authenticationManager.SignIn(new AuthenticationProperties
+            {
+                IsPersistent = false
+            }, identity);
+            return RedirectToAction("Index", "Dashboard");
         }
 
         private ApplicationSignInManager _signInManager;

@@ -11,31 +11,29 @@
     <div class="v-center m-auto">
         <div class="login-form-div">
             <div class="form-block">
-                <form id="Login-form" onsubmit="return handleVerifyOTPFormSubmit(event);" novalidate>
-                    <div class="table-responsive">
-                        <table class="table table-light">
-                            <thead>
-                                <tr class="custom-tr">
-                                    <th class="font-16">لطفا شعبه مورد نظر خود را انتخاب کنید.</th>
+                <div class="table-responsive">
+                    <table class="table table-light">
+                        <thead>
+                            <tr class="custom-tr">
+                                <th class="font-16">لطفا شعبه مورد نظر خود را انتخاب کنید.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var account in Model)
+                            {
+                                <tr class="table-row-link"
+                                    data-user-id="@account.UserId"
+                                    data-crm-account-id="@account.CrmAccountId"
+                                    data-account-id="@account.AccountId"
+                                    data-name-id="@account.Name">
+                                    <td>
+                                        @account.Name
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var account in Model)
-                                {
-                                    <tr class="table-row-link"
-                                        data-user-id="@account.UserId"
-                                        data-crmAccount-id="@account.CrmAccountId"
-                                        data-account-id="@account.AccountId">
-                                        <td>
-                                            @account.Name
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-
-                </form>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
