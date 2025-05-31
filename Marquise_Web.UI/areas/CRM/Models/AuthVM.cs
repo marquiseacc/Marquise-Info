@@ -34,4 +34,11 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public string CrmAccountId { get; set; }
         public string Name { get; set; }
     }
+
+    public class AuthResult
+    {
+        public string Token { get; set; }
+        public object User { get; set; }
+    }
+
 }

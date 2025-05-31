@@ -1,20 +1,19 @@
-﻿function handleNewTicketFormSubmit(event) {
-    event.preventDefault();  
+﻿
+function handleNewTicketFormSubmit(event) {
+    event.preventDefault();
 
     var title = document.getElementById("title").value;
     var description = document.getElementById("description").value;
 
     var isValid = true;
     const form = event.target;
-    const inputs = form.querySelectorAll("input");
+    const inputs = form.querySelectorAll("input, textarea"); // اضافه کردن textarea
     inputs.forEach(input => {
-
         input.setCustomValidity("");
 
         if (input.validity.valueMissing) {
-
             input.setCustomValidity(`لطفاً فیلد "${input.name}" را پر کنید.`);
-            input.reportValidity(); 
+            input.reportValidity();
             isValid = false;
         } else {
             const errorMessage = getCustomErrorMessage(input);
@@ -25,27 +24,27 @@
             }
         }
     });
-    
-    if (isValid) {
 
+    if (isValid) {
         var data = {
             Title: title,
             Description: description
-        }
+        };
 
         fetch('/api/CRM/TicketApi/NewTicket', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem("jwtToken")
             },
             body: JSON.stringify(data)
         })
             .then(response => response.json())
             .then(data => {
-                if (data.success) { // توجه: خروجی Web API باید "success" باشه نه "IsSuccess"
+                if (data.IsSuccess) {
                     Swal.fire({
                         title: 'موفق',
-                        text: data.message || 'ثبت تیکت با موفقیت انجام شد.',
+                        text: data.Message || 'ثبت تیکت با موفقیت انجام شد.',
                         icon: 'success',
                         confirmButtonText: 'باشه'
                     }).then(() => {
@@ -55,7 +54,7 @@
                 } else {
                     Swal.fire({
                         title: 'خطا',
-                        text: data.message || "خطایی رخ داد. لطفاً دوباره تلاش کنید.",
+                        text: data.Message || "خطایی رخ داد. لطفاً دوباره تلاش کنید.",
                         icon: 'error',
                         confirmButtonText: 'باشه'
                     });
@@ -70,12 +69,11 @@
                     confirmButtonText: 'باشه'
                 });
             });
-
     }
 
     function getCustomErrorMessage(input) {
         if (input.validity.typeMismatch) {
-            return `لطفاً  "${input.name}"خود را وارد کنید.`;
+            return `لطفاً "${input.name}" را به‌درستی وارد کنید.`;
         }
         if (input.validity.patternMismatch) {
             return `لطفاً الگوی صحیح برای "${input.name}" را وارد کنید.`;
@@ -83,6 +81,7 @@
         return "";
     }
 }
+
 
 function handleNewAnswerFormSubmit(event) {
     event.preventDefault();
@@ -122,7 +121,8 @@ function handleNewAnswerFormSubmit(event) {
         fetch('/api/CRM/TicketApi/NewAnswer', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem("jwtToken")
             },
             body: JSON.stringify(data)
         })
@@ -135,7 +135,7 @@ function handleNewAnswerFormSubmit(event) {
                         icon: 'success',
                         confirmButtonText: 'باشه'
                     }).then(() => {
-                        const redirectUrl = '/CRM/Ticket/Detail?ticketId=' + ticketId;
+                        const redirectUrl = '/CRM/Ticket/DetailPage?ticketId=' + ticketId;
                         window.location.href = redirectUrl;
                     });
                 } else {
@@ -170,18 +170,7 @@ function handleNewAnswerFormSubmit(event) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".close-ticket-btn").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-            var ticketId = this.getAttribute("data-ticketId");
-            console.log(ticketId);
-            closeTicket(ticketId);
-        });
-    });
-});
-
-function closeTicket(id) {
-
+function handleCloseTicket(id) {
     Swal.fire({
         title: 'پیام',
         text: 'از بستن این تیکت مطمئن هستید؟',
@@ -194,10 +183,12 @@ function closeTicket(id) {
             var data = {
                 TicketId: id
             }
+
             fetch('/api/CRM/TicketApi/CloseTicket', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem("jwtToken")
                 },
                 body: JSON.stringify(data)
             })
@@ -210,7 +201,7 @@ function closeTicket(id) {
                             icon: 'success',
                             confirmButtonText: 'باشه'
                         }).then(() => {
-                            const redirectUrl = '/CRM/Ticket/Detail?ticketId=' + id;
+                            const redirectUrl = '/CRM/Ticket/DetailPage?ticketId=' + id;
                             window.location.href = redirectUrl;
                         });
                     } else {
@@ -231,7 +222,6 @@ function closeTicket(id) {
                         confirmButtonText: 'باشه'
                     });
                 });
-
         }
     });
 }

@@ -17,6 +17,11 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         // GET: CRM/AccountManagement
         public async Task<ActionResult> Index()
         {
+            return View();
+        }
+
+        public async Task<ActionResult> AccountDetail()
+        {
             var claimsPrincipal = User as ClaimsPrincipal;
 
             if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
@@ -44,7 +49,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             };
 
             ViewBag.Industries = Industry.GetAll();
-            return View(viewModel);
+            return View("AccountDetail", viewModel);
         }
     }
 }

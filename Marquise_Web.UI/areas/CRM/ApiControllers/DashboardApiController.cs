@@ -18,17 +18,26 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
             this.unitOfWork = unitOfWork;
         }
 
+        [System.Web.Http.Authorize]
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/CRM/DashboardApi/SupportTimeLine")]
         public async Task<IHttpActionResult> SupportTimeLine()
         {
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
-            var supportTimes = new List<SupportTimeVM>();
-            string name = User.Identity.Name;
+            var identity = User.Identity as ClaimsIdentity;
+            var crmId = identity?.FindFirst("CrmAccountId")?.Value;
 
-            // support
+            if (string.IsNullOrEmpty(crmId))
+            {
+                return Unauthorized(); // 401
+            }
+
+            var supportTimes = new List<SupportTimeVM>();
+
             var contractDtos = await unitOfWork.ContractService.GetContractsByCrmId(crmId);
-            var activeContracts = contractDtos.Where(c => c.status__C == "73bbad0b-6e0f-402b-a581-82a87620dbd7").ToList();
+            var activeContracts = contractDtos
+                .Where(c => c.status__C == "73bbad0b-6e0f-402b-a581-82a87620dbd7")
+                .ToList();
+
             foreach (var contract in activeContracts)
             {
                 supportTimes.Add(new SupportTimeVM
@@ -37,8 +46,9 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
                     EndDate = contract.dateend__C.ToPersianDateString()
                 });
             }
-            return Json(new { success = true, data = supportTimes });
 
+            return Json(new { success = true, data = supportTimes });
         }
+
     }
 }

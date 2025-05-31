@@ -20,49 +20,49 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
 
         [HttpPost]
         [System.Web.Http.Route("api/CRM/TicketApi/NewTicket")]
+        [Authorize] // اطمینان از نیاز به احراز هویت JWT
         public async Task<IHttpActionResult> NewTicket(NewTicketVM newTicket)
         {
             var claimsPrincipal = User as ClaimsPrincipal;
 
             if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
             {
-                return Json(new { success = false });
+                return Json(new OperationResult<object>
+                {
+                    IsSuccess = false,
+                    Message = "دسترسی غیرمجاز",
+                    Data = null
+                });
             }
 
             var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
+
+            if (string.IsNullOrEmpty(crmId))
+            {
+                return Json(new OperationResult<object>
+                {
+                    IsSuccess = false,
+                    Message = "شناسه حساب CRM یافت نشد.",
+                    Data = null
+                });
+            }
 
             var dto = UIDataMapper.Mapper.Map<NewTicketDto>(newTicket);
             dto.CrmId = crmId;
 
             var result = await unitOfWork.TicketService.CreateTicketAsync(dto);
-            if (result.IsSuccess)
+
+            return Json(new OperationResult<object>
             {
-                return Json(new OperationResult<object>
-                {
-                    IsSuccess = true,
-                    Message = result.Message,
-                    Data = new
-                    {
-                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
-                    }
-                });
-            }
-            else
-            {
-                return Json(new OperationResult<object>
-                {
-                    IsSuccess = false,
-                    Message = result.Message,
-                    Data = new
-                    {
-                        redirectUrl = Url.Link("CRM_Area", new { controller = "Ticket", action = "Index", area = "CRM" })
-                    }
-                });
-            }
+                IsSuccess = result.IsSuccess,
+                Message = result.Message
+            });
         }
 
 
+
         [HttpPost]
+        [Authorize]
         [System.Web.Http.Route("api/CRM/TicketApi/NewAnswer")]
         public async Task<IHttpActionResult> NewAnswer(AnswerVM answer)
         {
@@ -80,24 +80,17 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
             var dto = UIDataMapper.Mapper.Map<NewAnswerDto>(answer);
             var result = await unitOfWork.TicketService.AddAnswerAsync(dto);
 
-            var redirectUrl = Url.Link("CRM_Area", new
-            {
-                controller = "Ticket",
-                action = "Index",
-                area = "CRM",
-                ticketId = answer.TicketId
-            });
-
             return Json(new
             {
                 success = result.IsSuccess,
-                message = result.Message,
-                redirectUrl = redirectUrl
+                message = result.Message
             });
         }
 
 
+
         [HttpPost]
+        [Authorize]
         [System.Web.Http.Route("api/CRM/TicketApi/CloseTicket")]
         public async Task<IHttpActionResult> CloseTicket(CloseTicket ticket)
         {

@@ -21,9 +21,24 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         }
 
         [HttpGet]
+        [Authorize] // اطمینان از اینکه JWT بررسی شود
         public async Task<JsonResult> BranchMenu()
         {
-            var userId = ((ClaimsIdentity)User.Identity).FindFirst("UserId")?.Value;
+            var claimsPrincipal = User as ClaimsPrincipal;
+
+            // بررسی اینکه کلایم وجود دارد و کاربر احراز هویت شده
+            if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
+            {
+                return Json(new { error = "Unauthorized" }, JsonRequestBehavior.AllowGet);
+            }
+
+            var userId = claimsPrincipal.FindFirst("UserId")?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Json(new { error = "UserId is missing" }, JsonRequestBehavior.AllowGet);
+            }
+
             var accounts = await unitOfWork.AuthService.GetAccountByUserIdAsync(userId);
             var accountVms = UIDataMapper.Mapper.Map<List<AccountVM>>(accounts);
 

@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "DetailPage";
+    Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
+    var ticketId = ViewBag.TicketId as string;
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-lg-12" id="ticket-detail-container">
+               
+            </div>
+        </div>
+
+        <!--start overlay-->
+        <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+</div>
+
+@section Scripts{
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("jwtToken");
+        const ticketId = "@ticketId";
+        console.log(ticketId);
+
+        fetch('/CRM/Ticket/Detail?ticketId=' + ticketId, {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                document.getElementById("ticket-detail-container").innerText = "❌ خطا در دریافت اطلاعات تیکت";
+                return '';
+            }
+            return response.text();
+        })
+        .then(html => {
+            if (html) {
+                document.getElementById("ticket-detail-container").innerHTML = html;
+            }
+        })
+        .catch(error => {
+            console.error("❌ خطا:", error);
+        });
+    });
+    </script>
+    <script src="~/areas/CRM/Scripts/CRM/Ticket.js"></script>
+}
+
+

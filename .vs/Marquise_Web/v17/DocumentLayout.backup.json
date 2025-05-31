@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\10\\source\\repos\\Marquise_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.model\\dtos\\crm\\authmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95F6EDAD-C086-4D9F-A0FC-BC85699CB802}|MArquise_Web.Model\\Marquise_Web.Model.csproj|solutionrelative:marquise_web.model\\dtos\\crm\\authmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.service\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DA1FD603-7FDD-4F41-9A81-792A8CBF9A44}|Marquise_Web.Service\\Marquise_Web.Service.csproj|solutionrelative:marquise_web.service\\service\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.data\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{1B4D8BD6-6F8B-4DCE-AB9D-F57E7BF15854}|Marquise_Web.Data\\Marquise_Web.Data.csproj|solutionrelative:marquise_web.data\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|c:\\users\\10\\source\\repos\\marquise_web\\marquise_web.ui\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{44A5E4C6-1AE8-4BE3-BF1C-A90FD46CAD59}|Marquise_Web.UI\\Marquise_Web.UI.csproj|solutionrelative:marquise_web.ui\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,27 +39,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthModel.cs",
-              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\AuthModel.cs",
-              "RelativeDocumentMoniker": "MArquise_Web.Model\\DTOs\\CRM\\AuthModel.cs",
-              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\MArquise_Web.Model\\DTOs\\CRM\\AuthModel.cs",
-              "RelativeToolTip": "MArquise_Web.Model\\DTOs\\CRM\\AuthModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T10:51:32.248Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\AuthService.cs",
               "RelativeDocumentMoniker": "Marquise_Web.Service\\Service\\AuthService.cs",
               "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Service\\Service\\AuthService.cs",
               "RelativeToolTip": "Marquise_Web.Service\\Service\\AuthService.cs",
-              "ViewState": "AgIAAMgAAAAAAAAAAAAgwPcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAwwGoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T10:48:43.491Z",
+              "WhenOpened": "2025-05-31T12:55:47.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\App.config",
+              "RelativeDocumentMoniker": "Marquise_Web.Data\\App.config",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.Data\\App.config",
+              "RelativeToolTip": "Marquise_Web.Data\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-31T12:55:26.216Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\Web.config",
+              "RelativeDocumentMoniker": "Marquise_Web.UI\\Web.config",
+              "ToolTip": "C:\\Users\\10\\source\\repos\\Marquise_Web\\Marquise_Web.UI\\Web.config",
+              "RelativeToolTip": "Marquise_Web.UI\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-31T12:55:03.534Z",
               "EditorCaption": ""
             }
           ]

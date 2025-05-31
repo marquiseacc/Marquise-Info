@@ -1,4 +1,4 @@
-﻿@model List<Marquise_Web.UI.areas.CRM.Models.QuoteVM>
+﻿
 
 @{
     ViewBag.Title = "Index";
@@ -12,30 +12,8 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title pb-2">لیست پیش فاکتورها</h5>
-                        <div class="table-responsive">
-                            <table class="table font-14">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">نام</th>
-                                        <th scope="col">تاریخ</th>
-                                        <th scope="col">مبلغ</th>
-                                        <th scope="col">وضعیت</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var quote in Model)
-                                    {
-                                        <tr class="table-row-link" data-quote-id="@quote.QuoteId">
-                                            <th scope="row">@quote.QuoteCode</th>
-                                            <td>@quote.Name</td>
-                                            <td>@quote.CreateDatePersian</td>
-                                            <td>@quote.TotalPrice.ToString("N0")</td>
-                                            <td>@quote.StatusTitle</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                        <div class="table-responsive" id="quote-list">
+                            
                         </div>
                     </div>
                 </div>

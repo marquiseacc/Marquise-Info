@@ -2,12 +2,8 @@
 using Marquise_Web.Model.Utilities;
 using Marquise_Web.Service.Service;
 using Marquise_Web.UI.areas.CRM.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using Utilities.Map;
@@ -23,17 +19,26 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
             this.unitOfWork = unitOfWork;
         }
 
+        [System.Web.Http.Authorize] // فقط کاربران احراز هویت شده با JWT اجازه دارند
         [System.Web.Http.HttpPost]
         [System.Web.Http.Route("api/CRM/AccountApi/UpdateAccount")]
-        public async Task<IHttpActionResult> UpdateAccount(AccountVM account)
+        public async Task<IHttpActionResult> UpdateAccount(CrmAccountVM account)
         {
-            var claimsPrincipal = User as ClaimsPrincipal;
+            var identity = User.Identity as ClaimsIdentity;
 
-            if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
-            {
-                return Json(new { success = false });
-            }
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
+            if (identity == null || !identity.IsAuthenticated)
+                return Json(new { success = false, message = "دسترسی غیرمجاز" });
+
+            var otpVerified = identity.FindFirst("OtpVerified")?.Value;
+            if (otpVerified != "True")
+                return Json(new { success = false, message = "کد تایید معتبر نیست" });
+
+            var crmId = identity.FindFirst("CrmAccountId")?.Value;
+            var userId = identity.FindFirst("UserId")?.Value;
+
+            if (string.IsNullOrEmpty(crmId))
+                return Json(new { success = false, message = "شناسه حساب یافت نشد" });
+
             var dto = UIDataMapper.Mapper.Map<CrmAccountDto>(account);
             dto.AccountId = crmId;
 
@@ -41,33 +46,16 @@ namespace Marquise_Web.UI.areas.CRM.ApiControllers
 
             if (result.IsSuccess)
             {
-                var userId = ((ClaimsIdentity)User.Identity).FindFirst("UserId")?.Value;
+                // نیازی به SignIn مجدد نیست اگر از JWT استفاده می‌کنید
 
-                var claims = new List<Claim>
-            {
-                new Claim("OtpVerified", "True"),
-                new Claim("UserId", userId ?? ""),
-                new Claim(ClaimTypes.NameIdentifier, crmId ?? ""),
-                new Claim(ClaimTypes.Name, account.Name ?? ""),
-                new Claim("CrmAccountId", crmId ?? "")
-            };
-
-                var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-                var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-
-
-                authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                authenticationManager.SignIn(new AuthenticationProperties
-                {
-                    IsPersistent = false
-                }, identity);
                 return Json(new OperationResult<object>
                 {
                     IsSuccess = true,
                     Message = result.Message
                 });
             }
-            else {
+            else
+            {
                 return Json(new OperationResult<object>
                 {
                     IsSuccess = false,

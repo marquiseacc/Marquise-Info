@@ -315,3 +315,7 @@ C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\ru\Microsoft.Data.SqlC
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\tr\Microsoft.Data.SqlClient.resources.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\Microsoft.Bcl.TimeProvider.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\Microsoft.Owin.Security.Jwt.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\Microsoft.Bcl.TimeProvider.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.UI\bin\Microsoft.Owin.Security.Jwt.xml

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -14,7 +15,7 @@ using Utilities.Map;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
 {
-    [Authorize]
+    
     public class DashboardController : Controller
     {
         private readonly UnitOfWorkService unitOfWork;
@@ -24,69 +25,98 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-
         public ActionResult Index()
         {
-            var claimsPrincipal = User as ClaimsPrincipal;
-            if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
-            {
-                return RedirectToAction("SendOtp", "Auth");
-            }
-
-            return View(); 
+            return View();
         }
 
-
+        [Authorize] // اطمینان از اینکه فقط کاربران دارای توکن دسترسی دارند
         public async Task<ActionResult> MainDetail()
         {
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
+            var identity = User.Identity as ClaimsIdentity;
+
+            // استخراج مقدار CrmAccountId از کلایم‌های توکن
+            var crmId = identity?.FindFirst("CrmAccountId")?.Value;
+
+            if (string.IsNullOrEmpty(crmId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
+
             var detailVM = new MainDetailVM();
 
-            // support
+            // ===== پشتیبانی (Support) =====
             var contractDtos = await unitOfWork.ContractService.GetContractsByCrmId(crmId);
-            var activeContracts = contractDtos.Where(c => c.status__C == "73bbad0b-6e0f-402b-a581-82a87620dbd7").ToList();
+            var activeContracts = contractDtos
+                .Where(c => c.status__C == "73bbad0b-6e0f-402b-a581-82a87620dbd7")
+                .ToList();
+
             foreach (var contract in activeContracts)
             {
                 if (DateTime.Now >= contract.datestart__C && DateTime.Now <= contract.dateend__C)
                 {
                     detailVM.SupportStatus = true;
-                    var today = DateTime.Now;
-                    detailVM.RestDaies = (contract.dateend__C - today).Days.ToString();
-                    continue;
+                    detailVM.RestDaies = (contract.dateend__C - DateTime.Now).Days.ToString();
+                    break; // چون قرارداد معتبر پیدا شده، ادامه نیاز نیست
                 }
-                else detailVM.SupportStatus = false;
+                else
+                {
+                    detailVM.SupportStatus = false;
+                }
             }
 
-            // ticket
+            // ===== تیکت‌ها (Tickets) =====
             var ticketDtos = await unitOfWork.TicketService.GetTicketsByApplicantIdAsync(crmId);
-            var activeTickets = ticketDtos.Where(t => t.Status != "8804f420-0c59-44d2-a4ca-711af8822c56" && t.Status != "9a5e80a8-cc75-46f1-b158-01d58384d4f7").ToList();
+            var activeTickets = ticketDtos
+                .Where(t => t.Status != "8804f420-0c59-44d2-a4ca-711af8822c56" && t.Status != "9a5e80a8-cc75-46f1-b158-01d58384d4f7")
+                .ToList();
             detailVM.ActiveTicketNumber = activeTickets.Count;
 
-            // invoice
+            // ===== صورتحساب‌ها (Invoices) =====
             var invoicesDtos = await unitOfWork.InvoiceService.GetInvoicesByAccountIdAsync(crmId);
-            var activeInvoice = invoicesDtos.Where(i => i.Status == "defe0fbb-f568-49d8-bd65-f74781635da2" || i.Status == "2190e6ec-d127-48b1-953e-70cc8812e986").ToList();
+            var activeInvoice = invoicesDtos
+                .Where(i => i.Status == "defe0fbb-f568-49d8-bd65-f74781635da2" || i.Status == "2190e6ec-d127-48b1-953e-70cc8812e986")
+                .ToList();
             detailVM.ActiveInvoiceNumber = activeInvoice.Count;
 
-            // payment
+            // ===== پرداخت‌ها (Payments) =====
             var paymentDtos = await unitOfWork.InvoiceService.GetPaymentsByAccountIdAsync(crmId);
             PersianCalendar pc = new PersianCalendar();
             int currentShamsiYear = pc.GetYear(DateTime.Now);
-            var payments = paymentDtos.Where(p => pc.GetYear(p.PaymentDate) == currentShamsiYear).ToList();
+            var payments = paymentDtos
+                .Where(p => pc.GetYear(p.PaymentDate) == currentShamsiYear)
+                .ToList();
             detailVM.PaymentSum = payments.Sum(p => p.Amount);
 
+            // ===== بازگشت نمای جزئی =====
             return PartialView("MainDetail", detailVM);
         }
 
+
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> LastTicket()
         {
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
+            var user = User as ClaimsPrincipal;
+            var crmId = user?.FindFirst("CrmAccountId")?.Value;
+
+            if (string.IsNullOrEmpty(crmId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "شناسه کاربر یافت نشد");
+            }
 
             var ticketDtos = await unitOfWork.TicketService.GetTicketsByApplicantIdAsync(crmId);
             var staffDtos = await unitOfWork.TicketService.GetAllStaffAsync();
 
-            var ticketVMs = UIDataMapper.Mapper.Map<List<TicketVM>>(ticketDtos).Take(3);
-            var staffDict = UIDataMapper.Mapper.Map<List<StaffInfo>>(staffDtos).ToDictionary(s => s.UserId, s => s);
+            var ticketVMs = UIDataMapper.Mapper
+                .Map<List<TicketVM>>(ticketDtos)
+                .OrderByDescending(t => t.CreateDate)
+                .Take(3)
+                .ToList();
+
+            var staffDict = UIDataMapper.Mapper
+                .Map<List<StaffInfo>>(staffDtos)
+                .ToDictionary(s => s.UserId, s => s);
 
             foreach (var ticket in ticketVMs)
             {
@@ -98,6 +128,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
             return PartialView("LastTicket", ticketVMs);
         }
+
 
     }
 }

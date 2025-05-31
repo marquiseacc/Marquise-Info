@@ -9,7 +9,7 @@ namespace Marquise_Web.Service.IService
     {
         Task<OperationResult<object>> SendOtpAsync(string phoneNumber);
         Task<OperationResult<object>> VerifyOtpAsync(string phoneNumber, string code);
-        Task<bool> SignInUserAsync(string userId);
+        Task<string> SignInUserAsync(string userId);
         Task<OperationResult<object>> CheckFailedOtpAttemptsAsync(string phoneNumber);
         Task<List<AccountDto>> GetAccountByUserIdAsync(string userId);
     }

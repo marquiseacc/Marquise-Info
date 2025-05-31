@@ -1,7 +1,12 @@
 ﻿using Marquise_Web.Service.Service;
 using Marquise_Web.UI.areas.CRM.Models;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Utilities.Map;
@@ -20,18 +25,35 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var claimsPrincipal = User as ClaimsPrincipal;
-            if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
-                return RedirectToAction("SendOtp", "Auth");
-
-            var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
-            var quotes = await unitOfWork.QuoteService.GetQuotesByAccountIdAsync(crmId);
-            var viewModel = UIDataMapper.Mapper.Map<List<QuoteVM>>(quotes);
-            return View(viewModel);
+            
+            return View();
         }
 
         [HttpGet]
-        [System.Web.Http.Route("CRM/PreInvoice/Detail")]
+        [Authorize]
+        public async Task<ActionResult> QuoteList()
+        {
+            var identity = User.Identity as ClaimsIdentity;
+
+            // استخراج مقدار CrmAccountId از کلایم‌های توکن
+            var crmId = identity?.FindFirst("CrmAccountId")?.Value;
+            var otpVerified = identity?.FindFirst("OtpVerified")?.Value;
+
+            if (string.IsNullOrEmpty(crmId) || otpVerified != "True")
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
+
+            // واکشی داده‌ها و بازگشت partial view
+            var quotes = await unitOfWork.QuoteService.GetQuotesByAccountIdAsync(crmId);
+            var viewModel = UIDataMapper.Mapper.Map<List<QuoteVM>>(quotes);
+            return PartialView("QuoteList", viewModel);
+        }
+
+
+        // اصلاح‌شده برای کنترلر MVC
+        [HttpGet]
+        [Authorize]
         public async Task<ActionResult> Detail(string quoteId)
         {
             var quote = await unitOfWork.QuoteService.GetQuoteDetailAsync(quoteId);

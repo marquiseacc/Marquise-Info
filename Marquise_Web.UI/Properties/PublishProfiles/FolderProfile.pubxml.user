@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\10\Desktop\published</_PublishTargetUrl>
-    <History>False|2025-05-19T07:04:47.8498576Z||;False|2025-05-19T10:34:34.1349312+03:30||;True|2025-01-23T11:40:39.7713432+03:30||;True|2025-01-23T11:40:28.3942036+03:30||;True|2025-01-20T11:36:48.7028297+03:30||;</History>
+    <History>True|2025-05-27T10:57:34.1682546Z||;False|2025-05-27T14:26:56.4211197+03:30||;False|2025-05-19T10:34:47.8498576+03:30||;False|2025-05-19T10:34:34.1349312+03:30||;True|2025-01-23T11:40:39.7713432+03:30||;True|2025-01-23T11:40:28.3942036+03:30||;True|2025-01-20T11:36:48.7028297+03:30||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -13,13 +13,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/27/2025 16:01:40</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/Account.js">
-      <publishTime>05/13/2025 14:12:42</publishTime>
+      <publishTime>05/31/2025 13:41:29</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/Auth.js">
-      <publishTime>05/13/2025 13:08:10</publishTime>
+      <publishTime>05/31/2025 15:44:59</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/Contract.js">
-      <publishTime>05/05/2025 12:05:31</publishTime>
+      <publishTime>05/31/2025 11:04:18</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/Cookies.js">
       <publishTime>01/15/2025 14:47:04</publishTime>
@@ -28,31 +28,40 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/15/2025 14:47:04</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/Dashboard.js">
-      <publishTime>05/12/2025 11:15:28</publishTime>
+      <publishTime>05/31/2025 14:59:01</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/ForgetPassword.js">
       <publishTime>01/21/2025 12:05:45</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/Invoice.js">
-      <publishTime>05/05/2025 12:00:27</publishTime>
+      <publishTime>05/31/2025 10:53:15</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/Login.js">
       <publishTime>01/21/2025 15:47:29</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/Quote.js">
-      <publishTime>05/07/2025 11:36:30</publishTime>
+      <publishTime>05/31/2025 10:29:34</publishTime>
     </File>
     <File Include="areas/CRM/Scripts/CRM/Ticket.js">
-      <publishTime>05/17/2025 17:32:01</publishTime>
+      <publishTime>05/31/2025 13:34:42</publishTime>
+    </File>
+    <File Include="areas/CRM/Scripts/CRM/Topbar.js">
+      <publishTime>05/31/2025 15:50:05</publishTime>
+    </File>
+    <File Include="areas/CRM/Views/Account/AccountDetail.cshtml">
+      <publishTime>05/31/2025 14:38:23</publishTime>
     </File>
     <File Include="areas/CRM/Views/Account/ForgetPassword.cshtml">
       <publishTime>01/21/2025 13:27:19</publishTime>
     </File>
     <File Include="areas/CRM/Views/Account/Index.cshtml">
-      <publishTime>05/19/2025 09:47:15</publishTime>
+      <publishTime>05/31/2025 14:06:21</publishTime>
     </File>
     <File Include="areas/CRM/Views/Account/SetPassword.cshtml">
       <publishTime>01/21/2025 13:27:20</publishTime>
+    </File>
+    <File Include="areas/CRM/Views/Auth/BranchSelection.cshtml">
+      <publishTime>05/31/2025 15:52:27</publishTime>
     </File>
     <File Include="areas/CRM/Views/Auth/SendOtp.cshtml">
       <publishTime>04/27/2025 15:21:12</publishTime>
@@ -60,11 +69,14 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="areas/CRM/Views/Auth/VerifyOtp.cshtml">
       <publishTime>05/14/2025 11:12:57</publishTime>
     </File>
+    <File Include="areas/CRM/Views/Contract/ContractList.cshtml">
+      <publishTime>05/31/2025 11:02:34</publishTime>
+    </File>
     <File Include="areas/CRM/Views/Contract/Detail.cshtml">
       <publishTime>04/29/2025 17:43:01</publishTime>
     </File>
     <File Include="areas/CRM/Views/Contract/Index.cshtml">
-      <publishTime>04/29/2025 17:43:01</publishTime>
+      <publishTime>05/31/2025 11:02:34</publishTime>
     </File>
     <File Include="areas/CRM/Views/Dashboard/Index.cshtml">
       <publishTime>05/08/2025 10:59:35</publishTime>
@@ -85,7 +97,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/10/2025 11:24:46</publishTime>
     </File>
     <File Include="areas/CRM/Views/Invoice/Index.cshtml">
-      <publishTime>05/10/2025 11:20:49</publishTime>
+      <publishTime>05/31/2025 10:51:38</publishTime>
+    </File>
+    <File Include="areas/CRM/Views/Invoice/InvoiceList.cshtml">
+      <publishTime>05/31/2025 10:51:38</publishTime>
     </File>
     <File Include="areas/CRM/Views/Login/ForgetPassword.cshtml">
       <publishTime>01/16/2025 12:22:48</publishTime>
@@ -100,10 +115,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/07/2025 11:27:49</publishTime>
     </File>
     <File Include="areas/CRM/Views/Quote/Index.cshtml">
-      <publishTime>05/07/2025 11:34:18</publishTime>
+      <publishTime>05/31/2025 09:57:34</publishTime>
+    </File>
+    <File Include="areas/CRM/Views/Quote/QuoteList.cshtml">
+      <publishTime>05/31/2025 09:57:34</publishTime>
     </File>
     <File Include="areas/CRM/Views/Shared/Footer.cshtml">
       <publishTime>05/11/2025 17:03:37</publishTime>
+    </File>
+    <File Include="areas/CRM/Views/Shared/Loading.cshtml">
+      <publishTime>05/31/2025 09:34:17</publishTime>
     </File>
     <File Include="areas/CRM/Views/Shared/RightSidebar.cshtml">
       <publishTime>05/14/2025 12:08:37</publishTime>
@@ -112,19 +133,25 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/12/2025 10:39:15</publishTime>
     </File>
     <File Include="areas/CRM/Views/Shared/Topbar.cshtml">
-      <publishTime>05/11/2025 15:53:50</publishTime>
+      <publishTime>05/31/2025 15:38:17</publishTime>
     </File>
     <File Include="areas/CRM/Views/Shared/_Layout.cshtml">
-      <publishTime>05/14/2025 12:03:26</publishTime>
+      <publishTime>05/25/2025 12:30:01</publishTime>
     </File>
     <File Include="areas/CRM/Views/Ticket/Detail.cshtml">
-      <publishTime>05/17/2025 16:36:53</publishTime>
+      <publishTime>05/31/2025 13:13:36</publishTime>
+    </File>
+    <File Include="areas/CRM/Views/Ticket/DetailPage.cshtml">
+      <publishTime>05/31/2025 12:39:33</publishTime>
     </File>
     <File Include="areas/CRM/Views/Ticket/Index.cshtml">
-      <publishTime>05/17/2025 16:36:53</publishTime>
+      <publishTime>05/31/2025 14:01:49</publishTime>
     </File>
     <File Include="areas/CRM/Views/Ticket/NewTicket.cshtml">
       <publishTime>05/13/2025 09:28:55</publishTime>
+    </File>
+    <File Include="areas/CRM/Views/Ticket/TicketList.cshtml">
+      <publishTime>05/31/2025 12:17:20</publishTime>
     </File>
     <File Include="areas/CRM/Views/web.config">
       <publishTime>01/15/2025 15:36:59</publishTime>
@@ -139,7 +166,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 17:29:20</publishTime>
     </File>
     <File Include="bin/App.config">
-      <publishTime>05/19/2025 12:05:54</publishTime>
+      <publishTime>05/31/2025 15:57:22</publishTime>
     </File>
     <File Include="bin/AutoMapper.dll">
       <publishTime>07/01/2020 20:30:54</publishTime>
@@ -202,46 +229,46 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/23/2025 22:15:34</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Data.dll">
-      <publishTime>05/19/2025 10:34:30</publishTime>
+      <publishTime>05/31/2025 15:57:37</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Data.dll.config">
-      <publishTime>05/19/2025 12:05:54</publishTime>
+      <publishTime>05/31/2025 15:57:22</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Data.pdb">
-      <publishTime>05/19/2025 10:34:30</publishTime>
+      <publishTime>05/31/2025 15:57:37</publishTime>
     </File>
     <File Include="bin/MArquise_Web.Model.dll">
-      <publishTime>05/19/2025 10:34:30</publishTime>
+      <publishTime>05/27/2025 14:27:28</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Model.dll.config">
       <publishTime>04/17/2025 11:31:36</publishTime>
     </File>
     <File Include="bin/MArquise_Web.Model.pdb">
-      <publishTime>05/19/2025 10:34:30</publishTime>
+      <publishTime>05/27/2025 14:27:28</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Service.dll">
-      <publishTime>05/19/2025 10:34:31</publishTime>
+      <publishTime>05/31/2025 15:58:47</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Service.dll.config">
-      <publishTime>04/19/2025 11:45:02</publishTime>
+      <publishTime>05/27/2025 16:01:02</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Service.pdb">
-      <publishTime>05/19/2025 10:34:31</publishTime>
+      <publishTime>05/31/2025 15:58:47</publishTime>
     </File>
     <File Include="bin/Marquise_Web.UI.dll">
-      <publishTime>05/19/2025 10:39:34</publishTime>
+      <publishTime>05/31/2025 15:58:47</publishTime>
     </File>
     <File Include="bin/Marquise_Web.UI.pdb">
-      <publishTime>05/19/2025 10:39:34</publishTime>
+      <publishTime>05/31/2025 15:58:47</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Utilities.dll">
-      <publishTime>05/19/2025 10:34:30</publishTime>
+      <publishTime>05/31/2025 15:57:37</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Utilities.dll.config">
-      <publishTime>04/19/2025 11:45:01</publishTime>
+      <publishTime>05/27/2025 15:51:57</publishTime>
     </File>
     <File Include="bin/Marquise_Web.Utilities.pdb">
-      <publishTime>05/19/2025 10:34:30</publishTime>
+      <publishTime>05/31/2025 15:57:37</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>06/21/2023 13:46:52</publishTime>
@@ -311,6 +338,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/Microsoft.Bcl.Cryptography.dll">
       <publishTime>10/31/2023 18:31:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bcl.TimeProvider.dll">
+      <publishTime>11/30/2023 11:58:10</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 17:10:50</publishTime>
@@ -406,13 +436,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/07/2024 01:44:42</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Abstractions.dll">
-      <publishTime>03/26/2024 22:10:22</publishTime>
+      <publishTime>05/23/2025 20:04:02</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.JsonWebTokens.dll">
-      <publishTime>03/26/2024 22:10:34</publishTime>
+      <publishTime>05/23/2025 20:04:34</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Logging.dll">
-      <publishTime>03/26/2024 22:10:22</publishTime>
+      <publishTime>05/23/2025 20:03:42</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Protocols.dll">
       <publishTime>03/26/2024 22:10:22</publishTime>
@@ -421,7 +451,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/26/2024 22:10:22</publishTime>
     </File>
     <File Include="bin/Microsoft.IdentityModel.Tokens.dll">
-      <publishTime>03/26/2024 22:10:22</publishTime>
+      <publishTime>05/23/2025 20:04:14</publishTime>
     </File>
     <File Include="bin/Microsoft.Net.Http.Headers.dll">
       <publishTime>01/15/2025 01:30:52</publishTime>
@@ -438,8 +468,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/Microsoft.Owin.Security.dll">
       <publishTime>05/11/2022 04:01:38</publishTime>
     </File>
+    <File Include="bin/Microsoft.Owin.Security.Jwt.dll">
+      <publishTime>05/11/2022 04:01:54</publishTime>
+    </File>
     <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
-      <publishTime>02/13/2015 16:46:40</publishTime>
+      <publishTime>05/11/2022 04:01:50</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>04/11/2022 20:09:46</publishTime>
@@ -646,7 +679,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/11/2024 00:35:36</publishTime>
     </File>
     <File Include="bin/System.IdentityModel.Tokens.Jwt.dll">
-      <publishTime>03/26/2024 22:08:30</publishTime>
+      <publishTime>05/23/2025 20:04:02</publishTime>
     </File>
     <File Include="bin/System.IO.FileSystem.AccessControl.dll">
       <publishTime>10/19/2020 22:09:30</publishTime>
@@ -1024,19 +1057,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/21/2025 15:21:21</publishTime>
     </File>
     <File Include="Content/CRM/assets/css/app-style.css">
-      <publishTime>05/17/2025 15:59:30</publishTime>
+      <publishTime>05/25/2025 11:29:38</publishTime>
     </File>
     <File Include="Content/CRM/assets/css/bootstrap.css">
       <publishTime>05/14/2025 10:12:49</publishTime>
     </File>
     <File Include="Content/CRM/assets/css/bootstrap.min.css">
-      <publishTime>05/14/2025 10:40:35</publishTime>
+      <publishTime>05/26/2025 12:28:08</publishTime>
     </File>
     <File Include="Content/CRM/assets/css/icons.css">
       <publishTime>05/14/2025 10:12:49</publishTime>
     </File>
+    <File Include="Content/CRM/assets/css/Loading.css">
+      <publishTime>05/26/2025 12:28:07</publishTime>
+    </File>
     <File Include="Content/CRM/assets/css/pace.min.css">
-      <publishTime>04/21/2025 15:21:21</publishTime>
+      <publishTime>05/27/2025 14:19:12</publishTime>
     </File>
     <File Include="Content/CRM/assets/css/sidebar-menu.css">
       <publishTime>05/14/2025 12:28:47</publishTime>
@@ -2739,6 +2775,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/CRM/assets/js/jquery.min.js">
       <publishTime>04/21/2025 15:21:22</publishTime>
     </File>
+    <File Include="Content/CRM/assets/js/Loading.js">
+      <publishTime>05/31/2025 09:29:59</publishTime>
+    </File>
     <File Include="Content/CRM/assets/js/pace.min.js">
       <publishTime>04/21/2025 15:21:22</publishTime>
     </File>
@@ -2803,7 +2842,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/21/2025 15:21:22</publishTime>
     </File>
     <File Include="Content/CSS/CRMCustom.css">
-      <publishTime>05/14/2025 10:12:49</publishTime>
+      <publishTime>05/28/2025 14:51:03</publishTime>
     </File>
     <File Include="Content/fonts/Vazirmatn-Bold.woff2">
       <publishTime>05/14/2025 09:59:53</publishTime>
@@ -3142,7 +3181,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/15/2025 14:47:05</publishTime>
     </File>
     <File Include="Content/Images/video.jpg">
-      <publishTime>01/15/2025 14:47:05</publishTime>
+      <publishTime>05/28/2025 14:59:43</publishTime>
     </File>
     <File Include="Content/Images/wave-cd3.png">
       <publishTime>01/15/2025 14:47:05</publishTime>
@@ -3163,7 +3202,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/14/2025 10:12:49</publishTime>
     </File>
     <File Include="Content/theme/css/custom.css">
-      <publishTime>05/14/2025 10:12:49</publishTime>
+      <publishTime>05/27/2025 14:19:12</publishTime>
     </File>
     <File Include="Content/theme/css/customFont.css">
       <publishTime>01/15/2025 14:47:05</publishTime>
@@ -3187,7 +3226,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/26/2025 15:59:24</publishTime>
     </File>
     <File Include="Content/theme/css/style.css">
-      <publishTime>05/14/2025 10:12:49</publishTime>
+      <publishTime>05/28/2025 14:52:15</publishTime>
     </File>
     <File Include="Content/theme/css/swiper.min.css">
       <publishTime>01/15/2025 14:47:05</publishTime>
@@ -3355,7 +3394,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/10/2025 12:26:37</publishTime>
     </File>
     <File Include="Views/Features/DetailOfFeatures.cshtml">
-      <publishTime>04/10/2025 12:28:24</publishTime>
+      <publishTime>05/27/2025 14:19:12</publishTime>
     </File>
     <File Include="Views/Features/Index.cshtml">
       <publishTime>01/15/2025 14:47:17</publishTime>
@@ -3382,7 +3421,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/21/2025 10:55:35</publishTime>
     </File>
     <File Include="Views/LandingPage/Customers.cshtml">
-      <publishTime>04/21/2025 10:51:22</publishTime>
+      <publishTime>05/28/2025 14:35:33</publishTime>
     </File>
     <File Include="Views/LandingPage/HeroSection/HeroDesktop.cshtml">
       <publishTime>04/10/2025 12:32:31</publishTime>
@@ -3397,7 +3436,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/15/2025 14:47:17</publishTime>
     </File>
     <File Include="Views/LandingPage/Plugins.cshtml">
-      <publishTime>04/21/2025 10:52:48</publishTime>
+      <publishTime>05/28/2025 14:26:56</publishTime>
     </File>
     <File Include="Views/LandingPage/Snapp.cshtml">
       <publishTime>04/21/2025 11:11:16</publishTime>
@@ -3406,7 +3445,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/21/2025 10:59:47</publishTime>
     </File>
     <File Include="Views/Opportunity/Index.cshtml">
-      <publishTime>01/20/2025 10:15:51</publishTime>
+      <publishTime>05/28/2025 14:50:08</publishTime>
     </File>
     <File Include="Views/Plugins/Index.cshtml">
       <publishTime>05/10/2025 15:07:26</publishTime>
@@ -3421,7 +3460,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/21/2025 11:05:06</publishTime>
     </File>
     <File Include="Views/Shared/Header.cshtml">
-      <publishTime>05/14/2025 10:26:42</publishTime>
+      <publishTime>05/27/2025 14:19:12</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>04/19/2025 13:36:47</publishTime>
@@ -3469,7 +3508,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/10/2025 13:23:39</publishTime>
     </File>
     <File Include="Views/Video/Index.cshtml">
-      <publishTime>04/10/2025 13:29:18</publishTime>
+      <publishTime>05/28/2025 15:23:09</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>01/15/2025 15:36:59</publishTime>
@@ -3478,7 +3517,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/15/2025 14:47:18</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/19/2025 12:31:23</publishTime>
+      <publishTime>05/31/2025 15:57:39</publishTime>
     </File>
   </ItemGroup>
 </Project>

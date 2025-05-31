@@ -1,53 +1,76 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    fetch("/CRM/Dashboard/MainDetail")
+    
+    const token = localStorage.getItem("jwtToken");
+
+    fetch('/CRM/Dashboard/MainDetail', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
         .then(response => {
-            if (!response.ok) throw new Error("Network response was not ok");
+            if (response.status === 401) {
+                console.error('عدم دسترسی (401): توکن نامعتبر است یا ارسال نشده');
+            }
             return response.text();
         })
-        .then(html => {
-            document.getElementById("main-detail").innerHTML = html;
+        .then(data => {
+            document.getElementById('main-detail').innerHTML = data;
         })
         .catch(error => {
-            document.getElementById("main-detail").innerHTML = "خطا در بارگذاری .";
+            console.error('خطا در بارگذاری جزئیات:', error);
         });
 
 
-    fetch("/CRM/Dashboard/LastTicket")
-        .then(response => {
-            if (!response.ok) throw new Error("Network response was not ok");
-            return response.text();
-        })
-        .then(html => {
-            document.getElementById("last-ticket").innerHTML = html;
+    fetch('/CRM/Dashboard/LastTicket', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('last-ticket').innerHTML = data;
         })
         .catch(error => {
-            console.log(error);
-            document.getElementById("last-ticket").innerHTML = "خطا در بارگذاری .";
+            console.error('خطا در بارگذاری جزئیات:', error);
         });
 
-
+ 
+    if (!token) {
+        alert("لطفاً وارد شوید.");
+        window.location.href = "/CRM/Auth/SendOtp";
+        return;
+    }
 
     const currentYear = getCurrentJalaliYear();
-    const todayDate = getTodayJalaliDate(); // روز شمسی جاری
+    const todayDate = getTodayJalaliDate();
 
     fetch('/api/CRM/DashboardApi/SupportTimeLine', {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`  // اضافه کردم این خط
+        }
     })
-        .then(response => response.json())
+        .then(response => {
+            if (response.status === 401) {
+                alert("دسترسی ندارید، لطفاً دوباره وارد شوید.");
+                window.location.href = "/CRM/Auth/SendOtp";
+                return;
+            }
+            return response.json();
+        })
         .then(result => {
-            if (result.success) {
+            if (result && result.success) {
                 const activeRanges = result.data;
-
                 const days = generateDaysOfYear(currentYear);
                 const timeline = document.getElementById('timeline');
-                const dayWidth = 100 / days.length;
                 timeline.innerHTML = ''; // پاک‌سازی قبلی
 
                 days.forEach(({ date }, index) => {
                     const dayDiv = document.createElement('div');
                     dayDiv.classList.add('day');
-                    /*dayDiv.style.width = `${dayWidth}%`;*/
 
                     if (index === 0) dayDiv.classList.add('first');
                     if (index === days.length - 1) dayDiv.classList.add('last');
@@ -83,12 +106,10 @@
 
                     timeline.appendChild(dayDiv);
                 });
-
             } else {
                 console.error("دریافت اطلاعات ناموفق بود");
             }
         });
-
 
     // گرفتن سال شمسی جاری
     function getCurrentJalaliYear() {

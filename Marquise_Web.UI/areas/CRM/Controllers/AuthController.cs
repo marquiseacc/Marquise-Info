@@ -5,11 +5,16 @@ using Marquise_Web.Service.Service;
 using Marquise_Web.UI.areas.CRM.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using Utilities.Map;
 
@@ -30,7 +35,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             return View();
         }
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> SendOtp(SendOtpVM model)
         {
             if (!ModelState.IsValid)
@@ -60,7 +65,7 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             }, result.Message));
         }
 
-        [HttpGet]
+        [System.Web.Mvc.HttpGet]
         public ActionResult VerifyOtp()
         {
             var phone = TempData["PhoneNumber"] as string;
@@ -72,61 +77,96 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             return View(new VerifyOtpVM { PhoneNumber = phone });
         }
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public async Task<ActionResult> VerifyOtp(VerifyOtpVM model)
         {
             if (!ModelState.IsValid)
-            {
                 return Json(OperationResult<object>.Failure("کد وارد شده معتبر نمی‌باشد."));
-            }
 
             var result = await unitOfWork.AuthService.VerifyOtpAsync(model.PhoneNumber, model.Code);
-            if (!result.IsSuccess)
-            {
-                return Json(OperationResult<object>.Failure(result.Message));
-            }
+            if (!result.IsSuccess || result.Data == null)
+                return Json(OperationResult<object>.Failure(result.Message ?? "داده نامعتبر است."));
 
-            var userDto = result.Data as AuthUserDto;
-            var signInResult = await unitOfWork.AuthService.SignInUserAsync(userDto.Id.ToString());
-
-            if (!signInResult)
+            try
             {
-                return Json(OperationResult<object>.Failure("ورود به سیستم با مشکل مواجه شد."));
+                var jObj = result.Data as JObject ?? JObject.FromObject(result.Data);
+                var token = jObj["Token"]?.ToString();
+                var user = jObj["User"]?.ToObject<AuthUserDto>();
+
+                if (string.IsNullOrEmpty(token))
+                    return Json(OperationResult<object>.Failure("توکن معتبر نیست."));
+
+                return Json(OperationResult<object>.Success(new
+                {
+                    Token = token,
+                    User = user,
+                    RedirectUrl = "/CRM/Auth/BranchSelection"
+                }, "ورود با موفقیت انجام شد."));
             }
-            return Json(OperationResult<object>.Success("ورود با موفقیت انجام شد."));
+            catch (Exception ex)
+            {
+                return Json(OperationResult<object>.Failure("خطای داخلی: " + ex.Message));
+            }
         }
 
-        public async Task<ActionResult> BranchSelection()
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Authorize]
+        public async Task<JsonResult> GetBranches()
         {
             var userId = ((ClaimsIdentity)User.Identity).FindFirst("UserId")?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Json(new { success = false, message = "توکن معتبر نیست یا کاربر شناسایی نشد." }, JsonRequestBehavior.AllowGet);
+            }
+
             var accounts = await unitOfWork.AuthService.GetAccountByUserIdAsync(userId);
             var accountVms = UIDataMapper.Mapper.Map<List<AccountVM>>(accounts);
-            return View(accountVms);
+
+            return Json(new { success = true, data = accountVms }, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<ActionResult> SetClaims(AccountVM accountVM)
+        [System.Web.Mvc.HttpGet]
+        public ActionResult BranchSelection()
         {
-            var userId = ((ClaimsIdentity)User.Identity).FindFirst("UserId")?.Value;
+            return View(); // View خالی - داده‌ها رو جاوااسکریپت میاره
+        }
+
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Authorize]
+        public ActionResult SetClaims([FromBody] AccountVM accountVM)
+        {
+            if (accountVM == null)
+                return Json(new { success = false, message = "اطلاعات حساب ارسال نشده است." });
+
+            var userId = ((ClaimsIdentity)User.Identity).FindFirst("UserId")?.Value ?? "";
 
             var claims = new List<Claim>
-            {
-                new Claim("OtpVerified", "True"),
-                new Claim("UserId", userId ?? ""),
-                new Claim(ClaimTypes.NameIdentifier, accountVM.CrmAccountId ?? ""),
-                new Claim(ClaimTypes.Name, accountVM.Name ?? ""),
-                new Claim("CrmAccountId", accountVM.CrmAccountId ?? "")
-            };
+    {
+        new Claim("OtpVerified", "True"),
+        new Claim("UserId", userId),
+        new Claim(JwtRegisteredClaimNames.Sub, accountVM.CrmAccountId ?? ""),
+        new Claim(JwtRegisteredClaimNames.UniqueName, accountVM.Name ?? ""),
+        new Claim("CrmAccountId", accountVM.CrmAccountId ?? ""),
+        new Claim(ClaimTypes.Name, accountVM.Name ?? "")
+    };
 
-            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-            var authenticationManager = HttpContext.GetOwinContext().Authentication;
+            var secretKey = "ThisIsA32CharLongSecretKeyForHS256!!"; // باید با استارتاپ یکی باشه
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            authenticationManager.SignIn(new AuthenticationProperties
-            {
-                IsPersistent = false
-            }, identity);
-            return RedirectToAction("Index", "Dashboard");
+            var token = new JwtSecurityToken(
+                issuer: "MarquiseSupport",
+                audience: "MarquiseSupport",
+                claims: claims,
+                expires: DateTime.UtcNow.AddHours(1),
+                signingCredentials: creds);
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return Json(new { success = true, token = tokenString });
         }
+
 
         private ApplicationSignInManager _signInManager;
         public ApplicationSignInManager SignInManager
@@ -155,12 +195,14 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             }
         }
 
-        [Authorize]
+        [System.Web.Http.AllowAnonymous]
         public ActionResult Logout()
         {
             HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("SendOtp", "Auth"); // یا هر جایی که باید بعد از خروج برود
+            return RedirectToAction("SendOtp", "Auth");
         }
+
+
     }
 
 }

@@ -40,13 +40,11 @@ function handleSentOTPFormSubmit(event) {
         .catch(handleError);
 }
 
-// فرم تایید OTP
 function handleVerifyOTPFormSubmit(event) {
     event.preventDefault();
 
-    var phoneNumber = document.getElementById("PhoneNumber").value;
-    var otpCode = document.getElementById("OtpCode").value;
-
+    var phoneNumber = document.getElementById("PhoneNumber")?.value;
+    var otpCode = document.getElementById("OtpCode")?.value;
 
     if (!validateForm(event.target)) return;
 
@@ -54,29 +52,38 @@ function handleVerifyOTPFormSubmit(event) {
     formData.append("PhoneNumber", phoneNumber);
     formData.append("Code", otpCode);
 
-
-
     fetch('/CRM/Auth/VerifyOtp', {
         method: 'POST',
         body: formData
     })
-        .then(handleResponse)
+        .then(response => response.json())
         .then(data => {
-            if (data.IsSuccess) {
-                Swal.fire({
-                    title: 'موفق',
-                    text: data.Message || 'ورود با موفقیت انجام شد.',
-                    icon: 'success',
-                    confirmButtonText: 'باشه'
-                }).then(() => {
-                    const redirectUrl = data.Data?.redirectUrl || '/CRM/Auth/BranchSelection';
-                    window.location.href = redirectUrl;
-                });
+            if (data?.IsSuccess) {
+                const token = data.Data?.Token;
+                const redirectUrl = data.Data?.RedirectUrl;
+
+                if (token && redirectUrl) {
+                    localStorage.setItem("jwtToken", token);
+
+                    Swal.fire({
+                        title: 'موفق',
+                        text: data.Message || 'ورود با موفقیت انجام شد.',
+                        icon: 'success',
+                        confirmButtonText: 'باشه'
+                    }).then(() => {
+                        window.location.href = redirectUrl;
+                    });
+                } else {
+                    Swal.fire("خطا", "توکن یا مسیر انتقال یافت نشد.", "error");
+                }
             } else {
-                window.alert(data.Message || 'کد اشتباه یا منقضی شده است.', 'error');
+                Swal.fire("خطا", data?.Message || "کد اشتباه یا منقضی شده است.", "error");
             }
         })
-        .catch(handleError);
+        .catch(error => {
+            console.error('خطا در ارسال درخواست:', error);
+            Swal.fire("خطا", "مشکلی در ارتباط با سرور رخ داده است.", "error");
+        });
 }
 
 // ارسال مجدد OTP
@@ -183,33 +190,3 @@ function startTimer() {
 }
 
 window.onload = startTimer;
-
-document.addEventListener('DOMContentLoaded', function () {
-    const rows = document.querySelectorAll(".table-light tbody tr");
-
-    rows.forEach(row => {
-        row.addEventListener('click', function () {
-            // حذف رنگ قبلی از تمام ردیف‌ها
-            rows.forEach(r => r.classList.remove('selected-row'));
-
-            // رنگ دادن به ردیف کلیک‌شده
-            this.classList.add('selected-row');
-
-            const userId = this.getAttribute('data-user-id');
-            const accountId = this.getAttribute('data-account-id');
-            const crmAccountId = this.getAttribute('data-crm-account-id');
-            const name = this.getAttribute('data-name-id');
-
-            const queryString = new URLSearchParams({
-                UserId: userId,
-                AccountId: accountId,
-                CrmAccountId: crmAccountId,
-                Name: name
-            }).toString();
-
-            // فقط فراخوانی اکشن بدون نیاز به داده برگشتی
-            window.location.href = '/CRM/Auth/SetClaims?' + queryString;
-
-        });
-    });
-});

@@ -1,0 +1,20 @@
+﻿@model List<Marquise_Web.UI.areas.CRM.Models.ContractVM>
+<table class="table font-14">
+    <thead>
+        <tr>
+            <th scope="col">نام</th>
+            <th scope="col">تاریخ</th>
+            <th scope="col">وضعیت</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contract in Model)
+        {
+            <tr data-contract-id="@contract.Id">
+                <td>@contract.sodoureghoflName__C</td>
+                <td>@contract.CreateDatePersian</td>
+                <td>@contract.StatusTitle</td>
+            </tr>
+        }
+    </tbody>
+</table>

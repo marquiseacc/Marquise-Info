@@ -98,3 +98,17 @@ C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\System.Diagnostics.DiagnosticSource.xml
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\System.Security.Cryptography.Xml.xml
 C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\System.Security.Principal.Windows.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.Bcl.TimeProvider.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.IdentityModel.Logging.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.IdentityModel.Tokens.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.Owin.Security.Jwt.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.Bcl.TimeProvider.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.IdentityModel.Abstractions.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.IdentityModel.Logging.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.IdentityModel.Tokens.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\Microsoft.Owin.Security.Jwt.xml
+C:\Users\10\source\repos\Marquise_Web\Marquise_Web.Service\bin\Release\System.IdentityModel.Tokens.Jwt.xml

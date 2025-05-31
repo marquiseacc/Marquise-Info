@@ -1,12 +1,13 @@
-﻿using Marquise_Web.UI.areas.CRM.Models;
+﻿using Marquise_Web.Model.DTOs.CRM;
+using Marquise_Web.Service.IService;
+using Marquise_Web.UI.areas.CRM.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Marquise_Web.Model.DTOs.CRM;
-using Marquise_Web.Service.IService;
 using Utilities.Map;
 
 namespace Marquise_Web.UI.areas.CRM.Controllers
@@ -27,13 +28,25 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
         // GET: CRM/Invoice
         public async Task<ActionResult> Index()
         {
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult> TicketList()
+        {
             var claimsPrincipal = User as ClaimsPrincipal;
 
             if (claimsPrincipal == null || !claimsPrincipal.HasClaim(c => c.Type == "OtpVerified" && c.Value == "True"))
             {
-                return RedirectToAction("SendOtp", "Auth");
+                return new HttpStatusCodeResult(403, "احراز هویت ناقص است");
             }
+
             var crmId = ((ClaimsIdentity)User.Identity).FindFirst("CrmAccountId")?.Value;
+            if (string.IsNullOrEmpty(crmId))
+            {
+                return new HttpStatusCodeResult(401, "شناسه کاربر معتبر نیست");
+            }
 
             var ticketDtos = await unitOfWork.TicketService.GetTicketsByApplicantIdAsync(crmId);
             var staffDtos = await unitOfWork.TicketService.GetAllStaffAsync();
@@ -49,38 +62,42 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
                 }
             }
 
-            return View(ticketVMs);
+            return PartialView("TicketList", ticketVMs);
         }
 
+
         [HttpGet]
-        [System.Web.Http.Route("CRM/Ticket/Detail")]
+        public ActionResult DetailPage(string ticketId)
+        {
+            ViewBag.TicketId = ticketId;
+            return View(); // این ویو فقط جاوااسکریپت و یک div داره
+        }
+
+
+        [HttpGet]
+        [Authorize]
         public async Task<ActionResult> Detail(string ticketId)
         {
             var claimsPrincipal = User as ClaimsPrincipal;
             var crmName = claimsPrincipal.Identity.Name;
 
-            // دریافت داده از سرویس
             var ticketDto = await unitOfWork.TicketService.GetTicketByIdAsync(ticketId);
             if (ticketDto == null)
-                return RedirectToAction("Index", "Dashboard");
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 
             var answersDto = await unitOfWork.TicketService.GetAnswersByTicketIdAsync(ticketId);
             var staffDtos = await unitOfWork.TicketService.GetAllStaffAsync();
 
-            // مپ DTO ها به ViewModel ها
             var ticketVM = UIDataMapper.Mapper.Map<TicketDetailVm>(ticketDto);
             var answersVM = UIDataMapper.Mapper.Map<List<ShowAnswerVM>>(answersDto);
             var staffVMs = UIDataMapper.Mapper.Map<List<StaffInfo>>(staffDtos);
 
-            // ساخت دیکشنری برای دسترسی سریع به کارشناس‌ها
             var staffDict = staffVMs.ToDictionary(s => s.UserId, s => s);
 
-            // تخصیص کارشناس اصلی تیکت
             ticketVM.Staff = staffDict.ContainsKey(ticketVM.ITStaffId)
                 ? staffDict[ticketVM.ITStaffId]
                 : null;
 
-            // تخصیص اطلاعات کارشناس به پاسخ‌ها
             foreach (var answer in answersVM)
             {
                 answer.Staff = answer.CreateBy != null && staffDict.ContainsKey(answer.CreateBy)
@@ -93,8 +110,10 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             }
 
             ticketVM.Answers = answersVM;
-            return View(ticketVM);
+
+            return PartialView("Detail", ticketVM); // مثلا یه partialView مثل این
         }
+
 
 
         // GET: CRM/Ticket

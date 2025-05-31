@@ -1,36 +1,72 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    const rows = document.querySelectorAll("table tbody tr");
+    const token = localStorage.getItem("jwtToken");
 
-    if (rows.length > 0) {
-        const firstRow = rows[0];
-        const firstInvoiceId = firstRow.getAttribute('data-invoice-id');
-        firstRow.classList.add('selected-row'); // رنگ دادن به اولین ردیف
-        loadInvoiceDetail(firstInvoiceId);
-    }
+    fetch('/CRM/Invoice/InvoiceList', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+        .then(response => {
+            if (response.status === 401 || response.status === 403) {
+                console.error(`❌ خطا در احراز هویت (${response.status}): دسترسی غیرمجاز یا توکن نامعتبر است.`);
+                return '';
+            }
 
-    rows.forEach(row => {
-        row.addEventListener('click', function () {
-            // حذف رنگ قبلی از تمام ردیف‌ها
-            rows.forEach(r => r.classList.remove('selected-row'));
+            if (!response.ok) {
+                console.error(`❌ خطای ناشناخته (${response.status}) هنگام دریافت اطلاعات.`);
+                return '';
+            }
 
-            // رنگ دادن به ردیف کلیک‌شده
-            this.classList.add('selected-row');
+            return response.text();
+        })
+        .then(data => {
+            if (data) {
+                document.getElementById('invoice-list').innerHTML = data;
 
-            const invoiceId = this.getAttribute('data-invoice-id');
-            loadInvoiceDetail(invoiceId);
+                // انتخاب ردیف‌ها بعد از بارگذاری دیتا
+                const rows = document.querySelectorAll("#invoice-list table tbody tr");
+
+                if (rows.length > 0) {
+                    const firstRow = rows[0];
+                    const firstInvoiceId = firstRow.getAttribute('data-invoice-id');
+                    firstRow.classList.add('selected-row');
+                    loadInvoiceDetail(firstInvoiceId);
+                }
+
+                rows.forEach(row => {
+                    row.addEventListener('click', function () {
+                        rows.forEach(r => r.classList.remove('selected-row'));
+                        this.classList.add('selected-row');
+
+                        const invoiceId = this.getAttribute('data-invoice-id');
+                        loadInvoiceDetail(invoiceId);
+                    });
+                });
+            }
+        })
+        .catch(error => {
+            console.error('❌ خطا در ارسال درخواست:', error);
         });
-    });
 
     function loadInvoiceDetail(invoiceId) {
         fetch('/CRM/Invoice/Detail?invoiceId=' + invoiceId, {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
         })
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("خطا در دریافت جزئیات صورتحساب");
+                }
+                return response.text();
+            })
             .then(data => {
                 document.querySelector('#DetailInvoice').innerHTML = data;
             })
             .catch(error => {
-                console.error('خطا در بارگذاری جزئیات:', error);
+                console.error('❌ خطا در بارگذاری جزئیات:', error);
             });
     }
 });

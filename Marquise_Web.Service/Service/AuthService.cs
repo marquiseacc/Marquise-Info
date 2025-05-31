@@ -5,10 +5,12 @@ using Marquise_Web.Model.Utilities;
 using Marquise_Web.Service.IService;
 using Marquise_Web.Utilities.Messaging;
 using Microsoft.AspNet.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
@@ -95,20 +97,14 @@ namespace Marquise_Web.Service.Service
             //    var json = JsonSerializer.Serialize(requestModel);
             //    var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            //    try
-            //    {
-            //        var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl, content);
+            //    var response = await httpClient.PostAsync(apiSetting.ApiBaseUrl, content);
 
-            //        if (!response.IsSuccessStatusCode)
-            //        {
-            //            var errorMessage = await response.Content.ReadAsStringAsync();
-            //            return OperationResult<object>.Failure($"ارسال پیامک با خطا مواجه شد: {errorMessage}");
-            //        }
-            //    }
-            //    catch (Exception ex)
+            //    if (!response.IsSuccessStatusCode)
             //    {
-            //        return OperationResult<object>.Failure($"ارسال پیامک با خطا مواجه شد: {ex.Message}");
+            //        var errorMessage = await response.Content.ReadAsStringAsync();
+            //        return OperationResult<object>.Failure($"ارسال پیامک با خطا مواجه شد: {errorMessage}");
             //    }
+
             //}
 
             user.OtpCode = OtpHelper.HashOtp(otpCode);
@@ -163,50 +159,52 @@ namespace Marquise_Web.Service.Service
             if (!isValid)
                 return OperationResult<object>.Failure("کد وارد شده معتبر نمی‌باشد.");
 
-            var loginResult = await SignInUserAsync(user.Id);
-            if (!loginResult)
+            var jwtToken = await SignInUserAsync(user.Id);
+            if (string.IsNullOrEmpty(jwtToken))
                 return OperationResult<object>.Failure("خطا در ورود به سیستم.");
 
             user.OtpCode = null;
             user.OtpExpiration = null;
             await unitOfWork.CompleteAsync();
 
-            return OperationResult<object>.Success(new AuthUserDto
+            return OperationResult<object>.Success(new
             {
-                Id = user.Id,
-                PhoneNumber = user.PhoneNumber,
-                //CrmContactId = user.CrmUserId
+                Token = jwtToken,
+                User = new AuthUserDto
+                {
+                    Id = user.Id,
+                    PhoneNumber = user.PhoneNumber
+                }
             }, "ورود با موفقیت انجام شد.");
         }
 
-        public async Task<bool> SignInUserAsync(string userId)
+
+        public async Task<string> SignInUserAsync(string userId)
         {
             var user = await unitOfWork.UserRepository.GetByIdAsync(userId);
             if (user == null)
-                return false;
+                return null;
 
-            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-
-            // Claims قبلی + جدید
             var claims = new List<Claim>
-            {
-                //new Claim(ClaimTypes.NameIdentifier, user.Id),
-                //new Claim(ClaimTypes.Name, user.FullName ?? ""),
-                //new Claim("CrmAccountId", user.CrmUserId.ToString()),
-                new Claim("OtpVerified", "True"),
-                new Claim("UserId", user.Id.ToString())
-            };
+    {
+        new Claim("UserId", user.Id)
+    };
 
-            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+            var secretKey = "ThisIsA32CharLongSecretKeyForHS256!!"; // move to config in production
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            authenticationManager.SignIn(new AuthenticationProperties
-            {
-                IsPersistent = false
-            }, identity);
+            var token = new JwtSecurityToken(
+                issuer: "MarquiseSupport",
+                audience: "MarquiseSupport",
+                claims: claims,
+                expires: DateTime.UtcNow.AddHours(1),
+                signingCredentials: creds);
 
-            return true;
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+
 
         public async Task<OperationResult<object>> CheckFailedOtpAttemptsAsync(string phoneNumber)
         {

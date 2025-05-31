@@ -2380,12 +2380,12 @@ body.bg-theme18 .table {
     }
 
 .table-light {
-    color: #ffffff;
+    color: #000;
     background-color: rgba(255, 255, 255, 0.14);
 }
 
     .table-light td, .table-light th, .table-light thead th {
-        border-color: rgba(221, 222, 222, 0.22);
+        border-color: rgba(0, 0, 0, 0.22);
     }
 
 .table-active, .table-active > td, .table-active > th {
@@ -4469,3 +4469,14 @@ tr:hover {
 a.link-color {
     color: rgb(0, 65, 255) !important
 }
+
+.custom_table {
+    width: 100%;
+    margin-bottom: 1rem 16px;
+    color: #000 !important;
+}
+
+.custom-tr {
+    border-bottom: 1px solid rgba(0, 0, 0, .5) !important
+}
+

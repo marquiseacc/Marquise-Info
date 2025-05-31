@@ -22,35 +22,8 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table font-14">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">موضوع</th>
-                                        <th scope="col">تاریخ</th>
-                                        <th scope="col">کارشناس</th>
-                                        <th scope="col">وضعیت</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var ticket in Model)
-                                    {
-                                       
-                                        <tr class="table-row-link" onclick="location.href='@Url.Action("Detail", "Ticket", new { area = "CRM", ticketId = ticket.TicketId })'">
-                                            <th scope="row">@ticket.TicketNumber</th>
-                                            <td>@ticket.Title</td>
-                                            <td>@ticket.CreateDatePersian</td>
-                                            <td>@ticket.StaffName</td>
-                                            <td>
-                                                @ticket.StatusTitle
-                                                @(ticket.Status == "9a5e80a8-cc75-46f1-b158-01d58384d4f7" ? Html.Raw("<i class=\"bi bi-check2-circle font-14\"></i>") : null)
-                                            </td>
-                                        </tr>
-                                    }
-                                    
-                                </tbody>
-                            </table>
+                        <div class="table-responsive" id="ticket-list">
+
                         </div>
                     </div>
                 </div>
@@ -64,6 +37,55 @@
     </div>
     <!-- End container-fluid-->
 </div>
+@section Scripts{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem("jwtToken");
+
+            fetch('/CRM/Ticket/TicketList', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+                .then(response => {
+                    if (response.status === 401 || response.status === 403) {
+                        console.error(`❌ خطا در احراز هویت (${response.status}): دسترسی غیرمجاز یا توکن نامعتبر است.`);
+                        return '';
+                    }
+
+                    if (!response.ok) {
+                        console.error(`❌ خطای ناشناخته (${response.status}) هنگام دریافت اطلاعات.`);
+                        return '';
+                    }
+
+                    return response.text();
+                })
+                .then(data => {
+                    if (data) {
+                        document.getElementById('ticket-list').innerHTML = data;
+
+                        // افزودن رویداد کلیک برای انتقال به صفحه جزئیات
+                        const rows = document.querySelectorAll("#ticket-list table tbody tr");
+
+                        rows.forEach(row => {
+                            row.addEventListener('click', function () {
+                                const ticketId = this.getAttribute('data-ticket-id');
+                                if (ticketId) {
+                                    window.location.href = '/CRM/Ticket/DetailPage?ticketId=' + ticketId;
+                                }
+                            });
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('❌ خطا در ارسال درخواست:', error);
+                });
+        });
+
+    </script>
+    <script src="~/areas/CRM/Scripts/CRM/Ticket.js"></script>
+}
 
 
 

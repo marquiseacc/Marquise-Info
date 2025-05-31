@@ -1,0 +1,25 @@
+﻿@model List<Marquise_Web.UI.areas.CRM.Models.InvoiceVM>
+
+<table class="table font-13">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">نام</th>
+            <th scope="col">تاریخ</th>
+            <th scope="col">مبلغ</th>
+            <th scope="col">وضعیت</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoice in Model)
+        {
+            <tr class="table-row-link" data-invoice-id="@invoice.InvoiceId">
+                <th scope="row">@invoice.InvoiceNumber</th>
+                <td>@invoice.Title</td>
+                <td>@invoice.CreateDatePersian</td>
+                <td>@invoice.TotalPrice.ToString("N0")</td>
+                <td>@invoice.StatusTitle</td>
+            </tr>
+        }
+    </tbody>
+</table>

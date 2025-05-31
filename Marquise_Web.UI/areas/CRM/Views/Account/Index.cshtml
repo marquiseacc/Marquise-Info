@@ -1,10 +1,7 @@
-﻿@model Marquise_Web.UI.areas.CRM.Models.CrmAccountVM
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/areas/CRM/Views/Shared/_Layout.cshtml";
     var industries = ViewBag.Industries as List<Marquise_Web.UI.areas.CRM.Models.Industry> ?? new List<Marquise_Web.UI.areas.CRM.Models.Industry>();
-    var selectedIndustryId = Model?.IndustryCode;
 }
 
 
@@ -13,72 +10,8 @@
         <div class="row mt-3 justify-content-center">
             <div class="col-lg-8">
                 <div class="card">
-                    <div class="card-body">
-                        <form id="update-account-form" class="shake" onsubmit="return handleUpdateAccountFormSubmit(event);" novalidate>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">نام</label>
-                                <div class="col-lg-9">
-                                    <input id="name" class="form-control" type="text" value="@Model.Name">
-                                </div>
-                            </div>
-                            @*<div class="form-group row">
-                                    <label class="col-lg-3 col-form-label form-control-label">نام مدیریت</label>
-                                    <div class="col-lg-9">
-                                        <input id="managementName" class="form-control" type="text" value="@Model.ManagementName">
-                                    </div>
-                                </div>*@
+                    <div class="card-body" id="account-detail-container">
 
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">صنعت</label>
-                                <div class="col-lg-9">
-                                    <select name="IndustryCode" id="IndustryCode" class="form-control">
-                                        <option value="">صنعت کاری خود را انتخاب کنید</option>
-                                        @foreach (var industry in industries)
-                                        {
-                                            <option value="@industry.Id" @(Model.IndustryCode == industry.Id ? "selected" : "")>
-                                                @industry.Title
-                                            </option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">آدرس</label>
-                                <div class="col-lg-9">
-                                    <textarea id="shippingAddress" class="form-control" type="text" value="@Model.ShippingAddress" rows="3" placeholder="خیابان"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label"></label>
-                                <div class="col-lg-6">
-                                    <input id="city" class="form-control" type="text" value="@Model.cituu__C" placeholder="شهر">
-                                </div>
-                                <div class="col-lg-3">
-                                    <input id="mahale" class="form-control" type="text" value="@Model.mahale__C" placeholder="محله">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">تلفن</label>
-                                <div class="col-lg-9">
-                                    <input id="phone" class="form-control" type="text" value="@Model.Telephone" placeholder="02144556677">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">موبایل</label>
-                                <div class="col-lg-9">
-                                    <input id="mobile" class="form-control" value="@Model.Mobile" placeholder="09123456789" readonly title="امکان ویرایش این فیلد وجود ندارد">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label"></label>
-                                <div class="col-lg-9">
-                                    <input type="submit" class="btn btn-primary" value="ذخیره اصلاحات">
-                                    <input type="reset" class="btn btn-secondary" value="انصراف">
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
