@@ -4,17 +4,12 @@ using Marquise_Web.Model.Entities;
 using Marquise_Web.Model.Utilities;
 using Marquise_Web.Service.IService;
 using Marquise_Web.Utilities.Messaging;
-using Microsoft.AspNet.Identity;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
 using Utilities.Map;
@@ -120,6 +115,7 @@ namespace Marquise_Web.Service.Service
                 UserId = user.Id
             };
             await unitOfWork.UserRepository.AddOtpRequestLogAsync(requestLog);
+
             await unitOfWork.UserRepository.SaveAsync();
 
             return OperationResult<object>.Success(null, "کد با موفقیت ارسال شد.");
@@ -178,7 +174,6 @@ namespace Marquise_Web.Service.Service
             }, "ورود با موفقیت انجام شد.");
         }
 
-
         public async Task<string> SignInUserAsync(string userId)
         {
             var user = await unitOfWork.UserRepository.GetByIdAsync(userId);
@@ -203,8 +198,6 @@ namespace Marquise_Web.Service.Service
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-
 
         public async Task<OperationResult<object>> CheckFailedOtpAttemptsAsync(string phoneNumber)
         {

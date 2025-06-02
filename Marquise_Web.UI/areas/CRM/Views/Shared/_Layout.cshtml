@@ -45,6 +45,20 @@
     {
         bodyClass += " black-color";
     }
+    bool isLoginPage = false;
+    if (ViewBag.IsLoginPage != null)
+    {
+        isLoginPage = (bool)ViewBag.IsLoginPage;
+    }
+    else if (ViewData["IsLoginPage"] != null)
+    {
+        isLoginPage = (bool)ViewData["IsLoginPage"];
+    }
+
+    if (isLoginPage)
+    {
+        bodyClass += " login-loading";
+    }
 }
 
 <body class="@bodyClass">

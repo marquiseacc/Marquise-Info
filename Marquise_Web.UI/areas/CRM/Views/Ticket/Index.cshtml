@@ -42,12 +42,12 @@
         document.addEventListener('DOMContentLoaded', function () {
             const token = localStorage.getItem("jwtToken");
 
-            fetch('/CRM/Ticket/TicketList', {
+            fetchWithLoading('/CRM/Ticket/TicketList', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
-            })
+            }, '#ticket-list')
                 .then(response => {
                     if (response.status === 401 || response.status === 403) {
                         console.error(`❌ خطا در احراز هویت (${response.status}): دسترسی غیرمجاز یا توکن نامعتبر است.`);
@@ -65,7 +65,7 @@
                     if (data) {
                         document.getElementById('ticket-list').innerHTML = data;
 
-                        // افزودن رویداد کلیک برای انتقال به صفحه جزئیات
+                        // افزودن رویداد کلیک برای ردیف‌های جدول
                         const rows = document.querySelectorAll("#ticket-list table tbody tr");
 
                         rows.forEach(row => {

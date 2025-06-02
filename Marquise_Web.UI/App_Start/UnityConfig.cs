@@ -47,6 +47,7 @@ namespace Marquise_Web.UI
             container.RegisterType<IQuoteService, QuoteService>(new HierarchicalLifetimeManager());
             container.RegisterType<IAccountService, AccountService>(new HierarchicalLifetimeManager());
             container.RegisterType<IContractService,  ContractService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IUpdateService, UpdateService>(new HierarchicalLifetimeManager());
 
             container.RegisterFactory<SmtpSettings>(c => new SmtpSettings
             {

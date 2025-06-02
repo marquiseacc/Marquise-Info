@@ -515,7 +515,6 @@
     <Content Include="Content\CRM\assets\css\bootstrap.min.css" />
     <Content Include="Content\CRM\assets\css\icons.css" />
     <Content Include="Content\CRM\assets\css\Loading.css" />
-    <Content Include="Content\CRM\assets\css\pace.min.css" />
     <Content Include="Content\CRM\assets\css\sidebar-menu.css" />
     <Content Include="Content\CRM\assets\flags\1x1\ad.svg" />
     <Content Include="Content\CRM\assets\flags\1x1\ae.svg" />

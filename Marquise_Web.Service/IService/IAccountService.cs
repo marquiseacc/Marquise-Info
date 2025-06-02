@@ -8,6 +8,5 @@ namespace Marquise_Web.Service.IService
     {
         Task<CrmAccountDto> GetAccountWithManagerAsync(string crmId);
         Task<OperationResult<object>> UpdateAccountAsync(CrmAccountDto account);
-        //Task SyncAccountsToWebsiteAsync();
     }
 }

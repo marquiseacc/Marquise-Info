@@ -1,29 +1,14 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem("jwtToken");
 
-    fetch('/CRM/Contract/ContractList', {
+    fetchWithLoading('/CRM/Contract/ContractList', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + token
         }
-    })
-        .then(response => {
-            if (response.status === 401 || response.status === 403) {
-                console.error(`❌ خطا در احراز هویت (${response.status}): دسترسی غیرمجاز یا توکن نامعتبر است.`);
-                return '';
-            }
-
-            if (!response.ok) {
-                console.error(`❌ خطای ناشناخته (${response.status}) هنگام دریافت اطلاعات.`);
-                return '';
-            }
-
-            return response.text();
-        })
+    }, '#contract-list')
         .then(data => {
             if (data) {
-                document.getElementById('contract-list').innerHTML = data;
-
                 const rows = document.querySelectorAll("#contract-list table tbody tr");
 
                 if (rows.length > 0) {
@@ -45,27 +30,18 @@
             }
         })
         .catch(error => {
-            console.error('❌ خطا در ارسال درخواست:', error);
+            console.error('❌ خطا در دریافت لیست قراردادها:', error);
         });
 
     function loadContractDetail(contractId) {
-        fetch('/CRM/Contract/Detail?contractId=' + contractId, {
+        fetchWithLoading('/CRM/Contract/Detail?contractId=' + contractId, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
             }
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("خطا در دریافت جزئیات قرارداد");
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.querySelector('#DetailContract').innerHTML = data;
-            })
+        }, '#DetailContract')
             .catch(error => {
-                console.error('❌ خطا در بارگذاری جزئیات قرارداد:', error);
+                console.error('❌ خطا در دریافت جزئیات قرارداد:', error);
             });
     }
 });

@@ -11,6 +11,7 @@ namespace Marquise_Web.Service.IService
         IQuoteService QuoteService { get; }
         IAccountService AccountService { get; }
         IContractService ContractService { get; }   
+        IUpdateService UpdateService { get; }
         Task CompleteAsync();
     }
 

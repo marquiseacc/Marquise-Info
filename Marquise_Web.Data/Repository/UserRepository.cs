@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
@@ -130,7 +131,6 @@ namespace Marquise_Web.Data.Repository
         {
             return await context.Accounts.FirstOrDefaultAsync(a => a.CrmAccountId == crmAccountId);
         }
-
         public async Task UpdateAccount(Account account)
         {
             var existingAccount = await context.Accounts.FindAsync(account.Id);
@@ -141,94 +141,26 @@ namespace Marquise_Web.Data.Repository
             existingAccount.Name = account.Name;
             await context.SaveChangesAsync();
         }
+        public async Task<Account> GetByCrmAccountIdAsync(string crmAccountId)
+        {
+            return await context.Accounts
+                .FirstOrDefaultAsync(a => a.CrmAccountId == crmAccountId);
+        }
 
+        public async Task AddRangeAsync(List<Account> accounts)
+        {
+            try
+            {
+                context.Accounts.AddRange(accounts);
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                var inner = ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message;
+                throw new Exception("خطا در SaveChangesAsync: " + inner, ex);
+            }
+        }
 
-        //public async Task BulkInsertUsersAsync(List<ApplicationUser> users)
-        //{
-        //    var dataTable = new DataTable();
-        //    dataTable.Columns.Add("Id", typeof(string));
-        //    dataTable.Columns.Add("UserName", typeof(string));
-        //    dataTable.Columns.Add("NormalizedUserName", typeof(string));
-        //    dataTable.Columns.Add("Email", typeof(string));
-        //    dataTable.Columns.Add("NormalizedEmail", typeof(string));
-        //    dataTable.Columns.Add("EmailConfirmed", typeof(bool));
-        //    dataTable.Columns.Add("PasswordHash", typeof(string));
-        //    dataTable.Columns.Add("SecurityStamp", typeof(string));
-        //    dataTable.Columns.Add("ConcurrencyStamp", typeof(string));
-        //    dataTable.Columns.Add("PhoneNumber", typeof(string));
-        //    dataTable.Columns.Add("PhoneNumberConfirmed", typeof(bool));
-        //    dataTable.Columns.Add("TwoFactorEnabled", typeof(bool));
-        //    dataTable.Columns.Add("LockoutEnabled", typeof(bool));
-        //    dataTable.Columns.Add("AccessFailedCount", typeof(int));
-        //    dataTable.Columns.Add("FullName", typeof(string));
-        //    dataTable.Columns.Add("CRMId", typeof(Guid));
-
-        //    foreach (var user in users)
-        //    {
-        //        var id = user.Id ?? Guid.NewGuid().ToString();
-        //        var phone = user.PhoneNumber ?? "";
-        //        var fullName = user.FullName ?? "";
-        //        var email = $"{Guid.NewGuid()}@example.com"; // اگر ایمیل نداری، ساختگی بزن
-
-        //        dataTable.Rows.Add(
-        //            id,
-        //            phone, // UserName (فرض کردیم شماره موبایل به‌جای یوزرنیم)
-        //            phone.ToUpper(), // NormalizedUserName
-        //            email,
-        //            email.ToUpper(),
-        //            false,
-        //            null, // PasswordHash (بعداً با IdentityManager مقدار بده)
-        //            Guid.NewGuid().ToString(), // SecurityStamp
-        //            Guid.NewGuid().ToString(), // ConcurrencyStamp
-        //            phone,
-        //            false,
-        //            false,
-        //            false,
-        //            0,
-        //            fullName,
-        //            user.CrmUserId
-        //        );
-        //    }
-
-        //    var connection = (SqlConnection)context.Database.Connection;
-        //    if (connection.State != ConnectionState.Open)
-        //        await connection.OpenAsync();
-
-        //    using (var bulkCopy = new SqlBulkCopy(connection))
-        //    {
-        //        bulkCopy.DestinationTableName = "[Security].[Users]";
-
-        //        bulkCopy.ColumnMappings.Add("Id", "Id");
-        //        bulkCopy.ColumnMappings.Add("UserName", "UserName");
-        //        bulkCopy.ColumnMappings.Add("NormalizedUserName", "NormalizedUserName");
-        //        bulkCopy.ColumnMappings.Add("Email", "Email");
-        //        bulkCopy.ColumnMappings.Add("NormalizedEmail", "NormalizedEmail");
-        //        bulkCopy.ColumnMappings.Add("EmailConfirmed", "EmailConfirmed");
-        //        bulkCopy.ColumnMappings.Add("PasswordHash", "PasswordHash");
-        //        bulkCopy.ColumnMappings.Add("SecurityStamp", "SecurityStamp");
-        //        bulkCopy.ColumnMappings.Add("ConcurrencyStamp", "ConcurrencyStamp");
-        //        bulkCopy.ColumnMappings.Add("PhoneNumber", "PhoneNumber");
-        //        bulkCopy.ColumnMappings.Add("PhoneNumberConfirmed", "PhoneNumberConfirmed");
-        //        bulkCopy.ColumnMappings.Add("TwoFactorEnabled", "TwoFactorEnabled");
-        //        bulkCopy.ColumnMappings.Add("LockoutEnabled", "LockoutEnabled");
-        //        bulkCopy.ColumnMappings.Add("AccessFailedCount", "AccessFailedCount");
-        //        bulkCopy.ColumnMappings.Add("FullName", "FullName");
-        //        bulkCopy.ColumnMappings.Add("CRMId", "CRMId");
-
-        //        try
-        //        {
-        //            await bulkCopy.WriteToServerAsync(dataTable);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine("❌ Bulk insert failed: " + ex.Message);
-        //            if (ex.InnerException != null)
-        //                Console.WriteLine("🔍 Inner: " + ex.InnerException.Message);
-        //            throw;
-        //        }
-
-        //    }
-        //}
 
     }
 

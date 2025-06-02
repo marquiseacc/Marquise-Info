@@ -22,5 +22,8 @@ namespace Marquise_Web.Data.IRepository
         Task<List<Account>> GetAccountByUserIdAsync(string userId);
         Task<Account> GetAccountByCrmAccountIdAsync(string crmAccountId);
         Task UpdateAccount(Account account);
+        Task<Account> GetByCrmAccountIdAsync(string crmAccountId);
+        Task AddRangeAsync(List<Account> accounts);
+
     }
 }

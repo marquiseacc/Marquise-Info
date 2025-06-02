@@ -1,22 +1,14 @@
 ﻿using Marquise_Web.Data.Repository;
 using Marquise_Web.Model.DTOs.CRM;
-using Marquise_Web.Model.Entities;
 using Marquise_Web.Model.Utilities;
 using Marquise_Web.Service.IService;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace Marquise_Web.Service.Service
 {
@@ -85,71 +77,5 @@ namespace Marquise_Web.Service.Service
             else
                 return OperationResult<object>.Failure("بروزرسانی با خطا مواجه شد.");
         }
-
-        //public async Task SyncAccountsToWebsiteAsync()
-        //{
-        //    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiSetting.ApiToken);
-
-        //    var response = await httpClient.GetAsync(apiSetting.ApiBaseUrl + "CRM_Account");
-        //    if (!response.IsSuccessStatusCode)
-        //        return;
-
-        //    var responseString = await response.Content.ReadAsStringAsync();
-        //    var jObject = JObject.Parse(responseString);
-        //    var accountsArray = jObject["ResultData"]?["result"] as JArray;
-
-        //    if (accountsArray == null)
-        //        return;
-
-        //    var unsyncedAccounts = accountsArray
-        //        .Where(a =>
-        //        {
-        //            var telephone = (string)a["Telephone"];
-        //            var isSyncedToken = a["IsSyncedToSite__C"];
-        //            bool isSynced = false;
-        //            if (isSyncedToken != null && isSyncedToken.Type == JTokenType.Boolean)
-        //                isSynced = (bool)isSyncedToken;
-
-        //            return !string.IsNullOrWhiteSpace(telephone) && !isSynced;
-        //        })
-        //        .ToList();
-
-        //    var usersToAdd = new List<ApplicationUser>();
-
-        //    foreach (var account in unsyncedAccounts)
-        //    {
-        //        var accountId = (string)account["AccountId"];
-
-        //        var existingUser = await unitOfWork.UserRepository.GetByCRMIdAsync(accountId);
-        //        if (existingUser != null)
-        //            continue;
-
-        //        var user = new ApplicationUser
-        //        {
-        //            Id = Guid.NewGuid().ToString(),
-        //            FullName = (string)account["Name"],
-        //            PhoneNumber = (string)account["Telephone"],
-        //            SecurityStamp = Guid.NewGuid().ToString(),
-        //            CrmUserId = Guid.Parse(accountId)
-        //        };
-
-        //        usersToAdd.Add(user);
-        //    }
-
-        //    if (usersToAdd.Any())
-        //    {
-        //        await unitOfWork.UserRepository.BulkInsertUsersAsync(usersToAdd);
-        //    }
-
-        //    // آپدیت فیلد IsSyncedToSite__C در CRM
-        //    foreach (var account in unsyncedAccounts)
-        //    {
-        //        var accountId = (string)account["AccountId"];
-        //        var updateData = new { IsSyncedToSite__C = true };
-        //        var content = new StringContent(JsonConvert.SerializeObject(updateData), Encoding.UTF8, "application/json");
-        //        await httpClient.PutAsync(apiSetting.ApiBaseUrl + "CRM_Account/" + accountId, content);
-        //    }
-        //}
-
     }
 }

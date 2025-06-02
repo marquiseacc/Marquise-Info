@@ -1,13 +1,23 @@
-﻿
+﻿function getCustomErrorMessage(input) {
+    if (input.validity.typeMismatch) {
+        return `لطفاً مقدار صحیحی برای "${input.name}" وارد کنید.`;
+    }
+    if (input.validity.patternMismatch) {
+        return `لطفاً الگوی صحیح برای "${input.name}" را رعایت کنید.`;
+    }
+    return "";
+}
+
 function handleNewTicketFormSubmit(event) {
     event.preventDefault();
 
-    var title = document.getElementById("title").value;
-    var description = document.getElementById("description").value;
+    const title = document.getElementById("title").value.trim();
+    const description = document.getElementById("description").value.trim();
 
-    var isValid = true;
+    let isValid = true;
     const form = event.target;
-    const inputs = form.querySelectorAll("input, textarea"); // اضافه کردن textarea
+    const inputs = form.querySelectorAll("input, textarea");
+
     inputs.forEach(input => {
         input.setCustomValidity("");
 
@@ -25,79 +35,66 @@ function handleNewTicketFormSubmit(event) {
         }
     });
 
-    if (isValid) {
-        var data = {
-            Title: title,
-            Description: description
-        };
+    if (!isValid) return;
 
-        fetch('/api/CRM/TicketApi/NewTicket', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem("jwtToken")
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.IsSuccess) {
-                    Swal.fire({
-                        title: 'موفق',
-                        text: data.Message || 'ثبت تیکت با موفقیت انجام شد.',
-                        icon: 'success',
-                        confirmButtonText: 'باشه'
-                    }).then(() => {
-                        const redirectUrl = '/CRM/Ticket/Index';
-                        window.location.href = redirectUrl;
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'خطا',
-                        text: data.Message || "خطایی رخ داد. لطفاً دوباره تلاش کنید.",
-                        icon: 'error',
-                        confirmButtonText: 'باشه'
-                    });
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
+    const data = {
+        Title: title,
+        Description: description
+    };
+
+    fetchWithLoading('/api/CRM/TicketApi/NewTicket', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("jwtToken")
+        },
+        body: JSON.stringify(data)
+    }, '#formNewTicket')  // لودر روی فرم یا بخش مشخص
+        .then(response => response.json())
+        .then(data => {
+            if (data.IsSuccess) {
+                Swal.fire({
+                    title: 'موفق',
+                    text: data.Message || 'ثبت تیکت با موفقیت انجام شد.',
+                    icon: 'success',
+                    confirmButtonText: 'باشه'
+                }).then(() => {
+                    window.location.href = '/CRM/Ticket/Index';
+                });
+            } else {
                 Swal.fire({
                     title: 'خطا',
-                    text: "مشکلی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.",
+                    text: data.Message || "خطایی رخ داد. لطفاً دوباره تلاش کنید.",
                     icon: 'error',
                     confirmButtonText: 'باشه'
                 });
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            Swal.fire({
+                title: 'خطا',
+                text: "مشکلی در ارتباط با سرور پیش آمد. لطفاً دوباره تلاش کنید.",
+                icon: 'error',
+                confirmButtonText: 'باشه'
             });
-    }
-
-    function getCustomErrorMessage(input) {
-        if (input.validity.typeMismatch) {
-            return `لطفاً "${input.name}" را به‌درستی وارد کنید.`;
-        }
-        if (input.validity.patternMismatch) {
-            return `لطفاً الگوی صحیح برای "${input.name}" را وارد کنید.`;
-        }
-        return "";
-    }
+        });
 }
-
 
 function handleNewAnswerFormSubmit(event) {
     event.preventDefault();
 
-    var message = document.getElementById("message").value;
-    var ticketId = document.getElementById("ticketId").value;
+    const message = document.getElementById("message").value.trim();
+    const ticketId = document.getElementById("ticketId").value.trim();
 
-    var isValid = true;
+    let isValid = true;
     const form = event.target;
-    const inputs = form.querySelectorAll("input");
-    inputs.forEach(input => {
+    const inputs = form.querySelectorAll("input, textarea");
 
+    inputs.forEach(input => {
         input.setCustomValidity("");
 
         if (input.validity.valueMissing) {
-
             input.setCustomValidity(`لطفاً فیلد "${input.name}" را پر کنید.`);
             input.reportValidity();
             isValid = false;
@@ -111,63 +108,50 @@ function handleNewAnswerFormSubmit(event) {
         }
     });
 
-    if (isValid) {
+    if (!isValid) return;
 
-        var data = {
-            Message: message,
-            TicketId: ticketId
-        }
+    const data = {
+        Message: message,
+        TicketId: ticketId
+    };
 
-        fetch('/api/CRM/TicketApi/NewAnswer', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem("jwtToken")
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    Swal.fire({
-                        title: 'موفق',
-                        text: data.message || 'پاسخ با موفقیت ثبت شد.',
-                        icon: 'success',
-                        confirmButtonText: 'باشه'
-                    }).then(() => {
-                        const redirectUrl = '/CRM/Ticket/DetailPage?ticketId=' + ticketId;
-                        window.location.href = redirectUrl;
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'خطا',
-                        text: data.message || 'ثبت پاسخ با خطا مواجه شد.',
-                        icon: 'error',
-                        confirmButtonText: 'باشه'
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
+    fetchWithLoading('/api/CRM/TicketApi/NewAnswer', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("jwtToken")
+        },
+        body: JSON.stringify(data)
+    }, '#formNewAnswer')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    title: 'موفق',
+                    text: data.message || 'پاسخ با موفقیت ثبت شد.',
+                    icon: 'success',
+                    confirmButtonText: 'باشه'
+                }).then(() => {
+                    window.location.href = '/CRM/Ticket/DetailPage?ticketId=' + ticketId;
+                });
+            } else {
                 Swal.fire({
                     title: 'خطا',
-                    text: 'مشکلی در ارتباط با سرور پیش آمد.',
+                    text: data.message || 'ثبت پاسخ با خطا مواجه شد.',
                     icon: 'error',
                     confirmButtonText: 'باشه'
                 });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            Swal.fire({
+                title: 'خطا',
+                text: 'مشکلی در ارتباط با سرور پیش آمد.',
+                icon: 'error',
+                confirmButtonText: 'باشه'
             });
-
-    }
-
-    function getCustomErrorMessage(input) {
-        if (input.validity.typeMismatch) {
-            return `لطفاً  "${input.name}"خود را وارد کنید.`;
-        }
-        if (input.validity.patternMismatch) {
-            return `لطفاً الگوی صحیح برای "${input.name}" را وارد کنید.`;
-        }
-        return "";
-    }
+        });
 }
 
 function handleCloseTicket(id) {
@@ -176,22 +160,20 @@ function handleCloseTicket(id) {
         text: 'از بستن این تیکت مطمئن هستید؟',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'بله، تیکت بسته بشه',
+        confirmButtonText: 'بله، تیکت بسته شود',
         cancelButtonText: 'لغو'
-    }).then((result) => {
+    }).then(result => {
         if (result.isConfirmed) {
-            var data = {
-                TicketId: id
-            }
+            const data = { TicketId: id };
 
-            fetch('/api/CRM/TicketApi/CloseTicket', {
+            fetchWithLoading('/api/CRM/TicketApi/CloseTicket', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem("jwtToken")
                 },
                 body: JSON.stringify(data)
-            })
+            }, '#ticketListContainer')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -201,8 +183,7 @@ function handleCloseTicket(id) {
                             icon: 'success',
                             confirmButtonText: 'باشه'
                         }).then(() => {
-                            const redirectUrl = '/CRM/Ticket/DetailPage?ticketId=' + id;
-                            window.location.href = redirectUrl;
+                            window.location.href = '/CRM/Ticket/DetailPage?ticketId=' + id;
                         });
                     } else {
                         Swal.fire({
@@ -225,4 +206,3 @@ function handleCloseTicket(id) {
         }
     });
 }
-

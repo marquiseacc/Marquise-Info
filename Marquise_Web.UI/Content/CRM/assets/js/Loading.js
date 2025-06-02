@@ -1,57 +1,94 @@
-﻿//document.addEventListener('DOMContentLoaded', function () {
-//    const globalLoader = document.getElementById("global-loading");
-    
+﻿// بیرون از DOMContentLoaded
+window.fetchWithLoading = function (url, options = {}, targetSelector) {
+    const target = document.querySelector(targetSelector);
+    const globalLoader = document.getElementById("global-loading");
 
-//    let completedCount = 0;
+    // ⛔️ اگر لودینگ سراسری فعال بود، خاموشش کن
+    if (globalLoader && globalLoader.style.display !== "none") {
+        globalLoader.style.display = "none";
+    }
 
-//    function hideGlobalLoaderWhenDone() {
-//        completedCount++;
-//        if (completedCount === partialsToLoad.length) {
-//            if (globalLoader) globalLoader.style.display = "none";
-//        }
-//    }
+    if (target) {
+        if (getComputedStyle(target).position === 'static') {
+            target.style.position = 'relative';
+        }
 
-//    function showInlineLoader(targetId) {
-//        const target = document.getElementById(targetId);
-//        if (target) {
-//            target.innerHTML = `
-//            <div class="sk-cube-grid">
-//              <div class="sk-cube sk-cube1"></div>
-//              <div class="sk-cube sk-cube2"></div>
-//              <div class="sk-cube sk-cube3"></div>
-//              <div class="sk-cube sk-cube4"></div>
-//              <div class="sk-cube sk-cube5"></div>
-//              <div class="sk-cube sk-cube6"></div>
-//              <div class="sk-cube sk-cube7"></div>
-//              <div class="sk-cube sk-cube8"></div>
-//              <div class="sk-cube sk-cube9"></div>
-//            </div>`;
-//        }
-//    }
+        const old = target.querySelector('.spinner-inline-wrapper');
+        if (old) old.remove();
 
-//    function loadPartial(url, targetId) {
-//        showInlineLoader(targetId);
-//        fetch(url)
-//            .then(response => {
-//                if (!response.ok) throw new Error("Network response was not ok");
-//                return response.text();
-//            })
-//            .then(html => {
-//                const target = document.getElementById(targetId);
-//                if (target) target.innerHTML = html;
-//            })
-//            .catch(error => {
-//                const target = document.getElementById(targetId);
-//                if (target) target.innerHTML = "خطا در بارگذاری.";
-//                console.error(error);
-//            })
-//            .finally(() => {
-//                hideGlobalLoaderWhenDone(); // همیشه صدا زده بشه چه موفق چه خطا
-//            });
-//    }
+        target.classList.add('loader-placeholder');
 
-//    // شروع نمایش لودر کلی
-//    if (globalLoader) globalLoader.style.display = "block";
+        const loader = document.createElement('div');
+        loader.className = 'spinner-inline-wrapper';
+        loader.innerHTML = `
+            <div class="spinner">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>`;
+        target.appendChild(loader);
+    }
 
-    
-//});
+    return fetch(url, {
+        ...options,
+        headers: {
+            ...options.headers
+        },
+        // ⛔️ علامت‌گذاری درخواست به عنوان داخلی
+        __internal: true
+    })
+        .then(response => {
+            if (!response.ok) throw new Error(`خطا: ${response.status}`);
+            return response.text();
+        })
+        .then(data => {
+            if (target && data) {
+                target.innerHTML = data;
+            }
+            return data;
+        })
+        .catch(error => {
+            if (target) {
+                target.innerHTML = `<div class="error-message" style="color:red;">خطا در بارگذاری.</div>`;
+            }
+            console.error(error);
+        })
+        .finally(() => {
+            if (target) {
+                const inlineLoader = target.querySelector('.spinner-inline-wrapper');
+                if (inlineLoader) inlineLoader.remove();
+
+                target.classList.remove('loader-placeholder');
+            }
+        });
+};
+// داخل DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function () {
+    const globalLoader = document.getElementById("global-loading");
+    let activeRequests = 0;
+    const originalFetch = window.fetch;
+
+    window.fetch = async function (url, options = {}) {
+        const isInternalRequest = options.__internal === true;
+
+        // فقط اگه درخواست داخلی نبود، لودینگ سراسری رو نمایش بده
+        if (!isInternalRequest && globalLoader) {
+            activeRequests++;
+            globalLoader.style.display = "flex";
+        }
+
+        try {
+            const response = await originalFetch(url, options);
+            if (!response.ok) throw new Error(`خطا در دریافت: ${response.status}`);
+            return response;
+        } catch (error) {
+            throw error;
+        } finally {
+            if (!isInternalRequest && globalLoader) {
+                activeRequests--;
+                if (activeRequests === 0) {
+                    globalLoader.style.display = "none";
+                }
+            }
+        }
+    };
+});

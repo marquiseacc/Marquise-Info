@@ -1,38 +1,38 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    
+
     const trigger = document.getElementById("branch-menu-trigger");
     const container = document.getElementById("branch-menu-container");
 
     if (!trigger || !container) {
-        console.error("❌ trigger یا container یافت نشد.");
+        console.error("❌ عنصر trigger یا container یافت نشد.");
         return;
     }
 
     const token = localStorage.getItem("jwtToken");
 
     if (!token) {
-        console.error("❌ توکن یافت نشد.");
+        console.error("❌ توکن احراز هویت یافت نشد.");
         return;
     }
 
-    // بارگذاری لیست شعبه‌ها با توکن
+    // بارگذاری لیست شعبه‌ها با توکن JWT
     fetch("/Base/BranchMenu", {
         method: "GET",
         headers: {
-            "Authorization": "Bearer " + token,
+            "Authorization": `Bearer ${token}`,
             "X-Requested-With": "XMLHttpRequest"
         }
     })
         .then(response => {
             if (response.status === 401 || response.status === 403) {
                 console.error(`❌ خطای احراز هویت (${response.status}): دسترسی غیرمجاز.`);
-                container.innerHTML = '<li class="dropdown-item text-danger">احراز هویت انجام نشد</li>';
+                container.innerHTML = `<li class="dropdown-item text-danger">احراز هویت انجام نشد</li>`;
                 return null;
             }
 
             if (!response.ok) {
-                console.error(`❌ خطای ناشناخته (${response.status})`);
-                container.innerHTML = '<li class="dropdown-item text-danger">خطا در دریافت اطلاعات شعب</li>';
+                console.error(`❌ خطای سرور (${response.status})`);
+                container.innerHTML = `<li class="dropdown-item text-danger">خطا در دریافت اطلاعات شعب</li>`;
                 return null;
             }
 
@@ -44,7 +44,7 @@
             container.innerHTML = "";
 
             if (!Array.isArray(data) || data.length === 0) {
-                container.innerHTML = '<li class="dropdown-item text-muted">شعبه‌ای یافت نشد</li>';
+                container.innerHTML = `<li class="dropdown-item text-muted">شعبه‌ای یافت نشد</li>`;
                 return;
             }
 
@@ -52,14 +52,18 @@
                 const li = document.createElement("li");
                 li.className = "dropdown-item font-13 cursor-pointer";
 
-                li.dataset.accountId = branch.AccountId;
+                li.dataset.accountId = branch.AccountId || "";
                 li.dataset.userId = branch.UserId || "";
                 li.dataset.crmAccountId = branch.CrmAccountId || "";
-                li.dataset.name = branch.Name;
+                li.dataset.name = branch.Name || "";
 
-                li.innerHTML = `<i class="bi bi-building ml-2 font-15"></i> ${branch.Name}`;
+                li.innerHTML = `<i class="bi bi-building ml-2 font-15"></i> ${branch.Name || "بدون نام"}`;
 
                 li.addEventListener("click", function () {
+                    // جلوگیری از کلیک مکرر
+                    if (li.disabled) return;
+                    li.disabled = true;
+
                     const accountVM = {
                         AccountId: this.dataset.accountId,
                         UserId: this.dataset.userId,
@@ -77,48 +81,46 @@
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log("Response from SetClaims:", data);
                             if (data.token) {
                                 localStorage.setItem('jwtToken', data.token);
                                 window.location.href = '/CRM/Dashboard/Index';
                             } else {
                                 Swal.fire('خطا', 'توکن دریافت نشد.', 'error');
+                                li.disabled = false;
                             }
                         })
                         .catch(err => {
                             console.error(err);
                             Swal.fire('خطا', 'خطا در ارتباط با سرور', 'error');
+                            li.disabled = false;
                         });
                 });
 
                 container.appendChild(li);
             });
 
-            // Divider
+            // خط جداکننده
             const divider = document.createElement("li");
             divider.className = "dropdown-divider";
             container.appendChild(divider);
 
-            // Logout option
+            // گزینه خروج
             const logout = document.createElement("li");
             logout.className = "dropdown-item font-13";
             logout.innerHTML = `
-    <a href="#" onclick="handleLogoutClick(event)">
-        <i class="icon-power ml-2 font-15"></i> خروج
-    </a>`;
+            <a href="#" onclick="handleLogoutClick(event)">
+                <i class="icon-power ml-2 font-15"></i> خروج
+            </a>`;
             container.appendChild(logout);
-
         })
         .catch(error => {
-            console.error("❌ خطا در دریافت داده:", error);
-            container.innerHTML = '<li class="dropdown-item text-danger">خطا در دریافت اطلاعات شعب</li>';
+            console.error("❌ خطا در دریافت داده‌ها:", error);
+            container.innerHTML = `<li class="dropdown-item text-danger">خطا در دریافت اطلاعات شعب</li>`;
         });
 });
 
 function handleLogoutClick(event) {
-    event.preventDefault(); // جلوگیری از رفتار پیش‌فرض لینک
-
-    localStorage.removeItem("jwtToken"); // حذف توکن از localStorage
-
-    window.location.href = "/CRM/Auth/Logout"; // هدایت به اکشن لاگ‌اوت سرور
+    event.preventDefault();
+    localStorage.removeItem("jwtToken");
+    window.location.href = "/CRM/Auth/Logout";
 }

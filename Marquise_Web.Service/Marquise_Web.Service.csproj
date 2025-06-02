@@ -210,6 +210,7 @@
     <Compile Include="IService\IService.cs" />
     <Compile Include="IService\ITicketService.cs" />
     <Compile Include="IService\IUnitOfWorkService.cs" />
+    <Compile Include="IService\IUpdateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccountService.cs" />
     <Compile Include="Service\ApplicationUserManager.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Service\TicketService.cs" />
     <Compile Include="Service\UnitOfWorkService.cs" />
     <Compile Include="Service\AuthService.cs" />
+    <Compile Include="Service\UpdateService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Marquise_Web.Data\Marquise_Web.Data.csproj">

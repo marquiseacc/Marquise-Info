@@ -1,20 +1,12 @@
 ﻿using Hangfire;
-using Marquise_Web.Data;
-using Marquise_Web.Data.IRepository;
-using Marquise_Web.Data.Repository;
-using Marquise_Web.Model.DTOs.CRM;
 using Marquise_Web.Service.IService;
-using Marquise_Web.Service.Service;
-using Microsoft.AspNet.Identity;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Owin;
-using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Jwt;
 using Owin;
 using System;
-using System.Net.Http;
 using System.Text;
+using Unity;
 
 [assembly: OwinStartup(typeof(Marquise_Web.UI.Startup))]
 
@@ -30,7 +22,7 @@ namespace Marquise_Web.UI
 
             app.UseJwtBearerAuthentication(new JwtBearerAuthenticationOptions
             {
-                AuthenticationMode = AuthenticationMode.Active,
+                AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active,
                 TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
@@ -43,69 +35,38 @@ namespace Marquise_Web.UI
                 }
             });
 
-            // Cookie Authentication کامنت شده چون فقط JWT استفاده می‌شود
-            /*
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/CRM/Auth/SendOtp"),
-                ExpireTimeSpan = TimeSpan.FromMinutes(60),
-                SlidingExpiration = true,
-                CookieSecure = CookieSecureOption.SameAsRequest,
-                CookieHttpOnly = true,
-                CookieSameSite = Microsoft.Owin.SameSiteMode.Lax
-            });
-            */
+            // استفاده از کانتینر Unity که در UnityConfig ساخته شده
+            IUnityContainer unityContainer = UnityConfig.Container ?? throw new InvalidOperationException("Unity container not initialized.");
 
-            // DI container
-            var services = new ServiceCollection();
-
-            services.AddTransient<ApplicationDbContext>();
-            services.AddTransient<Marquise_WebEntities>();
-            services.AddTransient<IMessageRepository, MessageRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<UnitOfWorkRepository>();
-            services.AddTransient<HttpClient>();
-
-            services.AddTransient<CRMApiSetting>(provider => new CRMApiSetting
-            {
-                ApiBaseUrl = "https://your-crm-api-url/"
-            });
-
-            services.AddTransient<IAccountService, AccountService>();
-
-            var serviceProvider = services.BuildServiceProvider();
-
-            // Hangfire اگر لازم نیست کامنت باشه
-            /*
             GlobalConfiguration.Configuration
                 .UseSqlServerStorage("Marquise_WebEntities")
-                .UseActivator(new HangfireActivator(serviceProvider));
+                .UseActivator(new HangfireActivator(unityContainer));
 
-            app.UseHangfireDashboard();
+            app.UseHangfireDashboard("/hangfire"); // آدرس داشبورد: /hangfire
             app.UseHangfireServer();
 
-            RecurringJob.AddOrUpdate<IAccountService>(
+            // حذف job قبلی در صورت وجود، سپس ثبت مجدد آن
+            RecurringJob.RemoveIfExists("sync-accounts-job");
+            RecurringJob.AddOrUpdate<IUpdateService>(
                 "sync-accounts-job",
                 service => service.SyncAccountsToWebsiteAsync(),
                 Cron.Daily(7, 0));
-            */
         }
     }
 
-    // Hangfire Activator
+    // Hangfire Activator برای Unity
     public class HangfireActivator : JobActivator
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IUnityContainer _container;
 
-        public HangfireActivator(IServiceProvider serviceProvider)
+        public HangfireActivator(IUnityContainer container)
         {
-            _serviceProvider = serviceProvider;
+            _container = container;
         }
 
         public override object ActivateJob(Type jobType)
         {
-            return _serviceProvider.GetService(jobType);
+            return _container.Resolve(jobType);
         }
     }
 }

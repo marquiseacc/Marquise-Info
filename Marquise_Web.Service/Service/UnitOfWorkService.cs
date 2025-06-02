@@ -9,7 +9,6 @@ namespace Marquise_Web.Service.Service
         private readonly IUnitOfWorkRepository unitOfWork;
         private readonly ApplicationSignInManager signInManager;
 
-        
         public IMessageService MessageService { get; }
         public IAuthService AuthService { get; }
 
@@ -23,6 +22,8 @@ namespace Marquise_Web.Service.Service
 
         public IContractService ContractService { get; }
 
+        public IUpdateService UpdateService { get; }
+
         // سازنده
         public UnitOfWorkService(
             IUnitOfWorkRepository unitOfWork,
@@ -33,7 +34,8 @@ namespace Marquise_Web.Service.Service
             IInvoiceService invoiceService,
             IQuoteService quoteService,
             IAccountService accountService,
-            IContractService contractService)
+            IContractService contractService,
+            IUpdateService updateService)
         {
             this.unitOfWork = unitOfWork;
             this.signInManager = signInManager;
@@ -44,6 +46,7 @@ namespace Marquise_Web.Service.Service
             this.QuoteService = quoteService;
             this.AccountService = accountService;
             this.ContractService = contractService;
+            this.UpdateService = updateService;
         }
 
         // متد CompleteAsync
