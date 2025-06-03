@@ -149,16 +149,9 @@ namespace Marquise_Web.Data.Repository
 
         public async Task AddRangeAsync(List<Account> accounts)
         {
-            try
-            {
-                context.Accounts.AddRange(accounts);
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateException ex)
-            {
-                var inner = ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message;
-                throw new Exception("خطا در SaveChangesAsync: " + inner, ex);
-            }
+            context.Accounts.AddRange(accounts);
+            await context.SaveChangesAsync();
+
         }
 
 

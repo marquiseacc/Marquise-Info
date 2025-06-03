@@ -1,13 +1,65 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@{
+    Layout = null;
+    var code = ViewBag.StatusCode as int? ?? 500;
+    string title = "خطا!";
+    string message = "مشکلی در سیستم رخ داده است. لطفاً بعداً دوباره تلاش کنید.";
+
+    switch (code)
+    {
+        case 404:
+            title = "صفحه پیدا نشد!";
+            message = "صفحه‌ای که به دنبال آن هستید وجود ندارد یا حذف شده است.";
+            break;
+        case 403:
+            title = "دسترسی غیرمجاز!";
+            message = "شما مجاز به دسترسی به این صفحه نیستید.";
+            break;
+        case 500:
+            title = "خطای سرور!";
+            message = "در سرور مشکلی رخ داده است. لطفاً مجدداً امتحان کنید.";
+            break;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="fa">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
+    <meta charset="utf-8" />
+    <title>@title</title>
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/theme/css/responsive.css" />
+    <link rel="stylesheet" href="~/Content/theme/css/style.css" />
+    <link rel="stylesheet" href="~/Content/theme/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/theme/css/plugin.min.css" />
+    <link rel="stylesheet" href="~/Content/theme/css/custom.css" />
+
 </head>
 <body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
+
+    <section class="error bg-gradient pad-tb dir-center">
+       <!-- عدد بزرگ کم‌رنگ پشت محتوا -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mt50 mb50">
+                    <div class="layer-div">
+                        <div class="error-block">
+                            <h1>@title</h1>
+                            <p>@message</p>
+                            <div class="images mt20">
+                                <img src="~/Content/Images/error-page.png" alt="صفحه خطا" class="img-fluid" />
+                            </div>
+                            <a href="~/" class="btn-main niwax-btn5 white-color">بازگشت به صفحه اصلی</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/Scripts/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/plugin.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
 </body>
 </html>

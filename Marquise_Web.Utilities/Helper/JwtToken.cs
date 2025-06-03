@@ -2,6 +2,7 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Marquise_Web.Utilities.Helper
@@ -29,5 +30,15 @@ namespace Marquise_Web.Utilities.Helper
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        public string GenerateRefreshToken()
+        {
+            var randomBytes = new byte[64];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomBytes);
+            }
+            return Convert.ToBase64String(randomBytes);
+        }
+
     }
 }

@@ -7,10 +7,11 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System;
 
 namespace Marquise_Web.Service.Service
 {
-    public class InvoiceService: IInvoiceService
+    public class InvoiceService : IInvoiceService
     {
         private readonly HttpClient httpClient;
         private readonly CRMApiSetting apiSetting;
@@ -39,9 +40,23 @@ namespace Marquise_Web.Service.Service
 
             var json = JsonConvert.SerializeObject(filtered);
             var sortedList = JsonConvert
-               .DeserializeObject<List<InvoiceDto>>(json)
-               .OrderByDescending(t => t.CreateDate)
-               .ToList();
+                .DeserializeObject<List<InvoiceDto>>(json)
+                .Select(t => new InvoiceDto
+                {
+                    InvoiceId = t.InvoiceId,
+                    InvoiceNumber = t.InvoiceNumber,
+                    Title = t.Title,
+                    TotalPrice = t.TotalPrice ?? 0,
+                    FinalAmount = t.FinalAmount ?? 0,
+                    Rest = t.Rest ?? 0,
+                    Paid = t.Paid ?? 0,
+                    CreateDate = t.CreateDate,
+                    Status = t.Status,
+                    AccountId = t.AccountId
+                })
+                .OrderByDescending(t => t.CreateDate)
+                .ToList();
+
             return sortedList;
         }
 

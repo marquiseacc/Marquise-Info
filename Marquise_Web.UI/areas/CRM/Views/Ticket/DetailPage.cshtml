@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row mt-3">
             <div class="col-lg-12" id="ticket-detail-container">
-               
+
             </div>
         </div>
 
@@ -26,7 +26,6 @@
     document.addEventListener("DOMContentLoaded", function () {
         const token = localStorage.getItem("jwtToken");
         const ticketId = "@ticketId";
-        console.log(ticketId);
 
         fetch('/CRM/Ticket/Detail?ticketId=' + ticketId, {
             method: "GET",
@@ -34,21 +33,36 @@
                 "Authorization": "Bearer " + token
             }
         })
-        .then(response => {
-            if (!response.ok) {
-                document.getElementById("ticket-detail-container").innerText = "❌ خطا در دریافت اطلاعات تیکت";
-                return '';
-            }
-            return response.text();
-        })
+            .then(response => {
+                if (!response.ok) {
+                    document.getElementById("ticket-detail-container").innerHTML = `
+                <div class="card h-100 shadow-sm border-danger">
+                    <div class="card-body text-center">
+                        <img src="/Content/Images/error-page.png" alt="خطای دریافت تیکت" class="img-fluid mb-3" style="max-width: 200px;" />
+                        <h6 class="mb-2">خطا در دریافت اطلاعات تیکت</h6>
+                        <p class="font-13">متأسفانه مشکلی در بارگیری اطلاعات تیکت پیش آمده است. لطفاً دوباره تلاش کنید.</p>
+                    </div>
+                </div>`;
+                    return '';
+                }
+                return response.text();
+            })
         .then(html => {
             if (html) {
                 document.getElementById("ticket-detail-container").innerHTML = html;
             }
         })
-        .catch(error => {
-            console.error("❌ خطا:", error);
-        });
+            .catch(error => {
+                console.error("❌ خطا:", error);
+                document.getElementById("ticket-detail-container").innerHTML = `
+            <div class="card h-100 shadow-sm border-danger">
+                <div class="card-body text-center">
+                    <img src="/Content/Images/error-page.png" alt="خطای دریافت تیکت" class="img-fluid mb-3" style="max-width: 200px;" />
+                    <h6 class="mb-2">خطا در دریافت اطلاعات تیکت</h6>
+                    <p class="font-13">متأسفانه مشکلی در بارگیری اطلاعات تیکت پیش آمده است. لطفاً دوباره تلاش کنید.</p>
+                </div>
+            </div>`;
+            });
     });
     </script>
     <script src="~/areas/CRM/Scripts/CRM/Ticket.js"></script>

@@ -71,7 +71,20 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchWithLoading('/CRM/Dashboard/MainDetail', {
             method: 'GET',
             headers: { 'Authorization': 'Bearer ' + token }
-        }, '#main-detail').catch(e => console.error('❌ خطا در بارگذاری جزئیات:', e));
+        }, '#main-detail')
+            .catch(error => {
+                console.error('❌ خطا در بارگذاری جزئیات داشبورد:', error);
+
+                mainDetail.innerHTML = `
+            <div class="card h-100 shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <img src="/Content/Images/error-page.png" alt="صفحه خطا" class="img-fluid mb-3" style="max-width: 200px;" />
+                    <h6 class="mb-2">خطا در دریافت جزئیات داشبورد</h6>
+                    <p class="font-13">متأسفانه مشکلی در بارگذاری اطلاعات داشبورد پیش آمده است. لطفاً مجدداً تلاش نمایید.</p>
+                </div>
+            </div>
+        `;
+            });
     }
 
     // بارگذاری LastTicket در صورت وجود
@@ -80,7 +93,20 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchWithLoading('/CRM/Dashboard/LastTicket', {
             method: 'GET',
             headers: { 'Authorization': 'Bearer ' + token }
-        }, '#last-ticket').catch(e => console.error('❌ خطا در بارگذاری آخرین تیکت:', e));
+        }, '#last-ticket')
+            .catch(error => {
+                console.error('❌ خطا در بارگذاری آخرین تیکت:', error);
+
+                lastTicket.innerHTML = `
+            <div class="card h-100 shadow-sm border-danger">
+                <div class="card-body text-center">
+                    <img src="/Content/Images/error-page.png" alt="صفحه خطا" class="img-fluid mb-3" style="max-width: 200px;" />
+                    <h6 class="mb-2">خطا در دریافت آخرین تیکت</h6>
+                    <p class="font-13">در بارگذاری اطلاعات آخرین تیکت مشکلی پیش آمده است. لطفاً مجدداً تلاش نمایید.</p>
+                </div>
+            </div>
+        `;
+            });
     }
 
     const timeline = document.getElementById('timeline');

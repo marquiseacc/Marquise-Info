@@ -15,7 +15,19 @@
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error("خطا در دریافت اطلاعات حساب");
+                console.error("❌ خطا:", error);
+                const container = document.getElementById("account-detail-container");
+
+                container.innerHTML = `
+        <div class="card h-100 shadow-sm border-danger">
+            <div class="card-body text-center">
+                <img src="/Content/Images/error-page.png" alt="صفحه خطا" class="img-fluid mb-3" style="max-width: 200px;" />
+                <h6 class="mb-2">خطا در دریافت اطلاعات حساب</h6>
+                <p class="font-13">متأسفانه مشکلی در بارگیری اطلاعات پیش آمده است. لطفاً دوباره تلاش کنید.</p>
+            </div>
+        </div>
+    `;
+           
             }
             return response.text();
         })
@@ -24,8 +36,19 @@
         })
         .catch(error => {
             console.error("❌ خطا:", error);
-            document.getElementById("account-detail-container").innerText = "❌ خطا در دریافت اطلاعات حساب کاربری";
+            const container = document.getElementById("account-detail-container");
+
+            container.innerHTML = `
+        <div class="card h-100 shadow-sm border-danger">
+            <div class="card-body text-center">
+                <img src="/Content/Images/error-page.png" alt="صفحه خطا" class="img-fluid mb-3" style="max-width: 200px;" />
+                <h6 class="mb-2">خطا در دریافت اطلاعات حساب</h6>
+                <p class="font-13">متأسفانه مشکلی در بارگیری اطلاعات پیش آمده است. لطفاً دوباره تلاش کنید.</p>
+            </div>
+        </div>
+    `;
         });
+
 });
 
 function handleUpdateAccountFormSubmit(event) {

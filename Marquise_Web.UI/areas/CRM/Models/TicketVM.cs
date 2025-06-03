@@ -20,10 +20,12 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public string CreateDatePersian => CreateDate.ToPersianDateString();
         public string ITStaffId { get; set; }
         public StaffInfo Staff { get; set; }
-        public string StaffName 
-        { 
+        public string StaffName
+        {
             get
             {
+                if (Staff == null)
+                    return string.Empty;
                 return Staff.FirstName + " " + Staff.LastName;
             }
         }
@@ -62,6 +64,8 @@ namespace Marquise_Web.UI.areas.CRM.Models
         {
             get
             {
+                if (Staff == null)
+                    return string.Empty;
                 return Staff.FirstName + " " + Staff.LastName;
             }
         }
@@ -95,40 +99,34 @@ namespace Marquise_Web.UI.areas.CRM.Models
         public string CreateDatePersian => CreateDate.ToPersianDateTimeString();
         public string Body { get; set; }
     }
-
     public class AnswerVM
     {
         public string TicketId { get; set; }
         public string Message { get; set; }
         
     }
-
     public class NewTicketVM
     {
         public string Title { get; set; }
         public string Description { get; set; }
     }
-
     public class RootResponse
     {
         public bool Succeeded { get; set; }
         public string ResultId { get; set; }
         public TicketResultData ResultData { get; set; }
     }
-
     public class TicketResultData
     {
         public string rowId { get; set; }
         public object JTRowId { get; set; }
         public List<IncrementalField> IncrementalFields { get; set; }
     }
-
     public class IncrementalField
     {
         public string Key { get; set; }
         public string Value { get; set; }
     }
-
     public class CloseTicket
     {
         public string TicketId { get; set; }

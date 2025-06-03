@@ -202,7 +202,6 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
             return RedirectToAction("SendOtp", "Auth");
         }
 
-
     }
 
 }

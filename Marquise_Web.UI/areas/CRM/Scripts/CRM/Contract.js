@@ -31,6 +31,17 @@
         })
         .catch(error => {
             console.error('❌ خطا در دریافت لیست قراردادها:', error);
+            const container = document.querySelector('#contract-list');
+
+            container.innerHTML = `
+            <div class="card h-100 shadow-sm border-danger">
+                <div class="card-body text-center">
+                    <img src="/Content/Images/error-page.png" alt="صفحه خطا" class="img-fluid mb-3" style="max-width: 200px;" />
+                    <h6 class="mb-2">خطا در دریافت لیست قراردادها</h6>
+                    <p class="font-13">متأسفانه مشکلی در بارگیری اطلاعات قراردادها پیش آمده است. لطفاً دوباره تلاش کنید.</p>
+                </div>
+            </div>
+        `;
         });
 
     function loadContractDetail(contractId) {
@@ -42,6 +53,17 @@
         }, '#DetailContract')
             .catch(error => {
                 console.error('❌ خطا در دریافت جزئیات قرارداد:', error);
+                const container = document.querySelector('#DetailContract');
+
+                container.innerHTML = `
+            <div class="card h-100 shadow-sm border-danger">
+                <div class="card-body text-center">
+                    <img src="/Content/Images/error-page.png" alt="صفحه خطا" class="img-fluid mb-3" style="max-width: 200px;" />
+                    <h6 class="mb-2">خطا در دریافت جزئیات قرارداد</h6>
+                    <p class="font-13">متأسفانه مشکلی در بارگیری اطلاعات این قرارداد پیش آمده است. لطفاً دوباره تلاش کنید.</p>
+                </div>
+            </div>
+        `;
             });
     }
 });

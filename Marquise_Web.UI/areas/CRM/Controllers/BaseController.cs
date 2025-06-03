@@ -44,6 +44,6 @@ namespace Marquise_Web.UI.areas.CRM.Controllers
 
             return Json(accountVms, JsonRequestBehavior.AllowGet);
         }
-
+       
     }
 }

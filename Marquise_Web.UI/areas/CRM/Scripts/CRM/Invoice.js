@@ -7,7 +7,6 @@
         return;
     }
 
-    // دریافت لیست صورتحساب‌ها با نمایش لودر ساده (در #invoice-list)
     fetchWithLoading('/CRM/Invoice/InvoiceList', {
         method: 'GET',
         headers: {
@@ -30,6 +29,18 @@
         })
         .catch(error => {
             console.error('❌ خطا در دریافت لیست صورتحساب:', error);
+            const container = document.getElementById('invoice-list');
+            if (container) {
+                container.innerHTML = `
+            <div class="card h-100 shadow-sm border-danger">
+                <div class="card-body text-center">
+                    <img src="/Content/Images/error-page.png" alt="خطای صورتحساب" class="img-fluid mb-3" style="max-width: 200px;" />
+                    <h6 class="mb-2">خطا در دریافت لیست صورتحساب</h6>
+                    <p class="font-13">متأسفانه مشکلی در بارگیری اطلاعات صورتحساب‌ها پیش آمده است. لطفاً دوباره تلاش کنید.</p>
+                </div>
+            </div>
+        `;
+            }
         });
 
     function selectRow(row) {
@@ -48,6 +59,21 @@
             headers: {
                 'Authorization': 'Bearer ' + token
             }
-        }, '#DetailInvoice');
+        }, '#DetailInvoice')
+            .catch(error => {
+                console.error('❌ خطا در دریافت جزئیات صورتحساب:', error);
+                const container = document.getElementById('DetailInvoice');
+                if (container) {
+                    container.innerHTML = `
+                <div class="card h-100 shadow-sm border-danger">
+                    <div class="card-body text-center">
+                        <img src="/Content/Images/error-page.png" alt="خطای صورتحساب" class="img-fluid mb-3" style="max-width: 200px;" />
+                        <h6 class="mb-2">خطا در دریافت جزئیات صورتحساب</h6>
+                        <p class="font-13">متأسفانه مشکلی در بارگیری اطلاعات صورتحساب پیش آمده است. لطفاً دوباره تلاش کنید.</p>
+                    </div>
+                </div>
+            `;
+                }
+            });
     }
 });

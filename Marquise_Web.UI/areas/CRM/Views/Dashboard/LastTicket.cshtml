@@ -28,7 +28,7 @@
                     @foreach (var ticket in Model)
                     {
 
-                        <tr class="table-row-link" onclick="location.href='@Url.Action("Detail", "Ticket", new { area = "CRM", ticketId = ticket.TicketId })'">
+                        <tr class="table-row-link" onclick="location.href='@Url.Action("DetailPage", "Ticket", new { area = "CRM", ticketId = ticket.TicketId })'">
                             <th scope="row">@ticket.TicketNumber</th>
                             <td>@ticket.Title</td>
                             <td>@ticket.CreateDatePersian</td>

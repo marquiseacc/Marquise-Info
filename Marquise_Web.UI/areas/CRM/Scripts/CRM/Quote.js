@@ -39,6 +39,18 @@
         })
         .catch(error => {
             console.error('❌ خطا در دریافت لیست کووت‌ها:', error);
+            const container = document.getElementById('quote-list');
+            if (container) {
+                container.innerHTML = `
+                    <div class="card h-100 shadow-sm border-danger">
+                        <div class="card-body text-center">
+                            <img src="/Content/Images/error-page.png" alt="خطای لیست کووت‌ها" class="img-fluid mb-3" style="max-width: 200px;" />
+                            <h6 class="mb-2">خطا در دریافت لیست پیشنهادات قیمت</h6>
+                            <p class="font-13">متأسفانه مشکلی در بارگیری اطلاعات کووت‌ها پیش آمده است. لطفاً دوباره تلاش کنید.</p>
+                        </div>
+                    </div>
+                `;
+            }
         });
 
     function loadQuoteDetail(quoteId) {
@@ -47,6 +59,21 @@
             headers: {
                 'Authorization': 'Bearer ' + token
             }
-        }, '#DetailQuote');
+        }, '#DetailQuote')
+            .catch(error => {
+                console.error('❌ خطا در دریافت جزئیات کووت:', error);
+                const detailContainer = document.getElementById('DetailQuote');
+                if (detailContainer) {
+                    detailContainer.innerHTML = `
+                    <div class="card h-100 shadow-sm border-danger">
+                        <div class="card-body text-center">
+                            <img src="/Content/Images/error-page.png" alt="خطای جزئیات کووت" class="img-fluid mb-3" style="max-width: 200px;" />
+                            <h6 class="mb-2">خطا در دریافت جزئیات پیشنهاد قیمت</h6>
+                            <p class="font-13">لطفاً بعداً دوباره تلاش کنید.</p>
+                        </div>
+                    </div>
+                `;
+                }
+            });
     }
 });

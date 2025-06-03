@@ -455,6 +455,7 @@
     <Compile Include="areas\CRM\Models\TicketVM.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FeaturesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
@@ -485,6 +486,7 @@
     <Content Include="areas\CRM\Scripts\CRM\Invoice.js" />
     <Content Include="areas\CRM\Scripts\CRM\Quote.js" />
     <Content Include="areas\CRM\Scripts\CRM\Ticket.js" />
+    <Content Include="areas\CRM\Scripts\CRM\session-monitor.js" />
     <Content Include="areas\CRM\Scripts\CRM\Topbar.js" />
     <Content Include="Content\Blog\blog1\blog11.jpg" />
     <Content Include="Content\Blog\blog2\blog21.jpg" />
@@ -1081,6 +1083,7 @@
     <Content Include="Content\CRM\assets\plugins\sparkline-charts\jquery.sparkline.min.js" />
     <Content Include="Content\CRM\assets\plugins\sparkline-charts\sparkline-chart-script.js" />
     <Content Include="Content\CSS\CRMCustom.css" />
+    <Content Include="Content\Images\error-page.png" />
     <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\theme\css\bootstrap-grid.css" />
     <Content Include="Content\bootstrap\bootstrap-grid.css" />
@@ -1419,6 +1422,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="areas\CRM\Views\Auth\SendOtp.cshtml" />

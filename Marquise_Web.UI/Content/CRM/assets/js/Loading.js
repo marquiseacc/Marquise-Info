@@ -1,9 +1,7 @@
-﻿// بیرون از DOMContentLoaded
-window.fetchWithLoading = function (url, options = {}, targetSelector) {
+﻿window.fetchWithLoading = function (url, options = {}, targetSelector) {
     const target = document.querySelector(targetSelector);
     const globalLoader = document.getElementById("global-loading");
 
-    // ⛔️ اگر لودینگ سراسری فعال بود، خاموشش کن
     if (globalLoader && globalLoader.style.display !== "none") {
         globalLoader.style.display = "none";
     }
@@ -28,16 +26,28 @@ window.fetchWithLoading = function (url, options = {}, targetSelector) {
         target.appendChild(loader);
     }
 
+    const token = localStorage.getItem('jwtToken');
+    const headers = {
+        ...options.headers,
+        ...(token ? { 'Authorization': 'Bearer ' + token } : {})
+    };
+
     return fetch(url, {
         ...options,
-        headers: {
-            ...options.headers
-        },
-        // ⛔️ علامت‌گذاری درخواست به عنوان داخلی
+        headers: headers,
         __internal: true
     })
         .then(response => {
-            if (!response.ok) throw new Error(`خطا: ${response.status}`);
+            if (response.status === 401) {
+                localStorage.removeItem('jwtToken');
+                window.location.href = '/Auth/SendOtp';
+                return Promise.reject(new Error('Unauthorized'));
+            }
+
+            if (!response.ok) {
+                return Promise.reject(new Error(`خطا: ${response.status}`));
+            }
+
             return response.text();
         })
         .then(data => {
@@ -45,12 +55,6 @@ window.fetchWithLoading = function (url, options = {}, targetSelector) {
                 target.innerHTML = data;
             }
             return data;
-        })
-        .catch(error => {
-            if (target) {
-                target.innerHTML = `<div class="error-message" style="color:red;">خطا در بارگذاری.</div>`;
-            }
-            console.error(error);
         })
         .finally(() => {
             if (target) {
@@ -61,6 +65,7 @@ window.fetchWithLoading = function (url, options = {}, targetSelector) {
             }
         });
 };
+
 // داخل DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function () {
     const globalLoader = document.getElementById("global-loading");
