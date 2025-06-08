@@ -1,4 +1,4 @@
-
+﻿
 $(function() {
     "use strict";
      
@@ -203,3 +203,4 @@ $(function () {
 function setThemeCookie(themeName) {
     document.cookie = "userTheme=" + themeName + "; path=/; max-age=" + (60 * 60 * 24 * 30); // 30 ???
 }
+

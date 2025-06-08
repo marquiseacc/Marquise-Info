@@ -146,15 +146,33 @@ namespace Marquise_Web.Data.Repository
             return await context.Accounts
                 .FirstOrDefaultAsync(a => a.CrmAccountId == crmAccountId);
         }
-
         public async Task AddRangeAsync(List<Account> accounts)
         {
             context.Accounts.AddRange(accounts);
             await context.SaveChangesAsync();
 
         }
+        public async Task CleanOldOtpLogsAsync(DateTime thresholdDate)
+        {
+            var oldRequests = context.OtpRequestLogs
+                .Where(x => x.RequestTime < thresholdDate);
 
+            var oldVerifies = context.OtpVerifyLogs
+                .Where(x => x.TryTime < thresholdDate);
 
+            context.OtpRequestLogs.RemoveRange(oldRequests);
+            context.OtpVerifyLogs.RemoveRange(oldVerifies);
+
+            await context.SaveChangesAsync();
+        }
+        public async Task DeleteOldHangfireJobs(DateTime threshold)
+        {
+            context.Database.ExecuteSqlCommand(@"
+                DELETE FROM [Hangfire].[Job] WHERE [CreatedAt] < @p0;
+                DELETE FROM [Hangfire].[State] WHERE [JobId] NOT IN (SELECT [Id] FROM [Hangfire].[Job]);
+                DELETE FROM [Hangfire].[JobParameter] WHERE [JobId] NOT IN (SELECT [Id] FROM [Hangfire].[Job]);
+            ", threshold);
+        }
     }
 
 }

@@ -18,7 +18,30 @@
             <div class="col-12 col-lg-4">
                 <div class="p-3">
                     <h5 class="mb-0">وضعیت</h5>
-                    <small class="mb-0">@Model.StatusTitle</small>
+                    @{
+                        string statusClass = "";
+                        string statusIcon = "";
+
+                        switch (Model.status__C)
+                        {
+                            case "73bbad0b-6e0f-402b-a581-82a87620dbd7": // فعال
+                                statusClass = "text-success";
+                                statusIcon = "<i class='bi bi-check-circle font-14'></i>";
+                                break;
+
+                            case "66e1823c-c99c-451a-845a-2dec96750754": // غیرفعال
+                                statusClass = "text-danger";
+                                statusIcon = "<i class='bi bi-slash-circle font-14'></i>";
+                                break;
+
+                            default:
+                                statusClass = "text-muted";
+                                statusIcon = "<i class='bi bi-question-circle font-14'></i>";
+                                break;
+                        }
+                    }
+
+                    <small class="mb-0 @statusClass">@Model.StatusTitle @Html.Raw(statusIcon)</small>
                 </div>
             </div>
         </div>

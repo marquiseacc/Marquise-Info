@@ -239,8 +239,17 @@ namespace Marquise_Web.Service.Service
                 }
             }
         }
-
-        // تابع کمکی
+        public async Task CleanOldOtpLogsAsync()
+        {
+            var threshold = DateTime.Now.AddDays(-5);
+            await unitOfWork.UserRepository.CleanOldOtpLogsAsync(threshold);
+        }
+        public async Task CleanOldHangfireJobsAsync()
+        {
+            var threshold = DateTime.UtcNow.AddDays(-7);
+            await unitOfWork.UserRepository.DeleteOldHangfireJobs(threshold);
+            await Task.CompletedTask;
+        }
         private string NormalizeMobile(string mobile)
         {
             if (string.IsNullOrWhiteSpace(mobile))

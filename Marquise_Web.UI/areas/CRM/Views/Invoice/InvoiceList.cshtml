@@ -18,7 +18,43 @@
                 <td>@invoice.Title</td>
                 <td>@invoice.CreateDatePersian</td>
                 <td>@invoice.TotalPrice.ToString("N0")</td>
-                <td>@invoice.StatusTitle</td>
+                @{
+                    string statusClass = "";
+                    string statusIcon = "";
+
+                    switch (invoice.Status)
+                    {
+                        case "2190e6ec-d127-48b1-953e-70cc8812e986": // باز
+                            statusClass = "text-primary";
+                            statusIcon = "<i class='bi bi-folder2-open font-14'></i>";
+                            break;
+
+                        case "defe0fbb-f568-49d8-bd65-f74781635da2": // تایید
+                            statusClass = "text-warning";
+                            statusIcon = "<i class='bi bi-patch-check font-14'></i>";
+                            break;
+
+                        case "9e771182-851a-4417-accf-e5e1ea5167b9": // پرداخت شده
+                            statusClass = "text-success";
+                            statusIcon = "<i class='bi bi-cash-stack font-14'></i>";
+                            break;
+
+                        case "9d0bce73-e071-4c6f-a64e-1fed6bd7df74": // ابطال
+                            statusClass = "text-danger";
+                            statusIcon = "<i class='bi bi-x-octagon font-14'></i>";
+                            break;
+
+                        default:
+                            statusClass = "text-muted";
+                            statusIcon = "<i class='bi bi-question-circle font-14'></i>";
+                            break;
+                    }
+                }
+
+                <td class="@statusClass">
+                    @invoice.StatusTitle @Html.Raw(statusIcon)
+                </td>
+
             </tr>
         }
     </tbody>

@@ -19,10 +19,44 @@
             <div class="col-12 col-lg-2">
                 <div class="p-3">
                     <h5 class="mb-0">وضعیت</h5>
-                    <small class="mb-0">
-                        @Model.StatusTitle
-                        @(Model.Status == "9a5e80a8-cc75-46f1-b158-01d58384d4f7" ? Html.Raw("<i class=\"bi bi-check2-circle font-14\"></i>") : null)
-                    </small>
+                    @{
+                        string statusClass = "";
+                        string statusIcon = "";
+
+                        switch (Model.Status)
+                        {
+                            case "28cb76a6-d999-4ee3-887c-66792287453d": // جدید
+                                statusClass = "text-primary";
+                                statusIcon = "<i class='bi bi-plus-circle font-14'></i>";
+                                break;
+
+                            case "b1af65c3-af6e-48a6-8d1f-b5c09d7f03c9": // باز
+                                statusClass = "text-warning";
+                                statusIcon = "<i class='bi bi-folder2-open font-14'></i>";
+                                break;
+
+                            case "f0da3c31-3fe7-41ca-96fa-31d351ca39df": // منتظر پاسخ
+                                statusClass = "text-warning";
+                                statusIcon = "<i class='bi bi-hourglass-split font-14'></i>";
+                                break;
+
+                            case "8804f420-0c59-44d2-a4ca-711af8822c56": // انجام شده
+                                statusClass = "text-info";
+                                statusIcon = "<i class='bi bi-check2-circle font-14'></i>";
+                                break;
+
+                            case "9a5e80a8-cc75-46f1-b158-01d58384d4f7": // بسته / نهایی شده
+                                statusClass = "text-success fw-bold";
+                                statusIcon = "<i class='bi bi-patch-check-fill font-14'></i>";
+                                break;
+
+                            default:
+                                statusClass = "text-muted";
+                                statusIcon = "<i class='bi bi-question-circle font-14'></i>";
+                                break;
+                        }
+                    }
+                    <small class="mb-0 @statusClass">@Model.StatusTitle @Html.Raw(statusIcon)</small>
                 </div>
             </div>
             <div class="col-12 col-lg-2">

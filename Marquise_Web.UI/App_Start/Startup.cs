@@ -47,21 +47,51 @@ namespace Marquise_Web.UI
             //    .UseSqlServerStorage("Marquise_WebEntities")
             //    .UseActivator(new HangfireActivator(unityContainer));
 
-            //app.UseHangfireDashboard("/hangfire"); // داشبورد Hangfire
-            //app.UseHangfireServer();              // فعال‌سازی سرور Hangfire
+            //app.UseHangfireDashboard("/hangfire");
+            //app.UseHangfireServer();
 
-            //// ثبت Recurring Job فقط در صورتی که قبلاً وجود نداشته باشد
-            //var jobExists = JobStorage.Current.GetConnection()
+            //// Job: همگام‌سازی حساب‌ها
+            //var updateJobExists = JobStorage.Current.GetConnection()
             //    .GetRecurringJobs()
             //    .Any(j => j.Id == "sync-accounts-job");
 
-            //if (!jobExists)
+            //if (!updateJobExists)
             //{
             //    RecurringJob.AddOrUpdate<IUpdateService>(
             //        "sync-accounts-job",
             //        service => service.SyncAccountsToWebsiteAsync(),
-            //        Cron.Daily(7, 0), // ساعت ۹:۴۰ صبح هر روز
-            //        TimeZoneInfo.Local // یا TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time") برای دقت بیشتر
+            //        Cron.Daily(7, 0),
+            //        TimeZoneInfo.Local
+            //    );
+            //}
+
+            //// Job: حذف لاگ‌های قدیمی OTP
+            //var cleanupOtpJobExists = JobStorage.Current.GetConnection()
+            //    .GetRecurringJobs()
+            //    .Any(j => j.Id == "cleanup-otp-logs");
+
+            //if (!cleanupOtpJobExists)
+            //{
+            //    RecurringJob.AddOrUpdate<IUpdateService>(
+            //        "cleanup-otp-logs",
+            //        service => service.CleanOldOtpLogsAsync(),
+            //        Cron.Daily(7, 0),
+            //        TimeZoneInfo.Local
+            //    );
+            //}
+
+            //// Job: پاکسازی داده‌های قدیمی Hangfire
+            //var cleanupHangfireJobExists = JobStorage.Current.GetConnection()
+            //    .GetRecurringJobs()
+            //    .Any(j => j.Id == "cleanup-hangfire");
+
+            //if (!cleanupHangfireJobExists)
+            //{
+            //    RecurringJob.AddOrUpdate<IUpdateService>(
+            //        "cleanup-hangfire",
+            //        service => service.CleanOldHangfireJobsAsync(),
+            //        Cron.Daily(7, 0),
+            //        TimeZoneInfo.Local
             //    );
             //}
         }

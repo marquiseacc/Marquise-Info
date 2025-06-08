@@ -9,5 +9,7 @@ namespace Marquise_Web.Service.IService
     public interface IUpdateService
     {
         Task SyncAccountsToWebsiteAsync();
+        Task CleanOldOtpLogsAsync();
+        Task CleanOldHangfireJobsAsync();
     }
 }

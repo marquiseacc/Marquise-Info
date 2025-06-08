@@ -17,7 +17,43 @@
                 <td>@quote.Name</td>
                 <td>@quote.CreateDatePersian</td>
                 <td>@quote.TotalPrice.ToString("N0")</td>
-                <td>@quote.StatusTitle</td>
+                @{
+                    string statusClass = "";
+                    string statusIcon = "";
+
+                    switch (quote.Status)
+                    {
+                        case "5da43111-369a-4f7a-a024-6e470af1122f": // جدید
+                            statusClass = "text-primary";
+                            statusIcon = "<i class='bi bi-plus-circle font-14'></i>";
+                            break;
+
+                        case "ae6eb0e5-1dd5-41a9-b34f-d293b46796a8": // قبول شده
+                            statusClass = "text-warning";
+                            statusIcon = "<i class='bi bi-check2-square font-14'></i>";
+                            break;
+
+                        case "ed9d3244-bc9f-4d67-8a24-5f580e951400": // تبدیل شده
+                            statusClass = "text-success";
+                            statusIcon = "<i class='bi bi-file-earmark-check font-14'></i>";
+                            break;
+
+                        case "6cc730a0-637d-4f6d-89fb-06e4832ec215": // رد شده
+                            statusClass = "text-danger";
+                            statusIcon = "<i class='bi bi-x-circle font-14'></i>";
+                            break;
+
+                        default:
+                            statusClass = "text-muted";
+                            statusIcon = "<i class='bi bi-question-circle font-14'></i>";
+                            break;
+                    }
+                }
+
+                <td class="@statusClass">
+                    @quote.StatusTitle @Html.Raw(statusIcon)
+                </td>
+
             </tr>
         }
     </tbody>

@@ -13,7 +13,33 @@
             <tr data-contract-id="@contract.Id">
                 <td>@contract.sodoureghoflName__C</td>
                 <td>@contract.CreateDatePersian</td>
-                <td>@contract.StatusTitle</td>
+                @{
+                    string statusClass = "";
+                    string statusIcon = "";
+
+                    switch (contract.status__C)
+                    {
+                        case "73bbad0b-6e0f-402b-a581-82a87620dbd7": // فعال
+                            statusClass = "text-success";
+                            statusIcon = "<i class='bi bi-check-circle font-14'></i>";
+                            break;
+
+                        case "66e1823c-c99c-451a-845a-2dec96750754": // غیرفعال
+                            statusClass = "text-danger";
+                            statusIcon = "<i class='bi bi-slash-circle font-14'></i>";
+                            break;
+
+                        default:
+                            statusClass = "text-muted";
+                            statusIcon = "<i class='bi bi-question-circle font-14'></i>";
+                            break;
+                    }
+                }
+
+                <td class="@statusClass">
+                    @contract.StatusTitle @Html.Raw(statusIcon)
+                </td>
+
             </tr>
         }
     </tbody>

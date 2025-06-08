@@ -24,6 +24,7 @@ namespace Marquise_Web.Data.IRepository
         Task UpdateAccount(Account account);
         Task<Account> GetByCrmAccountIdAsync(string crmAccountId);
         Task AddRangeAsync(List<Account> accounts);
-
+        Task CleanOldOtpLogsAsync(DateTime thresholdDate);
+        Task DeleteOldHangfireJobs(DateTime threshold);
     }
 }
